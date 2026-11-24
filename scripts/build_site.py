@@ -142,7 +142,14 @@ def badge(value, table) -> str:
 
 
 def css() -> str:
-    return """/* ScholarSkills hub - no framework, no tracking, no build step.
+    return """@font-face{font-family:'Heebo';font-style:normal;font-weight:400 600;
+  font-display:swap;src:url('fonts/heebo.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Signika';font-style:normal;font-weight:600 700;
+  font-display:swap;src:url('fonts/signika.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+/* ScholarSkills hub - no framework, no tracking, no build step.
    Colours: categorical palette (Okabe-Ito, colour-vision safe). Every stage ink was darkened
    until it reaches >=4.5:1 contrast on its own soft background (WCAG AA for body text). */
 :root{
@@ -360,9 +367,8 @@ def html_head(title: str, description: str, rel: str, lang: str) -> str:
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://labhdufba.github.io/scholarskills/assets/img/hermes.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Signika:wght@600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="{rel}assets/fonts/heebo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{rel}assets/fonts/signika.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{rel}assets/style.css">
 <link rel="icon" href="{rel}assets/img/labhd.png">
 </head>
@@ -663,6 +669,12 @@ def build(out: Path) -> dict:
     img.mkdir(parents=True, exist_ok=True)
     for f in ASSETS.glob("*"):
         shutil.copy(f, img / f.name)
+    fonts_src = ROOT / "assets" / "fonts"
+    if fonts_src.exists():
+        fonts_out = out / "assets" / "fonts"
+        fonts_out.mkdir(parents=True, exist_ok=True)
+        for f in fonts_src.glob("*.woff2"):
+            shutil.copy(f, fonts_out / f.name)
 
     (out / "api").mkdir(parents=True, exist_ok=True)
     (out / "api" / "registry.json").write_text(

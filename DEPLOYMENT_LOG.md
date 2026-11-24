@@ -368,6 +368,48 @@ LABHD badge linking to the institutional site, and the language switch is a plai
 badge reads as a seal and its inner micro-text is not legible — mitigated by the "LABHD · UFBA" wordmark
 beside it. If the vector original becomes available, swapping the file is the only change needed.
 
+---
+
+## Entry 017 — 2026-11-24 — Fonts self-hosted (performance fix)
+
+**Symptom reported by the operator:** the site felt slow.
+
+**Diagnosis, measured rather than guessed:**
+
+| Check | Before |
+|---|---|
+| GitHub Pages TTFB (3 runs) | 0.20 s – 0.36 s — healthy, not the cause |
+| HTML | 19.7 kB |
+| CSS / JS | 10.9 kB / 1.6 kB |
+| `fonts.googleapis.com` | **third-party, render-blocking**, plus a second origin `fonts.gstatic.com` for the files |
+
+Two external origins in the critical path, both `render-blocking`, are the classic cause of a slow
+first paint on networks with high latency to Google — and the hub has no reason to depend on them.
+
+**Fix:** both families are variable fonts, so each is a single `woff2`. Downloaded the `latin` subset
+and self-hosted them under `assets/fonts/` (Heebo 30 kB, Signika 42 kB), declared `@font-face` with
+`font-weight` ranges and `font-display: swap`, and added `<link rel="preload">` for both. The Google
+stylesheets were removed entirely.
+
+**After, measured in a real browser:**
+
+```
+ttfb 28 ms · DOMContentLoaded 246 ms · load 368 ms
+10 requests · 0 external requests
+```
+
+**General rule recorded:** a static academic site must not put a third-party font CDN in the critical
+path. Self-hosting a variable font costs ~70 kB once and removes two DNS lookups, two TLS handshakes
+and a blocking round-trip.
+
+---
+
+## Entry 018 — 2026-11-24 — Zenodo integration: still not active
+
+Re-checked after the operator said the connection was made: `gh api repos/LABHDUFBA/scholarskills/hooks`
+still returns **0 hooks**, and the only release is `v1.0.0`, published before the repository became
+public. The switch per repository was therefore not enabled. Exact steps are in Entry 014.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.
