@@ -43,6 +43,44 @@
 
 <main class="wrap"><div class="cols">
   <div>
+    <h2 class="sec">Requirements</h2>
+<p class="note" style="margin-top:-2px">What you must have before running this skill. Everything required appears here — credentials included.</p>
+<div class="reqs">
+<article class="req required">
+  <div class="req-top">
+    <h3>Zotero API key</h3>
+    <div class="req-badges"><span class="badge accent">Required</span><span class="badge kind">credential</span><code class="env">ZOTERO_API_KEY</code></div>
+  </div>
+  <p><b>What it is:</b> A personal key created in your Zotero account. It authorises the skill to read (and, if you allow it, write to) your library.</p>
+  <p><b>How to get it:</b> Zotero → Settings → Security → Applications → Create new private key. Grant only the permissions you intend: library read access, write access if the skill will create items, and private library access if that is your case. Copy the key when it is created — it is never shown again.</p>
+  <pre class="req-ex"><code>export ZOTERO_API_KEY=&quot;sua_chave_aqui&quot;</code></pre>
+  <div class="req-links"><a class="btn req-btn primary" href="https://www.zotero.org/settings/keys/new" target="_blank" rel="noopener">Create a key at Zotero &nearr;</a><a class="btn req-btn" href="https://www.zotero.org/support/dev/web_api/v3/basics" target="_blank" rel="noopener">Web API v3 documentation &nearr;</a></div>
+  <p class="req-note"><b>Careful:</b> The key is a credential: keep it out of code, repositories, versioned notebooks and screenshots. Use an environment variable.</p>
+</article>
+<article class="req required">
+  <div class="req-top">
+    <h3>Library ID</h3>
+    <div class="req-badges"><span class="badge accent">Required</span><span class="badge kind">identifier</span><code class="env">ZOTERO_LIBRARY_ID</code></div>
+  </div>
+  <p><b>What it is:</b> Your library number (userID). It appears on the same keys page, next to your username.</p>
+  <p><b>How to get it:</b> On the keys settings page, the number next to your username is the library ID. For group libraries, use the group ID.</p>
+  <pre class="req-ex"><code>export ZOTERO_LIBRARY_ID=&quot;123456&quot;</code></pre>
+  <div class="req-links"><a class="btn req-btn primary" href="https://www.zotero.org/settings/keys" target="_blank" rel="noopener">See your ID &nearr;</a></div>
+  <p class="req-note"><b>Careful:</b> It is not secret, but it identifies your account: avoid publishing it alongside research data.</p>
+</article>
+<article class="req required">
+  <div class="req-top">
+    <h3>Library type</h3>
+    <div class="req-badges"><span class="badge accent">Required</span><span class="badge kind">setting</span><code class="env">ZOTERO_LIBRARY_TYPE</code></div>
+  </div>
+  <p><b>What it is:</b> Whether the library is personal (user) or a group library (group).</p>
+  <p><b>How to get it:</b> Personal library → user. A shared group library → group (and the ID becomes the group&#x27;s).</p>
+  <pre class="req-ex"><code>export ZOTERO_LIBRARY_TYPE=&quot;user&quot;   # ou &quot;group&quot;</code></pre>
+  
+  <p class="req-note"><b>Careful:</b> Not a credential; it determines which endpoint the client queries.</p>
+</article>
+</div>
+
     <h2 class="sec">Objective</h2>
     <p>Turn a Zotero library into a reliable, citable data source for research pipelines: enumerate, filter, export and write references through the Web API v3 — no browser, no scraping, no personal identifiers in the package.</p>
 

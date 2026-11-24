@@ -457,6 +457,36 @@ the wordmark beside it, the mark reads as a seal — acceptable, but a logo with
 inner text would read better at this size. Escalated to the operator, since only the 64×64 raster is
 published.
 
+---
+
+## Entry 021 — 2026-11-24 — "Requirements" section: what the user must provide
+
+**Operator's point:** a skill page must state up front what the user has to supply for the skill to
+work. For Zotero that is an API key, and a bare "403 — scope limit" reads as an implementation detail
+rather than as an instruction.
+
+**Implementation:** `requirements[]` in the registry. Each entry carries `name`, `required`, `type`
+(`secret` | `id` | `software` | `choice`), the `env` variable the code reads, `what` (in plain
+language), `how` (the exact UI path to obtain it), `url` + `doc_url` (verified, opened in a new tab),
+`example` (a copyable `export` line) and `note` (the security warning).
+
+Rendered as a card list, above the objective, in both languages:
+
+- **SS-0001 (Zotero)** — API key (`ZOTERO_API_KEY`, secret), library ID (`ZOTERO_LIBRARY_ID`),
+  library type (`ZOTERO_LIBRARY_TYPE`, user | group).
+- **SS-0000** — Python 3.10+, PyYAML.
+
+The 403 is now framed where it belongs: the key's *scope* is the limit of access, and the requirements
+block says which scope to grant instead of telling the reader to work around a 403.
+
+**Links verified before publishing** (not guessed): `zotero.org/settings/keys/new` → 200,
+`zotero.org/support/dev/web_api/v3/basics` → 200. The key-creation path, the `Total-Results` header
+and `itemType=-attachment` were confirmed against the official Web API v3 documentation.
+
+**Accessibility correction found while testing the block:** white text on the brand green `#16a34a`
+measures **3.30:1** — below AA. Solid buttons now use `#15803d` (**5.02:1**), keeping `#16a34a` for
+surfaces and non-text accents.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.

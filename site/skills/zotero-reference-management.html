@@ -43,6 +43,44 @@
 
 <main class="wrap"><div class="cols">
   <div>
+    <h2 class="sec">Requisitos</h2>
+<p class="note" style="margin-top:-2px">O que você precisa ter antes de rodar esta skill. Tudo o que é exigido aparece aqui — inclusive credenciais.</p>
+<div class="reqs">
+<article class="req required">
+  <div class="req-top">
+    <h3>Chave de API do Zotero</h3>
+    <div class="req-badges"><span class="badge accent">Obrigatório</span><span class="badge kind">credencial</span><code class="env">ZOTERO_API_KEY</code></div>
+  </div>
+  <p><b>O que é:</b> Uma chave pessoal criada na sua conta Zotero. É ela que autoriza a skill a ler (e, se você permitir, gravar) na sua biblioteca.</p>
+  <p><b>Como obter:</b> Zotero → Settings → Security → Applications → Create new private key. Marque apenas as permissões que você quer conceder: leitura da biblioteca, leitura/escrita se for criar referências, e acesso à biblioteca privada se for o caso. Copie a chave no momento da criação — ela não é exibida de novo.</p>
+  <pre class="req-ex"><code>export ZOTERO_API_KEY=&quot;sua_chave_aqui&quot;</code></pre>
+  <div class="req-links"><a class="btn req-btn primary" href="https://www.zotero.org/settings/keys/new" target="_blank" rel="noopener">Criar chave no Zotero &nearr;</a><a class="btn req-btn" href="https://www.zotero.org/support/dev/web_api/v3/basics" target="_blank" rel="noopener">Documentação da Web API v3 &nearr;</a></div>
+  <p class="req-note"><b>Cuidado:</b> A chave é uma credencial: não a coloque no código, em repositório, em notebook versionado nem em captura de tela. Use variável de ambiente.</p>
+</article>
+<article class="req required">
+  <div class="req-top">
+    <h3>ID da biblioteca</h3>
+    <div class="req-badges"><span class="badge accent">Obrigatório</span><span class="badge kind">identificador</span><code class="env">ZOTERO_LIBRARY_ID</code></div>
+  </div>
+  <p><b>O que é:</b> O número da sua biblioteca (userID). Aparece na mesma página de chaves, junto ao seu nome de usuário.</p>
+  <p><b>Como obter:</b> Na página de configurações de chaves, o número ao lado do seu nome de usuário é o library ID. Para bibliotecas de grupo, use o ID do grupo.</p>
+  <pre class="req-ex"><code>export ZOTERO_LIBRARY_ID=&quot;123456&quot;</code></pre>
+  <div class="req-links"><a class="btn req-btn primary" href="https://www.zotero.org/settings/keys" target="_blank" rel="noopener">Ver seu ID &nearr;</a></div>
+  <p class="req-note"><b>Cuidado:</b> Não é secreto, mas identifica sua conta: prefira não publicar junto com dados de pesquisa.</p>
+</article>
+<article class="req required">
+  <div class="req-top">
+    <h3>Tipo de biblioteca</h3>
+    <div class="req-badges"><span class="badge accent">Obrigatório</span><span class="badge kind">configuração</span><code class="env">ZOTERO_LIBRARY_TYPE</code></div>
+  </div>
+  <p><b>O que é:</b> Diz se a biblioteca é pessoal (user) ou de grupo (group).</p>
+  <p><b>Como obter:</b> Biblioteca pessoal → user. Biblioteca compartilhada de um grupo → group (e o ID passa a ser o do grupo).</p>
+  <pre class="req-ex"><code>export ZOTERO_LIBRARY_TYPE=&quot;user&quot;   # ou &quot;group&quot;</code></pre>
+  
+  <p class="req-note"><b>Cuidado:</b> Não é credencial; define qual endpoint o cliente consulta.</p>
+</article>
+</div>
+
     <h2 class="sec">Objetivo</h2>
     <p>Converter uma biblioteca Zotero em fonte de dados confiável e citável para pipelines de pesquisa: enumerar, filtrar, exportar e gravar referências pela Web API v3 — sem navegador, sem scraping e sem identificadores pessoais no pacote.</p>
 

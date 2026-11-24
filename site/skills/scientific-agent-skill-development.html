@@ -43,6 +43,33 @@
 
 <main class="wrap"><div class="cols">
   <div>
+    <h2 class="sec">Requisitos</h2>
+<p class="note" style="margin-top:-2px">O que você precisa ter antes de rodar esta skill. Tudo o que é exigido aparece aqui — inclusive credenciais.</p>
+<div class="reqs">
+<article class="req required">
+  <div class="req-top">
+    <h3>Python 3.10 ou superior</h3>
+    <div class="req-badges"><span class="badge accent">Obrigatório</span><span class="badge kind">software</span></div>
+  </div>
+  <p><b>O que é:</b> Os scripts de validação e de empacotamento rodam em Python 3.10+.</p>
+  <p><b>Como obter:</b> Verifique com python3 --version. A CI do repositório testa 3.10 e 3.12.</p>
+  
+  <div class="req-links"><a class="btn req-btn primary" href="https://www.python.org/downloads/" target="_blank" rel="noopener">Baixar Python &nearr;</a></div>
+  <p class="req-note"><b>Cuidado:</b> Nenhuma credencial é necessária para validar uma skill. Chaves só entram em cena se a skill que você está empacotando exigir.</p>
+</article>
+<article class="req required">
+  <div class="req-top">
+    <h3>PyYAML</h3>
+    <div class="req-badges"><span class="badge accent">Obrigatório</span><span class="badge kind">software</span></div>
+  </div>
+  <p><b>O que é:</b> Usado para ler o frontmatter YAML do SKILL.md.</p>
+  <p><b>Como obter:</b> pip install pyyaml</p>
+  
+  
+  
+</article>
+</div>
+
     <h2 class="sec">Objetivo</h2>
     <p>Meta-skill: transforma um método de pesquisa em uma skill documentada, testada e citável — ou recusa, e explica por quê.</p>
 

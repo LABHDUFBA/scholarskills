@@ -43,7 +43,12 @@ T = {
   "search": "Buscar skill, palavra-chave, autor…", "all_status": "Todos os status",
   "all_maturity": "Toda maturidade", "all_stages": "Todas as etapas",
   "empty": "Nenhuma skill corresponde a esses filtros.", "view": "Ver detalhes",
-  "objective": "Objetivo", "how": "Como funciona", "authors_h": "Autores", "cite": "Como citar",
+  "objective": "Objetivo", "req_h": "Requisitos",
+  "req_intro": "O que você precisa ter antes de rodar esta skill. Tudo o que é exigido aparece aqui — inclusive credenciais.",
+  "req_required": "Obrigatório", "req_optional": "Opcional", "req_env": "Variável de ambiente",
+  "req_what": "O que é", "req_how": "Como obter", "req_note": "Cuidado",
+  "req_secret": "credencial", "req_software": "software", "req_id": "identificador", "req_choice": "configuração",
+  "req_none": "Nenhum requisito além do próprio pacote.", "how": "Como funciona", "authors_h": "Autores", "cite": "Como citar",
   "copied": "Copiado", "install": "Instalação", "validation": "Validação",
   "factsheet": "Ficha", "links": "Links", "keywords": "Palavras-chave",
   "features": "Recursos", "stack": "Stack", "stage": "Etapa",
@@ -81,7 +86,12 @@ T = {
   "search": "Search skills, keywords, authors…", "all_status": "All statuses",
   "all_maturity": "All maturity levels", "all_stages": "All stages",
   "empty": "No skill matches these filters.", "view": "View details",
-  "objective": "Objective", "how": "How it works", "authors_h": "Authors", "cite": "How to cite",
+  "objective": "Objective", "req_h": "Requirements",
+  "req_intro": "What you must have before running this skill. Everything required appears here — credentials included.",
+  "req_required": "Required", "req_optional": "Optional", "req_env": "Environment variable",
+  "req_what": "What it is", "req_how": "How to get it", "req_note": "Careful",
+  "req_secret": "credential", "req_software": "software", "req_id": "identifier", "req_choice": "setting",
+  "req_none": "No requirement beyond the package itself.", "how": "How it works", "authors_h": "Authors", "cite": "How to cite",
   "copied": "Copied", "install": "Installation", "validation": "Validation",
   "factsheet": "Factsheet", "links": "Links", "keywords": "Keywords",
   "features": "Features", "stack": "Stack", "stage": "Stage",
@@ -267,6 +277,36 @@ nav.site a.on{color:var(--brand-ink);font-weight:600}
 .meta-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px;font-size:13px;
   color:var(--muted)}
 .cols{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:44px;padding:38px 0 72px}
+
+/* ---------- requirements block ---------- */
+.reqs{display:flex;flex-direction:column;gap:12px;margin:14px 0 4px}
+.req{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:15px 16px;border-left:3px solid var(--line)}
+.req.required{border-left-color:var(--stage,var(--brand))}
+.req-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+  margin-bottom:8px}
+.req h3{font-size:15px;font-weight:600;margin:0;line-height:1.3}
+.req-badges{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.badge.kind{background:#f3f4f6;color:#54606d;border-color:var(--line);text-transform:none;
+  letter-spacing:0;font-weight:600}
+code.env{font-family:var(--mono);font-size:11.5px;background:var(--stage-soft,#f3f4f6);
+  color:var(--stage-ink,#374151);border:1px solid rgba(0,0,0,.05);padding:3px 7px;border-radius:5px}
+.req p{margin:0 0 8px;font-size:14px;line-height:1.55;color:var(--ink)}
+.req p b{color:var(--stage-ink,var(--ink));font-weight:600}
+.req p:last-child{margin-bottom:0}
+.req-links{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.req-btn{font-size:12.5px;padding:7px 12px;border-color:var(--brand-line);
+  background:var(--brand-soft);color:var(--brand-ink);font-weight:600}
+.req-btn:hover{background:var(--brand-ink);color:#fff !important;border-color:var(--brand-ink)}
+.req-btn.primary{background:var(--brand-ink);color:#fff !important;border-color:var(--brand-ink)}
+.req-btn.primary:hover{background:#116635;border-color:#116635}
+.req-ex{margin:10px 0 0;padding:10px 12px;background:#0f1712;color:#d6e6da;border-radius:6px;
+  font-family:var(--mono);font-size:12px;line-height:1.55;overflow-x:auto}
+.req-ex code{font-family:inherit;background:none;border:none;padding:0;color:inherit}
+.req-note{font-size:13px;color:var(--warn);background:var(--warn-soft);border-radius:6px;
+  border-left:3px solid #d9a441;padding:9px 12px;margin-top:10px}
+.req-note b{color:#8a5b00}
+
 @media(max-width:900px){.cols{grid-template-columns:1fr;gap:28px}}
 h2.sec{font-size:12.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);
   margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
@@ -621,6 +661,50 @@ def render_index(reg: dict, lang: str) -> str:
     return out.replace("{rel}", rel)
 
 
+def render_requirements(s: dict, lang: str) -> str:
+    reqs = s.get("requirements") or []
+    if not reqs:
+        return ""
+    out = [f'<h2 class="sec">{t(lang,"req_h")}</h2>',
+           f'<p class="note" style="margin-top:-2px">{t(lang,"req_intro")}</p>',
+           '<div class="reqs">']
+    for r in reqs:
+        name = r.get("name_en") if lang == "en" and r.get("name_en") else r.get("name") or ""
+        what = r.get("what_en") if lang == "en" and r.get("what_en") else r.get("what_pt") or r.get("what") or ""
+        how = r.get("how_en") if lang == "en" and r.get("how_en") else r.get("how_pt") or r.get("how") or ""
+        note = r.get("note_en") if lang == "en" and r.get("note_en") else r.get("note_pt") or r.get("note")
+        typ = r.get("type") or ""
+        sev = " required" if r.get("required") else ""
+        badges = f'<span class="badge accent">{t(lang,"req_required")}</span>' if r.get("required") else f'<span class="badge muted">{t(lang,"req_optional")}</span>'
+        if typ in ("secret", "id", "software", "choice"):
+            badges += f'<span class="badge kind">{t(lang, "req_" + typ)}</span>'
+        env = (f'<code class="env">{esc(r.get("env"))}</code>' if r.get("env") else "")
+        links = []
+        if r.get("url"):
+            lab = (r.get("url_label_en") if lang == "en" and r.get("url_label_en")
+                   else r.get("url_label")) or r["url"]
+            links.append(f'<a class="btn req-btn primary" href="{esc(r["url"])}" target="_blank" '
+                         f'rel="noopener">{esc(lab)} &nearr;</a>')
+        if r.get("doc_url"):
+            lab2 = (r.get("doc_label_en") if lang == "en" and r.get("doc_label_en")
+                    else r.get("doc_label")) or r["doc_url"]
+            links.append(f'<a class="btn req-btn" href="{esc(r["doc_url"])}" target="_blank" '
+                         f'rel="noopener">{esc(lab2)} &nearr;</a>')
+        out.append(f"""<article class="req{sev}">
+  <div class="req-top">
+    <h3>{esc(name)}</h3>
+    <div class="req-badges">{badges}{env}</div>
+  </div>
+  {f'<p><b>{t(lang,"req_what")}:</b> {esc(what)}</p>' if what else ''}
+  {f'<p><b>{t(lang,"req_how")}:</b> {esc(how)}</p>' if how else ''}
+  {f'<pre class="req-ex"><code>{esc(r.get("example"))}</code></pre>' if r.get("example") else ''}
+  {f'<div class="req-links">{"".join(links)}</div>' if links else ''}
+  {f'<p class="req-note"><b>{t(lang,"req_note")}:</b> {esc(note)}</p>' if note else ''}
+</article>""")
+    out.append('</div>')
+    return "\n".join(out)
+
+
 def render_skill(s: dict, hub: dict, stages: dict, lang: str) -> str:
     rel = "../" if lang == "pt" else "../../"  # pages live in <base>/skills/
     other = "../../en/" if lang == "pt" else "../../"
@@ -628,6 +712,7 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str) -> str:
     name = (stage or {}).get(lang) or "—"
     title = s.get("title_pt") if (lang == "pt" and s.get("title_pt")) else s.get("title")
     sub = s.get("summary_pt") if (lang == "pt" and s.get("summary_pt")) else s.get("summary")
+    reqs_html = render_requirements(s, lang)
     out = html_head(f"{title} — ScholarSkills", sub or "", rel, lang)
     out += site_header(rel, lang, hub, other)
 
@@ -675,6 +760,8 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str) -> str:
 
 <main class="wrap"><div class="cols">
   <div>
+    {reqs_html}
+
     <h2 class="sec">{t(lang,'objective')}</h2>
     <p>{esc(objective)}</p>
 

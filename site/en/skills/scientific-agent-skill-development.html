@@ -43,6 +43,33 @@
 
 <main class="wrap"><div class="cols">
   <div>
+    <h2 class="sec">Requirements</h2>
+<p class="note" style="margin-top:-2px">What you must have before running this skill. Everything required appears here — credentials included.</p>
+<div class="reqs">
+<article class="req required">
+  <div class="req-top">
+    <h3>Python 3.10 or newer</h3>
+    <div class="req-badges"><span class="badge accent">Required</span><span class="badge kind">software</span></div>
+  </div>
+  <p><b>What it is:</b> The validation and packaging scripts run on Python 3.10+.</p>
+  <p><b>How to get it:</b> Check with python3 --version. The repository CI tests 3.10 and 3.12.</p>
+  
+  <div class="req-links"><a class="btn req-btn primary" href="https://www.python.org/downloads/" target="_blank" rel="noopener">Download Python &nearr;</a></div>
+  <p class="req-note"><b>Careful:</b> No credential is needed to validate a skill. Keys only matter if the skill you are packaging requires them.</p>
+</article>
+<article class="req required">
+  <div class="req-top">
+    <h3>PyYAML</h3>
+    <div class="req-badges"><span class="badge accent">Required</span><span class="badge kind">software</span></div>
+  </div>
+  <p><b>What it is:</b> Used to read the YAML frontmatter of SKILL.md.</p>
+  <p><b>How to get it:</b> pip install pyyaml</p>
+  
+  
+  
+</article>
+</div>
+
     <h2 class="sec">Objective</h2>
     <p>A meta-skill: it turns a research method into a documented, tested, citable agent skill — or refuses, and says why.</p>
 
