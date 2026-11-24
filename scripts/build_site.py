@@ -33,6 +33,15 @@ STATUS = {"available": ("Disponível", "accent"), "planned": ("Planejada", "mute
           "deprecated": ("Descontinuada", "bad")}
 STATUS_EN = {"available": ("Available", "accent"), "planned": ("Planned", "muted"),
              "deprecated": ("Deprecated", "bad")}
+# Icon files downloaded from the vendors' own sites (see DEPLOYMENT_LOG entry 025).
+ICON_ASSET = {
+    "python": "python.png",
+    "zotero": "zotero.svg",
+    "github": "github.png",
+    "hermes": "hermes.png",
+    "zenodo": "zenodo.svg",
+}
+
 ICON_LABEL = {"zotero": "Zotero", "hermes": "Hermes Agent", "python": "Python", "github": "GitHub"}
 
 T = {
@@ -222,6 +231,29 @@ header.site .theme-toggle{order:2}
   border-radius:6px;padding:6px 13px;font-weight:600}
 .cta:hover{background:var(--brand-ink);border-color:var(--brand-ink);text-decoration:none}
 .lang:hover{border-color:var(--brand);text-decoration:none}
+/* ---------- path bar (compact filters) ---------- */
+.pathbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0 14px;
+  padding:12px 14px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--bg-soft)}
+.pathbar-h{font-size:0.75rem;text-transform:uppercase;letter-spacing:.06em;
+  font-weight:700;color:var(--muted);margin-right:4px}
+.pathpill{display:inline-flex;align-items:center;gap:9px;font:inherit;font-size:0.8125rem;
+  font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--line);
+  border-radius:999px;padding:6px 12px;cursor:pointer;line-height:1.25}
+.pathpill:hover{border-color:var(--brand);color:var(--brand-ink)}
+.pathpill.on{background:var(--brand-soft);border-color:var(--brand-line);color:var(--brand-ink)}
+.pathpill-chain{font-family:var(--mono);font-size:0.6875rem;color:var(--muted);
+  letter-spacing:-.02em}
+.pathpill.on .pathpill-chain{color:var(--brand-ink)}
+@media(max-width:640px){
+  .pathbar{padding:10px 12px;flex-wrap:nowrap;overflow-x:auto;gap:8px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .pathbar::-webkit-scrollbar{display:none}
+  .pathbar-h{flex:0 0 auto}
+  .pathpill{flex:0 0 auto;font-size:0.7813rem;padding:6px 11px;white-space:nowrap}
+  .pathpill-chain{display:none}
+}
+
 /* ---------- theme toggle ---------- */
 .theme-toggle{display:inline-grid;place-items:center;width:36px;height:32px;
   border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);
@@ -574,19 +606,21 @@ def js() -> str:
 (function(){
   var q=document.getElementById('q'), st=document.getElementById('f-status'),
       mt=document.getElementById('f-maturity'), sg=document.getElementById('f-stage'),
-      dc=document.getElementById('f-disc'),
+      dc=document.getElementById('f-disc'), pb=document.querySelectorAll('[data-path-jump]'),
       cards=[].slice.call(document.querySelectorAll('[data-skill]')),
       count=document.getElementById('count'), empty=document.getElementById('empty');
   if(!cards.length) return;
+  var PATH='';
   function apply(){
     var term=(q&&q.value||'').toLowerCase().trim(),
         s=st&&st.value||'', m=mt&&mt.value||'', g=sg&&sg.value||'',
-        d=dc&&dc.value||'', shown=0;
+        d=dc&&dc.value||'', p=PATH||'', shown=0;
     cards.forEach(function(c){
       var hay=c.dataset.search||'';
       var show=(!term||hay.indexOf(term)>-1)&&(!s||c.dataset.status===s)
         &&(!m||c.dataset.maturity===m)&&(!g||c.dataset.stage===g)
-        &&(!d||(' '+(c.dataset.disc||'')+' ').indexOf(' '+d+' ')>-1);
+        &&(!d||(' '+(c.dataset.disc||'')+' ').indexOf(' '+d+' ')>-1)
+        &&(!p||(' '+(c.dataset.paths||'')+' ').indexOf(' '+p+' ')>-1);
       c.style.display=show?'':'none';
       if(show) shown++;
     });
@@ -595,6 +629,14 @@ def js() -> str:
   }
   [q,st,mt,sg,dc].forEach(function(el){ if(el) el.addEventListener('input',apply); });
   [st,mt,sg,dc].forEach(function(el){ if(el) el.addEventListener('change',apply); });
+  [].slice.call(pb).forEach(function(b){
+    b.addEventListener('click',function(){
+      var v=b.dataset.pathJump;
+      if(PATH===v){ PATH=''; b.classList.remove('on'); }
+      else { PATH=v; [].slice.call(pb).forEach(function(x){ x.classList.remove('on'); }); b.classList.add('on'); }
+      apply();
+    });
+  });
   [].slice.call(document.querySelectorAll('[data-disc-jump]')).forEach(function(a){
     a.addEventListener('click',function(){
       if(dc){ dc.value=a.dataset.discJump; apply(); }
@@ -681,12 +723,11 @@ def icons_of(s: dict, rel: str) -> str:
     planned = s.get("status") == "planned"
     tag = ' title="Previsto" ' if planned else ' '
     for k in (s.get("integrations") or []):
-        if k == "hermes":
-            out.append(f'<span class="chip"{tag}><img src="{rel}assets/img/hermes.png" alt="">'
-                       f'<b>Hermes</b></span>')
-        else:
-            out.append(f'<span class="chip"{tag}><img src="{rel}assets/img/{esc(k)}.svg" alt="">'
-                       f'<b>{esc(ICON_LABEL.get(k, k.title()))}</b></span>')
+        asset = ICON_ASSET.get(k)
+        if not asset:
+            continue
+        out.append(f'<span class="chip"{tag}><img src="{rel}assets/img/{asset}" alt="">'
+                   f'<b>{esc(ICON_LABEL.get(k, k.title()))}</b></span>')
     return "".join(out)
 
 
@@ -708,6 +749,7 @@ def card(s: dict, lang: str, stages: dict, rel: str) -> str:
     return f"""<article class="card" data-skill data-status="{esc(s.get('status'))}"
   data-maturity="{esc(s.get('maturity') or '')}" data-stage="{esc(s.get('stage') or '')}"
   data-disc="{esc(' '.join(s.get('disciplines') or []))}"
+  data-paths="{esc(' '.join(s.get('paths') or []))}"
   data-search="{esc(search)}" {stage_style(stage)}>
   <div class="bar"></div>
   <div class="inner">
@@ -730,58 +772,27 @@ def card(s: dict, lang: str, stages: dict, rel: str) -> str:
 
 
 def render_paths(reg: dict, lang: str) -> str:
+    """Research paths as compact filters, not as a section that repeats the catalogue.
+
+    Each path is one line: name, the chain of skill ids in order, and a count. Clicking it filters
+    the grid below, so the sequence is shown where it is used instead of being announced twice.
+    """
     cols = reg.get("collections") or []
-    discs = reg.get("disciplines") or {}
-    skills = {s["id"]: s for s in reg["skills"]}
-    stages = reg.get("stages", {})
     if not cols:
         return ""
-    parts = ['<section id="paths">']
-    parts.append('<h2 class="sec">' + t(lang, "paths_h") + "</h2>")
-    parts.append('<p style="max-width:74ch;color:var(--muted);margin:0">'
-                 + t(lang, "paths_p") + "</p>")
-    parts.append('<div class="paths">')
+    parts = ['<div class="pathbar" role="group" aria-label="' + t(lang, "paths_h") + '">']
+    parts.append('<span class="pathbar-h">' + t(lang, "paths_h") + "</span>")
     for c in cols:
-        stage = stages.get(c.get("stage") or "") or {}
-        color = stage.get("color", "#16a34a")
-        soft = stage.get("soft", "#f0fdf4")
-        ink = INK.get(color, "#15803d")
-        chips = []
-        for n, sid in enumerate(c.get("skills") or [], 1):
-            s = skills.get(sid)
-            if not s:
-                continue
-            href = "skills/" + esc(s.get("slug")) + ".html"
-            plan = ' plan' if s.get("status") == "planned" else ''
-            mark = ('<span class="ps-plan">' + t(lang, "planned_word") + "</span>"
-                    if s.get("status") == "planned" else "")
-            chips.append('<a class="path-skill' + plan + '" href="' + href + '">'
-                         '<span class="ps-step">' + str(n) + "</span>"
-                         '<span class="ps-id">' + esc(sid) + "</span>"
-                         '<span class="ps-name">'
-                         + esc(s.get("title_pt") if (lang == "pt" and s.get("title_pt")) else s.get("title"))
-                         + "</span>" + mark + "</a>")
         name = c.get("pt") if lang == "pt" else c.get("en")
-        desc = c.get("desc_pt") if lang == "pt" else c.get("desc_en")
-        parts.append('<article class="path" style="--stage:' + color + ";--stage-soft:"
-                     + soft + ";--stage-ink:" + ink + '">')
-        parts.append("<h3>" + esc(name) + "</h3>")
-        parts.append("<p>" + esc(desc) + "</p>")
-        parts.append('<div class="path-chain">' + "".join(chips) + "</div>")
-        parts.append('<div class="path-foot">' + str(len(chips)) + " "
-                     + t(lang, "path_skills") + "</div>")
-        parts.append("</article>")
+        ids = c.get("skills") or []
+        chain = " → ".join(ids)
+        parts.append(
+            '<button type="button" class="pill pathpill" data-path-jump="' + esc(c["slug"]) + '"'
+            ' title="' + esc(chain) + '">'
+            + esc(name)
+            + '<span class="pathpill-chain">' + esc(chain) + "</span>"
+            + "</button>")
     parts.append("</div>")
-
-    parts.append('<h2 class="sec" style="margin-top:36px">' + t(lang, "disc_h") + "</h2>")
-    parts.append('<p style="max-width:74ch;color:var(--muted);margin:0 0 14px">'
-                 + t(lang, "disc_p") + "</p>")
-    parts.append('<div class="stage-legend">')
-    for k, d in discs.items():
-        parts.append('<a href="#skills" data-disc-jump="' + esc(k) + '">'
-                     '<span class="dot" style="--c:' + d["color"] + '"></span>'
-                     + esc(d[lang]) + "</a>")
-    parts.append("</div></section>")
     return "\n".join(parts)
 
 
@@ -815,9 +826,8 @@ def render_index(reg: dict, lang: str) -> str:
 </div></section>
 
 <main class="wrap">
+  <div id="skills">
   {render_paths(reg, lang)}
-
-  <div id="skills" style="padding-top:6px"></div>
   <div class="toolbar">
     <input id="q" type="search" placeholder="{esc(t(lang,'search'))}" aria-label="{esc(t(lang,'search'))}">
     <select id="f-stage" aria-label="{esc(t(lang,'all_stages'))}">
@@ -1059,7 +1069,8 @@ def build(out: Path) -> dict:
     img = out / "assets" / "img"
     img.mkdir(parents=True, exist_ok=True)
     for f in ASSETS.glob("*"):
-        shutil.copy(f, img / f.name)
+        if f.is_file():
+            shutil.copy(f, img / f.name)
     fonts_src = ROOT / "assets" / "fonts"
     if fonts_src.exists():
         fonts_out = out / "assets" / "fonts"

@@ -551,6 +551,35 @@ and `scrollWidth == innerWidth` at 1400 and 390 px. Header on mobile is 128 px a
 and EN on row one; menu on row two; Submeter centred on row three) — taller than the 89 px of the
 previous entry, which is the cost of the larger base type.
 
+---
+
+## Entry 024 — 2026-11-24 — Research paths become a filter; vendor icons replaced
+
+**Decision on the paths section.** The four path cards repeated every skill name that the grid
+repeats three hundred pixels below. What they added was *order* — and order is worth keeping, just
+not worth four large cards before the catalogue. The section is now a compact bar above the toolbar:
+one pill per path, each showing its name and the chain of ids (`SS-0001 → SS-0002 → SS-0003`).
+Clicking filters the grid to exactly those skills; clicking again clears it. Zero repeated names,
+the grid stays in the first fold, and the sequence is displayed where it is used.
+
+**Vendor icons.** The chips used hand-written SVG paths for Python and GitHub and a 48 px favicon for
+Hermes. Replaced with assets taken from the vendors' own sites:
+
+| Chip | Asset | Source |
+|---|---|---|
+| Python | `python.png`, symbol cropped from the official master PNG, 213×203, transparency preserved | python.org/static/community_logos |
+| Zotero | `zotero.svg`, official mark path, `#CC2936` | zotero.org (brand mark) |
+| GitHub | `github.png`, 256 px from the official 560 px mark | github.githubassets.com |
+| Zenodo | `zenodo.svg` | zenodo.org |
+| Hermes | `hermes.png`, 48 px | hermes-agent.nousresearch.com |
+
+`ICON_ASSET` in `build_site.py` is now the single map from integration key to file, so a chip cannot
+point at a file that does not exist: an unknown key is skipped instead of rendering a broken image.
+
+**Verified:** 4 path pills, clicking the first reduces the grid from 12 to 3 skills (`count` agrees),
+second click restores 12; bar is 54 px tall and 1071/356 px scrollable at 390 px with no page
+overflow; dark mode resolves the bar to `--bg-soft` and the active pill to `--brand-soft`.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.

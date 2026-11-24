@@ -135,6 +135,9 @@
       "disciplines": [
         "methodology",
         "digital-humanities"
+      ],
+      "paths": [
+        "publicar-skill"
       ]
     },
     {
@@ -291,6 +294,10 @@
         "methodology",
         "digital-humanities",
         "sociology"
+      ],
+      "paths": [
+        "revisao-sistematica",
+        "publicar-skill"
       ]
     },
     {
@@ -324,6 +331,9 @@
         "methodology",
         "public-health",
         "education"
+      ],
+      "paths": [
+        "revisao-sistematica"
       ]
     },
     {
@@ -356,6 +366,10 @@
       "disciplines": [
         "digital-humanities",
         "methodology"
+      ],
+      "paths": [
+        "revisao-sistematica",
+        "corpus-ao-argumento"
       ]
     },
     {
@@ -387,7 +401,8 @@
       "disciplines": [
         "sociology",
         "methodology"
-      ]
+      ],
+      "paths": []
     },
     {
       "id": "SS-0005",
@@ -419,6 +434,9 @@
       "disciplines": [
         "digital-humanities",
         "sociology"
+      ],
+      "paths": [
+        "corpus-ao-argumento"
       ]
     },
     {
@@ -451,6 +469,9 @@
       "disciplines": [
         "sociology",
         "education"
+      ],
+      "paths": [
+        "corpus-ao-argumento"
       ]
     },
     {
@@ -482,6 +503,9 @@
       "disciplines": [
         "sociology",
         "digital-humanities"
+      ],
+      "paths": [
+        "dados-digitais"
       ]
     },
     {
@@ -513,6 +537,9 @@
       "disciplines": [
         "digital-humanities",
         "sociology"
+      ],
+      "paths": [
+        "dados-digitais"
       ]
     },
     {
@@ -546,6 +573,9 @@
         "digital-humanities",
         "sociology",
         "public-health"
+      ],
+      "paths": [
+        "dados-digitais"
       ]
     },
     {
@@ -661,7 +691,8 @@
       },
       "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/dou-federal-gazette\npip install -r requirements.txt\nexport PORTAL_TRANSPARENCIA_KEY=\"...\"",
       "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. DOU and Federal Covenants (SS-0010), v1.0.0, 2026. LABHDUFBA/UFBA.",
-      "objective": "Collect DOU publications and federal covenants through official open-data routes, without circumventing access controls and without confusing silence from the source with absence of publication."
+      "objective": "Collect DOU publications and federal covenants through official open-data routes, without circumventing access controls and without confusing silence from the source with absence of publication.",
+      "paths": []
     },
     {
       "id": "SS-0011",
@@ -757,7 +788,8 @@
       },
       "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/brazilian-fiscal-data\npip install -r requirements.txt",
       "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. Brazilian Fiscal Data (SS-0011), v1.0.0, 2026. LABHDUFBA/UFBA.",
-      "objective": "Retrieve fiscal accounts declared by Brazilian states and municipalities in a form whose arithmetic can be audited by a reader."
+      "objective": "Retrieve fiscal accounts declared by Brazilian states and municipalities in a form whose arithmetic can be audited by a reader.",
+      "paths": []
     }
   ],
   "renumbering_note": "2026-11-24: SS-0001 reassigned to the first substantive skill (Zotero); previous roadmap items shifted to SS-0002..SS-0009.",
