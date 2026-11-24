@@ -410,6 +410,53 @@ Re-checked after the operator said the connection was made: `gh api repos/LABHDU
 still returns **0 hooks**, and the only release is `v1.0.0`, published before the repository became
 public. The switch per repository was therefore not enabled. Exact steps are in Entry 014.
 
+---
+
+## Entry 019 — 2026-11-24 — Skill pages keep the site's identity (bug fix)
+
+**Symptom:** opening a card led to a white, unstyled page ("o site fica branco e todo feio").
+
+**Root cause, verified in the browser:** `render_skill()` computed the asset prefix as `""` for
+Portuguese while the page is written to `site/skills/`. The stylesheet was therefore requested as
+`site/skills/assets/style.css` → **HTTP 404**. `document.styleSheets[0].cssRules` was empty and the
+body fell back to the browser default: Times, black on white, broken logo. Home page was fine, which
+is why the problem only appeared after clicking a card.
+
+**Fix:** prefix is now `../` (PT, depth 1) and `../../` (EN, depth 2) for pages under `<base>/skills/`.
+Confirmed by requesting the URL: `assets/style.css` → 200, body font resolves to Heebo.
+
+**Design work on the detail page, so it reads as the same object as the card:**
+
+| Element | Card | Detail page |
+|---|---|---|
+| Stage colour | 4 px bar on top | 4 px top border **plus** gradient wash in `--stage-soft` |
+| Badges | id, maturity, status | same three, plus stage badge |
+| Tools | chips with icons | same chips in the hero |
+| Accent | stage ink | stage ink on the factsheet, step markers and citation block |
+
+**Translation completed:** `objective_pt`, `how_it_works_pt`, `evidence_pt`, `install_pt` and
+`links_pt` added for SS-0000 and SS-0001. The detail page previously mixed Portuguese headings with
+English body text; maturity and status values are now shown translated in the factsheet.
+
+---
+
+## Entry 020 — 2026-11-24 — Header: logo only, compact on mobile
+
+The operator reported the header as too busy, especially on a phone.
+
+- Removed the "ScholarSkills / LABHD · UFBA" wordmark from the header; **only the circular badge
+  remains**, linking to the institutional site. The site name still appears in the `<title>`, the
+  hero `<h1>` and the footer.
+- Mobile: the nav goes on one non-wrapping, horizontally scrollable line, and the language switch
+  shows a short label (**EN** / **PT**) below 900 px.
+- Measured on a 390 px viewport: header height **151 px → 89 px**, no horizontal overflow
+  (`scrollWidth == clientWidth == 358`), language button fully inside the viewport.
+
+**Note on the logo:** the badge contains micro-text ("LABHD UFBA") that is illegible at 34 px. Without
+the wordmark beside it, the mark reads as a seal — acceptable, but a logo with a larger symbol and no
+inner text would read better at this size. Escalated to the operator, since only the 64×64 raster is
+published.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.

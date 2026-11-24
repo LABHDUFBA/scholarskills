@@ -9,25 +9,24 @@
 <meta property="og:description" content="Meta-skill que transforma um método de pesquisa em uma skill documentada, testada e citável — ou recusa, e diz por quê.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://labhdufba.github.io/scholarskills/assets/img/hermes.png">
-<link rel="preload" href="assets/fonts/heebo.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/signika.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/style.css">
-<link rel="icon" href="assets/img/labhd.png">
+<link rel="preload" href="../assets/fonts/heebo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/signika.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/img/labhd.png">
 </head>
 <body><header class="site"><div class="wrap">
   <a class="brand" href="https://labhdufba.github.io/">
-    <span class="mark"><img src="assets/img/labhd.webp" alt="LABHDUFBA"></span>
-    ScholarSkills <small>LABHD · UFBA</small></a>
+    <span class="mark"><img src="../assets/img/labhd.webp" alt="LABHDUFBA"></span></a>
   <nav class="site">
-    <a class="on" href="index.html">Início</a>
-    <a href="index.html#skills">Skills</a>
-    <a href="index.html#stages">Etapas</a>
-    <a href="index.html#levels">Maturidade</a>
+    <a class="on" href="../index.html">Início</a>
+    <a href="../index.html#skills">Skills</a>
+    <a href="../index.html#stages">Etapas</a>
+    <a href="../index.html#levels">Maturidade</a>
     <a class="cta" href="https://github.com/LABHDUFBA/scholarskills/blob/main/CONTRIBUTING.md">Submeter</a>
-    <a class="lang" href="../../en/index.html" hreflang="en">English</a>
+    <a class="lang" href="../../en/index.html" hreflang="en"><span class="full">English</span><span class="short">EN</span></a>
   </nav>
 </div></header><section class="skill-head" style="--stage:#8B2E4A;--stage-soft:#F8E8ED;--stage-ink:#6d2138"><div class="wrap">
-  <div class="crumbs"><a href="index.html">Hub</a> /
+  <div class="crumbs"><a href="../index.html">Hub</a> /
     <span class="current">SS-0000</span></div>
   <h1>Protocolo de Desenvolvimento e Validação de Skills Científicas</h1>
   <p class="sub">Meta-skill que transforma um método de pesquisa em uma skill documentada, testada e citável — ou recusa, e diz por quê.</p>
@@ -39,19 +38,19 @@
     <span>v1.0.0</span><span>&middot;</span>
     <span>MIT (code) / CC-BY-4.0 (docs)</span>
   </div>
-  <div class="stack" style="margin-top:14px"><span class="chip" ><img src="assets/img/python.svg" alt=""><b>Python</b></span><span class="chip" ><img src="assets/img/github.svg" alt=""><b>GitHub</b></span></div>
+  <div class="stack" style="margin-top:14px"><span class="chip" ><img src="../assets/img/python.svg" alt=""><b>Python</b></span><span class="chip" ><img src="../assets/img/github.svg" alt=""><b>GitHub</b></span></div>
 </div></section>
 
 <main class="wrap"><div class="cols">
   <div>
     <h2 class="sec">Objetivo</h2>
-    <p>A meta-skill: it turns a research method into a documented, tested, citable agent skill — or refuses, and says why.</p>
+    <p>Meta-skill: transforma um método de pesquisa em uma skill documentada, testada e citável — ou recusa, e explica por quê.</p>
 
     <h2 class="sec">Recursos</h2>
     <div class="chips"><span class="feat">Validação estrutural</span><span class="feat">Testes que podem falhar</span><span class="feat">Depósito preparado, não executado</span></div>
 
     <h2 class="sec">Como funciona</h2>
-    <ol class="steps"><li>Scope the claim in one falsifiable sentence; an unfillable slot is the finding, not an obstacle.</li><li>Ground the method in verifiable literature, separating established fact, interpretation, hypothesis and normative position.</li><li>Generate the canonical package (SKILL.md, README, CITATION.cff, LICENSE, .zenodo.json, references, tests).</li><li>Write tests that can fail: positive, negative, edge, tool failure, absent reference.</li><li>Record the real environment and the real output; a result without its environment is a report, not a reproduction.</li><li>Audit ethics and rights: personal data, consent, copyright, dual use, attribution.</li><li>Validate structure, then prepare — never perform — the deposit.</li></ol>
+    <ol class="steps"><li>Delimitar a alegação em uma frase falseável; um campo que não pode ser preenchido é o achado, não um obstáculo.</li><li>Fundamentar o método em literatura verificável, separando fato estabelecido, interpretação, hipótese e posição normativa.</li><li>Gerar o pacote canônico (SKILL.md, README, CITATION.cff, LICENSE, .zenodo.json, references, tests).</li><li>Escrever testes que podem falhar: positivos, negativos, de borda, de falha de ferramenta e de referência ausente.</li><li>Registrar o ambiente real e a saída real; resultado sem ambiente é relato, não reprodução.</li><li>Auditar ética e direitos: dados pessoais, consentimento, direito autoral, uso dual, atribuição.</li><li>Validar a estrutura e então preparar — nunca executar — o depósito.</li></ol>
 
     <h2 class="sec">Autores</h2>
     <table class="authors-t">
@@ -72,18 +71,18 @@ pip install pyyaml</pre>
 
     <h2 class="sec">Validação</h2>
     <p style="color:var(--muted);max-width:74ch">A validação estrutural prova conformidade com a especificação Agent Skills e a completude do pacote. Não prova que o método está correto. Evidência do nível de maturidade desta skill:
-    scientific-agent-skill-development/tests/RESULTS.md.</p>
+    scientific-agent-skill-development/tests/RESULTS.md — 21 testes automatizados, todos verdes..</p>
   </div>
 
-  <aside>
+  <aside class="side">
     <div class="panel" style="--stage:#8B2E4A;--stage-soft:#F8E8ED;--stage-ink:#6d2138">
       <h4>Ficha</h4>
       <dl class="facts">
         <dt>Identificador</dt><dd>SS-0000</dd>
         <dt>Etapa</dt><dd style="color:var(--stage-ink);font-weight:600">Escrita e publicação</dd>
         <dt>Versão</dt><dd>1.0.0</dd>
-        <dt>Maturidade</dt><dd>tested</dd>
-        <dt>Status</dt><dd>available</dd>
+        <dt>Maturidade</dt><dd>Testado</dd>
+        <dt>Status</dt><dd>Disponível</dd>
         <dt>Licença</dt><dd>MIT (code) / CC-BY-4.0 (docs)</dd>
         <dt>DOI (versão)</dt><dd>—</dd>
         <dt>DOI (conceito)</dt><dd>—</dd>
@@ -93,15 +92,15 @@ pip install pyyaml</pre>
     <div class="panel"><h4>Links</h4>
       <a class="btn" style="margin:0 8px 8px 0" href="https://github.com/LABHDUFBA/scholarskills">Repository</a><a class="btn" style="margin:0 8px 8px 0" href="https://github.com/LABHDUFBA/scholarskills/tree/main/scientific-agent-skill-development">Path</a></div>
     <div class="panel"><h4>Stack</h4>
-      <div class="chips"><span class="chip" ><img src="assets/img/python.svg" alt=""><b>Python</b></span><span class="chip" ><img src="assets/img/github.svg" alt=""><b>GitHub</b></span></div></div>
+      <div class="chips"><span class="chip" ><img src="../assets/img/python.svg" alt=""><b>Python</b></span><span class="chip" ><img src="../assets/img/github.svg" alt=""><b>GitHub</b></span></div></div>
     <div class="panel"><h4>Palavras-chave</h4>
       <p class="note">agent skills, research methodology, validation, reproducibility, meta-skill</p></div>
   </aside>
 </div></main>
 <footer class="site"><div class="wrap">
-  <span><img src="assets/img/labhd.webp" alt="" style="width:20px;height:20px;border-radius:50%;vertical-align:-5px;margin-right:7px;background:#0a1f0c">Laboratório de Humanidades Digitais — Universidade Federal da Bahia (LABHDUFBA)</span>
+  <span><img src="../assets/img/labhd.webp" alt="" style="width:20px;height:20px;border-radius:50%;vertical-align:-5px;margin-right:7px;background:#0a1f0c">Laboratório de Humanidades Digitais — Universidade Federal da Bahia (LABHDUFBA)</span>
   <span>Código MIT · Documentação CC BY 4.0 · sem rastreamento, sem cookies</span>
   <span>Ícones: Zotero (marca da Corporation for Digital Scholarship) e Hermes Agent (Nous Research), usados apenas para indicar integração.</span>
 </div></footer>
-<script src="assets/app.js"></script>
+<script src="../assets/app.js"></script>
 </body></html>

@@ -190,6 +190,7 @@ nav.site{margin-left:auto;display:flex;gap:22px;font-size:14px;align-items:cente
 nav.site a{color:var(--muted)}
 nav.site a:hover{color:var(--ink)}
 nav.site a.on{color:var(--brand-ink);font-weight:600}
+.lang .short{display:none}
 .lang{border:1px solid var(--line);border-radius:6px;padding:5px 12px;font-size:13px;
   color:var(--ink);background:var(--surface);font-weight:600}
 .cta{font-size:13px;color:#fff !important;background:var(--brand);border:1px solid var(--brand);
@@ -300,6 +301,80 @@ footer.site .wrap{display:flex;flex-direction:column;gap:8px}
 .stage-legend a{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);
   border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 11px}
 .stage-legend .dot{width:9px;height:9px;border-radius:50%;background:var(--c)}
+
+/* ---------- page de skill: mesma linguagem do card ---------- */
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:40px;
+  padding:32px 0 56px;align-items:start}
+.cols>div{min-width:0}
+.cols h2.sec{margin:30px 0 10px;font-size:18px;font-weight:600;
+  padding-bottom:7px;border-bottom:1px solid var(--line)}
+.cols h2.sec:first-child{margin-top:0}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:14px}
+.crumbs .current{color:var(--ink);font-weight:600}
+.skill-head{padding:34px 0 30px;border-bottom:1px solid var(--line);
+  border-top:4px solid var(--stage,var(--line));
+  background:linear-gradient(180deg,var(--stage-soft,#f8faf9) 0%,var(--bg) 94%)}
+.skill-head h1{font-weight:700;font-size:clamp(25px,3.4vw,37px);line-height:1.18;
+  color:#040404;margin:0 0 12px}
+.skill-head .sub{margin:0;font-size:17px;color:var(--muted);max-width:72ch;line-height:1.55}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px;
+  font-size:13px;color:var(--muted)}
+dl.facts{margin:0}
+dl.facts dt{font-size:11.5px;color:var(--muted);margin-top:9px}
+dl.facts dt:first-child{margin-top:0}
+dl.facts dd{margin:1px 0 0;font-size:13.5px;overflow-wrap:anywhere}
+table.authors-t{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 8px}
+table.authors-t th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--muted);font-weight:700;padding:8px 10px;border-bottom:2px solid var(--line)}
+table.authors-t td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+table.authors-t tr:last-child td{border-bottom:none}
+ol.steps{margin:0 0 12px;padding-left:22px}
+ol.steps li{margin:0 0 8px;line-height:1.55}
+ol.steps li::marker{color:var(--stage-ink,var(--brand-ink));font-weight:700}
+blockquote{margin:0 0 12px;padding:14px 16px;border-left:3px solid var(--stage,var(--brand));
+  background:var(--stage-soft,#f8faf9);border-radius:0 8px 8px 0;font-size:14px;
+  line-height:1.55;color:var(--ink)}
+pre{margin:0 0 12px;padding:14px 16px;background:#0f1712;color:#d6e6da;border-radius:8px;
+  font-family:var(--mono);font-size:12.5px;line-height:1.6;overflow-x:auto}
+aside{display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel h4{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
+  margin:0 0 12px;font-weight:700}
+aside.side{position:sticky;top:80px;align-self:start}
+.skill-head .stack{flex-wrap:wrap;gap:7px;align-items:center}
+.skill-head .stack .chip{max-width:100%}
+@media(max-width:900px){aside.side{position:static}}
+
+@media(max-width:900px){
+  .cols{grid-template-columns:1fr;gap:8px;padding:26px 0 44px}
+  aside{order:2;margin-top:14px}
+  .hero{padding:38px 0 28px}
+  .hero .lede{font-size:16.5px}
+  .stat{padding:11px 13px;min-width:calc(50% - 5px)}
+  header.site .wrap{height:auto;padding:8px 16px;flex-wrap:wrap;justify-content:space-between;gap:8px}
+  nav.site{gap:12px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    width:100%;padding-bottom:2px;scrollbar-width:none}
+  nav.site::-webkit-scrollbar{display:none}
+  nav.site a{font-size:12.5px;white-space:nowrap}
+  nav.site a.cta{padding:5px 10px}
+  .lang{padding:4px 9px;font-size:12px}
+  .lang .full{display:none}
+  .lang .short{display:inline}
+  nav.site{padding-right:2px}
+}
+@media(max-width:560px){
+  .wrap{padding:0 16px}
+  .grid{grid-template-columns:1fr}
+  .toolbar input[type=search]{flex:1 1 100%;max-width:none}
+  .toolbar select{flex:1 1 calc(50% - 5px)}
+  .toolbar .count{margin-left:0;width:100%}
+  .brand .mark,.brand .mark img{width:30px;height:30px}
+  .hero h1{font-size:26px}
+  .skill-head{padding:24px 0 22px}
+  .skill-head h1{font-size:23px}
+  .skill-head .sub{font-size:15.5px}
+  table.authors-t th,table.authors-t td{padding:8px 6px}
+}
+
 @media(prefers-color-scheme:dark){
   :root{--bg:#0b0f0c;--bg-soft:#0e1310;--surface:#141a15;--ink:#e9efe9;--muted:#9aa79c;
         --line:#26302a;--brand:#4ade80;--brand-ink:#86efac;--brand-soft:#12261a;
@@ -378,15 +453,14 @@ def html_head(title: str, description: str, rel: str, lang: str) -> str:
 def site_header(rel: str, lang: str, hub: dict, other: str) -> str:
     return f"""<header class="site"><div class="wrap">
   <a class="brand" href="{hub.get('institution_url','https://labhdufba.github.io/')}">
-    <span class="mark"><img src="{rel}assets/img/labhd.webp" alt="LABHDUFBA"></span>
-    ScholarSkills <small>LABHD · UFBA</small></a>
+    <span class="mark"><img src="{rel}assets/img/labhd.webp" alt="LABHDUFBA"></span></a>
   <nav class="site">
     <a class="on" href="{rel}index.html">{t(lang,'nav_home')}</a>
     <a href="{rel}index.html#skills">{t(lang,'nav_skills')}</a>
     <a href="{rel}index.html#stages">{t(lang,'nav_stages')}</a>
     <a href="{rel}index.html#levels">{t(lang,'nav_levels')}</a>
     <a class="cta" href="{hub.get('submission_url') or '#'}">{t(lang,'nav_submit')}</a>
-    <a class="lang" href="{other}index.html" hreflang="{'en' if lang == 'pt' else 'pt-BR'}">{t(lang,'switch')}</a>
+    <a class="lang" href="{other}index.html" hreflang="{'en' if lang == 'pt' else 'pt-BR'}"><span class="full">{t(lang,'switch')}</span><span class="short">{'EN' if lang == 'pt' else 'PT'}</span></a>
   </nav>
 </div></header>"""
 
@@ -548,7 +622,7 @@ def render_index(reg: dict, lang: str) -> str:
 
 
 def render_skill(s: dict, hub: dict, stages: dict, lang: str) -> str:
-    rel = "" if lang == "pt" else "../"
+    rel = "../" if lang == "pt" else "../../"  # pages live in <base>/skills/
     other = "../../en/" if lang == "pt" else "../../"
     stage = stages.get(s.get("stage") or "")
     name = (stage or {}).get(lang) or "—"
@@ -561,15 +635,24 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str) -> str:
     rows = "".join(
         f"<tr><td><b>{esc(a.get('name'))}</b></td><td>{esc(a.get('affiliation') or '—')}</td>"
         f"<td>{esc(a.get('orcid') or '—')}</td></tr>" for a in authors) or '<tr><td colspan="3">—</td></tr>'
-    steps = s.get("how_it_works") or []
+    steps = (s.get("how_it_works_pt") if (lang == "pt" and s.get("how_it_works_pt"))
+             else s.get("how_it_works")) or []
+    objective = (s.get("objective_pt") if (lang == "pt" and s.get("objective_pt"))
+                 else s.get("objective")) or sub or "—"
+    evidence = (s.get("evidence_pt") if (lang == "pt" and s.get("evidence_pt"))
+                else s.get("evidence"))
+    install = (s.get("install_pt") if (lang == "pt" and s.get("install_pt"))
+               else s.get("install"))
     steps_html = (f'<ol class="steps">' + "".join(f"<li>{esc(x)}</li>" for x in steps) + "</ol>"
-                  ) if steps else '<p style="color:var(--muted)">—</p>'
+                  ) if steps else '<p class="note">—</p>'
     feats = features_of(s, lang)
     feats_html = "".join(f'<span class="feat">{esc(f)}</span>' for f in feats)
     icons = icons_of(s, rel)
     links = s.get("links") or {}
+    labels = (s.get("links_pt") or {}) if lang == "pt" else {}
     link_html = "".join(
-        f'<a class="btn" style="margin:0 8px 8px 0" href="{esc(u)}">{esc(n.title())}</a>'
+        f'<a class="btn" style="margin:0 8px 8px 0" href="{esc(u)}">'
+        f'{esc(labels.get(n) or n.title())}</a>'
         for n, u in links.items())
     doi = s.get("doi_version")
     cite = s.get("cite") or f"{s.get('title')} (2026). ScholarSkills {s.get('id')}."
@@ -593,7 +676,7 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str) -> str:
 <main class="wrap"><div class="cols">
   <div>
     <h2 class="sec">{t(lang,'objective')}</h2>
-    <p>{esc(s.get('objective') or s.get('summary') or '—')}</p>
+    <p>{esc(objective)}</p>
 
     <h2 class="sec">{t(lang,'features')}</h2>
     <div class="chips">{feats_html or '—'}</div>
@@ -614,22 +697,22 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str) -> str:
       data-done="{esc(t(lang,'copied'))}" style="margin-top:10px">{t(lang,'copy')}</button>
     <p class="note">{('DOI: ' + esc(doi)) if doi else t(lang,'no_doi')}</p>
 
-    {f'<h2 class="sec">{t(lang,"install")}</h2><pre>{esc(s.get("install"))}</pre>' if s.get('install') else ''}
+    {f'<h2 class="sec">{t(lang,"install")}</h2><pre>{esc(install)}</pre>' if install else ''}
 
     <h2 class="sec">{t(lang,'validation')}</h2>
     <p style="color:var(--muted);max-width:74ch">{t(lang,'val_note')}
-    {esc(s.get('evidence') or t(lang,'not_recorded'))}.</p>
+    {esc(evidence or t(lang,'not_recorded'))}.</p>
   </div>
 
-  <aside>
+  <aside class="side">
     <div class="panel" {stage_style(stage)}>
       <h4>{t(lang,'factsheet')}</h4>
       <dl class="facts">
         <dt>{t(lang,'identifier')}</dt><dd>{esc(s.get('id'))}</dd>
         <dt>{t(lang,'stage')}</dt><dd style="color:var(--stage-ink);font-weight:600">{esc(name)}</dd>
         <dt>{t(lang,'version')}</dt><dd>{esc(s.get('version') or '—')}</dd>
-        <dt>{t(lang,'maturity')}</dt><dd>{esc(s.get('maturity') or '—')}</dd>
-        <dt>{t(lang,'status')}</dt><dd>{esc(s.get('status'))}</dd>
+        <dt>{t(lang,'maturity')}</dt><dd>{esc(((MATURITY if lang=='pt' else MATURITY_EN).get(s.get('maturity')) or ['—'])[0])}</dd>
+        <dt>{t(lang,'status')}</dt><dd>{esc(((STATUS if lang=='pt' else STATUS_EN).get(s.get('status')) or ['—'])[0])}</dd>
         <dt>{t(lang,'licence')}</dt><dd>{esc(s.get('license') or '—')}</dd>
         <dt>{t(lang,'doi_version')}</dt><dd>{esc(doi or '—')}</dd>
         <dt>{t(lang,'doi_concept')}</dt><dd>{esc(s.get('doi_concept') or '—')}</dd>

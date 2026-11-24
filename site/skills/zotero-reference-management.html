@@ -9,25 +9,24 @@
 <meta property="og:description" content="Ler, buscar, exportar e criar referências Zotero pela Web API v3, sob o princípio de que a chave de API é o limite de acesso.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://labhdufba.github.io/scholarskills/assets/img/hermes.png">
-<link rel="preload" href="assets/fonts/heebo.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/signika.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/style.css">
-<link rel="icon" href="assets/img/labhd.png">
+<link rel="preload" href="../assets/fonts/heebo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/signika.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/img/labhd.png">
 </head>
 <body><header class="site"><div class="wrap">
   <a class="brand" href="https://labhdufba.github.io/">
-    <span class="mark"><img src="assets/img/labhd.webp" alt="LABHDUFBA"></span>
-    ScholarSkills <small>LABHD · UFBA</small></a>
+    <span class="mark"><img src="../assets/img/labhd.webp" alt="LABHDUFBA"></span></a>
   <nav class="site">
-    <a class="on" href="index.html">Início</a>
-    <a href="index.html#skills">Skills</a>
-    <a href="index.html#stages">Etapas</a>
-    <a href="index.html#levels">Maturidade</a>
+    <a class="on" href="../index.html">Início</a>
+    <a href="../index.html#skills">Skills</a>
+    <a href="../index.html#stages">Etapas</a>
+    <a href="../index.html#levels">Maturidade</a>
     <a class="cta" href="https://github.com/LABHDUFBA/scholarskills/blob/main/CONTRIBUTING.md">Submeter</a>
-    <a class="lang" href="../../en/index.html" hreflang="en">English</a>
+    <a class="lang" href="../../en/index.html" hreflang="en"><span class="full">English</span><span class="short">EN</span></a>
   </nav>
 </div></header><section class="skill-head" style="--stage:#0072B2;--stage-soft:#E6F1F8;--stage-ink:#0b4a70"><div class="wrap">
-  <div class="crumbs"><a href="index.html">Hub</a> /
+  <div class="crumbs"><a href="../index.html">Hub</a> /
     <span class="current">SS-0001</span></div>
   <h1>Gestão de referências Zotero para pipelines de pesquisa</h1>
   <p class="sub">Ler, buscar, exportar e criar referências Zotero pela Web API v3, sob o princípio de que a chave de API é o limite de acesso.</p>
@@ -39,19 +38,19 @@
     <span>v1.0.0</span><span>&middot;</span>
     <span>MIT (code) / CC-BY-4.0 (docs)</span>
   </div>
-  <div class="stack" style="margin-top:14px"><span class="chip" ><img src="assets/img/zotero.svg" alt=""><b>Zotero</b></span><span class="chip" ><img src="assets/img/hermes.png" alt=""><b>Hermes</b></span><span class="chip" ><img src="assets/img/python.svg" alt=""><b>Python</b></span></div>
+  <div class="stack" style="margin-top:14px"><span class="chip" ><img src="../assets/img/zotero.svg" alt=""><b>Zotero</b></span><span class="chip" ><img src="../assets/img/hermes.png" alt=""><b>Hermes</b></span><span class="chip" ><img src="../assets/img/python.svg" alt=""><b>Python</b></span></div>
 </div></section>
 
 <main class="wrap"><div class="cols">
   <div>
     <h2 class="sec">Objetivo</h2>
-    <p>Turn a Zotero library into a reliable, citable data source for research pipelines: enumerate, filter, export and write references through the Web API v3 — no browser, no scraping, no personal identifiers in the package.</p>
+    <p>Converter uma biblioteca Zotero em fonte de dados confiável e citável para pipelines de pesquisa: enumerar, filtrar, exportar e gravar referências pela Web API v3 — sem navegador, sem scraping e sem identificadores pessoais no pacote.</p>
 
     <h2 class="sec">Recursos</h2>
     <div class="chips"><span class="feat">Web API v3</span><span class="feat">Exporta BibTeX/CSL</span><span class="feat">Escopo da chave respeitado</span></div>
 
     <h2 class="sec">Como funciona</h2>
-    <ol class="steps"><li>Resolve the library with GET /keys/{key}: the numeric userID and the permission scope.</li><li>Count with the Total-Results header and itemType=-attachment, never with the length of a page.</li><li>Paginate with start until an empty page — not for a fixed number of iterations.</li><li>Export to BibTeX, RIS or CSL JSON; per collection for large libraries, because BibTeX export ignores limit.</li><li>Write with POST of a JSON array, and only when the key&#x27;s scope allows it.</li><li>Refuse politely: a 403 is reported as a scope limit, never worked around.</li></ol>
+    <ol class="steps"><li>Resolver a biblioteca com GET /keys/{key}: o userID numérico e o escopo de permissão.</li><li>Contar pelo cabeçalho Total-Results com itemType=-attachment, nunca pelo tamanho de uma página.</li><li>Paginar com start até vir uma página vazia — não por um número fixo de iterações.</li><li>Exportar para BibTeX, RIS ou CSL JSON; por coleção em bibliotecas grandes, porque a exportação BibTeX ignora o limite.</li><li>Gravar com POST de um array JSON, e só quando o escopo da chave permitir.</li><li>Recusar com clareza: um 403 é reportado como limite de escopo, jamais contornado.</li></ol>
 
     <h2 class="sec">Autores</h2>
     <table class="authors-t">
@@ -66,26 +65,26 @@
       data-done="Copiado" style="margin-top:10px">Copiar citação</button>
     <p class="note">Sem DOI registrado. O campo fica vazio em vez de carregar um marcador.</p>
 
-    <h2 class="sec">Instalação</h2><pre>git clone https://github.com/LABHDUFBA/zotero-reference-management.git
-cd zotero-reference-management
+    <h2 class="sec">Instalação</h2><pre>git clone https://github.com/LABHDUFBA/scholarskills.git
+cd scholarskills/zotero-reference-management
 pip install -r requirements.txt
 export ZOTERO_API_KEY=&quot;...&quot;
 export ZOTERO_LIBRARY_ID=&quot;123456&quot;</pre>
 
     <h2 class="sec">Validação</h2>
     <p style="color:var(--muted);max-width:74ch">A validação estrutural prova conformidade com a especificação Agent Skills e a completude do pacote. Não prova que o método está correto. Evidência do nível de maturidade desta skill:
-    https://github.com/LABHDUFBA/scholarskills/blob/main/zotero-reference-management/tests/RESULTS.md.</p>
+    zotero-reference-management/tests/RESULTS.md — 20 testes automatizados, todos verdes, sem acesso à rede..</p>
   </div>
 
-  <aside>
+  <aside class="side">
     <div class="panel" style="--stage:#0072B2;--stage-soft:#E6F1F8;--stage-ink:#0b4a70">
       <h4>Ficha</h4>
       <dl class="facts">
         <dt>Identificador</dt><dd>SS-0001</dd>
         <dt>Etapa</dt><dd style="color:var(--stage-ink);font-weight:600">Fundamentação</dd>
         <dt>Versão</dt><dd>1.0.0</dd>
-        <dt>Maturidade</dt><dd>tested</dd>
-        <dt>Status</dt><dd>available</dd>
+        <dt>Maturidade</dt><dd>Testado</dd>
+        <dt>Status</dt><dd>Disponível</dd>
         <dt>Licença</dt><dd>MIT (code) / CC-BY-4.0 (docs)</dd>
         <dt>DOI (versão)</dt><dd>—</dd>
         <dt>DOI (conceito)</dt><dd>—</dd>
@@ -93,17 +92,17 @@ export ZOTERO_LIBRARY_ID=&quot;123456&quot;</pre>
       </dl>
     </div>
     <div class="panel"><h4>Links</h4>
-      <a class="btn" style="margin:0 8px 8px 0" href="https://github.com/LABHDUFBA/scholarskills">Repository</a><a class="btn" style="margin:0 8px 8px 0" href="https://github.com/LABHDUFBA/scholarskills/tree/main/zotero-reference-management">Path</a></div>
+      <a class="btn" style="margin:0 8px 8px 0" href="https://github.com/LABHDUFBA/scholarskills">Repositório</a><a class="btn" style="margin:0 8px 8px 0" href="https://github.com/LABHDUFBA/scholarskills/tree/main/zotero-reference-management">Diretório</a></div>
     <div class="panel"><h4>Stack</h4>
-      <div class="chips"><span class="chip" ><img src="assets/img/zotero.svg" alt=""><b>Zotero</b></span><span class="chip" ><img src="assets/img/hermes.png" alt=""><b>Hermes</b></span><span class="chip" ><img src="assets/img/python.svg" alt=""><b>Python</b></span></div></div>
+      <div class="chips"><span class="chip" ><img src="../assets/img/zotero.svg" alt=""><b>Zotero</b></span><span class="chip" ><img src="../assets/img/hermes.png" alt=""><b>Hermes</b></span><span class="chip" ><img src="../assets/img/python.svg" alt=""><b>Python</b></span></div></div>
     <div class="panel"><h4>Palavras-chave</h4>
       <p class="note">zotero, bibliographic data, research pipelines, api v3</p></div>
   </aside>
 </div></main>
 <footer class="site"><div class="wrap">
-  <span><img src="assets/img/labhd.webp" alt="" style="width:20px;height:20px;border-radius:50%;vertical-align:-5px;margin-right:7px;background:#0a1f0c">Laboratório de Humanidades Digitais — Universidade Federal da Bahia (LABHDUFBA)</span>
+  <span><img src="../assets/img/labhd.webp" alt="" style="width:20px;height:20px;border-radius:50%;vertical-align:-5px;margin-right:7px;background:#0a1f0c">Laboratório de Humanidades Digitais — Universidade Federal da Bahia (LABHDUFBA)</span>
   <span>Código MIT · Documentação CC BY 4.0 · sem rastreamento, sem cookies</span>
   <span>Ícones: Zotero (marca da Corporation for Digital Scholarship) e Hermes Agent (Nous Research), usados apenas para indicar integração.</span>
 </div></footer>
-<script src="assets/app.js"></script>
+<script src="../assets/app.js"></script>
 </body></html>

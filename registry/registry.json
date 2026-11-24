@@ -87,7 +87,18 @@
         "Deposit prepared, not performed"
       ],
       "title_pt": "Protocolo de Desenvolvimento e Validação de Skills Científicas",
-      "summary_pt": "Meta-skill que transforma um método de pesquisa em uma skill documentada, testada e citável — ou recusa, e diz por quê."
+      "summary_pt": "Meta-skill que transforma um método de pesquisa em uma skill documentada, testada e citável — ou recusa, e diz por quê.",
+      "objective_pt": "Meta-skill: transforma um método de pesquisa em uma skill documentada, testada e citável — ou recusa, e explica por quê.",
+      "how_it_works_pt": [
+        "Delimitar a alegação em uma frase falseável; um campo que não pode ser preenchido é o achado, não um obstáculo.",
+        "Fundamentar o método em literatura verificável, separando fato estabelecido, interpretação, hipótese e posição normativa.",
+        "Gerar o pacote canônico (SKILL.md, README, CITATION.cff, LICENSE, .zenodo.json, references, tests).",
+        "Escrever testes que podem falhar: positivos, negativos, de borda, de falha de ferramenta e de referência ausente.",
+        "Registrar o ambiente real e a saída real; resultado sem ambiente é relato, não reprodução.",
+        "Auditar ética e direitos: dados pessoais, consentimento, direito autoral, uso dual, atribuição.",
+        "Validar a estrutura e então preparar — nunca executar — o depósito."
+      ],
+      "evidence_pt": "scientific-agent-skill-development/tests/RESULTS.md — 21 testes automatizados, todos verdes."
     },
     {
       "id": "SS-0001",
@@ -166,7 +177,22 @@
         "Respects the key's scope"
       ],
       "title_pt": "Gestão de referências Zotero para pipelines de pesquisa",
-      "summary_pt": "Ler, buscar, exportar e criar referências Zotero pela Web API v3, sob o princípio de que a chave de API é o limite de acesso."
+      "summary_pt": "Ler, buscar, exportar e criar referências Zotero pela Web API v3, sob o princípio de que a chave de API é o limite de acesso.",
+      "objective_pt": "Converter uma biblioteca Zotero em fonte de dados confiável e citável para pipelines de pesquisa: enumerar, filtrar, exportar e gravar referências pela Web API v3 — sem navegador, sem scraping e sem identificadores pessoais no pacote.",
+      "how_it_works_pt": [
+        "Resolver a biblioteca com GET /keys/{key}: o userID numérico e o escopo de permissão.",
+        "Contar pelo cabeçalho Total-Results com itemType=-attachment, nunca pelo tamanho de uma página.",
+        "Paginar com start até vir uma página vazia — não por um número fixo de iterações.",
+        "Exportar para BibTeX, RIS ou CSL JSON; por coleção em bibliotecas grandes, porque a exportação BibTeX ignora o limite.",
+        "Gravar com POST de um array JSON, e só quando o escopo da chave permitir.",
+        "Recusar com clareza: um 403 é reportado como limite de escopo, jamais contornado."
+      ],
+      "evidence_pt": "zotero-reference-management/tests/RESULTS.md — 20 testes automatizados, todos verdes, sem acesso à rede.",
+      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/zotero-reference-management\npip install -r requirements.txt\nexport ZOTERO_API_KEY=\"...\"\nexport ZOTERO_LIBRARY_ID=\"123456\"",
+      "links_pt": {
+        "repository": "Repositório",
+        "path": "Diretório"
+      }
     },
     {
       "id": "SS-0002",
