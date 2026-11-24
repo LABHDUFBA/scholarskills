@@ -1,10 +1,11 @@
 cff-version: 1.2.0
-message: "If you use this catalogue or the ScholarSkills template, please cite it as below."
-title: "ScholarSkills: Scientific Agent Skills"
+message: "If you use this catalogue or the skill template, please cite it as below."
+title: "Digital Methods Skills — executable research methodologies for AI agents"
 abstract: >-
-  An academic repository of executable research methodologies for AI agents, promoting
-  methodological transparency, reproducibility, interoperability and scientific attribution
-  through documented, versioned and citable agent skills.
+  A catalogue of executable research methodologies for AI agents, promoting methodological
+  transparency, reproducibility and scientific attribution through documented, versioned and
+  citable agent skills. Each package declares the research stage it serves, the credentials the
+  operator must provide and what it explicitly does not do.
 type: software
 authors:
   - family-names: "Nascimento"
@@ -16,7 +17,7 @@ authors:
   - family-names: "Sodré"
     given-names: "Ricardo"
     affiliation: "Federal University of Bahia"
-version: 0.1.0
+version: 1.1.0
 date-released: "2026-11-24"
 license: MIT
 repository-code: "https://github.com/LABHDUFBA/scholarskills"
