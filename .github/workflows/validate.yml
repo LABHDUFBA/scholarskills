@@ -79,6 +79,9 @@ jobs:
         working-directory: lattes-cv-editing
         run: python -m unittest discover -s tests -v
 
+      - name: Deposit client test suite (offline, stubbed HTTP)
+        run: python -m unittest tests.test_deposit_skills -v
+
       - name: Registry entries validate against the schema
         run: |
           python - <<'PY'
