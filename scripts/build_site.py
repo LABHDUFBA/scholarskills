@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """Generate the ScholarSkills hub from registry/registry.json.
 
-The registry is the single source of truth. The site is a build artefact: if a skill is
-not in the registry, it is not on the site, and there is no second place to edit.
+Two languages, one source of truth. Portuguese is the primary language (site root); English is
+generated under /en/. Both trees are static HTML: no runtime translation, stable URLs, works
+without JavaScript.
 
     python3 scripts/build_site.py [--out site] [--check]
-
---check exits 1 if the generated output differs from what is on disk (CI guard).
 """
 from __future__ import annotations
 
@@ -20,188 +19,312 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "registry" / "registry.json"
+ASSETS = ROOT / "assets" / "img"
 
-MATURITY_LABEL = {
-    "experimental": ("Experimental", "warn"),
-    "tested": ("Tested", "ok"),
-    "peer-reviewed": ("Peer-reviewed", "accent"),
-    "replicated": ("Replicated", "accent"),
+LANGS = ("pt", "en")
+
+MATURITY = {"experimental": ("Experimental", "warn"), "tested": ("Testado", "ok"),
+            "peer-reviewed": ("Revisado por pares", "accent"),
+            "replicated": ("Replicado", "accent")}
+MATURITY_EN = {"experimental": ("Experimental", "warn"), "tested": ("Tested", "ok"),
+               "peer-reviewed": ("Peer-reviewed", "accent"),
+               "replicated": ("Replicated", "accent")}
+STATUS = {"available": ("Disponível", "accent"), "planned": ("Planejada", "muted"),
+          "deprecated": ("Descontinuada", "bad")}
+STATUS_EN = {"available": ("Available", "accent"), "planned": ("Planned", "muted"),
+             "deprecated": ("Deprecated", "bad")}
+ICON_LABEL = {"zotero": "Zotero", "hermes": "Hermes Agent", "python": "Python", "github": "GitHub"}
+
+T = {
+ "pt": {
+  "switch": "English", "nav_skills": "Skills", "nav_stages": "Etapas",
+  "nav_levels": "Maturidade", "nav_submit": "Submeter",
+  "available": "disponíveis", "planned": "planejadas", "with_doi": "com DOI", "authors": "autores",
+  "search": "Buscar skill, palavra-chave, autor…", "all_status": "Todos os status",
+  "all_maturity": "Toda maturidade", "all_stages": "Todas as etapas",
+  "empty": "Nenhuma skill corresponde a esses filtros.", "view": "Ver detalhes",
+  "objective": "Objetivo", "how": "Como funciona", "authors_h": "Autores", "cite": "Como citar",
+  "copied": "Copiado", "install": "Instalação", "validation": "Validação",
+  "factsheet": "Ficha", "links": "Links", "keywords": "Palavras-chave",
+  "features": "Recursos", "stack": "Stack", "stage": "Etapa",
+  "identifier": "Identificador", "version": "Versão", "maturity": "Maturidade",
+  "status": "Status", "licence": "Licença", "doi_version": "DOI (versão)",
+  "doi_concept": "DOI (conceito)", "added": "Adicionada em",
+  "no_doi": "Sem DOI registrado. O campo fica vazio em vez de carregar um marcador.",
+  "no_repo": "Ainda sem repositório público.",
+  "levels_h": "Níveis de maturidade — evidência, não aspiração",
+  "levels_p": "Um nível só é concedido com o artefato que o justifica. Testes verdes provam "
+              "estrutura, não um método. Revisão por pares e replicação são processos sociais "
+              "com registro próprio.",
+  "lvl_exp": "Funciona na máquina do autor. Sem evidência independente.",
+  "lvl_test": "Testes automatizados passam em ambiente registrado (tests/RESULTS.md).",
+  "lvl_peer": "Dois pareceristas nomeados aplicaram a política editorial; veredictos em reviews/.",
+  "lvl_repl": "Reexecutada por não-autor com relatório publicado.",
+  "stages_h": "Etapas da pesquisa",
+  "stages_p": "Cada skill declara a etapa metodológica que atende. A cor do card identifica a etapa.",
+  "foot_note": "Código MIT · Documentação CC BY 4.0 · sem rastreamento, sem cookies",
+  "attrib": "Ícones: Zotero (marca da Corporation for Digital Scholarship) e Hermes Agent "
+            "(Nous Research), usados apenas para indicar integração.",
+  "val_note": "A validação estrutural prova conformidade com a especificação Agent Skills e a "
+              "completude do pacote. Não prova que o método está correto. Evidência do nível de "
+              "maturidade desta skill:",
+  "not_recorded": "não registrada", "hub": "Hub",
+  "authors_note": "ORCIDs entram apenas quando cada autor os fornece; nenhum é inventado.",
+  "planned_summary": "Planejada — ainda não disponível.",
+  "col_name": "Nome", "col_aff": "Afiliação", "copy": "Copiar citação",
+  "pending_lic": "licença pendente",
+ },
+ "en": {
+  "switch": "Português", "nav_skills": "Skills", "nav_stages": "Stages",
+  "nav_levels": "Maturity", "nav_submit": "Submit",
+  "available": "available", "planned": "planned", "with_doi": "with DOI", "authors": "authors",
+  "search": "Search skills, keywords, authors…", "all_status": "All statuses",
+  "all_maturity": "All maturity levels", "all_stages": "All stages",
+  "empty": "No skill matches these filters.", "view": "View details",
+  "objective": "Objective", "how": "How it works", "authors_h": "Authors", "cite": "How to cite",
+  "copied": "Copied", "install": "Installation", "validation": "Validation",
+  "factsheet": "Factsheet", "links": "Links", "keywords": "Keywords",
+  "features": "Features", "stack": "Stack", "stage": "Stage",
+  "identifier": "Identifier", "version": "Version", "maturity": "Maturity",
+  "status": "Status", "licence": "Licence", "doi_version": "DOI (version)",
+  "doi_concept": "DOI (concept)", "added": "Added",
+  "no_doi": "No DOI registered yet. The field stays empty rather than carrying a placeholder.",
+  "no_repo": "No public repository yet.",
+  "levels_h": "Maturity levels — evidence, not aspiration",
+  "levels_p": "A level is granted only with the artefact that justifies it. Green tests prove "
+              "structure; they do not prove a method. Peer review and replication are social "
+              "processes with their own records.",
+  "lvl_exp": "Works on the author's machine. No independent evidence.",
+  "lvl_test": "Automated tests pass in a recorded environment (tests/RESULTS.md).",
+  "lvl_peer": "Two named reviewers applied the editorial policy; verdicts in reviews/.",
+  "lvl_repl": "Re-executed by a non-author with a published report.",
+  "stages_h": "Research stages",
+  "stages_p": "Each skill declares the methodological stage it serves. Card colour identifies it.",
+  "foot_note": "Code MIT · Documentation CC BY 4.0 · no tracking, no cookies",
+  "attrib": "Icons: Zotero (trademark of the Corporation for Digital Scholarship) and Hermes "
+            "Agent (Nous Research), used only to indicate integration.",
+  "val_note": "Structural validation proves conformance to the Agent Skills specification and the "
+              "completeness of the package. It does not prove that the method is correct. Evidence "
+              "for this skill's maturity level:",
+  "not_recorded": "not recorded", "hub": "Hub",
+  "authors_note": "ORCIDs are included only when each author supplies them; none is invented.",
+  "planned_summary": "Planned skill — not available yet.",
+  "col_name": "Name", "col_aff": "Affiliation", "copy": "Copy citation",
+  "pending_lic": "licence pending",
+ },
 }
-STATUS_LABEL = {"available": ("Available", "ok"), "planned": ("Planned", "muted"),
-                "deprecated": ("Deprecated", "bad")}
 
 
-def esc(value) -> str:
-    return html.escape(str(value)) if value is not None else ""
+def esc(v) -> str:
+    return html.escape(str(v)) if v is not None else ""
+
+
+def t(lang: str, key: str) -> str:
+    return T[lang][key]
+
+
+INK = {"#0072B2": "#0b4a70", "#009E73": "#0d6b52", "#8C6D00": "#5d4700", "#7B52AB": "#4e3374",
+       "#CC79A7": "#8a3d68", "#D55E00": "#8c3d00", "#4E5A6B": "#333d4a", "#B03030": "#7a2020", "#8B2E4A": "#6d2138"}
+
+
+def stage_style(stage) -> str:
+    if not stage:
+        return 'style="--stage:#94a3b8;--stage-soft:#f1f5f9;--stage-ink:#475569"'
+    return (f'style="--stage:{stage["color"]};--stage-soft:{stage["soft"]};'
+            f'--stage-ink:{INK.get(stage["color"], "#333d4a")}"')
+
+
+def badge(value, table) -> str:
+    if not value:
+        return '<span class="badge muted">&mdash;</span>'
+    label, klass = table.get(value, (value, "muted"))
+    return f'<span class="badge {klass}">{esc(label)}</span>'
 
 
 def css() -> str:
-    return """/* ScholarSkills hub — no framework, no tracking, no build step */
+    return """/* ScholarSkills hub - no framework, no tracking, no build step.
+   Colours: categorical palette (Okabe-Ito, colour-vision safe). Every stage ink was darkened
+   until it reaches >=4.5:1 contrast on its own soft background (WCAG AA for body text). */
 :root{
-  --bg:#fbfbfc; --surface:#fff; --ink:#16181d; --muted:#5d6470; --line:#e3e6ec;
-  --accent:#557EB5; --accent-soft:#eaf0f8; --ok:#1f7a4d; --ok-soft:#e6f4ec;
-  --warn:#8a5b00; --warn-soft:#fdf3e0; --bad:#a33; --bad-soft:#fbeaea;
+  --bg:#fbfbfd; --surface:#fff; --ink:#14181f; --muted:#59616e; --line:#e2e6ee;
+  --brand:#1f5f8b; --brand-soft:#e7f0f7;
+  --ok:#1a6b46; --ok-soft:#e6f3ec; --warn:#7a5300; --warn-soft:#fbf1dd;
+  --bad:#9d2d2d; --bad-soft:#fbeaea;
   --radius:14px; --maxw:1120px;
   --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box}
 html,body{overflow-x:hidden}
-.grid{min-width:0}
-.card{min-width:0;overflow-wrap:anywhere}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);
-  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  font:16px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
   -webkit-font-smoothing:antialiased}
-a{color:var(--accent);text-decoration:none}
+a{color:var(--brand);text-decoration:none}
 a:hover{text-decoration:underline}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-
-header.site{position:sticky;top:0;z-index:20;background:rgba(251,251,252,.88);
-  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.site{position:sticky;top:0;z-index:20;background:rgba(251,251,253,.9);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 header.site .wrap{display:flex;align-items:center;gap:16px;height:64px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:650;letter-spacing:-.01em;color:var(--ink)}
-.brand .mark{width:26px;height:26px;border-radius:8px;background:var(--accent);color:#fff;
+.brand{display:flex;align-items:center;gap:10px;font-weight:650;color:var(--ink);letter-spacing:-.01em}
+.brand .mark{width:28px;height:28px;border-radius:8px;background:var(--brand);color:#fff;
   display:grid;place-items:center;font-size:14px;font-weight:700}
 .brand small{font-weight:400;color:var(--muted);font-size:13px}
-nav.site{margin-left:auto;display:flex;gap:26px;font-size:14px}
+nav.site{margin-left:auto;display:flex;gap:22px;font-size:14px;align-items:center}
 nav.site a{color:var(--muted)}
 nav.site a:hover{color:var(--ink)}
-
-.hero{padding:64px 0 40px;border-bottom:1px solid var(--line)}
-.hero h1{margin:0 0 12px;font-size:clamp(30px,4vw,46px);line-height:1.12;letter-spacing:-.025em}
-.hero p.lede{margin:0;max-width:62ch;color:var(--muted);font-size:18px;line-height:1.55}
-.hero .inst{margin-top:18px;font-size:14px;color:var(--muted)}
-.stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.lang{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;
+  color:var(--ink);background:var(--surface);font-weight:600}
+.lang:hover{border-color:var(--brand);text-decoration:none}
+.hero{padding:58px 0 34px;border-bottom:1px solid var(--line)}
+.hero .eyebrow{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);
+  font-weight:650;margin-bottom:14px}
+.hero h1{margin:0 0 12px;font-size:clamp(30px,4vw,46px);line-height:1.1;letter-spacing:-.025em}
+.hero .lede{margin:0;max-width:60ch;color:var(--muted);font-size:18px;line-height:1.55}
+.hero .desc{margin:16px 0 0;max-width:74ch;color:var(--muted);font-size:14.5px}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;
   flex:1 1 0;min-width:140px}
-.stat b{display:block;font-size:22px;letter-spacing:-.02em}
-.stat span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-
-.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:28px 0 8px}
+.stat b{display:block;font-size:22px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat span{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:26px 0 6px}
 .toolbar input,.toolbar select{font:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--line);
-  border-radius:10px;background:var(--surface);color:var(--ink);min-width:180px}
-.toolbar input{flex:1 1 320px;max-width:440px}
-.toolbar input:focus,.toolbar select:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
-.count{margin-left:auto;font-size:13px;color:var(--muted)}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;padding:8px 0 56px}
+  border-radius:10px;background:var(--surface);color:var(--ink);min-width:170px}
+.toolbar input{flex:1 1 300px;max-width:420px}
+.toolbar input:focus,.toolbar select:focus{outline:2px solid var(--brand-soft);border-color:var(--brand)}
+.count{margin-left:auto;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px;
+  padding:10px 0 56px;min-width:0}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-  padding:22px;display:flex;flex-direction:column;gap:12px;transition:.16s ease;position:relative}
-.card:hover{border-color:var(--accent);transform:translateY(-2px);
-  box-shadow:0 10px 28px rgba(85,126,181,.10)}
+  display:flex;flex-direction:column;min-width:0;overflow:hidden;
+  transition:box-shadow .16s ease,border-color .16s ease,transform .16s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(20,24,31,.09)}
+.card .bar{height:4px;background:var(--stage)}
+.card .inner{padding:20px 22px 18px;display:flex;flex-direction:column;gap:11px;flex:1}
 .card .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.code{font-family:var(--mono);font-size:12px;color:var(--muted);background:#f2f4f8;
+.code{font-family:var(--mono);font-size:11.5px;color:var(--muted);background:#f3f5f9;
   border:1px solid var(--line);border-radius:6px;padding:2px 7px}
-.card h3{margin:0;font-size:18px;line-height:1.3;letter-spacing:-.01em}
+.card h3{margin:0;font-size:17.5px;line-height:1.3;letter-spacing:-.01em}
 .card h3 a{color:var(--ink)}
-.card p{margin:0;color:var(--muted);font-size:14.5px}
-.card .meta{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--muted);margin-top:auto;padding-top:6px}
-.card .authors{font-size:12.5px;color:var(--muted)}
-.card .cta{display:flex;gap:10px;align-items:center;margin-top:4px;font-size:13.5px;font-weight:550}
-
-.badge{font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;letter-spacing:.02em;
+.card p{margin:0;color:var(--muted);font-size:14px}
+.card .feats{display:flex;flex-wrap:wrap;gap:6px}
+.feat{font-size:11.5px;padding:3px 9px;border-radius:999px;background:var(--stage-soft);
+  color:var(--stage-ink);font-weight:600}
+.card .stack{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding-top:10px;
+  border-top:1px dashed var(--line);margin-top:auto}
+.stack .chip{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);
+  background:#f7f8fb;border:1px solid var(--line);border-radius:999px;padding:3px 9px 3px 4px}
+.stack .chip img{width:22px;height:22px;border-radius:6px;display:block;
+  object-fit:cover;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.08) inset}
+.card[data-status="planned"] .stack .chip{opacity:.62}
+.stack .chip b{font-weight:600;color:var(--ink)}
+.card .foot{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.card .foot .arrow{margin-left:auto}
+.card .foot .arrow a{font-weight:650;color:var(--stage-ink)}
+.authors{font-size:12.5px;color:var(--muted)}
+.badge{font-size:11px;font-weight:650;padding:3px 9px;border-radius:999px;letter-spacing:.02em;
   border:1px solid transparent;white-space:nowrap}
 .badge.ok{background:var(--ok-soft);color:var(--ok)}
 .badge.warn{background:var(--warn-soft);color:var(--warn)}
-.badge.accent{background:var(--accent-soft);color:var(--accent)}
-.badge.muted{background:#f2f4f8;color:var(--muted)}
+.badge.accent{background:var(--brand-soft);color:var(--brand)}
+.badge.muted{background:#f3f5f9;color:var(--muted)}
 .badge.bad{background:var(--bad-soft);color:var(--bad)}
-
-/* detail page */
-.skill-head{padding:48px 0 28px;border-bottom:1px solid var(--line)}
+.badge.stage{background:var(--stage-soft);color:var(--stage-ink)}
+.skill-head{padding:44px 0 26px;border-bottom:1px solid var(--line);position:relative}
+.skill-head::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--stage)}
 .crumbs{font-size:13px;color:var(--muted);margin-bottom:14px}
 .crumbs .current{color:var(--ink);font-weight:550}
 .skill-head h1{margin:0 0 12px;font-size:clamp(26px,3.4vw,40px);letter-spacing:-.02em;line-height:1.15}
-.skill-head .meta-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;font-size:13px;color:var(--muted)}
-.cols{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:40px;padding:40px 0 72px}
-@media(max-width:880px){.cols{grid-template-columns:1fr;gap:28px}}
-h2.sec{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+.skill-head .sub{margin:0;max-width:70ch;color:var(--muted);font-size:16px}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px;font-size:13px;
+  color:var(--muted)}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:44px;padding:38px 0 72px}
+@media(max-width:900px){.cols{grid-template-columns:1fr;gap:28px}}
+h2.sec{font-size:12.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);
   margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
 h2.sec:first-child{margin-top:0}
 .steps{margin:0;padding-left:22px}
 .steps li{margin-bottom:10px}
-pre{background:#0f1216;color:#e8ecf2;padding:16px 18px;border-radius:12px;overflow:auto;
+pre{background:#101318;color:#e9edf3;padding:16px 18px;border-radius:12px;overflow:auto;
   font-family:var(--mono);font-size:13px;line-height:1.55}
-blockquote{margin:0;padding:16px 20px;background:var(--accent-soft);border-left:3px solid var(--accent);
-  border-radius:0 10px 10px 0;font-size:14.5px;color:#25303f}
-aside .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:16px}
-aside .panel h4{margin:0 0 12px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-dl.facts{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:13.5px}
+blockquote{margin:0;padding:16px 20px;background:var(--brand-soft);border-left:3px solid var(--brand);
+  border-radius:0 10px 10px 0;font-size:14.5px;color:#1d2b38}
+table.authors-t{width:100%;border-collapse:collapse;font-size:14px}
+table.authors-t th{text-align:left;color:var(--muted);font-size:11.5px;text-transform:uppercase;
+  letter-spacing:.07em;padding:8px 0;border-bottom:1px solid var(--line);font-weight:600}
+table.authors-t td{padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+aside .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px;margin-bottom:16px}
+aside .panel h4{margin:0 0 12px;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted)}
+dl.facts{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 14px;font-size:13.5px}
 dl.facts dt{color:var(--muted)}
-dl.facts dd{margin:0;text-align:right;overflow-wrap:anywhere;text-wrap:balance}
-.btn{display:inline-block;padding:9px 14px;border-radius:10px;font-size:13.5px;font-weight:600;
-  border:1px solid var(--line);color:var(--ink);background:var(--surface)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn.primary:hover{filter:brightness(1.06);text-decoration:none}
+dl.facts dd{margin:0;text-align:right;overflow-wrap:anywhere}
+.btn{display:inline-block;padding:9px 14px;border-radius:10px;font-size:13.5px;font-weight:650;
+  border:1px solid var(--line);color:var(--ink);background:var(--surface);cursor:pointer}
+.btn:hover{border-color:var(--brand);text-decoration:none}
 .note{font-size:12.5px;color:var(--muted);margin-top:10px}
-
-footer.site{border-top:1px solid var(--line);padding:32px 0 48px;font-size:13px;color:var(--muted)}
-footer.site .wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
-footer.site .right{margin-left:auto}
-.empty{padding:40px 0;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+footer.site{border-top:1px solid var(--line);padding:30px 0 44px;font-size:12.5px;color:var(--muted)}
+footer.site .wrap{display:flex;flex-direction:column;gap:8px}
+.empty{padding:34px 0;color:var(--muted)}
+.levels{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;padding-top:16px}
+.stage-legend{display:flex;flex-wrap:wrap;gap:8px;padding:12px 0 0}
+.stage-legend a{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);
+  border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 11px}
+.stage-legend .dot{width:9px;height:9px;border-radius:50%;background:var(--c)}
 @media(prefers-color-scheme:dark){
-  :root{--bg:#0e1013;--surface:#15181d;--ink:#e9edf3;--muted:#9aa3b0;--line:#252a32;
-        --accent:#7fa3d4;--accent-soft:#1b2634;--ok:#6fcf9b;--ok-soft:#14251c;
-        --warn:#e0b062;--warn-soft:#2a2113;--bad:#e08c8c;--bad-soft:#2a1717}
-  .code{background:#1a1e25}
-  header.site{background:rgba(14,16,19,.86)}
-  blockquote{color:#cfd8e4}
+  :root{--bg:#0d1014;--surface:#151a21;--ink:#e9eef5;--muted:#9aa4b2;--line:#242b35;
+        --brand:#7fb0d8;--brand-soft:#16222e;--ok:#78d3a3;--ok-soft:#12261b;
+        --warn:#e2b871;--warn-soft:#2a2113;--bad:#e89292;--bad-soft:#2a1616}
+  .code,.badge.muted,.stack .chip{background:#1b2129}
+  header.site{background:rgba(13,16,20,.88)}
+  blockquote{color:#d3dde9}
 }
 """
 
 
 def js() -> str:
-    return """// Filtering is client-side and progressive: with JS off, all cards remain visible.
+    return """// Progressive enhancement: without JS every card is visible and every link works.
 (function(){
-  const q = document.getElementById('q');
-  const status = document.getElementById('f-status');
-  const maturity = document.getElementById('f-maturity');
-  const cards = Array.from(document.querySelectorAll('[data-skill]'));
-  const count = document.getElementById('count');
+  var q=document.getElementById('q'), st=document.getElementById('f-status'),
+      mt=document.getElementById('f-maturity'), sg=document.getElementById('f-stage'),
+      cards=[].slice.call(document.querySelectorAll('[data-skill]')),
+      count=document.getElementById('count'), empty=document.getElementById('empty');
   if(!cards.length) return;
-
   function apply(){
-    const term = (q?.value || '').toLowerCase().trim();
-    const st = status?.value || '';
-    const mt = maturity?.value || '';
-    let shown = 0;
-    cards.forEach(card => {
-      const hay = card.dataset.search || '';
-      const okTerm = !term || hay.includes(term);
-      const okStatus = !st || card.dataset.status === st;
-      const okMaturity = !mt || card.dataset.maturity === mt;
-      const show = okTerm && okStatus && okMaturity;
-      card.style.display = show ? '' : 'none';
+    var term=(q&&q.value||'').toLowerCase().trim(),
+        s=st&&st.value||'', m=mt&&mt.value||'', g=sg&&sg.value||'', shown=0;
+    cards.forEach(function(c){
+      var hay=c.dataset.search||'';
+      var show=(!term||hay.indexOf(term)>-1)&&(!s||c.dataset.status===s)
+        &&(!m||c.dataset.maturity===m)&&(!g||c.dataset.stage===g);
+      c.style.display=show?'':'none';
       if(show) shown++;
     });
-    if(count) count.textContent = shown + (shown === 1 ? ' skill' : ' skills');
-    const empty = document.getElementById('empty');
-    if(empty) empty.hidden = shown !== 0;
+    if(count) count.textContent=shown;
+    if(empty) empty.hidden=shown!==0;
   }
-  q?.addEventListener('input', apply);
-  status?.addEventListener('change', apply);
-  maturity?.addEventListener('change', apply);
+  [q,st,mt,sg].forEach(function(el){ if(el) el.addEventListener('input',apply); });
+  [st,mt,sg].forEach(function(el){ if(el) el.addEventListener('change',apply); });
   apply();
-
-  document.querySelectorAll('[data-copy]').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const target = document.getElementById(btn.dataset.copy);
-      if(!target) return;
-      try{
-        await navigator.clipboard.writeText(target.innerText);
-        const old = btn.textContent;
-        btn.textContent = 'Copied';
-        setTimeout(() => btn.textContent = old, 1600);
-      }catch(e){ /* clipboard blocked: the text is still selectable */ }
+  [].slice.call(document.querySelectorAll('[data-copy]')).forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var target=document.getElementById(btn.dataset.copy);
+      if(!target||!navigator.clipboard) return;
+      navigator.clipboard.writeText(target.innerText.trim()).then(function(){
+        var label=btn.dataset.label||btn.textContent;
+        btn.textContent=btn.dataset.done||'Copied';
+        setTimeout(function(){ btn.textContent=label; },1600);
+      });
     });
   });
 })();
 """
 
 
-def head(title: str, description: str) -> str:
+def html_head(title: str, description: str, rel: str, lang: str) -> str:
     return f"""<!doctype html>
-<html lang="en">
+<html lang="{'pt-BR' if lang == 'pt' else 'en'}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -210,253 +333,307 @@ def head(title: str, description: str) -> str:
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:type" content="website">
-<link rel="stylesheet" href="{{root}}assets/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23557EB5'/><text x='16' y='22' font-size='16' text-anchor='middle' fill='white' font-family='sans-serif'>S</text></svg>">
+<meta property="og:image" content="https://labhdufba.github.io/scholarskills/assets/img/hermes.png">
+<link rel="stylesheet" href="{rel}assets/style.css">
+<link rel="icon" href="{rel}assets/img/hermes.png">
 </head>
 <body>"""
 
 
-def header(root: str, hub: dict) -> str:
+def site_header(rel: str, lang: str, hub: dict, other: str) -> str:
     return f"""<header class="site"><div class="wrap">
-  <a class="brand" href="{root}index.html"><span class="mark">S</span>
+  <a class="brand" href="{rel}index.html"><span class="mark">S</span>
     ScholarSkills <small>LABHDUFBA</small></a>
   <nav class="site">
-    <a href="{root}index.html#skills">Skills</a>
-    <a href="{root}index.html#levels">Maturity</a>
-    <a href="{hub.get('submission_url') or '#'}">Submit</a>
-    <a href="{hub.get('repo_url') or '#'}">GitHub</a>
+    <a href="{rel}index.html#skills">{t(lang,'nav_skills')}</a>
+    <a href="{rel}index.html#stages">{t(lang,'nav_stages')}</a>
+    <a href="{rel}index.html#levels">{t(lang,'nav_levels')}</a>
+    <a href="{hub.get('submission_url') or '#'}">{t(lang,'nav_submit')}</a>
+    <a class="lang" href="{other}index.html" hreflang="{'en' if lang == 'pt' else 'pt-BR'}">{t(lang,'switch')}</a>
   </nav>
 </div></header>"""
 
 
-def footer(hub: dict) -> str:
+def site_footer(hub: dict, lang: str) -> str:
     return f"""<footer class="site"><div class="wrap">
   <span>{esc(hub.get('institution',''))}</span>
-  <span class="right">Code MIT · Documentation CC BY 4.0 · no tracking, no cookies</span>
+  <span>{t(lang,'foot_note')}</span>
+  <span>{t(lang,'attrib')}</span>
 </div></footer>
-<script src="{{root}}assets/app.js"></script>
+<script src="{{rel}}assets/app.js"></script>
 </body></html>"""
 
 
-def badge(value: str | None, table: dict) -> str:
-    if not value:
-        return '<span class="badge muted">—</span>'
-    label, klass = table.get(value, (value, "muted"))
-    return f'<span class="badge {klass}">{esc(label)}</span>'
+def features_of(s: dict, lang: str) -> list:
+    if lang == "en" and s.get("features_en"):
+        return s["features_en"]
+    return s.get("features") or []
 
 
-def card(s: dict) -> str:
+def icons_of(s: dict, rel: str) -> str:
+    out = []
+    planned = s.get("status") == "planned"
+    tag = ' title="Previsto" ' if planned else ' '
+    for k in (s.get("integrations") or []):
+        if k == "hermes":
+            out.append(f'<span class="chip"{tag}><img src="{rel}assets/img/hermes.png" alt="">'
+                       f'<b>Hermes</b></span>')
+        else:
+            out.append(f'<span class="chip"{tag}><img src="{rel}assets/img/{esc(k)}.svg" alt="">'
+                       f'<b>{esc(ICON_LABEL.get(k, k.title()))}</b></span>')
+    return "".join(out)
+
+
+def card(s: dict, lang: str, stages: dict, rel: str) -> str:
+    stage = stages.get(s.get("stage") or "")
+    name = (stage or {}).get(lang) or "—"
     authors = s.get("authors") or []
     names = ", ".join(a.get("name", "") for a in authors) if authors else "—"
-    search = " ".join(filter(None, [
-        s.get("id"), s.get("slug"), s.get("title"), s.get("summary"),
-        " ".join(s.get("keywords") or []), names,
-    ])).lower()
-    summary = s.get("summary") or "Planned skill — not available yet."
-    version = s.get("version") or "—"
+    feats = features_of(s, lang) if s.get("status") == "available" else []
+    feats_html = "".join(f'<span class="feat">{esc(f)}</span>' for f in feats[:3])
+    icons = icons_of(s, rel)
+    summary = s.get("summary")
+    if not summary or s.get("status") == "planned":
+        summary = t(lang, "planned_summary") if s.get("status") == "planned" else (summary or "—")
+    search = " ".join(filter(None, [s.get("id"), s.get("slug"), s.get("title"),
+                                    s.get("summary"), name, " ".join(s.get("keywords") or []),
+                                    names, " ".join(feats)])).lower()
     return f"""<article class="card" data-skill data-status="{esc(s.get('status'))}"
-  data-maturity="{esc(s.get('maturity') or '')}" data-search="{esc(search)}">
-  <div class="top">
-    <span class="code">{esc(s.get('id'))}</span>
-    {badge(s.get('maturity'), MATURITY_LABEL)}
-    {badge(s.get('status'), STATUS_LABEL)}
+  data-maturity="{esc(s.get('maturity') or '')}" data-stage="{esc(s.get('stage') or '')}"
+  data-search="{esc(search)}" {stage_style(stage)}>
+  <div class="bar"></div>
+  <div class="inner">
+    <div class="top">
+      <span class="code">{esc(s.get('id'))}</span>
+      {badge(s.get('maturity'), MATURITY if lang=='pt' else MATURITY_EN) if s.get('maturity') else ''}
+      {badge(s.get('status'), STATUS if lang=='pt' else STATUS_EN)}
+    </div>
+    <h3><a href="{rel}skills/{esc(s.get('slug'))}.html">{esc(s.get('title'))}</a></h3>
+    <p>{esc(summary)}</p>
+    {f'<div class="feats">{feats_html}</div>' if feats_html else ''}
+    {'' if s.get("status") == "planned" else ''}
+    <div class="authors">{esc(names)}</div>
+    {f'<div class="stack">{icons}</div>' if icons else ''}
+    <div class="foot">
+      <span>{t(lang,'stage')}: <b style="color:var(--stage-ink)">{esc(name)}</b></span>
+      <span class="arrow"><a href="{rel}skills/{esc(s.get('slug'))}.html">{t(lang,'view')} &rarr;</a></span>
+    </div>
   </div>
-  <h3><a href="skills/{esc(s.get('slug'))}.html">{esc(s.get('title'))}</a></h3>
-  <p>{esc(summary)}</p>
-  <div class="authors">{esc(names)}</div>
-  <div class="meta">
-    <span>v{esc(version)}</span>
-    <span>·</span>
-    <span>{esc(s.get('license') or 'licence pending')}</span>
-    {('<span>·</span><span>DOI: ' + esc(s.get('doi_version')) + '</span>') if s.get('doi_version') else ''}
-  </div>
-  <div class="cta"><a href="skills/{esc(s.get('slug'))}.html">View details →</a></div>
 </article>"""
 
 
-def render_index(reg: dict) -> str:
+def render_index(reg: dict, lang: str) -> str:
     hub = reg.get("hub", {})
+    stages = reg.get("stages", {})
     skills = reg["skills"]
+    rel = "" if lang == "pt" else "../"
+    other = "en/" if lang == "pt" else "../"
     available = [s for s in skills if s.get("status") == "available"]
-    with_doi = [s for s in skills if s.get("doi_version") or s.get("doi_concept")]
     planned = [s for s in skills if s.get("status") == "planned"]
+    with_doi = [s for s in skills if s.get("doi_version") or s.get("doi_concept")]
     ordered = sorted(skills, key=lambda s: (0 if s.get("status") == "available" else 1,
                                             0 if s.get("highlight") else 1, s.get("id") or ""))
+    title = ("ScholarSkills — Skills científicas para agentes de IA" if lang == "pt"
+             else "ScholarSkills — Scientific agent skills")
 
-    body = head(hub.get("title", "ScholarSkills"),
-                hub.get("description", "An academic hub of executable research methodologies."))
-    body += header("", hub)
-    body += f"""<section class="hero"><div class="wrap">
-  <h1>{esc(hub.get('title','ScholarSkills'))}</h1>
-  <p class="lede">{esc(hub.get('tagline',''))}</p>
-  <p class="inst">{esc(hub.get('description',''))}</p>
+    out = html_head(title, hub.get("description", ""), rel, lang)
+    out += site_header(rel, lang, hub, other)
+    out += f"""<section class="hero"><div class="wrap">
+  <div class="eyebrow">{esc(hub.get('institution',''))}</div>
+  <h1>{esc(hub.get('title_pt') if (lang=='pt' and hub.get('title_pt')) else hub.get('title','ScholarSkills'))}</h1>
+  <p class="lede">{esc(hub.get('tagline_pt' if lang=='pt' else 'tagline',''))}</p>
+  <p class="desc">{esc(hub.get('description_pt' if lang=='pt' else 'description',''))}</p>
   <div class="stats">
-    <div class="stat"><b>{len(available)}</b><span>available</span></div>
-    <div class="stat"><b>{len(planned)}</b><span>planned</span></div>
-    <div class="stat"><b>{len(with_doi)}</b><span>with DOI</span></div>
-    <div class="stat"><b>3</b><span>authors</span></div>
+    <div class="stat"><b>{len(available)}</b><span>{t(lang,'available')}</span></div>
+    <div class="stat"><b>{len(planned)}</b><span>{t(lang,'planned')}</span></div>
+    <div class="stat"><b>{len(with_doi)}</b><span>{t(lang,'with_doi')}</span></div>
+    <div class="stat"><b>3</b><span>{t(lang,'authors')}</span></div>
   </div>
 </div></section>
 
-<main class="wrap">
+<main class="wrap" id="skills">
   <div class="toolbar">
-    <input id="q" type="search" placeholder="Search skills…" aria-label="Search skills">
-    <select id="f-status" aria-label="Filter by status">
-      <option value="">All statuses</option>
-      <option value="available">Available</option>
-      <option value="planned">Planned</option>
+    <input id="q" type="search" placeholder="{esc(t(lang,'search'))}" aria-label="{esc(t(lang,'search'))}">
+    <select id="f-stage" aria-label="{esc(t(lang,'all_stages'))}">
+      <option value="">{t(lang,'all_stages')}</option>
+      {''.join(f'<option value="{esc(k)}">{esc(v[lang])}</option>' for k, v in stages.items())}
     </select>
-    <select id="f-maturity" aria-label="Filter by maturity">
-      <option value="">All maturity levels</option>
-      <option value="experimental">Experimental</option>
-      <option value="tested">Tested</option>
-      <option value="peer-reviewed">Peer-reviewed</option>
-      <option value="replicated">Replicated</option>
+    <select id="f-status" aria-label="{esc(t(lang,'all_status'))}">
+      <option value="">{t(lang,'all_status')}</option>
+      <option value="available">{(STATUS if lang=='pt' else STATUS_EN)['available'][0]}</option>
+      <option value="planned">{(STATUS if lang=='pt' else STATUS_EN)['planned'][0]}</option>
     </select>
-    <span class="count" id="count">{len(skills)} skills</span>
+    <select id="f-maturity" aria-label="{esc(t(lang,'all_maturity'))}">
+      <option value="">{t(lang,'all_maturity')}</option>
+      {''.join(f'<option value="{k}">{v[0]}</option>' for k, v in (MATURITY if lang=='pt' else MATURITY_EN).items())}
+    </select>
+    <span class="count"><span id="count">{len(skills)}</span> skills</span>
   </div>
-
-  <div class="grid" id="skills">
+  <div class="grid">
 """
-    body += "\n".join(card(s) for s in ordered)
-    body += """
+    out += "\n".join(card(s, lang, stages, rel) for s in ordered)
+    out += f"""
   </div>
-  <p class="empty" id="empty" hidden>No skill matches these filters.</p>
+  <p class="empty" id="empty" hidden>{t(lang,'empty')}</p>
 
-  <section id="levels" style="padding:8px 0 64px">
-    <h2 class="sec">Maturity levels — evidence, not aspiration</h2>
-    <p style="max-width:70ch;color:var(--muted)">A level is granted only with the artefact that
-    justifies it, stored in the skill repository. Green tests prove structure; they do not prove a
-    method. Peer review and replication are social processes with their own records.</p>
-    <div class="grid" style="padding-top:18px">
-      <article class="card"><div class="top"><span class="badge muted">Experimental</span></div>
-        <p>Works on the author's machine. No independent evidence.</p></article>
-      <article class="card"><div class="top"><span class="badge ok">Tested</span></div>
-        <p>Automated tests pass in a recorded environment (<code>tests/RESULTS.md</code>).</p></article>
-      <article class="card"><div class="top"><span class="badge accent">Peer-reviewed</span></div>
-        <p>Two named reviewers applied the editorial policy; verdicts in <code>reviews/</code>.</p></article>
-      <article class="card"><div class="top"><span class="badge accent">Replicated</span></div>
-        <p>Re-executed by a non-author with a published report.</p></article>
+  <section id="stages" style="padding:6px 0 46px">
+    <h2 class="sec">{t(lang,'stages_h')}</h2>
+    <p style="max-width:74ch;color:var(--muted);margin:0">{t(lang,'stages_p')}</p>
+    <div class="stage-legend">
+      {''.join(f'<a href="#skills"><span class="dot" style="--c:{v["color"]}"></span>{esc(v[lang])}</a>' for v in stages.values())}
     </div>
+  </section>
+
+  <section id="levels" style="padding:6px 0 64px">
+    <h2 class="sec">{t(lang,'levels_h')}</h2>
+    <p style="max-width:74ch;color:var(--muted);margin:0">{t(lang,'levels_p')}</p>
+    <div class="levels">
+"""
+    for key, label_pt, label_en, color, soft, text_key in [
+        ("experimental", "Experimental", "Experimental", "#94a3b8", "#f1f5f9", "lvl_exp"),
+        ("tested", "Testado", "Tested", "#009E73", "#E4F4EF", "lvl_test"),
+        ("peer-reviewed", "Revisado por pares", "Peer-reviewed", "#0072B2", "#E6F1F8", "lvl_peer"),
+        ("replicated", "Replicado", "Replicated", "#7B52AB", "#F0EAF7", "lvl_repl"),
+    ]:
+        label = label_pt if lang == "pt" else label_en
+        klass = "muted" if key == "experimental" else ("ok" if key == "tested" else "accent")
+        out += f"""      <article class="card" style="--stage:{color};--stage-soft:{soft};--stage-ink:{INK.get(color,'#475569')}">
+        <div class="bar"></div><div class="inner">
+        <div class="top"><span class="badge {klass}">{esc(label)}</span></div>
+        <p>{t(lang, text_key)}</p></div></article>
+"""
+    out += """    </div>
   </section>
 </main>
 """
-    body += footer(hub)
-    return body.replace("{root}", "")
+    out += site_footer(hub, lang)
+    return out.replace("{rel}", rel)
 
 
-def render_skill(s: dict, hub: dict, total_available: int) -> str:
-    root = "../"
-    body = head(f"{s.get('title')} — ScholarSkills",
-                s.get("summary") or "ScholarSkills skill")
-    body += header(root, hub)
+def render_skill(s: dict, hub: dict, stages: dict, lang: str) -> str:
+    rel = "" if lang == "pt" else "../"
+    other = "../../en/" if lang == "pt" else "../../"
+    stage = stages.get(s.get("stage") or "")
+    name = (stage or {}).get(lang) or "—"
+    out = html_head(f"{s.get('title')} — ScholarSkills", s.get("summary") or "", rel, lang)
+    out += site_header(rel, lang, hub, other)
+
     authors = s.get("authors") or []
-    author_rows = "".join(
-        f"<tr><td>{esc(a.get('name'))}</td><td>{esc(a.get('affiliation') or '—')}</td>"
-        f"<td>{esc(a.get('orcid') or '—')}</td></tr>" for a in authors
-    ) or '<tr><td colspan="3">—</td></tr>'
+    rows = "".join(
+        f"<tr><td><b>{esc(a.get('name'))}</b></td><td>{esc(a.get('affiliation') or '—')}</td>"
+        f"<td>{esc(a.get('orcid') or '—')}</td></tr>" for a in authors) or '<tr><td colspan="3">—</td></tr>'
     steps = s.get("how_it_works") or []
-    steps_html = ("<ol class=\"steps\">" + "".join(f"<li>{esc(x)}</li>" for x in steps) + "</ol>"
-                  ) if steps else '<p style="color:var(--muted)">Not documented yet.</p>'
+    steps_html = (f'<ol class="steps">' + "".join(f"<li>{esc(x)}</li>" for x in steps) + "</ol>"
+                  ) if steps else '<p style="color:var(--muted)">—</p>'
+    feats = features_of(s, lang)
+    feats_html = "".join(f'<span class="feat">{esc(f)}</span>' for f in feats)
+    icons = icons_of(s, rel)
     links = s.get("links") or {}
     link_html = "".join(
-        f'<a class="btn" style="margin:0 8px 8px 0" href="{esc(url)}">{esc(name.title())}</a>'
-        for name, url in links.items()) or ""
+        f'<a class="btn" style="margin:0 8px 8px 0" href="{esc(u)}">{esc(n.title())}</a>'
+        for n, u in links.items())
     doi = s.get("doi_version")
-    cite = s.get("cite") or f"{esc(s.get('title'))} (2026). ScholarSkills {esc(s.get('id'))}."
+    cite = s.get("cite") or f"{s.get('title')} (2026). ScholarSkills {s.get('id')}."
 
-    body += f"""<section class="skill-head"><div class="wrap">
-  <div class="crumbs"><a href="{root}index.html">Hub</a> / <span class="current">{esc(s.get('id'))}</span></div>
+    out += f"""<section class="skill-head" {stage_style(stage)}><div class="wrap">
+  <div class="crumbs"><a href="{rel}index.html">{t(lang,'hub')}</a> /
+    <span class="current">{esc(s.get('id'))}</span></div>
   <h1>{esc(s.get('title'))}</h1>
-  <p class="lede" style="max-width:70ch;color:var(--muted)">{esc(s.get('summary') or '')}</p>
+  <p class="sub">{esc(s.get('summary') or '')}</p>
   <div class="meta-row">
     <span class="code">{esc(s.get('id'))}</span>
-    {badge(s.get('maturity'), MATURITY_LABEL)}
-    {badge(s.get('status'), STATUS_LABEL)}
-    <span>v{esc(s.get('version') or '—')}</span>
-    <span>·</span><span>{esc(s.get('license') or 'licence pending')}</span>
+    {badge(s.get('maturity'), MATURITY if lang=='pt' else MATURITY_EN)}
+    {badge(s.get('status'), STATUS if lang=='pt' else STATUS_EN)}
+    <span class="badge stage">{esc(name)}</span>
+    <span>v{esc(s.get('version') or '—')}</span><span>&middot;</span>
+    <span>{esc(s.get('license') or t(lang,'pending_lic'))}</span>
   </div>
+  {f'<div class="stack" style="margin-top:14px">{icons}</div>' if icons else ''}
 </div></section>
 
 <main class="wrap"><div class="cols">
   <div>
-    <h2 class="sec">Objective</h2>
-    <p>{esc(s.get('objective') or s.get('summary') or 'Not documented yet.')}</p>
+    <h2 class="sec">{t(lang,'objective')}</h2>
+    <p>{esc(s.get('objective') or s.get('summary') or '—')}</p>
 
-    <h2 class="sec">How it works</h2>
+    <h2 class="sec">{t(lang,'features')}</h2>
+    <div class="chips">{feats_html or '—'}</div>
+
+    <h2 class="sec">{t(lang,'how')}</h2>
     {steps_html}
 
-    <h2 class="sec">Authors</h2>
-    <table style="width:100%;border-collapse:collapse;font-size:14px">
-      <thead><tr style="text-align:left;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em">
-        <th style="padding:8px 0;border-bottom:1px solid var(--line)">Name</th>
-        <th style="padding:8px 0;border-bottom:1px solid var(--line)">Affiliation</th>
-        <th style="padding:8px 0;border-bottom:1px solid var(--line)">ORCID</th>
-      </tr></thead>
-      <tbody>{author_rows}</tbody>
+    <h2 class="sec">{t(lang,'authors_h')}</h2>
+    <table class="authors-t">
+      <thead><tr><th>{t(lang,'col_name')}</th><th>{t(lang,'col_aff')}</th><th>ORCID</th></tr></thead>
+      <tbody>{rows}</tbody>
     </table>
+    <p class="note">{t(lang,'authors_note')}</p>
 
-    <h2 class="sec">How to cite</h2>
+    <h2 class="sec">{t(lang,'cite')}</h2>
     <blockquote id="cite-text">{esc(cite)}</blockquote>
-    <button class="btn" data-copy="cite-text" style="margin-top:10px">Copy citation</button>
-    <p class="note">{'DOI: ' + esc(doi) if doi else 'No DOI registered yet. The field stays empty rather than carrying a placeholder.'}</p>
+    <button class="btn" data-copy="cite-text" data-label="{esc(t(lang,'copy'))}"
+      data-done="{esc(t(lang,'copied'))}" style="margin-top:10px">{t(lang,'copy')}</button>
+    <p class="note">{('DOI: ' + esc(doi)) if doi else t(lang,'no_doi')}</p>
 
-    {f'<h2 class="sec">Installation</h2><pre id="install-text">{esc(s.get("install"))}</pre>' if s.get('install') else ''}
+    {f'<h2 class="sec">{t(lang,"install")}</h2><pre>{esc(s.get("install"))}</pre>' if s.get('install') else ''}
 
-    <h2 class="sec">Validation</h2>
-    <p style="color:var(--muted);max-width:70ch">Structural validation proves conformance to the
-    Agent Skills specification and the completeness of the package. It does not prove that the
-    method is correct. Evidence for this skill's maturity level:
-    {esc(s.get('evidence') or 'not recorded')}.</p>
+    <h2 class="sec">{t(lang,'validation')}</h2>
+    <p style="color:var(--muted);max-width:74ch">{t(lang,'val_note')}
+    {esc(s.get('evidence') or t(lang,'not_recorded'))}.</p>
   </div>
 
   <aside>
-    <div class="panel">
-      <h4>Factsheet</h4>
+    <div class="panel" {stage_style(stage)}>
+      <h4>{t(lang,'factsheet')}</h4>
       <dl class="facts">
-        <dt>Identifier</dt><dd>{esc(s.get('id'))}</dd>
-        <dt>Version</dt><dd>{esc(s.get('version') or '—')}</dd>
-        <dt>Maturity</dt><dd>{esc(s.get('maturity') or '—')}</dd>
-        <dt>Status</dt><dd>{esc(s.get('status'))}</dd>
-        <dt>Licence</dt><dd>{esc(s.get('license') or 'pending')}</dd>
-        <dt>DOI (version)</dt><dd>{esc(doi or '—')}</dd>
-        <dt>DOI (concept)</dt><dd>{esc(s.get('doi_concept') or '—')}</dd>
-        <dt>Added</dt><dd>{esc(s.get('added') or '—')}</dd>
+        <dt>{t(lang,'identifier')}</dt><dd>{esc(s.get('id'))}</dd>
+        <dt>{t(lang,'stage')}</dt><dd style="color:var(--stage-ink);font-weight:600">{esc(name)}</dd>
+        <dt>{t(lang,'version')}</dt><dd>{esc(s.get('version') or '—')}</dd>
+        <dt>{t(lang,'maturity')}</dt><dd>{esc(s.get('maturity') or '—')}</dd>
+        <dt>{t(lang,'status')}</dt><dd>{esc(s.get('status'))}</dd>
+        <dt>{t(lang,'licence')}</dt><dd>{esc(s.get('license') or '—')}</dd>
+        <dt>{t(lang,'doi_version')}</dt><dd>{esc(doi or '—')}</dd>
+        <dt>{t(lang,'doi_concept')}</dt><dd>{esc(s.get('doi_concept') or '—')}</dd>
+        <dt>{t(lang,'added')}</dt><dd>{esc(s.get('added') or '—')}</dd>
       </dl>
     </div>
-    <div class="panel">
-      <h4>Links</h4>
-      {link_html or '<p class="note">No public repository yet.</p>'}
-    </div>
-    <div class="panel">
-      <h4>Keywords</h4>
-      <p class="note">{esc(', '.join(s.get('keywords') or []) or '—')}</p>
-    </div>
+    <div class="panel"><h4>{t(lang,'links')}</h4>
+      {link_html or f'<p class="note">{t(lang,"no_repo")}</p>'}</div>
+    <div class="panel"><h4>{t(lang,'stack')}</h4>
+      <div class="chips">{icons or '—'}</div></div>
+    <div class="panel"><h4>{t(lang,'keywords')}</h4>
+      <p class="note">{esc(', '.join(s.get('keywords') or []) or '—')}</p></div>
   </aside>
 </div></main>
 """
-    body += footer(hub)
-    return body.replace("{root}", root)
+    out += site_footer(hub, lang)
+    return out.replace("{rel}", rel)
 
 
 def build(out: Path) -> dict:
     reg = json.loads(REGISTRY.read_text(encoding="utf-8"))
     hub = reg.get("hub", {})
-    (out / "assets").mkdir(parents=True, exist_ok=True)
-    (out / "skills").mkdir(parents=True, exist_ok=True)
-    (out / "api").mkdir(parents=True, exist_ok=True)
+    stages = reg.get("stages", {})
 
+    for lang in LANGS:
+        base = out if lang == "pt" else out / lang
+        (base / "skills").mkdir(parents=True, exist_ok=True)
+        (base / "index.html").write_text(render_index(reg, lang), encoding="utf-8")
+        for s in reg["skills"]:
+            (base / "skills" / f"{s['slug']}.html").write_text(
+                render_skill(s, hub, stages, lang), encoding="utf-8")
+
+    (out / "assets").mkdir(parents=True, exist_ok=True)
     (out / "assets" / "style.css").write_text(css(), encoding="utf-8")
     (out / "assets" / "app.js").write_text(js(), encoding="utf-8")
-    (out / "index.html").write_text(render_index(reg), encoding="utf-8")
+    img = out / "assets" / "img"
+    img.mkdir(parents=True, exist_ok=True)
+    for f in ASSETS.glob("*"):
+        shutil.copy(f, img / f.name)
 
-    for s in reg["skills"]:
-        (out / "skills" / f"{s['slug']}.html").write_text(
-            render_skill(s, hub, len(reg["skills"])), encoding="utf-8")
-
-    public = {k: v for k, v in reg.items()}
+    (out / "api").mkdir(parents=True, exist_ok=True)
     (out / "api" / "registry.json").write_text(
-        json.dumps(public, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        json.dumps(reg, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     (out / ".nojekyll").write_text("", encoding="utf-8")
 
     files = sorted(p for p in out.rglob("*") if p.is_file())
@@ -464,11 +641,10 @@ def build(out: Path) -> dict:
     return {"files": len(files), "hash": digest, "skills": len(reg["skills"])}
 
 
-def main(argv: list[str] | None = None) -> int:
+def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Build the ScholarSkills hub.")
     ap.add_argument("--out", type=Path, default=ROOT / "site")
-    ap.add_argument("--check", action="store_true",
-                    help="exit 1 if the output on disk differs from a fresh build")
+    ap.add_argument("--check", action="store_true")
     args = ap.parse_args(argv)
 
     out: Path = args.out
@@ -476,14 +652,13 @@ def main(argv: list[str] | None = None) -> int:
         tmp = out.parent / ".site-check"
         if tmp.exists():
             shutil.rmtree(tmp)
-        info = build(tmp)
-        same = all((tmp / p.relative_to(tmp)).read_bytes() == p.read_bytes()
-                   for p in tmp.rglob("*") if p.is_file()) and \
-            sorted(str(p.relative_to(tmp)) for p in tmp.rglob("*") if p.is_file()) == \
-            sorted(str(p.relative_to(out)) for p in out.rglob("*") if p.is_file())
+        build(tmp)
+        a = sorted((str(p.relative_to(tmp)), p.read_bytes()) for p in tmp.rglob("*") if p.is_file())
+        b = sorted((str(p.relative_to(out)), p.read_bytes()) for p in out.rglob("*") if p.is_file())
         shutil.rmtree(tmp)
-        print("site is up to date" if same else "site is STALE — run scripts/build_site.py")
-        return 0 if same else 1
+        ok = a == b
+        print("site is up to date" if ok else "site is STALE — run scripts/build_site.py")
+        return 0 if ok else 1
 
     info = build(out)
     print(f"built {info['files']} files for {info['skills']} skills into {out}")

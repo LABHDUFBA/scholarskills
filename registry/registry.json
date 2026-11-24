@@ -70,7 +70,22 @@
         "repository": "https://github.com/LABHDUFBA/scholarskills",
         "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/scientific-agent-skill-development"
       },
-      "highlight": true
+      "highlight": true,
+      "stage": "writing",
+      "integrations": [
+        "python",
+        "github"
+      ],
+      "features": [
+        "Validação estrutural",
+        "Testes que podem falhar",
+        "Depósito preparado, não executado"
+      ],
+      "features_en": [
+        "Structural validation",
+        "Tests that can fail",
+        "Deposit prepared, not performed"
+      ]
     },
     {
       "id": "SS-0001",
@@ -131,13 +146,29 @@
         "repository": "https://github.com/LABHDUFBA/scholarskills",
         "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/zotero-reference-management"
       },
-      "highlight": true
+      "highlight": true,
+      "stage": "foundation",
+      "integrations": [
+        "zotero",
+        "hermes",
+        "python"
+      ],
+      "features": [
+        "Web API v3",
+        "Exporta BibTeX/CSL",
+        "Escopo da chave respeitado"
+      ],
+      "features_en": [
+        "Web API v3",
+        "Exports BibTeX/CSL",
+        "Respects the key's scope"
+      ]
     },
     {
       "id": "SS-0002",
       "slug": "systematic-literature-review",
       "title": "Systematic Literature Review",
-      "summary": "Planned.",
+      "summary": null,
       "version": null,
       "status": "planned",
       "maturity": null,
@@ -152,13 +183,20 @@
       "evidence": null,
       "deprecated_reason": null,
       "superseded_by": null,
-      "added": null
+      "added": null,
+      "stage": "review",
+      "integrations": [
+        "zotero",
+        "hermes"
+      ],
+      "features": [],
+      "features_en": []
     },
     {
       "id": "SS-0003",
       "slug": "scientific-corpus-exploration",
       "title": "Scientific Corpus Exploration",
-      "summary": "Planned.",
+      "summary": null,
       "version": null,
       "status": "planned",
       "maturity": null,
@@ -173,13 +211,20 @@
       "evidence": null,
       "deprecated_reason": null,
       "superseded_by": null,
-      "added": null
+      "added": null,
+      "stage": "collection",
+      "integrations": [
+        "hermes",
+        "python"
+      ],
+      "features": [],
+      "features_en": []
     },
     {
       "id": "SS-0004",
       "slug": "synthetic-focus-groups",
       "title": "Synthetic Focus Groups",
-      "summary": "Planned.",
+      "summary": null,
       "version": null,
       "status": "planned",
       "maturity": null,
@@ -194,13 +239,19 @@
       "evidence": null,
       "deprecated_reason": null,
       "superseded_by": null,
-      "added": null
+      "added": null,
+      "stage": "simulation",
+      "integrations": [
+        "hermes"
+      ],
+      "features": [],
+      "features_en": []
     },
     {
       "id": "SS-0005",
       "slug": "multimodal-content-analysis",
       "title": "Multimodal Content Analysis",
-      "summary": "Planned.",
+      "summary": null,
       "version": null,
       "status": "planned",
       "maturity": null,
@@ -215,13 +266,20 @@
       "evidence": null,
       "deprecated_reason": null,
       "superseded_by": null,
-      "added": null
+      "added": null,
+      "stage": "multimodal",
+      "integrations": [
+        "hermes",
+        "python"
+      ],
+      "features": [],
+      "features_en": []
     },
     {
       "id": "SS-0006",
       "slug": "qualitative-content-coding",
       "title": "Qualitative Content Coding",
-      "summary": "Planned.",
+      "summary": null,
       "version": null,
       "status": "planned",
       "maturity": null,
@@ -236,13 +294,20 @@
       "evidence": null,
       "deprecated_reason": null,
       "superseded_by": null,
-      "added": null
+      "added": null,
+      "stage": "analysis",
+      "integrations": [
+        "hermes",
+        "python"
+      ],
+      "features": [],
+      "features_en": []
     },
     {
       "id": "SS-0007",
       "slug": "social-network-analysis",
       "title": "Social Network Analysis",
-      "summary": "Planned.",
+      "summary": null,
       "version": null,
       "status": "planned",
       "maturity": null,
@@ -257,13 +322,19 @@
       "evidence": null,
       "deprecated_reason": null,
       "superseded_by": null,
-      "added": null
+      "added": null,
+      "stage": "analysis",
+      "integrations": [
+        "python"
+      ],
+      "features": [],
+      "features_en": []
     },
     {
       "id": "SS-0008",
       "slug": "digital-ethnography",
       "title": "Digital Ethnography",
-      "summary": "Planned.",
+      "summary": null,
       "version": null,
       "status": "planned",
       "maturity": null,
@@ -278,13 +349,19 @@
       "evidence": null,
       "deprecated_reason": null,
       "superseded_by": null,
-      "added": null
+      "added": null,
+      "stage": "collection",
+      "integrations": [
+        "hermes"
+      ],
+      "features": [],
+      "features_en": []
     },
     {
       "id": "SS-0009",
       "slug": "misinformation-analysis",
       "title": "Misinformation Analysis",
-      "summary": "Planned.",
+      "summary": null,
       "version": null,
       "status": "planned",
       "maturity": null,
@@ -299,7 +376,14 @@
       "evidence": null,
       "deprecated_reason": null,
       "superseded_by": null,
-      "added": null
+      "added": null,
+      "stage": "verification",
+      "integrations": [
+        "hermes",
+        "zotero"
+      ],
+      "features": [],
+      "features_en": []
     }
   ],
   "renumbering_note": "2026-11-24: SS-0001 reassigned to the first substantive skill (Zotero); previous roadmap items shifted to SS-0002..SS-0009.",
@@ -314,7 +398,60 @@
     "doi_policy": "One record per repository release: the Zenodo GitHub integration mints a version DOI per release and a concept DOI for the record. Every available skill cites the concept DOI and points to its own directory; per-skill DOIs would require one repository per skill, which this project does not use.",
     "doi_concept": null,
     "doi_version": null,
-    "release": null
+    "release": null,
+    "tagline_pt": "Metodologias de pesquisa executáveis, que podem ser lidas, testadas e citadas.",
+    "description_pt": "Um hub acadêmico de skills para agentes de IA, tratadas como objetos metodológicos: cada uma documentada, versionada, testada e licenciada, e — quando o depósito é autorizado — arquivada com DOI. Nada aqui carrega um identificador que não possui: uma skill sem DOI diz que não tem.",
+    "title_pt": "ScholarSkills — Skills científicas para agentes de IA"
   },
-  "policy_note": "One repository holds every skill; each skill keeps its own directory, version, CHANGELOG and DOI. A separate repository per skill is not used."
+  "policy_note": "One repository holds every skill; each skill keeps its own directory, version, CHANGELOG and DOI. A separate repository per skill is not used.",
+  "stages": {
+    "foundation": {
+      "pt": "Fundamentação",
+      "en": "Foundation",
+      "color": "#0072B2",
+      "soft": "#E6F1F8"
+    },
+    "review": {
+      "pt": "Revisão da literatura",
+      "en": "Literature review",
+      "color": "#009E73",
+      "soft": "#E4F4EF"
+    },
+    "collection": {
+      "pt": "Coleta de dados",
+      "en": "Data collection",
+      "color": "#8C6D00",
+      "soft": "#F7F0DC"
+    },
+    "analysis": {
+      "pt": "Análise",
+      "en": "Analysis",
+      "color": "#7B52AB",
+      "soft": "#F0EAF7"
+    },
+    "simulation": {
+      "pt": "Simulação",
+      "en": "Simulation",
+      "color": "#CC79A7",
+      "soft": "#FAEBF3"
+    },
+    "multimodal": {
+      "pt": "Análise multimodal",
+      "en": "Multimodal analysis",
+      "color": "#D55E00",
+      "soft": "#FBEDE4"
+    },
+    "writing": {
+      "pt": "Escrita e publicação",
+      "en": "Writing and publishing",
+      "color": "#8B2E4A",
+      "soft": "#F8E8ED"
+    },
+    "verification": {
+      "pt": "Verificação",
+      "en": "Verification",
+      "color": "#B03030",
+      "soft": "#F8E9E9"
+    }
+  }
 }

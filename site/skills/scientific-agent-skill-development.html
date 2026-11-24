@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,92 +8,96 @@
 <meta property="og:title" content="Scientific Agent Skill Development and Validation Protocol — ScholarSkills">
 <meta property="og:description" content="Meta-skill that lets an agent create, document, test and prepare a scientific skill for deposit.">
 <meta property="og:type" content="website">
-<link rel="stylesheet" href="../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23557EB5'/><text x='16' y='22' font-size='16' text-anchor='middle' fill='white' font-family='sans-serif'>S</text></svg>">
+<meta property="og:image" content="https://labhdufba.github.io/scholarskills/assets/img/hermes.png">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/img/hermes.png">
 </head>
 <body><header class="site"><div class="wrap">
-  <a class="brand" href="../index.html"><span class="mark">S</span>
+  <a class="brand" href="index.html"><span class="mark">S</span>
     ScholarSkills <small>LABHDUFBA</small></a>
   <nav class="site">
-    <a href="../index.html#skills">Skills</a>
-    <a href="../index.html#levels">Maturity</a>
-    <a href="https://github.com/LABHDUFBA/scholarskills/blob/main/CONTRIBUTING.md">Submit</a>
-    <a href="https://github.com/LABHDUFBA/scholarskills">GitHub</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#stages">Etapas</a>
+    <a href="index.html#levels">Maturidade</a>
+    <a href="https://github.com/LABHDUFBA/scholarskills/blob/main/CONTRIBUTING.md">Submeter</a>
+    <a class="lang" href="../../en/index.html" hreflang="en">English</a>
   </nav>
-</div></header><section class="skill-head"><div class="wrap">
-  <div class="crumbs"><a href="../index.html">Hub</a> / <span class="current">SS-0000</span></div>
+</div></header><section class="skill-head" style="--stage:#8B2E4A;--stage-soft:#F8E8ED;--stage-ink:#6d2138"><div class="wrap">
+  <div class="crumbs"><a href="index.html">Hub</a> /
+    <span class="current">SS-0000</span></div>
   <h1>Scientific Agent Skill Development and Validation Protocol</h1>
-  <p class="lede" style="max-width:70ch;color:var(--muted)">Meta-skill that lets an agent create, document, test and prepare a scientific skill for deposit.</p>
+  <p class="sub">Meta-skill that lets an agent create, document, test and prepare a scientific skill for deposit.</p>
   <div class="meta-row">
     <span class="code">SS-0000</span>
-    <span class="badge ok">Tested</span>
-    <span class="badge ok">Available</span>
-    <span>v1.0.0</span>
-    <span>·</span><span>MIT (code) / CC-BY-4.0 (docs)</span>
+    <span class="badge ok">Testado</span>
+    <span class="badge accent">Disponível</span>
+    <span class="badge stage">Escrita e publicação</span>
+    <span>v1.0.0</span><span>&middot;</span>
+    <span>MIT (code) / CC-BY-4.0 (docs)</span>
   </div>
+  <div class="stack" style="margin-top:14px"><span class="chip" ><img src="assets/img/python.svg" alt=""><b>Python</b></span><span class="chip" ><img src="assets/img/github.svg" alt=""><b>GitHub</b></span></div>
 </div></section>
 
 <main class="wrap"><div class="cols">
   <div>
-    <h2 class="sec">Objective</h2>
+    <h2 class="sec">Objetivo</h2>
     <p>A meta-skill: it turns a research method into a documented, tested, citable agent skill — or refuses, and says why.</p>
 
-    <h2 class="sec">How it works</h2>
+    <h2 class="sec">Recursos</h2>
+    <div class="chips"><span class="feat">Validação estrutural</span><span class="feat">Testes que podem falhar</span><span class="feat">Depósito preparado, não executado</span></div>
+
+    <h2 class="sec">Como funciona</h2>
     <ol class="steps"><li>Scope the claim in one falsifiable sentence; an unfillable slot is the finding, not an obstacle.</li><li>Ground the method in verifiable literature, separating established fact, interpretation, hypothesis and normative position.</li><li>Generate the canonical package (SKILL.md, README, CITATION.cff, LICENSE, .zenodo.json, references, tests).</li><li>Write tests that can fail: positive, negative, edge, tool failure, absent reference.</li><li>Record the real environment and the real output; a result without its environment is a report, not a reproduction.</li><li>Audit ethics and rights: personal data, consent, copyright, dual use, attribution.</li><li>Validate structure, then prepare — never perform — the deposit.</li></ol>
 
-    <h2 class="sec">Authors</h2>
-    <table style="width:100%;border-collapse:collapse;font-size:14px">
-      <thead><tr style="text-align:left;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em">
-        <th style="padding:8px 0;border-bottom:1px solid var(--line)">Name</th>
-        <th style="padding:8px 0;border-bottom:1px solid var(--line)">Affiliation</th>
-        <th style="padding:8px 0;border-bottom:1px solid var(--line)">ORCID</th>
-      </tr></thead>
-      <tbody><tr><td>Leonardo Fernandes Nascimento</td><td>Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia</td><td>—</td></tr><tr><td>Eric Brasil</td><td>Institute of Humanities and Languages, University of International Integration of Afro-Brazilian Lusophony (UNILAB)</td><td>—</td></tr><tr><td>Ricardo Sodré</td><td>Federal University of Bahia</td><td>—</td></tr></tbody>
+    <h2 class="sec">Autores</h2>
+    <table class="authors-t">
+      <thead><tr><th>Nome</th><th>Afiliação</th><th>ORCID</th></tr></thead>
+      <tbody><tr><td><b>Leonardo Fernandes Nascimento</b></td><td>Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia</td><td>—</td></tr><tr><td><b>Eric Brasil</b></td><td>Institute of Humanities and Languages, University of International Integration of Afro-Brazilian Lusophony (UNILAB)</td><td>—</td></tr><tr><td><b>Ricardo Sodré</b></td><td>Federal University of Bahia</td><td>—</td></tr></tbody>
     </table>
+    <p class="note">ORCIDs entram apenas quando cada autor os fornece; nenhum é inventado.</p>
 
-    <h2 class="sec">How to cite</h2>
+    <h2 class="sec">Como citar</h2>
     <blockquote id="cite-text">Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Scientific Agent Skill Development and Validation Protocol (ScholarSkills SS-0000, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/scholarskills.</blockquote>
-    <button class="btn" data-copy="cite-text" style="margin-top:10px">Copy citation</button>
-    <p class="note">No DOI registered yet. The field stays empty rather than carrying a placeholder.</p>
+    <button class="btn" data-copy="cite-text" data-label="Copiar citação"
+      data-done="Copiado" style="margin-top:10px">Copiar citação</button>
+    <p class="note">Sem DOI registrado. O campo fica vazio em vez de carregar um marcador.</p>
 
-    <h2 class="sec">Installation</h2><pre id="install-text">git clone https://github.com/LABHDUFBA/scholarskills.git
+    <h2 class="sec">Instalação</h2><pre>git clone https://github.com/LABHDUFBA/scholarskills.git
 cd scholarskills/scientific-agent-skill-development
 pip install pyyaml</pre>
 
-    <h2 class="sec">Validation</h2>
-    <p style="color:var(--muted);max-width:70ch">Structural validation proves conformance to the
-    Agent Skills specification and the completeness of the package. It does not prove that the
-    method is correct. Evidence for this skill's maturity level:
+    <h2 class="sec">Validação</h2>
+    <p style="color:var(--muted);max-width:74ch">A validação estrutural prova conformidade com a especificação Agent Skills e a completude do pacote. Não prova que o método está correto. Evidência do nível de maturidade desta skill:
     scientific-agent-skill-development/tests/RESULTS.md.</p>
   </div>
 
   <aside>
-    <div class="panel">
-      <h4>Factsheet</h4>
+    <div class="panel" style="--stage:#8B2E4A;--stage-soft:#F8E8ED;--stage-ink:#6d2138">
+      <h4>Ficha</h4>
       <dl class="facts">
-        <dt>Identifier</dt><dd>SS-0000</dd>
-        <dt>Version</dt><dd>1.0.0</dd>
-        <dt>Maturity</dt><dd>tested</dd>
+        <dt>Identificador</dt><dd>SS-0000</dd>
+        <dt>Etapa</dt><dd style="color:var(--stage-ink);font-weight:600">Escrita e publicação</dd>
+        <dt>Versão</dt><dd>1.0.0</dd>
+        <dt>Maturidade</dt><dd>tested</dd>
         <dt>Status</dt><dd>available</dd>
-        <dt>Licence</dt><dd>MIT (code) / CC-BY-4.0 (docs)</dd>
-        <dt>DOI (version)</dt><dd>—</dd>
-        <dt>DOI (concept)</dt><dd>—</dd>
-        <dt>Added</dt><dd>2026-11-24</dd>
+        <dt>Licença</dt><dd>MIT (code) / CC-BY-4.0 (docs)</dd>
+        <dt>DOI (versão)</dt><dd>—</dd>
+        <dt>DOI (conceito)</dt><dd>—</dd>
+        <dt>Adicionada em</dt><dd>2026-11-24</dd>
       </dl>
     </div>
-    <div class="panel">
-      <h4>Links</h4>
-      <a class="btn" style="margin:0 8px 8px 0" href="https://github.com/LABHDUFBA/scholarskills">Repository</a><a class="btn" style="margin:0 8px 8px 0" href="https://github.com/LABHDUFBA/scholarskills/tree/main/scientific-agent-skill-development">Path</a>
-    </div>
-    <div class="panel">
-      <h4>Keywords</h4>
-      <p class="note">agent skills, research methodology, validation, reproducibility, meta-skill</p>
-    </div>
+    <div class="panel"><h4>Links</h4>
+      <a class="btn" style="margin:0 8px 8px 0" href="https://github.com/LABHDUFBA/scholarskills">Repository</a><a class="btn" style="margin:0 8px 8px 0" href="https://github.com/LABHDUFBA/scholarskills/tree/main/scientific-agent-skill-development">Path</a></div>
+    <div class="panel"><h4>Stack</h4>
+      <div class="chips"><span class="chip" ><img src="assets/img/python.svg" alt=""><b>Python</b></span><span class="chip" ><img src="assets/img/github.svg" alt=""><b>GitHub</b></span></div></div>
+    <div class="panel"><h4>Palavras-chave</h4>
+      <p class="note">agent skills, research methodology, validation, reproducibility, meta-skill</p></div>
   </aside>
 </div></main>
 <footer class="site"><div class="wrap">
   <span>Digital Humanities Laboratory — Federal University of Bahia (LABHDUFBA)</span>
-  <span class="right">Code MIT · Documentation CC BY 4.0 · no tracking, no cookies</span>
+  <span>Código MIT · Documentação CC BY 4.0 · sem rastreamento, sem cookies</span>
+  <span>Ícones: Zotero (marca da Corporation for Digital Scholarship) e Hermes Agent (Nous Research), usados apenas para indicar integração.</span>
 </div></footer>
-<script src="../assets/app.js"></script>
+<script src="assets/app.js"></script>
 </body></html>

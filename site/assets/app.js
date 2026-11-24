@@ -1,45 +1,35 @@
-// Filtering is client-side and progressive: with JS off, all cards remain visible.
+// Progressive enhancement: without JS every card is visible and every link works.
 (function(){
-  const q = document.getElementById('q');
-  const status = document.getElementById('f-status');
-  const maturity = document.getElementById('f-maturity');
-  const cards = Array.from(document.querySelectorAll('[data-skill]'));
-  const count = document.getElementById('count');
+  var q=document.getElementById('q'), st=document.getElementById('f-status'),
+      mt=document.getElementById('f-maturity'), sg=document.getElementById('f-stage'),
+      cards=[].slice.call(document.querySelectorAll('[data-skill]')),
+      count=document.getElementById('count'), empty=document.getElementById('empty');
   if(!cards.length) return;
-
   function apply(){
-    const term = (q?.value || '').toLowerCase().trim();
-    const st = status?.value || '';
-    const mt = maturity?.value || '';
-    let shown = 0;
-    cards.forEach(card => {
-      const hay = card.dataset.search || '';
-      const okTerm = !term || hay.includes(term);
-      const okStatus = !st || card.dataset.status === st;
-      const okMaturity = !mt || card.dataset.maturity === mt;
-      const show = okTerm && okStatus && okMaturity;
-      card.style.display = show ? '' : 'none';
+    var term=(q&&q.value||'').toLowerCase().trim(),
+        s=st&&st.value||'', m=mt&&mt.value||'', g=sg&&sg.value||'', shown=0;
+    cards.forEach(function(c){
+      var hay=c.dataset.search||'';
+      var show=(!term||hay.indexOf(term)>-1)&&(!s||c.dataset.status===s)
+        &&(!m||c.dataset.maturity===m)&&(!g||c.dataset.stage===g);
+      c.style.display=show?'':'none';
       if(show) shown++;
     });
-    if(count) count.textContent = shown + (shown === 1 ? ' skill' : ' skills');
-    const empty = document.getElementById('empty');
-    if(empty) empty.hidden = shown !== 0;
+    if(count) count.textContent=shown;
+    if(empty) empty.hidden=shown!==0;
   }
-  q?.addEventListener('input', apply);
-  status?.addEventListener('change', apply);
-  maturity?.addEventListener('change', apply);
+  [q,st,mt,sg].forEach(function(el){ if(el) el.addEventListener('input',apply); });
+  [st,mt,sg].forEach(function(el){ if(el) el.addEventListener('change',apply); });
   apply();
-
-  document.querySelectorAll('[data-copy]').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const target = document.getElementById(btn.dataset.copy);
-      if(!target) return;
-      try{
-        await navigator.clipboard.writeText(target.innerText);
-        const old = btn.textContent;
-        btn.textContent = 'Copied';
-        setTimeout(() => btn.textContent = old, 1600);
-      }catch(e){ /* clipboard blocked: the text is still selectable */ }
+  [].slice.call(document.querySelectorAll('[data-copy]')).forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var target=document.getElementById(btn.dataset.copy);
+      if(!target||!navigator.clipboard) return;
+      navigator.clipboard.writeText(target.innerText.trim()).then(function(){
+        var label=btn.dataset.label||btn.textContent;
+        btn.textContent=btn.dataset.done||'Copied';
+        setTimeout(function(){ btn.textContent=label; },1600);
+      });
     });
   });
 })();

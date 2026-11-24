@@ -325,6 +325,22 @@ Tested: `--clear` and an invalid identifier (refused with the expected message).
 
 Do not paste a token in the chat: the integration makes one unnecessary.
 
+---
+
+## Entry 015 — 2026-11-24 — Hub bilingual, colour-coded by research stage
+
+**Status:** done
+
+| Change | Detail |
+|---|---|
+| Languages | Portuguese at the site root (`/`), English under `/en/`. Two static trees, both generated from one registry; the toggle is a plain link, so it works without JavaScript and each URL is stable. |
+| Stage taxonomy | `registry.stages` maps eight methodological stages to a colour pair. Every card carries `data-stage`, a coloured top bar and the stage name in text — colour is never the only signal. |
+| Card content | `features` (only for available skills) and `integrations` rendered as chips with icons: Zotero, Hermes Agent, Python, GitHub. Planned skills show their expected stack at 62% opacity. |
+| Accessibility | Categorical palette (Okabe–Ito, colour-vision safe). Every stage ink was darkened and **measured**: all pairs are 6.19:1 or better on their soft background, above the 4.5:1 WCAG AA threshold for body text. Status "available" moved from green to blue so it no longer shares a colour with maturity "tested". |
+| Icons | `assets/img/`: Zotero "Z" (official path, #db2c3a) and the Hermes Agent mascot (48 px official favicon, the largest asset published). Attribution in the footer. |
+
+**Verification:** rendered in a real browser — 10 cards in both languages, stage colours distinct, tool chips legible, filters and language toggle working, no horizontal overflow.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.
