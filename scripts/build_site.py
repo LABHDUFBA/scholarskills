@@ -13,6 +13,7 @@ import argparse
 import hashlib
 import html
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -319,6 +320,17 @@ html[data-theme=dark] .theme-toggle .i-moon{display:none}
 .card .foot .arrow{margin-left:auto}
 .card .foot .arrow a{font-weight:650;color:var(--stage-ink)}
 .authors{font-size:0.7812rem;color:var(--muted)}
+a.orcid{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--brand-ink);
+  font-variant-numeric:tabular-nums;font-size:0.8125rem}
+a.orcid:hover span{text-decoration:underline}
+.author-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));margin:18px 0 8px}
+.author-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+  display:flex;flex-direction:column;gap:4px}
+.author-name{font-weight:600;font-size:1rem;color:var(--ink)}
+.author-role{font-size:0.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--brand-ink)}
+.author-aff{font-size:0.8125rem;color:var(--muted);margin-bottom:6px}
+.sec-h{font-size:1.375rem;margin:34px 0 6px;color:var(--ink)}
+.sec-p{color:var(--muted);font-size:0.9375rem;max-width:70ch;margin:0 0 6px}
 .badge{font-size:0.6875rem;font-weight:650;padding:3px 9px;border-radius:999px;letter-spacing:.02em;
   border:1px solid transparent;white-space:nowrap}
 .badge.ok{background:var(--ok-soft);color:var(--ok);border-color:var(--brand-line)}
@@ -886,6 +898,7 @@ def render_index(reg: dict, lang: str) -> str:
   </section>
 </main>
 """
+    out += render_authors_block(hub, lang, rel)
     out += site_footer(hub, lang)
     return out.replace("{rel}", rel)
 
@@ -934,6 +947,46 @@ def render_requirements(s: dict, lang: str) -> str:
     return "\n".join(out)
 
 
+ORCID_RE = re.compile(r"^\d{4}-\d{4}-\d{4}-[\dX]{4}$")
+
+
+def orcid_cell(a: dict, rel: str) -> str:
+    """A bare 16-digit string is not a citation: the ORCID becomes a link with its own mark."""
+    o = (a.get("orcid") or "").strip()
+    if not o:
+        return '<span class="note">—</span>'
+    if not ORCID_RE.match(o):
+        # a malformed identifier is worse than a missing one: show it as text, never as a link
+        return f'<span class="note" title="formato inválido">{esc(o)}</span>'
+    return (f'<a class="orcid" href="https://orcid.org/{esc(o)}" target="_blank" '
+            f'rel="noopener"><img src="{rel}assets/img/orcid.svg" alt="" width="14" height="14" '
+            f'aria-hidden="true"><span>{esc(o)}</span></a>')
+
+
+def render_authors_block(hub: dict, lang: str, rel: str) -> str:
+    """Authorship on the home page, with the identifier next to the name."""
+    people = hub.get("authors") or []
+    if not people:
+        return ""
+    cards = []
+    for a in people:
+        role = a.get("role_pt") if lang == "pt" else a.get("role")
+        cards.append(
+            f'<div class="author-card">'
+            f'<div class="author-name">{esc(a.get("name"))}</div>'
+            f'<div class="author-role">{esc(role or "")}</div>'
+            f'<div class="author-aff">{esc(a.get("affiliation") or "")}</div>'
+            f'{orcid_cell(a, rel)}</div>')
+    head = "Autoria" if lang == "pt" else "Authorship"
+    sub = ("Quem assina o catálogo. O ORCID liga cada pessoa à sua produção registrada; ele aparece "
+           "porque a responsabilidade pelo método é nomeada." if lang == "pt" else
+           "Who signs the catalogue. ORCID links each person to their registered output; it appears "
+           "because responsibility for a method is named.")
+    return (f'<section class="wrap" id="autores"><h2 class="sec-h">{head}</h2>'
+            f'<p class="sec-p">{sub}</p>'
+            f'<div class="author-grid">{"".join(cards)}</div></section>')
+
+
 def render_skill(s: dict, hub: dict, stages: dict, lang: str, reg_disc: dict = None) -> str:
     rel = "../" if lang == "pt" else "../../"  # pages live in <base>/skills/
     other = "../../en/" if lang == "pt" else "../../"
@@ -949,7 +1002,7 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str, reg_disc: dict = N
     authors = s.get("authors") or []
     rows = "".join(
         f"<tr><td><b>{esc(a.get('name'))}</b></td><td>{esc(a.get('affiliation') or '—')}</td>"
-        f"<td>{esc(a.get('orcid') or '—')}</td></tr>" for a in authors) or '<tr><td colspan="3">—</td></tr>'
+        f"<td>{orcid_cell(a, rel)}</td></tr>" for a in authors) or '<tr><td colspan="3">—</td></tr>'
     steps = (s.get("how_it_works_pt") if (lang == "pt" and s.get("how_it_works_pt"))
              else s.get("how_it_works")) or []
     objective = (s.get("objective_pt") if (lang == "pt" and s.get("objective_pt"))

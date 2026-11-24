@@ -144,6 +144,17 @@ html[data-theme=dark] .theme-toggle .i-moon{display:none}
 .card .foot .arrow{margin-left:auto}
 .card .foot .arrow a{font-weight:650;color:var(--stage-ink)}
 .authors{font-size:0.7812rem;color:var(--muted)}
+a.orcid{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--brand-ink);
+  font-variant-numeric:tabular-nums;font-size:0.8125rem}
+a.orcid:hover span{text-decoration:underline}
+.author-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));margin:18px 0 8px}
+.author-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+  display:flex;flex-direction:column;gap:4px}
+.author-name{font-weight:600;font-size:1rem;color:var(--ink)}
+.author-role{font-size:0.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--brand-ink)}
+.author-aff{font-size:0.8125rem;color:var(--muted);margin-bottom:6px}
+.sec-h{font-size:1.375rem;margin:34px 0 6px;color:var(--ink)}
+.sec-p{color:var(--muted);font-size:0.9375rem;max-width:70ch;margin:0 0 6px}
 .badge{font-size:0.6875rem;font-weight:650;padding:3px 9px;border-radius:999px;letter-spacing:.02em;
   border:1px solid transparent;white-space:nowrap}
 .badge.ok{background:var(--ok-soft);color:var(--ok);border-color:var(--brand-line)}

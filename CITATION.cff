@@ -11,12 +11,15 @@ authors:
   - family-names: "Nascimento"
     given-names: "Leonardo Fernandes"
     affiliation: "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+    orcid: "https://orcid.org/0000-0003-2929-1115"
   - family-names: "Brasil"
     given-names: "Eric"
     affiliation: "Institute of Humanities and Languages, University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+    orcid: "https://orcid.org/0000-0001-5067-8475"
   - family-names: "Sodré"
     given-names: "Ricardo"
     affiliation: "Federal University of Bahia"
+    orcid: "https://orcid.org/0000-0003-3107-3686"
 version: 1.1.0
 date-released: "2026-11-24"
 license: MIT

@@ -150,8 +150,10 @@ def build_collection_payload(reg: dict) -> Payload:
         "notes": "Digital Methods Skills collection. Digital Humanities Laboratory, "
                  "Federal University of Bahia.",
     }
+    ver = meta["version"]
     return Payload(slug="__collection__", title=meta["title"], metadata=meta,
-                   archive=Path(), skill_id="collection", version=meta["version"])
+                   archive=ROOT / "deposit" / f"scholarskills-{ver}.zip",
+                   skill_id="collection", version=ver)
 
 
 # --------------------------------------------------------------------------- packaging
@@ -265,6 +267,8 @@ def plan(reg: dict, only: Optional[str] = None) -> list[Payload]:
     state = load_state()
     collection_doi = (state.get("deposits", {}).get("__collection__", {}) or {}).get("concept_doi")
     out = [build_collection_payload(reg)]
+    if only == "__collection__":
+        return [build_collection_payload(reg)]
     for s in reg["skills"]:
         if s.get("status") != "available":
             continue
@@ -283,6 +287,8 @@ def main(argv=None) -> int:
     ap.add_argument("--include-collection", action="store_true",
                     help="also deposit the collection record")
     ap.add_argument("--dry-run", action="store_true", help="default: build payloads only")
+    ap.add_argument("--draft", action="store_true",
+                    help="create and upload, do not publish: the DOI is reserved but not registered")
     args = ap.parse_args(argv)
 
     reg = json.loads(REGISTRY.read_text(encoding="utf-8"))
@@ -300,14 +306,15 @@ def main(argv=None) -> int:
             continue
         package_dir(src, p.archive)
 
-    if not args.publish or not args.env:
+    if not args.env or not (args.publish or args.draft):
         print(f"dry run — {len(payloads)} record(s), nothing uploaded\n")
         for p in payloads:
             size = p.archive.stat().st_size if p.archive.exists() else 0
             print(f"  {p.skill_id:8} {p.slug:26} v{p.version:8} "
                   f"{size/1024:7.1f} KiB  {'…' + sha256(p.archive)[:12] if size else '(no archive)'}")
             print(f"           title: {p.title[:88]}")
-        print("\nre-run with --env sandbox --publish to deposit into the sandbox")
+        print("\nre-run with --env production --draft to reserve records, "
+              "or --env production --publish to register them")
         return 0
 
     token = os.environ.get("ZENODO_SANDBOX_TOKEN" if args.env == "sandbox" else "ZENODO_TOKEN", "")
@@ -318,14 +325,28 @@ def main(argv=None) -> int:
 
     client = ZenodoClient(token, API[args.env])
     state = load_state()
+    done = {k for k, v in (state.get("deposits") or {}).items()
+            if v.get("environment") == args.env}
+    drafts = set((state.get("drafts") or {}).keys())
     failures = 0
     for p in payloads:
+        if p.slug in done or (p.slug in drafts and not args.draft):
+            print(f"skip {p.skill_id} ({p.slug}): already deposited in {args.env}")
+            continue
         try:
             dep = client.create(p.metadata)
             dep_id = dep["id"]
             bucket = dep["links"]["bucket"]
             if p.archive.exists():
                 client.upload(bucket, p.archive)
+            if args.draft:
+                state.setdefault("drafts", {})[p.slug] = {
+                    "record_id": dep_id, "skill_id": p.skill_id,
+                    "title": p.metadata["title"], "version": p.version,
+                    "environment": args.env,
+                }
+                print(f"draft created {p.skill_id}: id={dep_id} (not published)")
+                continue
             published = client.publish(dep_id)
             doi = published.get("doi", "")
             concept = (published.get("conceptdoi") or doi)

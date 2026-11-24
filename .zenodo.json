@@ -8,15 +8,18 @@
   "creators": [
     {
       "name": "Nascimento, Leonardo Fernandes",
-      "affiliation": "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+      "affiliation": "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia",
+      "orcid": "0000-0003-2929-1115"
     },
     {
       "name": "Brasil, Eric",
-      "affiliation": "University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+      "affiliation": "University of International Integration of Afro-Brazilian Lusophony (UNILAB)",
+      "orcid": "0000-0001-5067-8475"
     },
     {
       "name": "Sodré, Ricardo",
-      "affiliation": "Federal University of Bahia"
+      "affiliation": "Federal University of Bahia",
+      "orcid": "0000-0003-3107-3686"
     }
   ],
   "keywords": [

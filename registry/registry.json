@@ -18,26 +18,26 @@
       "status": "available",
       "maturity": "tested",
       "repository": "https://github.com/LABHDUFBA/scholarskills",
-      "doi_version": null,
-      "doi_concept": null,
+      "doi_version": "10.5281/zenodo.24505398",
+      "doi_concept": "10.5281/zenodo.24505397",
       "license": "MIT (code) / CC-BY-4.0 (docs)",
       "authors": [
         {
           "name": "Leonardo Fernandes Nascimento",
           "affiliation": "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia",
-          "orcid": null,
+          "orcid": "0000-0003-2929-1115",
           "github": "leofn"
         },
         {
           "name": "Eric Brasil",
           "affiliation": "Institute of Humanities and Languages, University of International Integration of Afro-Brazilian Lusophony (UNILAB)",
-          "orcid": null,
+          "orcid": "0000-0001-5067-8475",
           "github": "ericbrasiln"
         },
         {
           "name": "Ricardo Sodré",
           "affiliation": "Federal University of Bahia",
-          "orcid": null,
+          "orcid": "0000-0003-3107-3686",
           "github": null
         }
       ],
@@ -65,7 +65,7 @@
         "Validate structure, then prepare — never perform — the deposit."
       ],
       "install": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/scientific-agent-skill-development\npip install pyyaml",
-      "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Scientific Agent Skill Development and Validation Protocol (ScholarSkills SS-0000, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/scholarskills.",
+      "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Scientific Agent Skill Development and Validation Protocol (ScholarSkills SS-0000, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/scholarskills. DOI: 10.5281/zenodo.24505398",
       "links": {
         "repository": "https://github.com/LABHDUFBA/scholarskills",
         "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/scientific-agent-skill-development"
@@ -149,26 +149,26 @@
       "status": "available",
       "maturity": "tested",
       "repository": "https://github.com/LABHDUFBA/scholarskills",
-      "doi_version": null,
-      "doi_concept": null,
+      "doi_version": "10.5281/zenodo.24505402",
+      "doi_concept": "10.5281/zenodo.24505400",
       "license": "MIT (code) / CC-BY-4.0 (docs)",
       "authors": [
         {
           "name": "Leonardo Fernandes Nascimento",
           "affiliation": "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia",
-          "orcid": null,
+          "orcid": "0000-0003-2929-1115",
           "github": "leofn"
         },
         {
           "name": "Eric Brasil",
           "affiliation": "Institute of Humanities and Languages, University of International Integration of Afro-Brazilian Lusophony (UNILAB)",
-          "orcid": null,
+          "orcid": "0000-0001-5067-8475",
           "github": "ericbrasiln"
         },
         {
           "name": "Ricardo Sodré",
           "affiliation": "Federal University of Bahia",
-          "orcid": null,
+          "orcid": "0000-0003-3107-3686",
           "github": null
         }
       ],
@@ -194,7 +194,7 @@
         "Refuse politely: a 403 is reported as a scope limit, never worked around."
       ],
       "install": "git clone https://github.com/LABHDUFBA/zotero-reference-management.git\ncd zotero-reference-management\npip install -r requirements.txt\nexport ZOTERO_API_KEY=\"...\"\nexport ZOTERO_LIBRARY_ID=\"123456\"",
-      "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Zotero Reference Management (ScholarSkills SS-0001, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/zotero-reference-management.",
+      "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Zotero Reference Management (ScholarSkills SS-0001, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/zotero-reference-management. DOI: 10.5281/zenodo.24505402",
       "links": {
         "repository": "https://github.com/LABHDUFBA/scholarskills",
         "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/zotero-reference-management"
@@ -626,17 +626,17 @@
         {
           "name": "Leonardo Fernandes Nascimento",
           "affiliation": "LABHDUFBA · UFBA",
-          "orcid": ""
+          "orcid": "0000-0003-2929-1115"
         },
         {
           "name": "Eric Brasil",
           "affiliation": "UNILAB",
-          "orcid": ""
+          "orcid": "0000-0001-5067-8475"
         },
         {
           "name": "Ricardo Sodré",
           "affiliation": "UFBA",
-          "orcid": ""
+          "orcid": "0000-0003-3107-3686"
         }
       ],
       "disciplines": [
@@ -689,10 +689,12 @@
         "path": "Diretório"
       },
       "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/dou-federal-gazette\npip install -r requirements.txt\nexport PORTAL_TRANSPARENCIA_KEY=\"...\"",
-      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. DOU and Federal Covenants (SS-0010), v1.0.0, 2026. LABHDUFBA/UFBA.",
+      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. DOU and Federal Covenants for Research Pipelines (SS-0010), v1.0.0, 2026. LABHDUFBA/UFBA. DOI: 10.5281/zenodo.24504882",
       "objective": "Collect DOU publications and federal covenants through official open-data routes, without circumventing access controls and without confusing silence from the source with absence of publication.",
       "paths": [],
-      "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/dou-federal-gazette"
+      "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/dou-federal-gazette",
+      "doi_version": "10.5281/zenodo.24504882",
+      "doi_concept": "10.5281/zenodo.24504881"
     },
     {
       "id": "SS-0011",
@@ -742,17 +744,17 @@
         {
           "name": "Leonardo Fernandes Nascimento",
           "affiliation": "LABHDUFBA · UFBA",
-          "orcid": ""
+          "orcid": "0000-0003-2929-1115"
         },
         {
           "name": "Eric Brasil",
           "affiliation": "UNILAB",
-          "orcid": ""
+          "orcid": "0000-0001-5067-8475"
         },
         {
           "name": "Ricardo Sodré",
           "affiliation": "UFBA",
-          "orcid": ""
+          "orcid": "0000-0003-3107-3686"
         }
       ],
       "disciplines": [
@@ -787,10 +789,12 @@
         "path": "Diretório"
       },
       "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/brazilian-fiscal-data\npip install -r requirements.txt",
-      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. Brazilian Fiscal Data (SS-0011), v1.0.0, 2026. LABHDUFBA/UFBA.",
+      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. Brazilian Fiscal Data (SS-0011), v1.0.0, 2026. LABHDUFBA/UFBA. DOI: 10.5281/zenodo.24505404",
       "objective": "Retrieve fiscal accounts declared by Brazilian states and municipalities in a form whose arithmetic can be audited by a reader.",
       "paths": [],
-      "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/brazilian-fiscal-data"
+      "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/brazilian-fiscal-data",
+      "doi_version": "10.5281/zenodo.24505404",
+      "doi_concept": "10.5281/zenodo.24505403"
     },
     {
       "id": "SS-0012",
@@ -840,17 +844,17 @@
         {
           "name": "Leonardo Fernandes Nascimento",
           "affiliation": "LABHDUFBA · UFBA",
-          "orcid": ""
+          "orcid": "0000-0003-2929-1115"
         },
         {
           "name": "Eric Brasil",
           "affiliation": "UNILAB",
-          "orcid": ""
+          "orcid": "0000-0001-5067-8475"
         },
         {
           "name": "Ricardo Sodré",
           "affiliation": "UFBA",
-          "orcid": ""
+          "orcid": "0000-0003-3107-3686"
         }
       ],
       "disciplines": [
@@ -901,11 +905,13 @@
         "path": "Diretório"
       },
       "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/hugo-site-maintenance\npython3 scripts/hugo_audit.py content --public",
-      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. Hugo Site Maintenance (SS-0012), v1.0.0, 2026. LABHDUFBA/UFBA.",
+      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. Hugo Site Maintenance (SS-0012), v1.0.0, 2026. LABHDUFBA/UFBA. DOI: 10.5281/zenodo.24505406",
       "objective": "Keep a Hugo site correct while it is being edited: inspect before creating, compare published with the clone, and read the deploy run before touching the build.",
       "paths": [
         "publicar-skill"
-      ]
+      ],
+      "doi_version": "10.5281/zenodo.24505406",
+      "doi_concept": "10.5281/zenodo.24505405"
     },
     {
       "id": "SS-0013",
@@ -954,17 +960,17 @@
         {
           "name": "Leonardo Fernandes Nascimento",
           "affiliation": "LABHDUFBA · UFBA",
-          "orcid": ""
+          "orcid": "0000-0003-2929-1115"
         },
         {
           "name": "Eric Brasil",
           "affiliation": "UNILAB",
-          "orcid": ""
+          "orcid": "0000-0001-5067-8475"
         },
         {
           "name": "Ricardo Sodré",
           "affiliation": "UFBA",
-          "orcid": ""
+          "orcid": "0000-0003-3107-3686"
         }
       ],
       "disciplines": [
@@ -1016,11 +1022,13 @@
         "path": "Diretório"
       },
       "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/lattes-cv-editing\npython3 -c \"from lattes_item import Item, validate; print(validate(Item('evento', {'titulo':'X','ano':'2026'})))\"",
-      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. Lattes CV Editing (SS-0013), v1.0.0, 2026. LABHDUFBA/UFBA.",
+      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. Lattes CV Editing (SS-0013), v1.0.0, 2026. LABHDUFBA/UFBA. DOI: 10.5281/zenodo.24505408",
       "objective": "Prepare and check items before typing them into a Lattes CV, where no validator will catch a wrong year or a duplicated record.",
       "paths": [
         "publicar-skill"
-      ]
+      ],
+      "doi_version": "10.5281/zenodo.24505408",
+      "doi_concept": "10.5281/zenodo.24505407"
     }
   ],
   "renumbering_note": "2026-11-24: SS-0001 reassigned to the first substantive skill (Zotero); previous roadmap items shifted to SS-0002..SS-0009.",
@@ -1032,9 +1040,9 @@
     "site_url": "https://labhdufba.github.io/scholarskills/",
     "repo_url": "https://github.com/LABHDUFBA/scholarskills",
     "submission_url": "https://github.com/LABHDUFBA/scholarskills/blob/main/CONTRIBUTING.md",
-    "doi_policy": "One record per repository release: the Zenodo GitHub integration mints a version DOI per release and a concept DOI for the record. Every available skill cites the concept DOI and points to its own directory; per-skill DOIs would require one repository per skill, which this project does not use.",
-    "doi_concept": null,
-    "doi_version": null,
+    "doi_policy": "Um DOI de conceito e um de versão por skill, mais um do catálogo. Cada skill evolui no próprio ciclo: nova versão de uma não altera o DOI das outras.",
+    "doi_concept": "10.5281/zenodo.24505393",
+    "doi_version": "10.5281/zenodo.24505394",
     "release": null,
     "tagline_pt": "Metodologias de pesquisa executáveis, que podem ser lidas, testadas e citadas.",
     "description_pt": "Um hub acadêmico de skills para agentes de IA, tratadas como objetos metodológicos: cada uma documentada, versionada, testada e licenciada, e — quando o depósito é autorizado — arquivada com DOI. Nada aqui carrega um identificador que não possui: uma skill sem DOI diz que não tem.",
@@ -1059,7 +1067,30 @@
     "institution_short": "LABHDUFBA · UFBA",
     "short_name": "Skills Métodos Digitais",
     "short_name_en": "Digital Methods Skills",
-    "brand_note": "Nome de exibição: 'Skills Métodos Digitais', do LABHDUFBA. O identificador técnico do repositório e o prefixo de ID (SS-NNNN) permanecem 'scholarskills'/'SS' para não quebrar URLs, DOIs e citações já emitidos."
+    "brand_note": "Nome de exibição: 'Skills Métodos Digitais', do LABHDUFBA. O identificador técnico do repositório e o prefixo de ID (SS-NNNN) permanecem 'scholarskills'/'SS' para não quebrar URLs, DOIs e citações já emitidos.",
+    "authors": [
+      {
+        "name": "Leonardo Fernandes Nascimento",
+        "role_pt": "Coordenação",
+        "role": "Lead",
+        "affiliation": "LABHDUFBA · UFBA",
+        "orcid": "0000-0003-2929-1115"
+      },
+      {
+        "name": "Eric Brasil",
+        "role_pt": "Coautoria",
+        "role": "Co-author",
+        "affiliation": "UNILAB",
+        "orcid": "0000-0001-5067-8475"
+      },
+      {
+        "name": "Ricardo Sodré",
+        "role_pt": "Coautoria",
+        "role": "Co-author",
+        "affiliation": "UFBA · Arquivo Nacional",
+        "orcid": "0000-0003-3107-3686"
+      }
+    ]
   },
   "policy_note": "One repository holds every skill; each skill keeps its own directory, version, CHANGELOG and DOI. A separate repository per skill is not used.",
   "stages": {
