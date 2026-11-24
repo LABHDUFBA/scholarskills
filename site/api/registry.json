@@ -85,7 +85,9 @@
         "Structural validation",
         "Tests that can fail",
         "Deposit prepared, not performed"
-      ]
+      ],
+      "title_pt": "Protocolo de Desenvolvimento e Validação de Skills Científicas",
+      "summary_pt": "Meta-skill que transforma um método de pesquisa em uma skill documentada, testada e citável — ou recusa, e diz por quê."
     },
     {
       "id": "SS-0001",
@@ -162,7 +164,9 @@
         "Web API v3",
         "Exports BibTeX/CSL",
         "Respects the key's scope"
-      ]
+      ],
+      "title_pt": "Gestão de referências Zotero para pipelines de pesquisa",
+      "summary_pt": "Ler, buscar, exportar e criar referências Zotero pela Web API v3, sob o princípio de que a chave de API é o limite de acesso."
     },
     {
       "id": "SS-0002",
@@ -390,7 +394,7 @@
   "hub": {
     "title": "ScholarSkills — Scientific Agent Skills",
     "tagline": "Executable research methodologies that can be read, tested and cited.",
-    "institution": "Digital Humanities Laboratory — Federal University of Bahia (LABHDUFBA)",
+    "institution": "Laboratório de Humanidades Digitais — Universidade Federal da Bahia (LABHDUFBA)",
     "description": "An academic hub of agent skills treated as methodological objects: each one documented, versioned, tested and licensed, and — once the deposit is authorised — archived with a DOI. Nothing here carries an identifier it does not have: a skill without a DOI says so.",
     "site_url": "https://labhdufba.github.io/scholarskills/",
     "repo_url": "https://github.com/LABHDUFBA/scholarskills",
@@ -401,7 +405,25 @@
     "release": null,
     "tagline_pt": "Metodologias de pesquisa executáveis, que podem ser lidas, testadas e citadas.",
     "description_pt": "Um hub acadêmico de skills para agentes de IA, tratadas como objetos metodológicos: cada uma documentada, versionada, testada e licenciada, e — quando o depósito é autorizado — arquivada com DOI. Nada aqui carrega um identificador que não possui: uma skill sem DOI diz que não tem.",
-    "title_pt": "ScholarSkills — Skills científicas para agentes de IA"
+    "title_pt": "ScholarSkills — Skills científicas para agentes de IA",
+    "institution_url": "https://labhdufba.github.io/",
+    "institution_en": "Digital Humanities Laboratory — Federal University of Bahia (LABHDUFBA)",
+    "colors": {
+      "source": "labhdufba.github.io",
+      "green_600": "#16a34a",
+      "green_400": "#4ade80",
+      "green_100": "#bbf7d0",
+      "green_50": "#f0fdf4",
+      "gray_900": "#111827",
+      "gray_500": "#6b7280",
+      "gray_200": "#e5e7eb",
+      "deep": "#0a1f0c",
+      "fonts": [
+        "Signika",
+        "Heebo"
+      ]
+    },
+    "institution_short": "LABHDUFBA · UFBA"
   },
   "policy_note": "One repository holds every skill; each skill keeps its own directory, version, CHANGELOG and DOI. A separate repository per skill is not used.",
   "stages": {
@@ -414,8 +436,8 @@
     "review": {
       "pt": "Revisão da literatura",
       "en": "Literature review",
-      "color": "#009E73",
-      "soft": "#E4F4EF"
+      "color": "#0891B2",
+      "soft": "#E3F4F8"
     },
     "collection": {
       "pt": "Coleta de dados",

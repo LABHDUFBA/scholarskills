@@ -37,7 +37,7 @@ ICON_LABEL = {"zotero": "Zotero", "hermes": "Hermes Agent", "python": "Python", 
 
 T = {
  "pt": {
-  "switch": "English", "nav_skills": "Skills", "nav_stages": "Etapas",
+  "switch": "English", "nav_home": "Início", "nav_skills": "Skills", "nav_stages": "Etapas",
   "nav_levels": "Maturidade", "nav_submit": "Submeter",
   "available": "disponíveis", "planned": "planejadas", "with_doi": "com DOI", "authors": "autores",
   "search": "Buscar skill, palavra-chave, autor…", "all_status": "Todos os status",
@@ -70,12 +70,12 @@ T = {
               "maturidade desta skill:",
   "not_recorded": "não registrada", "hub": "Hub",
   "authors_note": "ORCIDs entram apenas quando cada autor os fornece; nenhum é inventado.",
-  "planned_summary": "Planejada — ainda não disponível.",
+  "planned_summary": "Em desenvolvimento. Entra no ar com testes, licença e DOI quando aprovada.",
   "col_name": "Nome", "col_aff": "Afiliação", "copy": "Copiar citação",
   "pending_lic": "licença pendente",
  },
  "en": {
-  "switch": "Português", "nav_skills": "Skills", "nav_stages": "Stages",
+  "switch": "Português", "nav_home": "Home", "nav_skills": "Skills", "nav_stages": "Stages",
   "nav_levels": "Maturity", "nav_submit": "Submit",
   "available": "available", "planned": "planned", "with_doi": "with DOI", "authors": "authors",
   "search": "Search skills, keywords, authors…", "all_status": "All statuses",
@@ -108,7 +108,7 @@ T = {
               "for this skill's maturity level:",
   "not_recorded": "not recorded", "hub": "Hub",
   "authors_note": "ORCIDs are included only when each author supplies them; none is invented.",
-  "planned_summary": "Planned skill — not available yet.",
+  "planned_summary": "In development. It ships with tests, a licence and a DOI once approved.",
   "col_name": "Name", "col_aff": "Affiliation", "copy": "Copy citation",
   "pending_lic": "licence pending",
  },
@@ -124,7 +124,7 @@ def t(lang: str, key: str) -> str:
 
 
 INK = {"#0072B2": "#0b4a70", "#009E73": "#0d6b52", "#8C6D00": "#5d4700", "#7B52AB": "#4e3374",
-       "#CC79A7": "#8a3d68", "#D55E00": "#8c3d00", "#4E5A6B": "#333d4a", "#B03030": "#7a2020", "#8B2E4A": "#6d2138"}
+       "#CC79A7": "#8a3d68", "#D55E00": "#8c3d00", "#0891B2": "#075f75", "#4E5A6B": "#333d4a", "#B03030": "#7a2020", "#8B2E4A": "#6d2138"}
 
 
 def stage_style(stage) -> str:
@@ -146,39 +146,57 @@ def css() -> str:
    Colours: categorical palette (Okabe-Ito, colour-vision safe). Every stage ink was darkened
    until it reaches >=4.5:1 contrast on its own soft background (WCAG AA for body text). */
 :root{
-  --bg:#fbfbfd; --surface:#fff; --ink:#14181f; --muted:#59616e; --line:#e2e6ee;
-  --brand:#1f5f8b; --brand-soft:#e7f0f7;
-  --ok:#1a6b46; --ok-soft:#e6f3ec; --warn:#7a5300; --warn-soft:#fbf1dd;
+  /* LABHD design tokens — sampled from labhdufba.github.io: green-600 #16a34a, green-400 #4ade80,
+     green-100 #bbf7d0, green-50 #f0fdf4; neutrals gray-900 #111827, gray-500 #6b7280,
+     gray-200 #e5e7eb; deep badge green #0a1f0c. */
+  --bg:#ffffff; --bg-soft:#f8faf9; --surface:#fff; --ink:#111827; --muted:#6b7280;
+  --line:#e5e7eb;
+  --brand:#16a34a; --brand-ink:#15803d; --brand-soft:#f0fdf4; --brand-line:#bbf7d0;
+  --deep:#0a1f0c;
+  --ok:#15803d; --ok-soft:#f0fdf4;
+  --warn:#7a5300; --warn-soft:#fbf1dd;
   --bad:#9d2d2d; --bad-soft:#fbeaea;
-  --radius:14px; --maxw:1120px;
-  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --radius:12px; --maxw:1120px;
+  --font-head:'Signika',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-body:'Heebo',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box}
 html,body{overflow-x:hidden}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);
-  font:16px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  font:16px/1.62 var(--font-body);
   -webkit-font-smoothing:antialiased}
 a{color:var(--brand);text-decoration:none}
 a:hover{text-decoration:underline}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-header.site{position:sticky;top:0;z-index:20;background:rgba(251,251,253,.9);
+header.site{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);
   backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 header.site .wrap{display:flex;align-items:center;gap:16px;height:64px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:650;color:var(--ink);letter-spacing:-.01em}
-.brand .mark{width:28px;height:28px;border-radius:8px;background:var(--brand);color:#fff;
-  display:grid;place-items:center;font-size:14px;font-weight:700}
-.brand small{font-weight:400;color:var(--muted);font-size:13px}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--font-head);
+  font-weight:600;color:var(--ink);letter-spacing:-.01em;font-size:17px}
+.brand .mark{width:38px;height:38px;border-radius:50%;overflow:hidden;background:var(--deep);
+  display:grid;place-items:center;flex:0 0 auto}
+.brand .mark img{width:38px;height:38px;display:block;object-fit:cover}
+.brand small{font-family:var(--font-body);font-weight:400;color:var(--muted);font-size:12.5px}
 nav.site{margin-left:auto;display:flex;gap:22px;font-size:14px;align-items:center}
 nav.site a{color:var(--muted)}
 nav.site a:hover{color:var(--ink)}
-.lang{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;
+nav.site a.on{color:var(--brand-ink);font-weight:600}
+.lang{border:1px solid var(--line);border-radius:6px;padding:5px 12px;font-size:13px;
   color:var(--ink);background:var(--surface);font-weight:600}
+.cta{font-size:13px;color:#fff !important;background:var(--brand);border:1px solid var(--brand);
+  border-radius:6px;padding:6px 13px;font-weight:600}
+.cta:hover{background:var(--brand-ink);border-color:var(--brand-ink);text-decoration:none}
 .lang:hover{border-color:var(--brand);text-decoration:none}
-.hero{padding:58px 0 34px;border-bottom:1px solid var(--line)}
-.hero .eyebrow{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);
-  font-weight:650;margin-bottom:14px}
-.hero h1{margin:0 0 12px;font-size:clamp(30px,4vw,46px);line-height:1.1;letter-spacing:-.025em}
+.hero{padding:58px 0 36px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#ecfdf3 0%,#f7fdf9 55%,#fff 100%)}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--brand-ink);font-weight:700;
+  background:#fff;border:1px solid var(--brand-line);border-radius:999px;
+  padding:5px 12px;margin-bottom:16px}
+.hero h1{margin:0 0 12px;font-family:var(--font-head);font-weight:700;
+  font-size:clamp(30px,4vw,44px);line-height:1.12;letter-spacing:-.015em;color:#040404}
 .hero .lede{margin:0;max-width:60ch;color:var(--muted);font-size:18px;line-height:1.55}
 .hero .desc{margin:16px 0 0;max-width:74ch;color:var(--muted);font-size:14.5px}
 .stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
@@ -197,13 +215,15 @@ nav.site a:hover{color:var(--ink)}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
   display:flex;flex-direction:column;min-width:0;overflow:hidden;
   transition:box-shadow .16s ease,border-color .16s ease,transform .16s ease}
-.card:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(20,24,31,.09)}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(10,31,12,.07);
+  border-color:var(--brand-line)}
 .card .bar{height:4px;background:var(--stage)}
 .card .inner{padding:20px 22px 18px;display:flex;flex-direction:column;gap:11px;flex:1}
 .card .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .code{font-family:var(--mono);font-size:11.5px;color:var(--muted);background:#f3f5f9;
   border:1px solid var(--line);border-radius:6px;padding:2px 7px}
-.card h3{margin:0;font-size:17.5px;line-height:1.3;letter-spacing:-.01em}
+.card h3{margin:0;font-family:var(--font-head);font-weight:600;font-size:17.5px;
+  line-height:1.32;letter-spacing:-.005em}
 .card h3 a{color:var(--ink)}
 .card p{margin:0;color:var(--muted);font-size:14px}
 .card .feats{display:flex;flex-wrap:wrap;gap:6px}
@@ -223,9 +243,9 @@ nav.site a:hover{color:var(--ink)}
 .authors{font-size:12.5px;color:var(--muted)}
 .badge{font-size:11px;font-weight:650;padding:3px 9px;border-radius:999px;letter-spacing:.02em;
   border:1px solid transparent;white-space:nowrap}
-.badge.ok{background:var(--ok-soft);color:var(--ok)}
+.badge.ok{background:var(--ok-soft);color:var(--ok);border-color:var(--brand-line)}
 .badge.warn{background:var(--warn-soft);color:var(--warn)}
-.badge.accent{background:var(--brand-soft);color:var(--brand)}
+.badge.accent{background:var(--brand-soft);color:var(--brand-ink);border-color:var(--brand-line)}
 .badge.muted{background:#f3f5f9;color:var(--muted)}
 .badge.bad{background:var(--bad-soft);color:var(--bad)}
 .badge.stage{background:var(--stage-soft);color:var(--stage-ink)}
@@ -233,7 +253,8 @@ nav.site a:hover{color:var(--ink)}
 .skill-head::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--stage)}
 .crumbs{font-size:13px;color:var(--muted);margin-bottom:14px}
 .crumbs .current{color:var(--ink);font-weight:550}
-.skill-head h1{margin:0 0 12px;font-size:clamp(26px,3.4vw,40px);letter-spacing:-.02em;line-height:1.15}
+.skill-head h1{margin:0 0 12px;font-family:var(--font-head);font-weight:700;
+  font-size:clamp(26px,3.4vw,38px);letter-spacing:-.015em;line-height:1.18;color:#040404}
 .skill-head .sub{margin:0;max-width:70ch;color:var(--muted);font-size:16px}
 .meta-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px;font-size:13px;
   color:var(--muted)}
@@ -259,9 +280,9 @@ aside .panel h4{margin:0 0 12px;font-size:11.5px;text-transform:uppercase;letter
 dl.facts{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 14px;font-size:13.5px}
 dl.facts dt{color:var(--muted)}
 dl.facts dd{margin:0;text-align:right;overflow-wrap:anywhere}
-.btn{display:inline-block;padding:9px 14px;border-radius:10px;font-size:13.5px;font-weight:650;
+.btn{display:inline-block;padding:9px 15px;border-radius:6px;font-size:13.5px;font-weight:600;
   border:1px solid var(--line);color:var(--ink);background:var(--surface);cursor:pointer}
-.btn:hover{border-color:var(--brand);text-decoration:none}
+.btn:hover{border-color:var(--brand);color:var(--brand-ink);text-decoration:none}
 .note{font-size:12.5px;color:var(--muted);margin-top:10px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 footer.site{border-top:1px solid var(--line);padding:30px 0 44px;font-size:12.5px;color:var(--muted)}
@@ -273,12 +294,17 @@ footer.site .wrap{display:flex;flex-direction:column;gap:8px}
   border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 11px}
 .stage-legend .dot{width:9px;height:9px;border-radius:50%;background:var(--c)}
 @media(prefers-color-scheme:dark){
-  :root{--bg:#0d1014;--surface:#151a21;--ink:#e9eef5;--muted:#9aa4b2;--line:#242b35;
-        --brand:#7fb0d8;--brand-soft:#16222e;--ok:#78d3a3;--ok-soft:#12261b;
-        --warn:#e2b871;--warn-soft:#2a2113;--bad:#e89292;--bad-soft:#2a1616}
-  .code,.badge.muted,.stack .chip{background:#1b2129}
-  header.site{background:rgba(13,16,20,.88)}
-  blockquote{color:#d3dde9}
+  :root{--bg:#0b0f0c;--bg-soft:#0e1310;--surface:#141a15;--ink:#e9efe9;--muted:#9aa79c;
+        --line:#26302a;--brand:#4ade80;--brand-ink:#86efac;--brand-soft:#12261a;
+        --brand-line:#1f3b2a;--deep:#0a1f0c;--ok:#86efac;--ok-soft:#12261a;
+        --warn:#e2c07a;--warn-soft:#2a2113;--bad:#e89292;--bad-soft:#2a1616}
+  .code,.badge.muted,.stack .chip{background:#1a211c}
+  header.site{background:rgba(11,15,12,.9)}
+  .hero{background:linear-gradient(180deg,#0f1a12 0%,var(--bg) 80%)}
+  .hero .eyebrow,.hero h1{color:var(--ink)}
+  .hero .eyebrow{background:#121a14}
+  blockquote{color:#cfe0d4}
+  .stack .chip img{background:#eef4ef}
 }
 """
 
@@ -334,21 +360,26 @@ def html_head(title: str, description: str, rel: str, lang: str) -> str:
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://labhdufba.github.io/scholarskills/assets/img/hermes.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Signika:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{rel}assets/style.css">
-<link rel="icon" href="{rel}assets/img/hermes.png">
+<link rel="icon" href="{rel}assets/img/labhd.png">
 </head>
 <body>"""
 
 
 def site_header(rel: str, lang: str, hub: dict, other: str) -> str:
     return f"""<header class="site"><div class="wrap">
-  <a class="brand" href="{rel}index.html"><span class="mark">S</span>
-    ScholarSkills <small>LABHDUFBA</small></a>
+  <a class="brand" href="{hub.get('institution_url','https://labhdufba.github.io/')}">
+    <span class="mark"><img src="{rel}assets/img/labhd.webp" alt="LABHDUFBA"></span>
+    ScholarSkills <small>LABHD · UFBA</small></a>
   <nav class="site">
+    <a class="on" href="{rel}index.html">{t(lang,'nav_home')}</a>
     <a href="{rel}index.html#skills">{t(lang,'nav_skills')}</a>
     <a href="{rel}index.html#stages">{t(lang,'nav_stages')}</a>
     <a href="{rel}index.html#levels">{t(lang,'nav_levels')}</a>
-    <a href="{hub.get('submission_url') or '#'}">{t(lang,'nav_submit')}</a>
+    <a class="cta" href="{hub.get('submission_url') or '#'}">{t(lang,'nav_submit')}</a>
     <a class="lang" href="{other}index.html" hreflang="{'en' if lang == 'pt' else 'pt-BR'}">{t(lang,'switch')}</a>
   </nav>
 </div></header>"""
@@ -356,7 +387,7 @@ def site_header(rel: str, lang: str, hub: dict, other: str) -> str:
 
 def site_footer(hub: dict, lang: str) -> str:
     return f"""<footer class="site"><div class="wrap">
-  <span>{esc(hub.get('institution',''))}</span>
+  <span><img src="{{rel}}assets/img/labhd.webp" alt="" style="width:20px;height:20px;border-radius:50%;vertical-align:-5px;margin-right:7px;background:#0a1f0c">{esc(hub.get('institution',''))}</span>
   <span>{t(lang,'foot_note')}</span>
   <span>{t(lang,'attrib')}</span>
 </div></footer>
@@ -392,7 +423,8 @@ def card(s: dict, lang: str, stages: dict, rel: str) -> str:
     feats = features_of(s, lang) if s.get("status") == "available" else []
     feats_html = "".join(f'<span class="feat">{esc(f)}</span>' for f in feats[:3])
     icons = icons_of(s, rel)
-    summary = s.get("summary")
+    title = s.get("title_pt") if (lang == "pt" and s.get("title_pt")) else s.get("title")
+    summary = s.get("summary_pt") if (lang == "pt" and s.get("summary_pt")) else s.get("summary")
     if not summary or s.get("status") == "planned":
         summary = t(lang, "planned_summary") if s.get("status") == "planned" else (summary or "—")
     search = " ".join(filter(None, [s.get("id"), s.get("slug"), s.get("title"),
@@ -408,11 +440,10 @@ def card(s: dict, lang: str, stages: dict, rel: str) -> str:
       {badge(s.get('maturity'), MATURITY if lang=='pt' else MATURITY_EN) if s.get('maturity') else ''}
       {badge(s.get('status'), STATUS if lang=='pt' else STATUS_EN)}
     </div>
-    <h3><a href="{rel}skills/{esc(s.get('slug'))}.html">{esc(s.get('title'))}</a></h3>
+    <h3><a href="{rel}skills/{esc(s.get('slug'))}.html">{esc(title)}</a></h3>
     <p>{esc(summary)}</p>
     {f'<div class="feats">{feats_html}</div>' if feats_html else ''}
-    {'' if s.get("status") == "planned" else ''}
-    <div class="authors">{esc(names)}</div>
+    {f'<div class="authors">{esc(names)}</div>' if s.get("status") != "planned" else ''}
     {f'<div class="stack">{icons}</div>' if icons else ''}
     <div class="foot">
       <span>{t(lang,'stage')}: <b style="color:var(--stage-ink)">{esc(name)}</b></span>
@@ -439,7 +470,7 @@ def render_index(reg: dict, lang: str) -> str:
     out = html_head(title, hub.get("description", ""), rel, lang)
     out += site_header(rel, lang, hub, other)
     out += f"""<section class="hero"><div class="wrap">
-  <div class="eyebrow">{esc(hub.get('institution',''))}</div>
+  <div class="eyebrow">{esc(hub.get('institution_short') or hub.get('institution',''))}</div>
   <h1>{esc(hub.get('title_pt') if (lang=='pt' and hub.get('title_pt')) else hub.get('title','ScholarSkills'))}</h1>
   <p class="lede">{esc(hub.get('tagline_pt' if lang=='pt' else 'tagline',''))}</p>
   <p class="desc">{esc(hub.get('description_pt' if lang=='pt' else 'description',''))}</p>
@@ -515,7 +546,9 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str) -> str:
     other = "../../en/" if lang == "pt" else "../../"
     stage = stages.get(s.get("stage") or "")
     name = (stage or {}).get(lang) or "—"
-    out = html_head(f"{s.get('title')} — ScholarSkills", s.get("summary") or "", rel, lang)
+    title = s.get("title_pt") if (lang == "pt" and s.get("title_pt")) else s.get("title")
+    sub = s.get("summary_pt") if (lang == "pt" and s.get("summary_pt")) else s.get("summary")
+    out = html_head(f"{title} — ScholarSkills", sub or "", rel, lang)
     out += site_header(rel, lang, hub, other)
 
     authors = s.get("authors") or []
@@ -538,8 +571,8 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str) -> str:
     out += f"""<section class="skill-head" {stage_style(stage)}><div class="wrap">
   <div class="crumbs"><a href="{rel}index.html">{t(lang,'hub')}</a> /
     <span class="current">{esc(s.get('id'))}</span></div>
-  <h1>{esc(s.get('title'))}</h1>
-  <p class="sub">{esc(s.get('summary') or '')}</p>
+  <h1>{esc(title)}</h1>
+  <p class="sub">{esc(sub or '')}</p>
   <div class="meta-row">
     <span class="code">{esc(s.get('id'))}</span>
     {badge(s.get('maturity'), MATURITY if lang=='pt' else MATURITY_EN)}

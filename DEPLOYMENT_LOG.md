@@ -341,6 +341,33 @@ Do not paste a token in the chat: the integration makes one unnecessary.
 
 **Verification:** rendered in a real browser — 10 cards in both languages, stage colours distinct, tool chips legible, filters and language toggle working, no horizontal overflow.
 
+---
+
+## Entry 016 — 2026-11-24 — LABHD visual identity adopted
+
+**Status:** done
+
+| Item | Source | Value |
+|---|---|---|
+| Brand green | labhdufba.github.io CSS | `#16a34a` (green-600), hover `#15803d`, deep `#0a1f0c` |
+| Support greens | idem | `#4ade80`, `#bbf7d0`, `#f0fdf4` |
+| Neutrals | idem | `#111827` (text), `#6b7280` (muted), `#e5e7eb` (lines) |
+| Type | idem | **Signika** (headings), **Heebo** (body) — the institute's own pairing |
+| Logo | `/images/labhd_hu_f740b91ea7236ce2.webp` | official circular badge, used at 38 px in the header, 20 px in the footer, as favicon |
+
+**Colour discipline:** green is now reserved for the brand and for the "available/tested" status. The
+"literature review" stage moved from teal-green to cyan `#0891B2` so a stage colour never competes
+with the institutional green. Measured again after the change: every stage ink is 6.39:1 or better on
+its background; brand text `#15803d` on white is 5.02:1 (AA).
+
+**Prepared to become a tab of the institutional site:** all links are relative, so the hub works at
+any path (`/`, `/skills/`, a subdirectory of the Hugo site) without rebuilding. The header carries the
+LABHD badge linking to the institutional site, and the language switch is a plain link.
+
+**Note on the logo asset:** the published file is 64×64 px (the largest the site exposes). At 38 px the
+badge reads as a seal and its inner micro-text is not legible — mitigated by the "LABHD · UFBA" wordmark
+beside it. If the vector original becomes available, swapping the file is the only change needed.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.
