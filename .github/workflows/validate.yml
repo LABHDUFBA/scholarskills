@@ -73,6 +73,11 @@ jobs:
           print(f"registry ok: {len(reg['skills'])} entries")
           PY
 
+      - name: Hub site is generated from the registry and up to date
+        run: |
+          python scripts/build_site.py
+          python scripts/build_site.py --check
+
       - name: No credentials committed
         run: |
           if grep -rInE "gh[pousr]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|BEGIN [A-Z ]*PRIVATE KEY" \

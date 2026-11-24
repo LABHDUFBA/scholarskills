@@ -1,7 +1,7 @@
 # Relatório de implantação — ScholarSkills
 
 **Data:** 24/11/2026 · **Responsável técnico:** Hermes Bot (agente) · **Operador:** Leonardo Fernandes Nascimento
-**Repositório:** https://github.com/leofn/scholarskills (privado) · **Registro de ações:** `DEPLOYMENT_LOG.md`
+**Repositório:** https://github.com/LABHDUFBA/scholarskills (privado) · **Registro de ações:** `DEPLOYMENT_LOG.md`
 
 ---
 
@@ -19,8 +19,8 @@
 | 8 | Quatro scripts operacionais | ✅ | `validate_skill.py`, `build_package.py`, `generate_metadata.py`, `run_checks.py` |
 | 9 | Exemplo sintético completo (análise descritiva) | ✅ | `examples/descriptive-analysis/` |
 | 10 | Testes positivos, negativos, de borda e de falha de ferramenta | ✅ | 21 testes (protocolo) + 8 (exemplo) |
-| 11 | GitHub Actions com permissões mínimas | ✅ | run [45357118018](https://github.com/leofn/scholarskills/actions/runs/45357118018) — **success** em Python 3.10 e 3.12 |
-| 12 | Repositório criado e conteúdo publicado (privado) | ✅ | `leofn/scholarskills`, branch `main`, commit `dbd5369` |
+| 11 | GitHub Actions com permissões mínimas | ✅ | run [45357118018](https://github.com/LABHDUFBA/scholarskills/actions/runs/45357118018) — **success** em Python 3.10 e 3.12 |
+| 12 | Repositório criado e conteúdo publicado (privado) | ✅ | `LABHDUFBA/scholarskills`, branch `main`, commit `dbd5369` |
 | 13 | Compartilhamento com coautor | ✅ parcial | convite enviado a `ericbrasiln` (write), pendente de aceite |
 | 14 | Pacote de depósito preparado (ZIP + SHA-256 + metadados + checklist) | ✅ | `84957b5b…c73c8` |
 | 15 | Registro persistente de ações | ✅ | `DEPLOYMENT_LOG.md` (8 entradas) |
@@ -70,7 +70,7 @@ Detalhamento em `scientific-agent-skill-development/tests/RESULTS.md`.
 ## 6. Como reproduzir
 
 ```bash
-git clone https://github.com/leofn/scholarskills.git
+git clone https://github.com/LABHDUFBA/scholarskills.git
 cd scholarskills
 pip install pyyaml
 

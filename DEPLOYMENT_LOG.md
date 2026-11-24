@@ -133,11 +133,11 @@ leaving the field empty.
 
 | Item | Value |
 |---|---|
-| Repository | `https://github.com/leofn/scholarskills` |
+| Repository | `https://github.com/LABHDUFBA/scholarskills` |
 | Visibility | **private** — public requires operator authorisation |
 | Default branch | `main` |
 | Commit | `dbd5369` |
-| CI run | https://github.com/leofn/scholarskills/actions/runs/45357118018 — **success** |
+| CI run | https://github.com/LABHDUFBA/scholarskills/actions/runs/45357118018 — **success** |
 | Jobs | `validate (3.10)` ✓ 16 s · `validate (3.12)` ✓ 10 s |
 
 **Collaborators**
@@ -177,13 +177,98 @@ created, reserved or published on Zenodo. The ZIP is deliberately excluded from 
 **Blocked:** the sandbox deposit requires `ZENODO_SANDBOX_TOKEN`, which is absent from this
 environment. The production deposit additionally requires authorship and rights clearance.
 
+---
+
+## Entry 009 — 2026-11-24 — Repository moved to the LABHDUFBA organisation
+
+**Status:** done
+
+| Item | Before | After |
+|---|---|---|
+| Owner | `leofn` | **`LABHDUFBA`** |
+| URL | https://github.com/leofn/scholarskills | **https://github.com/LABHDUFBA/scholarskills** |
+| Visibility | private | private (unchanged) |
+
+All URLs inside the repository (`CITATION.cff`, `registry.json`, README, this log) were rewritten and
+the local remote updated. The old URL redirects, so no external reference breaks.
+
+**Collaborators:** `leofn` (admin), `rsandrade` (admin), `ericbrasiln` (admin).
+
+**Identification of the coauthor:** the operator indicated that the third author is already an
+administrator of the organisation. Listing `orgs/LABHDUFBA/members?role=admin` returns three
+accounts — `ericbrasiln`, `leofn`, `rsandrade` — and `rsandrade` is the only remaining candidate. It
+was granted admin on the repository. **Caveat recorded:** the public profile of `rsandrade` reads
+"Ricardo Andrade", not "Sodré"; the operator asserted the identity, and the profile is not treated as
+evidence either way. If the account is wrong, the invitation can be revoked without data loss.
+
+---
+
+## Entry 010 — 2026-11-24 — SS-0001 implemented: Zotero Reference Management
+
+**Status:** done
+
+| Item | Value |
+|---|---|
+| Repository | https://github.com/LABHDUFBA/zotero-reference-management (private) |
+| Identifier | SS-0001, reassigned from the roadmap; previous items shifted to SS-0002…SS-0009 |
+| Tests | 20 unittest cases, offline (mock HTTP layer) — OK |
+| Structural validation | PASS, 0 warnings |
+| CI | `.github/workflows/validate.yml`, Python 3.10 and 3.12 |
+
+**Design decision recorded:** the API key is treated as the boundary of access. A 403 is reported as
+a scope limit, never worked around. This is a normative choice and it is stated in
+`references/methodology.md`, not hidden in code.
+
+**Numbering change:** SS-0001 was `systematic-literature-review` in the first roadmap. It is now the
+Zotero skill, because a skill already implemented, tested and in daily use is a better first deposit
+than a planned one. The roadmap was renumbered (SS-0002…SS-0009) and `registry.json` carries a
+`renumbering_note`.
+
+---
+
+## Entry 011 — 2026-11-24 — Hub site generated from the registry
+
+**Status:** done locally; hosting blocked
+
+`scripts/build_site.py` generates a static hub into `site/`:
+
+```
+site/index.html                 hero, live stats, search + filters, skill grid, maturity table
+site/skills/<slug>.html         objective / how it works / authors / how to cite / install / validation
+site/api/registry.json          the catalogue as JSON, for other hubs and integrations
+site/assets/style.css|app.js    no framework, no tracking, no cookies
+```
+
+Verified in a real browser: 10 cards, filters working, no horizontal overflow, two-column detail page
+with factsheet at 1425 px and single column below 880 px. `python3 scripts/build_site.py --check`
+guards against a stale site in CI.
+
+**Blocked:** GitHub Pages is not available for a **private** repository on the free plan. Publishing
+the hub therefore requires one of: (a) making `LABHDUFBA/scholarskills` public, (b) creating a public
+repository that hosts only `site/`, or (c) serving the generated static files from another host. All
+three are operator decisions, since all three make the content public.
+
+---
+
+## Entry 012 — 2026-11-24 — Zenodo: what exists and what does not
+
+**Status:** investigated
+
+| Question | Finding |
+|---|---|
+| Is there a Zenodo MCP server or connector available here? | **No.** The connector catalogue has no Zenodo entry, and no Zenodo MCP server is configured. `tool_search` for zenodo returns no matches. |
+| Can we still deposit programmatically? | **Yes** — Zenodo's REST API is reachable and documented; a token in an environment variable is the only requirement. |
+| Is there an MCP alternative worth building? | A small local MCP wrapping `depositions` (create, upload, metadata, publish) is feasible with the `fastmcp` skill. It would add convenience, not capability: the API already does the work. |
+| GitHub–Zenodo integration | The recommended route for this project: it mints a version DOI per release and a concept DOI for the record, with no file juggling. Requires the repository to be **public** and the integration enabled in Zenodo settings (UI action). |
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.
 2. Operator confirms Ricardo Sodré's GitHub account, then invitation is sent.
 3. Operator authorises making the repository public, and decides the long-term home
-   (`leofn/scholarskills` vs. a `ScholarSkills` organisation vs. `LABHDUFBA`).
-4. Deposit route chosen: GitHub–Zenodo integration **or** manual/API (not both).
+   (`LABHDUFBA/scholarskills` vs. a `ScholarSkills` organisation vs. `LABHDUFBA`).
+4. Operator decides the hub hosting route (public repo + Pages, public site-only repo, or external host).
+5. Deposit route chosen: GitHub–Zenodo integration **or** manual/API (not both).
 5. Sandbox deposit executed with a sandbox token; DOI never presented as scientific.
 6. Production release authorised; version DOI and concept DOI recorded separately in
    `registry/registry.json`.

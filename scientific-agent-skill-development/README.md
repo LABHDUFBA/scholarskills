@@ -19,7 +19,7 @@ and never confers their status.
 ## Installation
 
 ```bash
-git clone https://github.com/leofn/scholarskills.git
+git clone https://github.com/LABHDUFBA/scholarskills.git
 cd scholarskills/scientific-agent-skill-development
 python3 -m venv .venv && . .venv/bin/activate
 pip install pyyaml

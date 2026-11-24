@@ -17,7 +17,7 @@
       "version": "1.0.0",
       "status": "available",
       "maturity": "tested",
-      "repository": "https://github.com/leofn/scholarskills",
+      "repository": "https://github.com/LABHDUFBA/scholarskills",
       "doi_version": null,
       "doi_concept": null,
       "license": "MIT (code) / CC-BY-4.0 (docs)",
@@ -53,10 +53,87 @@
       "evidence": "scientific-agent-skill-development/tests/RESULTS.md",
       "deprecated_reason": null,
       "superseded_by": null,
-      "added": "2026-11-24"
+      "added": "2026-11-24",
+      "objective": "A meta-skill: it turns a research method into a documented, tested, citable agent skill — or refuses, and says why.",
+      "how_it_works": [
+        "Scope the claim in one falsifiable sentence; an unfillable slot is the finding, not an obstacle.",
+        "Ground the method in verifiable literature, separating established fact, interpretation, hypothesis and normative position.",
+        "Generate the canonical package (SKILL.md, README, CITATION.cff, LICENSE, .zenodo.json, references, tests).",
+        "Write tests that can fail: positive, negative, edge, tool failure, absent reference.",
+        "Record the real environment and the real output; a result without its environment is a report, not a reproduction.",
+        "Audit ethics and rights: personal data, consent, copyright, dual use, attribution.",
+        "Validate structure, then prepare — never perform — the deposit."
+      ],
+      "install": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/scientific-agent-skill-development\npip install pyyaml",
+      "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Scientific Agent Skill Development and Validation Protocol (ScholarSkills SS-0000, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/scholarskills",
+      "links": {
+        "repository": "https://github.com/LABHDUFBA/scholarskills",
+        "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/scientific-agent-skill-development"
+      },
+      "highlight": true
     },
     {
       "id": "SS-0001",
+      "slug": "zotero-reference-management",
+      "title": "Zotero Reference Management for Research Pipelines",
+      "summary": "Read, search, export and create Zotero references through the Web API v3, under the principle that the API key defines the boundary of access.",
+      "version": "1.0.0",
+      "status": "available",
+      "maturity": "tested",
+      "repository": "https://github.com/LABHDUFBA/zotero-reference-management",
+      "doi_version": null,
+      "doi_concept": null,
+      "license": "MIT (code) / CC-BY-4.0 (docs)",
+      "authors": [
+        {
+          "name": "Leonardo Fernandes Nascimento",
+          "affiliation": "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia",
+          "orcid": null,
+          "github": "leofn"
+        },
+        {
+          "name": "Eric Brasil",
+          "affiliation": "Institute of Humanities and Languages, University of International Integration of Afro-Brazilian Lusophony (UNILAB)",
+          "orcid": null,
+          "github": "ericbrasiln"
+        },
+        {
+          "name": "Ricardo Sodré",
+          "affiliation": "Federal University of Bahia",
+          "orcid": null,
+          "github": null
+        }
+      ],
+      "keywords": [
+        "zotero",
+        "bibliographic data",
+        "research pipelines",
+        "api v3"
+      ],
+      "skill_spec_version": "agentskills.io specification (accessed 2026-11-24)",
+      "compatibility": "Requires Python 3.10+ and network access to api.zotero.org",
+      "evidence": "https://github.com/LABHDUFBA/zotero-reference-management/blob/main/tests/RESULTS.md",
+      "deprecated_reason": null,
+      "superseded_by": null,
+      "added": "2026-11-24",
+      "objective": "Turn a Zotero library into a reliable, citable data source for research pipelines: enumerate, filter, export and write references through the Web API v3 — no browser, no scraping, no personal identifiers in the package.",
+      "how_it_works": [
+        "Resolve the library with GET /keys/{key}: the numeric userID and the permission scope.",
+        "Count with the Total-Results header and itemType=-attachment, never with the length of a page.",
+        "Paginate with start until an empty page — not for a fixed number of iterations.",
+        "Export to BibTeX, RIS or CSL JSON; per collection for large libraries, because BibTeX export ignores limit.",
+        "Write with POST of a JSON array, and only when the key's scope allows it.",
+        "Refuse politely: a 403 is reported as a scope limit, never worked around."
+      ],
+      "install": "git clone https://github.com/LABHDUFBA/zotero-reference-management.git\ncd zotero-reference-management\npip install -r requirements.txt\nexport ZOTERO_API_KEY=\"...\"\nexport ZOTERO_LIBRARY_ID=\"123456\"",
+      "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Zotero Reference Management (ScholarSkills SS-0001, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/zotero-reference-management",
+      "links": {
+        "repository": "https://github.com/LABHDUFBA/zotero-reference-management"
+      },
+      "highlight": true
+    },
+    {
+      "id": "SS-0002",
       "slug": "systematic-literature-review",
       "title": "Systematic Literature Review",
       "summary": "Planned.",
@@ -77,7 +154,7 @@
       "added": null
     },
     {
-      "id": "SS-0002",
+      "id": "SS-0003",
       "slug": "scientific-corpus-exploration",
       "title": "Scientific Corpus Exploration",
       "summary": "Planned.",
@@ -98,7 +175,7 @@
       "added": null
     },
     {
-      "id": "SS-0003",
+      "id": "SS-0004",
       "slug": "synthetic-focus-groups",
       "title": "Synthetic Focus Groups",
       "summary": "Planned.",
@@ -119,7 +196,7 @@
       "added": null
     },
     {
-      "id": "SS-0004",
+      "id": "SS-0005",
       "slug": "multimodal-content-analysis",
       "title": "Multimodal Content Analysis",
       "summary": "Planned.",
@@ -140,7 +217,7 @@
       "added": null
     },
     {
-      "id": "SS-0005",
+      "id": "SS-0006",
       "slug": "qualitative-content-coding",
       "title": "Qualitative Content Coding",
       "summary": "Planned.",
@@ -161,7 +238,7 @@
       "added": null
     },
     {
-      "id": "SS-0006",
+      "id": "SS-0007",
       "slug": "social-network-analysis",
       "title": "Social Network Analysis",
       "summary": "Planned.",
@@ -182,7 +259,7 @@
       "added": null
     },
     {
-      "id": "SS-0007",
+      "id": "SS-0008",
       "slug": "digital-ethnography",
       "title": "Digital Ethnography",
       "summary": "Planned.",
@@ -203,7 +280,7 @@
       "added": null
     },
     {
-      "id": "SS-0008",
+      "id": "SS-0009",
       "slug": "misinformation-analysis",
       "title": "Misinformation Analysis",
       "summary": "Planned.",
@@ -223,5 +300,15 @@
       "superseded_by": null,
       "added": null
     }
-  ]
+  ],
+  "renumbering_note": "2026-11-24: SS-0001 reassigned to the first substantive skill (Zotero); previous roadmap items shifted to SS-0002..SS-0009.",
+  "hub": {
+    "title": "ScholarSkills — Scientific Agent Skills",
+    "tagline": "Executable research methodologies that can be read, tested and cited.",
+    "institution": "Digital Humanities Laboratory — Federal University of Bahia (LABHDUFBA)",
+    "description": "An academic hub of agent skills treated as methodological objects: each one documented, versioned, tested and licensed, and — once the deposit is authorised — archived with a DOI. Nothing here carries an identifier it does not have: a skill without a DOI says so.",
+    "site_url": null,
+    "repo_url": "https://github.com/LABHDUFBA/scholarskills",
+    "submission_url": "https://github.com/LABHDUFBA/scholarskills/blob/main/CONTRIBUTING.md"
+  }
 }

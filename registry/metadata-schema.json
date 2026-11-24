@@ -163,6 +163,54 @@
         "null"
       ],
       "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "objective": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "What the skill is for, in one paragraph (hub display)."
+    },
+    "how_it_works": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "description": "Ordered steps shown on the hub page."
+    },
+    "install": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Installation commands, verbatim."
+    },
+    "cite": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Human-readable citation text until a DOI exists."
+    },
+    "links": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Named links: repository, zenodo, doi, docs."
+    },
+    "highlight": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Show first in the hub grid."
     }
   }
 }
