@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this skill, please cite it as below."
+title: "Hugo Site Maintenance for Research Websites"
+abstract: >-
+  Maintain a Hugo site on GitHub Pages: verify the published state against the clone, audit front
+  matter, alt text and internal links before publishing, and diagnose deploy runs by reading the
+  annotation instead of rewriting the build.
+type: software
+authors:
+  - family-names: "Nascimento"
+    given-names: "Leonardo Fernandes"
+    affiliation: "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+    website: "https://github.com/leofn"
+  - family-names: "Brasil"
+    given-names: "Eric"
+    affiliation: "Institute of Humanities and Languages, University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+  - family-names: "Sodré"
+    given-names: "Ricardo"
+    affiliation: "Federal University of Bahia"
+version: 1.0.0
+date-released: "2026-11-24"
+license: MIT
+repository-code: "https://github.com/LABHDUFBA/scholarskills/tree/main/hugo-site-maintenance"
+keywords: [hugo, static site, github pages, web publishing, agent skills]

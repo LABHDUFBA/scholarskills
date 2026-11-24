@@ -296,8 +296,7 @@
         "sociology"
       ],
       "paths": [
-        "revisao-sistematica",
-        "publicar-skill"
+        "revisao-sistematica"
       ]
     },
     {
@@ -792,6 +791,236 @@
       "objective": "Retrieve fiscal accounts declared by Brazilian states and municipalities in a form whose arithmetic can be audited by a reader.",
       "paths": [],
       "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/brazilian-fiscal-data"
+    },
+    {
+      "id": "SS-0012",
+      "slug": "hugo-site-maintenance",
+      "stage": "writing",
+      "status": "available",
+      "title": "Hugo Site Maintenance for Research Websites",
+      "title_pt": "Manutenção de sites Hugo para pesquisa",
+      "summary": "Keep a Hugo site correct while it is edited: inspect before creating, compare the published site with the clone, audit front matter and broken links, and read the deploy run instead of rewriting the build.",
+      "summary_pt": "Manter um site Hugo correto durante a edição: inspecionar antes de criar, comparar o publicado com o clone, auditar front matter e links quebrados, e ler o run do deploy em vez de reescrever o build.",
+      "objective_pt": "Manter um site Hugo correto enquanto é editado: conferir o que existe antes de criar, conferir o que está publicado antes de acreditar no clone, e ler o log do deploy antes de mexer no build.",
+      "how_it_works_pt": [
+        "Inspecionar antes de criar: procurar no content/, listar layouts/ e data/, abrir a página que já tem o recurso.",
+        "O clone não é o site: comparar last-modified, md5sum, origin/main e o estado do Pages.",
+        "Ler o run, não o código: a anotação do deploy costuma apontar conta bloqueada ou cota, não erro de build.",
+        "Auditar: front matter, alt text, títulos duplicados e links internos quebrados.",
+        "Validar o build com hugo --gc --minify e o baseURL de produção.",
+        "Conferir a URL publicada depois do run, com last-modified novo."
+      ],
+      "evidence": "hugo-site-maintenance/tests/RESULTS.md",
+      "evidence_pt": "hugo-site-maintenance/tests/RESULTS.md — 19 testes automatizados, todos verdes, sem rede.",
+      "features": [
+        "Verifica publicado × clone",
+        "Auditoria de front matter",
+        "Diagnóstico de deploy"
+      ],
+      "features_en": [
+        "Live vs clone check",
+        "Front matter audit",
+        "Deploy diagnosis"
+      ],
+      "keywords": [
+        "Hugo",
+        "site estático",
+        "GitHub Pages",
+        "publicação"
+      ],
+      "integrations": [
+        "python",
+        "github",
+        "hermes"
+      ],
+      "maturity": "tested",
+      "version": "1.0.0",
+      "license": "MIT (code) / CC-BY-4.0 (docs)",
+      "authors": [
+        {
+          "name": "Leonardo Fernandes Nascimento",
+          "affiliation": "LABHDUFBA · UFBA",
+          "orcid": ""
+        },
+        {
+          "name": "Eric Brasil",
+          "affiliation": "UNILAB",
+          "orcid": ""
+        },
+        {
+          "name": "Ricardo Sodré",
+          "affiliation": "UFBA",
+          "orcid": ""
+        }
+      ],
+      "disciplines": [
+        "digital-humanities",
+        "methodology"
+      ],
+      "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/hugo-site-maintenance",
+      "highlight": true,
+      "added": "2026-11-24",
+      "requirements": [
+        {
+          "name": "Hugo extended 0.110+",
+          "name_en": "Hugo extended 0.110+",
+          "required": true,
+          "type": "software",
+          "what_pt": "Binário do Hugo na versão extended, que suporta SCSS e Hugo Pipes.",
+          "what_en": "The extended Hugo binary, which supports SCSS and Hugo Pipes.",
+          "how_pt": "Baixe o tarball hugo_extended da release e coloque em ~/.local/bin. Confira com hugo version.",
+          "how_en": "Download the hugo_extended tarball from the release and put it in ~/.local/bin. Check with hugo version.",
+          "url": "https://gohugo.io/installation/",
+          "url_label": "Instalar Hugo",
+          "url_label_en": "Install Hugo",
+          "note_pt": "Combine a versão com a do workflow de CI; versões divergentes geram build diferente do publicado.",
+          "note_en": "Match the version used by the CI workflow; divergent versions build differently from what is published."
+        },
+        {
+          "name": "Python 3.10 ou superior",
+          "name_en": "Python 3.10 or newer",
+          "required": true,
+          "type": "software",
+          "what_pt": "Para rodar a auditoria de front matter e links.",
+          "what_en": "To run the front matter and link audit.",
+          "how_pt": "Verifique com python3 --version.",
+          "how_en": "Check with python3 --version.",
+          "url": "https://www.python.org/downloads/",
+          "url_label": "Baixar Python",
+          "url_label_en": "Download Python",
+          "note_pt": "Nenhuma credencial: o deploy usa o token do próprio repositório nas Actions.",
+          "note_en": "No credential: the deploy uses the repository's own token in Actions."
+        }
+      ],
+      "links": {
+        "repository": "Repositório",
+        "path": "Diretório"
+      },
+      "links_pt": {
+        "repository": "Repositório",
+        "path": "Diretório"
+      },
+      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/hugo-site-maintenance\npython3 scripts/hugo_audit.py content --public",
+      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. Hugo Site Maintenance (SS-0012), v1.0.0, 2026. LABHDUFBA/UFBA.",
+      "objective": "Keep a Hugo site correct while it is being edited: inspect before creating, compare published with the clone, and read the deploy run before touching the build.",
+      "paths": [
+        "publicar-skill"
+      ]
+    },
+    {
+      "id": "SS-0013",
+      "slug": "lattes-cv-editing",
+      "stage": "writing",
+      "status": "available",
+      "title": "Lattes CV Editing for Academic Records",
+      "title_pt": "Edição de currículo Lattes",
+      "summary": "Prepare and check items before typing them into a Lattes CV: required fields per type, duplicate detection by normalised title and year, and the rule that a preprint is not a published article.",
+      "summary_pt": "Preparar e conferir itens antes de digitá-los no Lattes: campos obrigatórios por tipo, detecção de duplicata por título normalizado e ano, e a regra de que preprint não é artigo publicado.",
+      "objective_pt": "Preparar o item corretamente antes de abrir o formulário. O editor não tem API nem registro de transação: ano errado ou entrada duplicada não é pego por nada e passa a integrar um registro público que outras pessoas citam.",
+      "how_it_works_pt": [
+        "Autorização e escopo: autorizar a edição não autoriza o envio ao CNPq.",
+        "Metadados em fonte primária: DOI/Crossref, página da revista, ficha catalográfica ou PDF oficial.",
+        "Conferir o item antes de abrir o formulário: validação, duplicata e palavras-chave.",
+        "Preencher um item por chamada, com leitura de volta no mesmo movimento.",
+        "Portão de confirmação explícita com fonte e screenshot antes de qualquer gravação.",
+        "Envio é autorização separada: publica versão nova e exige aceite de declaração legal."
+      ],
+      "evidence": "lattes-cv-editing/tests/RESULTS.md",
+      "evidence_pt": "lattes-cv-editing/tests/RESULTS.md — 33 testes automatizados, todos verdes, sem rede.",
+      "features": [
+        "Duplicata por título e ano",
+        "Preprint ≠ artigo",
+        "Portão de confirmação"
+      ],
+      "features_en": [
+        "Duplicate by title and year",
+        "Preprint ≠ article",
+        "Approval gate"
+      ],
+      "keywords": [
+        "Lattes",
+        "currículo",
+        "registro acadêmico",
+        "metadados"
+      ],
+      "integrations": [
+        "python",
+        "hermes"
+      ],
+      "maturity": "tested",
+      "version": "1.0.0",
+      "license": "MIT (code) / CC-BY-4.0 (docs)",
+      "authors": [
+        {
+          "name": "Leonardo Fernandes Nascimento",
+          "affiliation": "LABHDUFBA · UFBA",
+          "orcid": ""
+        },
+        {
+          "name": "Eric Brasil",
+          "affiliation": "UNILAB",
+          "orcid": ""
+        },
+        {
+          "name": "Ricardo Sodré",
+          "affiliation": "UFBA",
+          "orcid": ""
+        }
+      ],
+      "disciplines": [
+        "methodology",
+        "education",
+        "digital-humanities"
+      ],
+      "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/lattes-cv-editing",
+      "highlight": true,
+      "added": "2026-11-24",
+      "requirements": [
+        {
+          "name": "Python 3.10 ou superior",
+          "name_en": "Python 3.10 or newer",
+          "required": true,
+          "type": "software",
+          "what_pt": "Para rodar o conferidor de itens.",
+          "what_en": "To run the item checker.",
+          "how_pt": "Verifique com python3 --version.",
+          "how_en": "Check with python3 --version.",
+          "url": "https://www.python.org/downloads/",
+          "url_label": "Baixar Python",
+          "url_label_en": "Download Python",
+          "note_pt": null,
+          "note_en": null
+        },
+        {
+          "name": "Acesso ao próprio perfil Lattes",
+          "name_en": "Access to your own Lattes profile",
+          "required": true,
+          "type": "choice",
+          "what_pt": "O editor exige o login do titular do currículo. A skill não guarda senha e nunca a recebe.",
+          "what_en": "The editor requires the CV holder's own login. The skill stores no password and never receives one.",
+          "how_pt": "Autentique-se no editor do CNPq com sua conta gov.br. Edição e envio ficam sob sua decisão.",
+          "how_en": "Sign in to the CNPq editor with your gov.br account. Editing and submission remain your decision.",
+          "url": "https://wwws.cnpq.br/cvlattesweb/",
+          "url_label": "Abrir o editor Lattes",
+          "url_label_en": "Open the Lattes editor",
+          "note_pt": "Autorizar a edição não autoriza o envio ao CNPq: são autorizações diferentes.",
+          "note_en": "Permission to edit is not permission to submit to CNPq: they are different authorisations."
+        }
+      ],
+      "links": {
+        "repository": "Repositório",
+        "path": "Diretório"
+      },
+      "links_pt": {
+        "repository": "Repositório",
+        "path": "Diretório"
+      },
+      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/lattes-cv-editing\npython3 -c \"from lattes_item import Item, validate; print(validate(Item('evento', {'titulo':'X','ano':'2026'})))\"",
+      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. Lattes CV Editing (SS-0013), v1.0.0, 2026. LABHDUFBA/UFBA.",
+      "objective": "Prepare and check items before typing them into a Lattes CV, where no validator will catch a wrong year or a duplicated record.",
+      "paths": [
+        "publicar-skill"
+      ]
     }
   ],
   "renumbering_note": "2026-11-24: SS-0001 reassigned to the first substantive skill (Zotero); previous roadmap items shifted to SS-0002..SS-0009.",
@@ -965,11 +1194,12 @@
       "slug": "publicar-skill",
       "pt": "Publicar e sustentar uma skill",
       "en": "Publish and sustain a skill",
-      "desc_pt": "Transformar um método próprio em artefato documentado, testado, licenciado e citável com DOI.",
-      "desc_en": "Turn your own method into a documented, tested, licensed artefact that can be cited with a DOI.",
+      "desc_pt": "Do protocolo ao registro publicado: documentar a skill, manter o currículo que a sustenta e o site que a divulga.",
+      "desc_en": "From protocol to published record: document the skill, maintain the CV behind it and the site that publishes it.",
       "skills": [
         "SS-0000",
-        "SS-0001"
+        "SS-0013",
+        "SS-0012"
       ],
       "stage": "writing"
     }

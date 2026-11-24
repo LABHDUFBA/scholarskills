@@ -65,6 +65,20 @@ jobs:
         working-directory: brazilian-fiscal-data
         run: python -m unittest discover -s tests -v
 
+      - name: Validate SS-0012 (Hugo site maintenance)
+        run: python scientific-agent-skill-development/scripts/validate_skill.py hugo-site-maintenance
+
+      - name: SS-0012 test suite (offline, temporary site)
+        working-directory: hugo-site-maintenance
+        run: python -m unittest discover -s tests -v
+
+      - name: Validate SS-0013 (Lattes CV editing)
+        run: python scientific-agent-skill-development/scripts/validate_skill.py lattes-cv-editing
+
+      - name: SS-0013 test suite (offline)
+        working-directory: lattes-cv-editing
+        run: python -m unittest discover -s tests -v
+
       - name: Registry entries validate against the schema
         run: |
           python - <<'PY'

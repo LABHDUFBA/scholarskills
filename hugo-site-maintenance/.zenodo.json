@@ -1,0 +1,31 @@
+{
+  "title": "Hugo Site Maintenance for Research Websites",
+  "description": "<p>A ScholarSkills package (SS-0012) for maintaining a Hugo site on GitHub Pages: inspect before creating, compare the published site with the clone, audit front matter, alt text and broken internal links, and read the deploy run instead of rewriting the build.</p>",
+  "upload_type": "software",
+  "license": "mit",
+  "access_right": "open",
+  "version": "1.0.0",
+  "creators": [
+    {
+      "name": "Nascimento, Leonardo Fernandes",
+      "affiliation": "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+    },
+    {
+      "name": "Brasil, Eric",
+      "affiliation": "University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+    },
+    {
+      "name": "Sodré, Ricardo",
+      "affiliation": "Federal University of Bahia"
+    }
+  ],
+  "keywords": [
+    "hugo",
+    "static site",
+    "github pages",
+    "web publishing",
+    "agent skills"
+  ],
+  "language": "eng",
+  "notes": "Digital Methods Skills SS-0012. Digital Humanities Laboratory, Federal University of Bahia."
+}

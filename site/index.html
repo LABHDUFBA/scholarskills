@@ -40,7 +40,7 @@
   <p class="lede">Metodologias de pesquisa executáveis, que podem ser lidas, testadas e citadas.</p>
   <p class="desc">Um hub acadêmico de skills para agentes de IA, tratadas como objetos metodológicos: cada uma documentada, versionada, testada e licenciada, e — quando o depósito é autorizado — arquivada com DOI. Nada aqui carrega um identificador que não possui: uma skill sem DOI diz que não tem.</p>
   <div class="stats">
-    <div class="stat"><b>4</b><span>disponíveis</span></div>
+    <div class="stat"><b>6</b><span>disponíveis</span></div>
     <div class="stat"><b>8</b><span>planejadas</span></div>
     <div class="stat"><b>0</b><span>com DOI</span></div>
     <div class="stat"><b>3</b><span>autores</span></div>
@@ -54,7 +54,7 @@
 <button type="button" class="pill pathpill" data-path-jump="revisao-sistematica" title="SS-0001 → SS-0002 → SS-0003">Revisão sistemática de ponta a ponta<span class="pathpill-chain">SS-0001 → SS-0002 → SS-0003</span></button>
 <button type="button" class="pill pathpill" data-path-jump="corpus-ao-argumento" title="SS-0003 → SS-0006 → SS-0005">Do corpus ao argumento<span class="pathpill-chain">SS-0003 → SS-0006 → SS-0005</span></button>
 <button type="button" class="pill pathpill" data-path-jump="dados-digitais" title="SS-0008 → SS-0007 → SS-0009">Pesquisa com dados digitais<span class="pathpill-chain">SS-0008 → SS-0007 → SS-0009</span></button>
-<button type="button" class="pill pathpill" data-path-jump="publicar-skill" title="SS-0000 → SS-0001">Publicar e sustentar uma skill<span class="pathpill-chain">SS-0000 → SS-0001</span></button>
+<button type="button" class="pill pathpill" data-path-jump="publicar-skill" title="SS-0000 → SS-0013 → SS-0012">Publicar e sustentar uma skill<span class="pathpill-chain">SS-0000 → SS-0013 → SS-0012</span></button>
 </div>
   <div class="toolbar">
     <input id="q" type="search" placeholder="Buscar skill, palavra-chave, autor…" aria-label="Buscar skill, palavra-chave, autor…">
@@ -75,7 +75,7 @@
       <option value="">Toda maturidade</option>
       <option value="experimental">Experimental</option><option value="tested">Testado</option><option value="peer-reviewed">Revisado por pares</option><option value="replicated">Replicado</option>
     </select>
-    <span class="count"><span id="count">12</span> skills</span>
+    <span class="count"><span id="count">14</span> skills</span>
   </div>
   <div class="grid">
 <article class="card" data-skill data-status="available"
@@ -104,7 +104,7 @@
 <article class="card" data-skill data-status="available"
   data-maturity="tested" data-stage="foundation"
   data-disc="methodology digital-humanities sociology"
-  data-paths="revisao-sistematica publicar-skill"
+  data-paths="revisao-sistematica"
   data-search="ss-0001 zotero-reference-management zotero reference management for research pipelines read, search, export and create zotero references through the web api v3, under the principle that the api key defines the boundary of access. fundamentação zotero bibliographic data research pipelines api v3 leonardo fernandes nascimento, eric brasil, ricardo sodré web api v3 exporta bibtex/csl escopo da chave respeitado" style="--stage:#0072B2;--stage-soft:#E6F1F8;--stage-ink:#0b4a70">
   <div class="bar"></div>
   <div class="inner">
@@ -167,6 +167,52 @@
     <div class="foot">
       <span>Etapa: <b style="color:var(--stage-ink)">Análise</b></span>
       <span class="arrow"><a href="skills/brazilian-fiscal-data.html">Ver detalhes &rarr;</a></span>
+    </div>
+  </div>
+</article>
+<article class="card" data-skill data-status="available"
+  data-maturity="tested" data-stage="writing"
+  data-disc="digital-humanities methodology"
+  data-paths="publicar-skill"
+  data-search="ss-0012 hugo-site-maintenance hugo site maintenance for research websites keep a hugo site correct while it is edited: inspect before creating, compare the published site with the clone, audit front matter and broken links, and read the deploy run instead of rewriting the build. escrita e publicação hugo site estático github pages publicação leonardo fernandes nascimento, eric brasil, ricardo sodré verifica publicado × clone auditoria de front matter diagnóstico de deploy" style="--stage:#8B2E4A;--stage-soft:#F8E8ED;--stage-ink:#6d2138">
+  <div class="bar"></div>
+  <div class="inner">
+    <div class="top">
+      <span class="code">SS-0012</span>
+      <span class="badge ok">Testado</span>
+      <span class="badge accent">Disponível</span>
+    </div>
+    <h3><a href="skills/hugo-site-maintenance.html">Manutenção de sites Hugo para pesquisa</a></h3>
+    <p>Manter um site Hugo correto durante a edição: inspecionar antes de criar, comparar o publicado com o clone, auditar front matter e links quebrados, e ler o run do deploy em vez de reescrever o build.</p>
+    <div class="feats"><span class="feat">Verifica publicado × clone</span><span class="feat">Auditoria de front matter</span><span class="feat">Diagnóstico de deploy</span></div>
+    <div class="authors">Leonardo Fernandes Nascimento, Eric Brasil, Ricardo Sodré</div>
+    <div class="stack"><span class="chip" ><img src="assets/img/python.png" alt=""><b>Python</b></span><span class="chip" ><img src="assets/img/github.png" alt=""><b>GitHub</b></span><span class="chip" ><img src="assets/img/hermes.png" alt=""><b>Hermes Agent</b></span></div>
+    <div class="foot">
+      <span>Etapa: <b style="color:var(--stage-ink)">Escrita e publicação</b></span>
+      <span class="arrow"><a href="skills/hugo-site-maintenance.html">Ver detalhes &rarr;</a></span>
+    </div>
+  </div>
+</article>
+<article class="card" data-skill data-status="available"
+  data-maturity="tested" data-stage="writing"
+  data-disc="methodology education digital-humanities"
+  data-paths="publicar-skill"
+  data-search="ss-0013 lattes-cv-editing lattes cv editing for academic records prepare and check items before typing them into a lattes cv: required fields per type, duplicate detection by normalised title and year, and the rule that a preprint is not a published article. escrita e publicação lattes currículo registro acadêmico metadados leonardo fernandes nascimento, eric brasil, ricardo sodré duplicata por título e ano preprint ≠ artigo portão de confirmação" style="--stage:#8B2E4A;--stage-soft:#F8E8ED;--stage-ink:#6d2138">
+  <div class="bar"></div>
+  <div class="inner">
+    <div class="top">
+      <span class="code">SS-0013</span>
+      <span class="badge ok">Testado</span>
+      <span class="badge accent">Disponível</span>
+    </div>
+    <h3><a href="skills/lattes-cv-editing.html">Edição de currículo Lattes</a></h3>
+    <p>Preparar e conferir itens antes de digitá-los no Lattes: campos obrigatórios por tipo, detecção de duplicata por título normalizado e ano, e a regra de que preprint não é artigo publicado.</p>
+    <div class="feats"><span class="feat">Duplicata por título e ano</span><span class="feat">Preprint ≠ artigo</span><span class="feat">Portão de confirmação</span></div>
+    <div class="authors">Leonardo Fernandes Nascimento, Eric Brasil, Ricardo Sodré</div>
+    <div class="stack"><span class="chip" ><img src="assets/img/python.png" alt=""><b>Python</b></span><span class="chip" ><img src="assets/img/hermes.png" alt=""><b>Hermes Agent</b></span></div>
+    <div class="foot">
+      <span>Etapa: <b style="color:var(--stage-ink)">Escrita e publicação</b></span>
+      <span class="arrow"><a href="skills/lattes-cv-editing.html">Ver detalhes &rarr;</a></span>
     </div>
   </div>
 </article>
