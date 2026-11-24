@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this skill, please cite it as below."
+title: "Zotero Reference Management for Research Pipelines"
+abstract: >-
+  Read, search, export and create Zotero references through the Web API v3, with pagination,
+  collection traversal and BibTeX/CSL export, under the principle that the API key defines the
+  boundary of access.
+type: software
+authors:
+  - family-names: "Nascimento"
+    given-names: "Leonardo Fernandes"
+    affiliation: "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+    website: "https://github.com/leofn"
+  - family-names: "Brasil"
+    given-names: "Eric"
+    affiliation: "Institute of Humanities and Languages, University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+  - family-names: "Sodré"
+    given-names: "Ricardo"
+    affiliation: "Federal University of Bahia"
+version: 1.0.0
+date-released: "2026-11-24"
+license: MIT
+repository-code: "https://github.com/LABHDUFBA/scholarskills/tree/main/zotero-reference-management"
+keywords:
+  - zotero
+  - bibliographic data
+  - research pipelines
+  - agent skills
+  - reproducibility

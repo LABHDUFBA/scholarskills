@@ -25,10 +25,13 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: python -m pip install --upgrade pip pyyaml
+        run: python -m pip install --upgrade pip pyyaml requests
 
       - name: Validate the meta-skill package
         run: python scientific-agent-skill-development/scripts/validate_skill.py scientific-agent-skill-development
+
+      - name: Validate SS-0001 (Zotero)
+        run: python scientific-agent-skill-development/scripts/validate_skill.py zotero-reference-management
 
       - name: Validate the reference example
         run: python scientific-agent-skill-development/scripts/validate_skill.py scientific-agent-skill-development/examples/descriptive-analysis
@@ -42,6 +45,10 @@ jobs:
 
       - name: Reference example test suite
         working-directory: scientific-agent-skill-development/examples/descriptive-analysis
+        run: python -m unittest discover -s tests -v
+
+      - name: SS-0001 test suite (offline, mock HTTP)
+        working-directory: zotero-reference-management
         run: python -m unittest discover -s tests -v
 
       - name: Registry entries validate against the schema

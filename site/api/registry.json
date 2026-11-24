@@ -80,7 +80,7 @@
       "version": "1.0.0",
       "status": "available",
       "maturity": "tested",
-      "repository": "https://github.com/LABHDUFBA/zotero-reference-management",
+      "repository": "https://github.com/LABHDUFBA/scholarskills",
       "doi_version": null,
       "doi_concept": null,
       "license": "MIT (code) / CC-BY-4.0 (docs)",
@@ -112,7 +112,7 @@
       ],
       "skill_spec_version": "agentskills.io specification (accessed 2026-11-24)",
       "compatibility": "Requires Python 3.10+ and network access to api.zotero.org",
-      "evidence": "https://github.com/LABHDUFBA/zotero-reference-management/blob/main/tests/RESULTS.md",
+      "evidence": "https://github.com/LABHDUFBA/scholarskills/blob/main/zotero-reference-management/tests/RESULTS.md",
       "deprecated_reason": null,
       "superseded_by": null,
       "added": "2026-11-24",
@@ -128,7 +128,8 @@
       "install": "git clone https://github.com/LABHDUFBA/zotero-reference-management.git\ncd zotero-reference-management\npip install -r requirements.txt\nexport ZOTERO_API_KEY=\"...\"\nexport ZOTERO_LIBRARY_ID=\"123456\"",
       "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Zotero Reference Management (ScholarSkills SS-0001, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/zotero-reference-management",
       "links": {
-        "repository": "https://github.com/LABHDUFBA/zotero-reference-management"
+        "repository": "https://github.com/LABHDUFBA/scholarskills",
+        "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/zotero-reference-management"
       },
       "highlight": true
     },
@@ -307,8 +308,9 @@
     "tagline": "Executable research methodologies that can be read, tested and cited.",
     "institution": "Digital Humanities Laboratory — Federal University of Bahia (LABHDUFBA)",
     "description": "An academic hub of agent skills treated as methodological objects: each one documented, versioned, tested and licensed, and — once the deposit is authorised — archived with a DOI. Nothing here carries an identifier it does not have: a skill without a DOI says so.",
-    "site_url": null,
+    "site_url": "https://labhdufba.github.io/scholarskills/",
     "repo_url": "https://github.com/LABHDUFBA/scholarskills",
     "submission_url": "https://github.com/LABHDUFBA/scholarskills/blob/main/CONTRIBUTING.md"
-  }
+  },
+  "policy_note": "One repository holds every skill; each skill keeps its own directory, version, CHANGELOG and DOI. A separate repository per skill is not used."
 }

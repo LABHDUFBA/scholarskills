@@ -8,6 +8,22 @@ tested, licensed and archived with a DOI, in the same way a method section or a 
 software is. The goal is methodological transparency and reproducibility for computational social
 science and the digital humanities — not tool distribution.
 
+## Skills in this repository
+
+One repository holds every skill. Each skill keeps its own directory, version, CHANGELOG and
+evidence, so it can be cited and deposited independently without fragmenting the project into a
+dozen small repositories.
+
+| ID | Skill | Directory | Status |
+|---|---|---|---|
+| SS-0000 | Scientific Agent Skill Development and Validation Protocol | `scientific-agent-skill-development/` | available · tested |
+| SS-0001 | Zotero Reference Management | `zotero-reference-management/` | available · tested |
+| SS-0002 … SS-0009 | Roadmap | — | planned |
+
+The catalogue is `registry/registry.json`; it is the single source of truth for the hub site
+(`site/`, published at https://labhdufba.github.io/scholarskills/), which is generated from it by
+`scripts/build_site.py`.
+
 ## Why
 
 Agent skills circulate widely and are rarely inspectable. A reader cannot tell what a skill
