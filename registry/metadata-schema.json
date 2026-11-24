@@ -201,9 +201,10 @@
         "null"
       ],
       "additionalProperties": {
-        "type": "string"
+        "type": "string",
+        "pattern": "^https?://\\S+$"
       },
-      "description": "Named links: repository, zenodo, doi, docs."
+      "description": "Named links: repository, zenodo, doi, docs. Values are URLs, not labels."
     },
     "highlight": {
       "type": [

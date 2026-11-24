@@ -665,6 +665,58 @@ the missing H2 that the card grid needed.
 and an invented contact address on a public page is worse than a missing one. The contact block renders
 only when the field is filled.
 
+---
+
+## Entry 027 — 2026-11-24 — Accessibility sweep over all fourteen skill pages
+
+**Scope.** The earlier pass measured only the home and the contribution page. This one ran the same
+audit across every skill page — fourteen pages × two themes × four widths — plus a link resolver that
+walks the built HTML and resolves every `href` and `src` against the published tree.
+
+| Check | Before | After |
+|---|---|---|
+| Contrast failures (14 pages × 2 themes) | 14 | **0** |
+| Targets under 24×24 | 14 | **0** |
+| Broken href/src in skill pages | 4 | **0** (269 verified) |
+| Anchors with no target | 1 (`#paths`) | **0** |
+| Header height at 390 px | 109 px | 109 px |
+| Page overflow at 320 px | 0 | 0 |
+
+**The one that mattered most was a theme bug, not a layout bug.** Every dark-mode override lives inside
+`@media(prefers-color-scheme:dark)`. The toggle writes `data-theme="dark"` without changing the system
+preference, so a reader who *chose* dark got the dark palette but not the dark overrides — the CTA
+measured **1.4:1** white-on-light-green. The fix needed the rule in both emitted blocks: the media query
+(for the automatic case) and `html[data-theme=dark]` (for the chosen one). This is the pitfall already
+recorded in the project skill; it was still live because the earlier pass only ever tested dark by
+system, never by click.
+
+**Seven defects, none visible by eye:**
+
+1. **The logo sat at the right edge on desktop.** The flex `order` written for mobile leaked upward:
+   `nav` carried `order:0` and pushed the brand to the end of the bar. Brand now renders at x=164.
+2. **`href="Repositório"`** — in SS-0012 and SS-0013 the registry stored the *label* where the URL
+   belongs, so two panel links pointed nowhere. Fixed, and `metadata-schema.json` now requires
+   `^https?://` on `links`, so the CI rejects the shape instead of the browser discovering it.
+3. **`../../en/index.html`** on every skill page — the language link climbed two levels out of the
+   site from `/skills/`. Now `../en/`.
+4. **`#paths` had no target** — the menu pointed at a section that never carried the id.
+5. **DOIs broke mid-number**, leaving an orphan digit (`…2450796` + `9`). They are now links to
+   `doi.org` that break only after the slash, via `<wbr>`. Measured: 21 px, one line.
+6. **Panel values were right-aligned**, so every wrap produced a ragged edge — `(docs)` orphaned, a
+   comma dangling after "Disciplina". Left-aligned now.
+7. **Python, GitHub and Hermes Agent rendered as three full-width bars** with 1000 px of empty space:
+   `.stack` had no `display:flex` outside cards, so each chip became a block. Now 84, 83 and 126 px.
+
+**Verification.** Structural validator PASS on six skills (warnings unchanged); seven suites OK; build
+`--check` clean; `node --check` on the generated JS; 269 links and images resolved with zero failures;
+three widths with zero page overflow. The two `pre` blocks wider than a 320 px viewport scroll inside
+their own `overflow-x:auto` container — correct behaviour, and a false positive worth naming so the
+next audit does not chase it.
+
+**Deliberately not changed.** On a skill page the active menu item is still "Início" rather than
+"Skills", and requirement cards place their chips slightly differently from one another. Both are
+design choices, not defects, and neither was decided unilaterally here.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.

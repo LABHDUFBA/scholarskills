@@ -901,8 +901,8 @@
         }
       ],
       "links": {
-        "repository": "Repositório",
-        "path": "Diretório"
+        "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/hugo-site-maintenance",
+        "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/hugo-site-maintenance"
       },
       "links_pt": {
         "repository": "Repositório",
@@ -1019,8 +1019,8 @@
         }
       ],
       "links": {
-        "repository": "Repositório",
-        "path": "Diretório"
+        "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/lattes-cv-editing",
+        "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/lattes-cv-editing"
       },
       "links_pt": {
         "repository": "Repositório",
