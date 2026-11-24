@@ -80,6 +80,7 @@ nav.site a:hover{color:var(--ink)}
 .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:28px 0 8px}
 .toolbar input,.toolbar select{font:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--line);
   border-radius:10px;background:var(--surface);color:var(--ink);min-width:180px}
+.toolbar input{min-width:300px;flex:1 1 300px;max-width:420px}
 .toolbar input:focus,.toolbar select:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
 .count{margin-left:auto;font-size:13px;color:var(--muted)}
 
