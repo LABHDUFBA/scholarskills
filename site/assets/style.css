@@ -171,6 +171,12 @@ a.orcid:hover span{text-decoration:underline}
 .creqs{margin:8px 0 18px;padding-left:20px;color:var(--ink)}
 .creqs li{margin:6px 0;line-height:1.55}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 0}
+.contact-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0 0}
+a.mail{display:inline-flex;align-items:center;gap:9px;min-height:45px;padding:10px 16px;
+  border:1px solid var(--brand-line);border-radius:8px;background:var(--brand-soft);
+  color:var(--brand-ink);font-weight:700;font-size:0.9375rem;text-decoration:none}
+a.mail:hover{background:var(--brand-ink);color:#fff;border-color:var(--brand-ink);text-decoration:none}
+a.mail svg{flex:0 0 auto}
 .badge{font-size:0.6875rem;font-weight:650;padding:3px 9px;border-radius:999px;letter-spacing:.02em;
   border:1px solid transparent;white-space:nowrap}
 .badge.ok{background:var(--ok-soft);color:var(--ok);border-color:var(--brand-line)}

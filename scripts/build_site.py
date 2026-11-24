@@ -106,6 +106,7 @@ T = {
   "contrib_email": "Escrever para o laboratório",
   "planned_summary": "Em desenvolvimento. Entra no ar com testes, licença e DOI quando aprovada.",
   "col_name": "Nome", "col_aff": "Afiliação", "copy": "Copiar citação",
+  "copy_email": "Copiar endereço", "copy_fail": "Selecione e copie",
   "pending_lic": "licença pendente",
  },
  "en": {
@@ -168,6 +169,7 @@ T = {
   "contrib_email": "Write to the laboratory",
   "planned_summary": "In development. It ships with tests, a licence and a DOI once approved.",
   "col_name": "Name", "col_aff": "Affiliation", "copy": "Copy citation",
+  "copy_email": "Copy address", "copy_fail": "Select and copy",
   "pending_lic": "licence pending",
  },
 }
@@ -373,6 +375,12 @@ a.orcid:hover span{text-decoration:underline}
 .creqs{margin:8px 0 18px;padding-left:20px;color:var(--ink)}
 .creqs li{margin:6px 0;line-height:1.55}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 0}
+.contact-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0 0}
+a.mail{display:inline-flex;align-items:center;gap:9px;min-height:45px;padding:10px 16px;
+  border:1px solid var(--brand-line);border-radius:8px;background:var(--brand-soft);
+  color:var(--brand-ink);font-weight:700;font-size:0.9375rem;text-decoration:none}
+a.mail:hover{background:var(--brand-ink);color:#fff;border-color:var(--brand-ink);text-decoration:none}
+a.mail svg{flex:0 0 auto}
 .badge{font-size:0.6875rem;font-weight:650;padding:3px 9px;border-radius:999px;letter-spacing:.02em;
   border:1px solid transparent;white-space:nowrap}
 .badge.ok{background:var(--ok-soft);color:var(--ok);border-color:var(--brand-line)}
@@ -673,6 +681,8 @@ def js() -> str:
   }
   paint();
 })();
+
+// Catalogue filter. Separate scope: pages without cards must not stop the rest of the file.
 (function(){
   var q=document.getElementById('q'), st=document.getElementById('f-status'),
       mt=document.getElementById('f-maturity'), sg=document.getElementById('f-stage'),
@@ -687,41 +697,64 @@ def js() -> str:
         d=dc&&dc.value||'', p=PATH||'', shown=0;
     cards.forEach(function(c){
       var hay=c.dataset.search||'';
-      var show=(!term||hay.indexOf(term)>-1)&&(!s||c.dataset.status===s)
-        &&(!m||c.dataset.maturity===m)&&(!g||c.dataset.stage===g)
-        &&(!d||(' '+(c.dataset.disc||'')+' ').indexOf(' '+d+' ')>-1)
-        &&(!p||(' '+(c.dataset.paths||'')+' ').indexOf(' '+p+' ')>-1);
-      c.style.display=show?'':'none';
-      if(show) shown++;
+      var ok=(!term||hay.indexOf(term)>-1)&&(!s||c.dataset.status===s)&&(!m||c.dataset.maturity===m)&&
+             (!g||c.dataset.stage===g)&&(!d||(c.dataset.disc||'').indexOf(d)>-1)&&
+             (!p||(c.dataset.paths||'').indexOf(p)>-1);
+      c.hidden=!ok;
+      if(ok) shown++;
     });
     if(count) count.textContent=shown;
-    if(empty) empty.hidden=shown!==0;
+    if(empty) empty.hidden=shown>0;
   }
   [q,st,mt,sg,dc].forEach(function(el){ if(el) el.addEventListener('input',apply); });
   [st,mt,sg,dc].forEach(function(el){ if(el) el.addEventListener('change',apply); });
   [].slice.call(pb).forEach(function(b){
     b.addEventListener('click',function(){
-      var v=b.dataset.pathJump;
-      if(PATH===v){ PATH=''; b.classList.remove('on'); }
-      else { PATH=v; [].slice.call(pb).forEach(function(x){ x.classList.remove('on'); }); b.classList.add('on'); }
+      var on=b.classList.contains('on');
+      [].slice.call(pb).forEach(function(x){ x.classList.remove('on'); });
+      PATH=on?'':b.dataset.pathJump;
+      if(!on) b.classList.add('on');
       apply();
     });
   });
-  [].slice.call(document.querySelectorAll('[data-disc-jump]')).forEach(function(a){
-    a.addEventListener('click',function(){
-      if(dc){ dc.value=a.dataset.discJump; apply(); }
-    });
-  });
   apply();
+})();
+
+// Copy buttons. Independent scope, and the answer never depends on the clipboard permission:
+// if the async API is blocked the text is selected so one keystroke finishes the job.
+(function(){
   [].slice.call(document.querySelectorAll('[data-copy]')).forEach(function(btn){
     btn.addEventListener('click',function(){
       var target=document.getElementById(btn.dataset.copy);
-      if(!target||!navigator.clipboard) return;
-      navigator.clipboard.writeText(target.innerText.trim()).then(function(){
-        var label=btn.dataset.label||btn.textContent;
-        btn.textContent=btn.dataset.done||'Copied';
-        setTimeout(function(){ btn.textContent=label; },1600);
-      });
+      if(!target) return;
+      var text=(target.innerText||target.textContent||'').trim();
+      var label=btn.dataset.label||btn.textContent;
+      function done(ok){
+        if(ok){
+          btn.textContent=btn.dataset.done||'Copied';
+          setTimeout(function(){ btn.textContent=label; },1600);
+          return;
+        }
+        try{
+          var r=document.createRange(); r.selectNodeContents(target);
+          var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        }catch(e){}
+        btn.textContent=btn.dataset.fail||label;
+        setTimeout(function(){ btn.textContent=label; },2400);
+      }
+      function legacy(){
+        try{
+          var ta=document.createElement('textarea');
+          ta.value=text; ta.setAttribute('readonly','');
+          ta.style.position='fixed'; ta.style.top='-1000px'; ta.style.opacity='0';
+          document.body.appendChild(ta); ta.select();
+          var ok=document.execCommand('copy');
+          document.body.removeChild(ta); done(ok);
+        }catch(e){ done(false); }
+      }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){ done(true); }, legacy);
+      } else { legacy(); }
     });
   });
 })();
@@ -779,7 +812,7 @@ def site_footer(hub: dict, lang: str) -> str:
   <span>{t(lang,'foot_note')}</span>
   <span>{t(lang,'attrib')}</span>
 </div></footer>
-<script src="{{rel}}assets/app.js"></script>
+<script src="{{rel}}assets/app.js?v={{css_hash}}"></script>
 </body></html>"""
 
 
@@ -1205,7 +1238,16 @@ def render_contribute(hub: dict, lang: str) -> str:
     if email:
         contact = (f'<h2 class="sec-h">{t(lang,"contrib_contact")}</h2>'
                    f'<p class="sec-p">{t(lang,"contrib_contact_p")}</p>'
-                   f'<p><a class="btn" href="mailto:{esc(email)}">{esc(email)}</a></p>')
+                   f'<p class="contact-row">'
+                   f'<a class="mail" id="contact-addr" href="mailto:{esc(email)}">'
+                   f'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" '
+                   f'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+                   f'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>'
+                   f'<span>{esc(email)}</span></a>'
+                   f'<button class="btn" data-copy="contact-addr" data-label="{esc(t(lang,"copy_email"))}" '
+                   f'data-done="{esc(t(lang,"copied"))}" data-fail="{esc(t(lang,"copy_fail"))}">'
+                   f'{esc(t(lang,"copy_email"))}</button>'
+                   f'</p>')
 
 
     out = html_head(f"{title} — {hub_name}", t(lang, "contrib_p")[:150], rel, lang)

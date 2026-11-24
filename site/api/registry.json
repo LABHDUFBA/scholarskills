@@ -1096,7 +1096,8 @@
         "affiliation": "UFBA · Arquivo Nacional",
         "orcid": "0000-0003-3107-3686"
       }
-    ]
+    ],
+    "contact_email": "labhdufba@gmail.com"
   },
   "policy_note": "One repository holds every skill; each skill keeps its own directory, version, CHANGELOG and DOI. A separate repository per skill is not used.",
   "stages": {
