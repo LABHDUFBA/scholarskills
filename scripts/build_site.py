@@ -571,12 +571,14 @@ aside.side{position:sticky;top:80px;align-self:start}
   nav.site a{font-size:0.75rem;white-space:nowrap;min-height:40px}
   nav.site a.cta{padding:5px 10px}
 }
-@media(max-width:380px){
+@media(max-width:430px){
+  /* Tighter spacing well before the edge: the six items fit at 390 px even at the wider sizes,
+     but with no slack at all, and a font fallback would push the last item past the viewport. */
   nav.site{gap:0 8px}
   nav.site a{font-size:0.7188rem}
-  nav.site a.cta{padding:4px 7px}
+  nav.site a.cta{padding:4px 8px}
 }
-@media(max-width:340px){
+@media(max-width:365px){
   /* At 320 px no spacing trick fits six items honestly: wrap to a second line instead of
      hiding the last one behind a scroll the reader has no reason to suspect. */
   nav.site{flex-wrap:wrap;overflow-x:visible;gap:0 10px;justify-content:center;

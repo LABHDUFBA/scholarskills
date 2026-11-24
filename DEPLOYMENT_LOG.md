@@ -751,6 +751,14 @@ apart. Measured on both cards of SS-0010.
 "Skills" as the active item. Build `--check` clean; `node --check` clean; validator PASS on six skills;
 CSS braces balanced 317/317 with no `%SEL%` left; deposit suite OK.
 
+**Refinement after seeing it rendered.** The first spacing pass made the menu fit at 390 px with
+*zero* slack (358/358) — it passed the measurement and would still break on a font fallback. Spacing is
+now tightened from 430 px down (gap 8 px, font 0.7188 rem), which leaves 35 px of slack at 390 and
+20 px at 375, and the two-line wrap moved up to 365 px so the narrowest comfortable widths break
+honestly instead of squeezing. Final measurement at 430/390/375/360/320 px: the primary action is fully
+inside the viewport at every width, page overflow is zero, and the header is 109 px in one line or
+149 px in two.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.
