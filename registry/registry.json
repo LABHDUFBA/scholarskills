@@ -547,6 +547,217 @@
         "sociology",
         "public-health"
       ]
+    },
+    {
+      "id": "SS-0010",
+      "slug": "dou-federal-gazette",
+      "stage": "collection",
+      "status": "available",
+      "title": "DOU and Federal Covenants for Research Pipelines",
+      "title_pt": "DOU e convênios federais para pesquisa",
+      "summary": "Collect official gazette publications and federal covenants through the state's own machine-readable routes, with pagination that stops at an empty answer and a filter that is verified before any batch.",
+      "summary_pt": "Coletar publicações do Diário Oficial e convênios federais pelas rotas que o Estado publica para acesso por máquina, com paginação que para na resposta vazia e filtro verificado antes de qualquer lote.",
+      "objective_pt": "Transformar o Diário Oficial da União e a base de convênios federais em corpus citável, usando as rotas oficiais de dados abertos — sem contornar bloqueio e sem confundir silêncio da fonte com ausência de publicação.",
+      "how_it_works_pt": [
+        "Pedir o mais estreito possível: um convenente, uma janela de datas, uma seção.",
+        "Ler o total anunciado antes de paginar, para saber se são 3 ou 3 mil resultados.",
+        "Paginar até uma resposta vazia; o teto de páginas é limite de segurança, nunca meta.",
+        "Verificar o filtro nos três primeiros registros: a API ignora parâmetros desconhecidos em silêncio.",
+        "Uma requisição por segundo e recuo no 429 — cortesia é parte da correção.",
+        "Registrar edição, seção, data e URL canônica em cada linha, para reconferência humana."
+      ],
+      "evidence": "dou-federal-gazette/tests/RESULTS.md",
+      "evidence_pt": "dou-federal-gazette/tests/RESULTS.md — 20 testes automatizados, todos verdes, sem rede.",
+      "features": [
+        "Rotas oficiais",
+        "Filtro verificado",
+        "Sem contorno de bloqueio"
+      ],
+      "features_en": [
+        "Official routes",
+        "Verified filter",
+        "No circumvention"
+      ],
+      "keywords": [
+        "DOU",
+        "diário oficial",
+        "convênios",
+        "dados abertos",
+        "LAI"
+      ],
+      "integrations": [
+        "python",
+        "github",
+        "hermes"
+      ],
+      "maturity": "tested",
+      "version": "1.0.0",
+      "license": "MIT (code) / CC-BY-4.0 (docs)",
+      "authors": [
+        {
+          "name": "Leonardo Fernandes Nascimento",
+          "affiliation": "LABHDUFBA · UFBA",
+          "orcid": ""
+        },
+        {
+          "name": "Eric Brasil",
+          "affiliation": "UNILAB",
+          "orcid": ""
+        },
+        {
+          "name": "Ricardo Sodré",
+          "affiliation": "UFBA",
+          "orcid": ""
+        }
+      ],
+      "disciplines": [
+        "public-finance",
+        "digital-humanities",
+        "methodology"
+      ],
+      "highlight": true,
+      "added": "2026-11-24",
+      "requirements": [
+        {
+          "name": "Python 3.10 ou superior",
+          "name_en": "Python 3.10 or newer",
+          "required": true,
+          "type": "software",
+          "what_pt": "O cliente e o CLI rodam em Python 3.10+.",
+          "what_en": "The client and CLI run on Python 3.10+.",
+          "how_pt": "Verifique com python3 --version.",
+          "how_en": "Check with python3 --version.",
+          "url": "https://www.python.org/downloads/",
+          "url_label": "Baixar Python",
+          "url_label_en": "Download Python",
+          "note_pt": null,
+          "note_en": null
+        },
+        {
+          "name": "Chave da API do Portal da Transparência",
+          "name_en": "Portal da Transparência API key",
+          "required": true,
+          "type": "secret",
+          "env": "PORTAL_TRANSPARENCIA_KEY",
+          "what_pt": "Chave gratuita que autoriza a consulta de convênios federais pela API oficial.",
+          "what_en": "Free key that authorises covenant queries through the official API.",
+          "how_pt": "Cadastre-se em portaldatransparencia.gov.br, abra 'API de Dados' e gere a chave. Ela vai no cabeçalho chave-api-dados.",
+          "how_en": "Sign up at portaldatransparencia.gov.br, open 'API de Dados' and generate a key. It travels in the chave-api-dados header.",
+          "url": "https://portaldatransparencia.gov.br/api-de-dados",
+          "url_label": "Gerar chave",
+          "url_label_en": "Generate a key",
+          "example": "export PORTAL_TRANSPARENCIA_KEY=\"sua_chave_aqui\"",
+          "note_pt": "Não é necessária para ler uma página de busca salva: o parser funciona offline.",
+          "note_en": "Not needed to parse a saved search page: the parser works offline."
+        }
+      ],
+      "links": {
+        "repository": "https://github.com/LABHDUFBA/scholarskills",
+        "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/dou-federal-gazette"
+      },
+      "links_pt": {
+        "repository": "Repositório",
+        "path": "Diretório"
+      },
+      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/dou-federal-gazette\npip install -r requirements.txt\nexport PORTAL_TRANSPARENCIA_KEY=\"...\"",
+      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. DOU and Federal Covenants (SS-0010), v1.0.0, 2026. LABHDUFBA/UFBA.",
+      "objective": "Collect DOU publications and federal covenants through official open-data routes, without circumventing access controls and without confusing silence from the source with absence of publication."
+    },
+    {
+      "id": "SS-0011",
+      "slug": "brazilian-fiscal-data",
+      "stage": "analysis",
+      "status": "available",
+      "title": "Brazilian Fiscal Data (SICONFI) for Research Pipelines",
+      "title_pt": "Dados fiscais públicos brasileiros (SICONFI)",
+      "summary": "Query state and municipal fiscal accounts by IBGE code, normalise field spellings across demonstratives and aggregate by account prefix so every total can be re-checked.",
+      "summary_pt": "Consultar contas fiscais de estados e municípios pelo código IBGE, normalizar os campos entre demonstrativos e agregar por prefixo de conta para que todo total possa ser reconferido.",
+      "objective_pt": "Recuperar as contas que estados e municípios declaram ao Tesouro em uma forma cuja aritmética o leitor pode auditar: identificador, não nome; período explícito; total que se reconfere.",
+      "how_it_works_pt": [
+        "Identificar a entidade pelo código IBGE (29 = Bahia, 2927408 = Salvador), nunca pelo nome.",
+        "Declarar exercício, período e demonstrativo em toda consulta.",
+        "Somar da árvore de contas declarada, não de coluna pré-calculada.",
+        "Tratar entrega vazia como achado sobre o ente, não como falha de rede.",
+        "Pular linha sem valor em vez de gravar zero fabricado.",
+        "Reportar cobertura: quantas contas e quais colunas vieram."
+      ],
+      "evidence": "brazilian-fiscal-data/tests/RESULTS.md",
+      "evidence_pt": "brazilian-fiscal-data/tests/RESULTS.md — 21 testes automatizados, todos verdes, sem rede.",
+      "features": [
+        "SICONFI por código IBGE",
+        "Agregação por prefixo",
+        "Sem credencial"
+      ],
+      "features_en": [
+        "SICONFI by IBGE code",
+        "Prefix aggregation",
+        "No credential needed"
+      ],
+      "keywords": [
+        "SICONFI",
+        "finanças públicas",
+        "RREO",
+        "RGF",
+        "orçamento"
+      ],
+      "integrations": [
+        "python",
+        "hermes"
+      ],
+      "maturity": "tested",
+      "version": "1.0.0",
+      "license": "MIT (code) / CC-BY-4.0 (docs)",
+      "authors": [
+        {
+          "name": "Leonardo Fernandes Nascimento",
+          "affiliation": "LABHDUFBA · UFBA",
+          "orcid": ""
+        },
+        {
+          "name": "Eric Brasil",
+          "affiliation": "UNILAB",
+          "orcid": ""
+        },
+        {
+          "name": "Ricardo Sodré",
+          "affiliation": "UFBA",
+          "orcid": ""
+        }
+      ],
+      "disciplines": [
+        "public-finance",
+        "methodology"
+      ],
+      "highlight": true,
+      "added": "2026-11-24",
+      "requirements": [
+        {
+          "name": "Python 3.10 ou superior",
+          "name_en": "Python 3.10 or newer",
+          "required": true,
+          "type": "software",
+          "what_pt": "O cliente roda em Python 3.10+.",
+          "what_en": "The client runs on Python 3.10+.",
+          "how_pt": "Verifique com python3 --version.",
+          "how_en": "Check with python3 --version.",
+          "url": "https://www.python.org/downloads/",
+          "url_label": "Baixar Python",
+          "url_label_en": "Download Python",
+          "note_pt": "Nenhuma credencial: o SICONFI é público. Não envie chave para ele.",
+          "note_en": "No credential: SICONFI is public. Do not send a key to it."
+        }
+      ],
+      "links": {
+        "repository": "https://github.com/LABHDUFBA/scholarskills",
+        "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/brazilian-fiscal-data"
+      },
+      "links_pt": {
+        "repository": "Repositório",
+        "path": "Diretório"
+      },
+      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/brazilian-fiscal-data\npip install -r requirements.txt",
+      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. Brazilian Fiscal Data (SS-0011), v1.0.0, 2026. LABHDUFBA/UFBA.",
+      "objective": "Retrieve fiscal accounts declared by Brazilian states and municipalities in a form whose arithmetic can be audited by a reader."
     }
   ],
   "renumbering_note": "2026-11-24: SS-0001 reassigned to the first substantive skill (Zotero); previous roadmap items shifted to SS-0002..SS-0009.",

@@ -1,0 +1,31 @@
+{
+  "title": "Brazilian Fiscal Data (SICONFI) for Research Pipelines",
+  "description": "<p>A ScholarSkills package (SS-0011) that queries SICONFI by IBGE code, normalises the field spellings used across RREO/RGF/DCA and aggregates by account prefix so every total can be re-checked. Empty deliveries are reported as findings, rows without a value are skipped rather than recorded as zero.</p>",
+  "upload_type": "software",
+  "license": "mit",
+  "access_right": "open",
+  "version": "1.0.0",
+  "creators": [
+    {
+      "name": "Nascimento, Leonardo Fernandes",
+      "affiliation": "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+    },
+    {
+      "name": "Brasil, Eric",
+      "affiliation": "University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+    },
+    {
+      "name": "Sodré, Ricardo",
+      "affiliation": "Federal University of Bahia"
+    }
+  ],
+  "keywords": [
+    "public finance",
+    "SICONFI",
+    "open data",
+    "fiscal federalism",
+    "agent skills"
+  ],
+  "language": "eng",
+  "notes": "Digital Methods Skills SS-0011. Digital Humanities Laboratory, Federal University of Bahia."
+}

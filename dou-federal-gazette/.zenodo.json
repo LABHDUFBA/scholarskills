@@ -1,0 +1,31 @@
+{
+  "title": "DOU and Federal Covenants for Research Pipelines",
+  "description": "<p>A ScholarSkills package (SS-0010) that collects Brazilian official gazette publications and federal covenants through the state's own machine-readable routes: the Portal da Transparência REST API and the DOU structured search. Pagination stops at an empty answer, never at a guessed limit; the covenants filter is verified on the first rows because the API silently ignores unknown parameters. The client refuses to circumvent access controls and raises instead.</p>",
+  "upload_type": "software",
+  "license": "mit",
+  "access_right": "open",
+  "version": "1.0.0",
+  "creators": [
+    {
+      "name": "Nascimento, Leonardo Fernandes",
+      "affiliation": "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+    },
+    {
+      "name": "Brasil, Eric",
+      "affiliation": "University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+    },
+    {
+      "name": "Sodré, Ricardo",
+      "affiliation": "Federal University of Bahia"
+    }
+  ],
+  "keywords": [
+    "official gazette",
+    "DOU",
+    "open data",
+    "public finance",
+    "agent skills"
+  ],
+  "language": "eng",
+  "notes": "Digital Methods Skills SS-0010. Digital Humanities Laboratory, Federal University of Bahia."
+}

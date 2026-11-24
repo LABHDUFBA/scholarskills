@@ -51,6 +51,20 @@ jobs:
         working-directory: zotero-reference-management
         run: python -m unittest discover -s tests -v
 
+      - name: Validate SS-0010 (DOU and covenants)
+        run: python scientific-agent-skill-development/scripts/validate_skill.py dou-federal-gazette
+
+      - name: SS-0010 test suite (offline, recorded fixtures)
+        working-directory: dou-federal-gazette
+        run: python -m unittest discover -s tests -v
+
+      - name: Validate SS-0011 (SICONFI fiscal data)
+        run: python scientific-agent-skill-development/scripts/validate_skill.py brazilian-fiscal-data
+
+      - name: SS-0011 test suite (offline, recorded payloads)
+        working-directory: brazilian-fiscal-data
+        run: python -m unittest discover -s tests -v
+
       - name: Registry entries validate against the schema
         run: |
           python - <<'PY'

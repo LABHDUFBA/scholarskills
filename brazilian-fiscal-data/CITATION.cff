@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this skill, please cite it as below."
+title: "Brazilian Fiscal Data (SICONFI) for Research Pipelines"
+abstract: >-
+  Query state and municipal fiscal accounts from SICONFI by IBGE code, normalise field spellings
+  across demonstratives and aggregate by account prefix so that every total can be re-checked by a
+  reader.
+type: software
+authors:
+  - family-names: "Nascimento"
+    given-names: "Leonardo Fernandes"
+    affiliation: "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+    website: "https://github.com/leofn"
+  - family-names: "Brasil"
+    given-names: "Eric"
+    affiliation: "Institute of Humanities and Languages, University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+  - family-names: "Sodré"
+    given-names: "Ricardo"
+    affiliation: "Federal University of Bahia"
+version: 1.0.0
+date-released: "2026-11-24"
+license: MIT
+repository-code: "https://github.com/LABHDUFBA/scholarskills/tree/main/brazilian-fiscal-data"
+keywords: [public finance, SICONFI, open data, fiscal federalism, agent skills]

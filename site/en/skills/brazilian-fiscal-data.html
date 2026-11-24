@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brazilian Fiscal Data (SICONFI) for Research Pipelines — ScholarSkills</title>
+<meta name="description" content="Query state and municipal fiscal accounts by IBGE code, normalise field spellings across demonstratives and aggregate by account prefix so every total can be re-checked.">
+<meta property="og:title" content="Brazilian Fiscal Data (SICONFI) for Research Pipelines — ScholarSkills">
+<meta property="og:description" content="Query state and municipal fiscal accounts by IBGE code, normalise field spellings across demonstratives and aggregate by account prefix so every total can be re-checked.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://labhdufba.github.io/scholarskills/assets/img/hermes.png">
+<link rel="preload" href="../../assets/fonts/heebo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/signika.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../assets/img/labhd.png">
+<script>try{var t=localStorage.getItem('smd-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body><header class="site"><div class="wrap">
+  <a class="brand" href="https://labhdufba.github.io/">
+    <span class="mark"><img src="../../assets/img/labhd.webp" alt="LABHDUFBA"></span></a>
+  <button class="theme-toggle" id="theme-toggle" type="button"
+    aria-label="Alternar tema claro e escuro" title="Tema claro / escuro">
+    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+    <a class="lang" href="../../index.html" hreflang="pt-BR"><span class="full">Português</span><span class="short">PT</span></a>
+  <nav class="site">
+    <a class="on" href="../../index.html">Home</a>
+    <a href="../../index.html#skills">Skills</a>
+    <a href="../../index.html#paths">Paths</a>
+    <a href="../../index.html#stages">Stages</a>
+    <a href="../../index.html#levels">Maturity</a>
+    <a class="cta" href="https://github.com/LABHDUFBA/scholarskills/blob/main/CONTRIBUTING.md">Submit</a>
+  </nav>
+</div></header><section class="skill-head" style="--stage:#7B52AB;--stage-soft:#F0EAF7;--stage-ink:#4e3374"><div class="wrap">
+  <div class="crumbs"><a href="../../index.html">Hub</a> /
+    <span class="current">SS-0011</span></div>
+  <h1>Brazilian Fiscal Data (SICONFI) for Research Pipelines</h1>
+  <p class="sub">Query state and municipal fiscal accounts by IBGE code, normalise field spellings across demonstratives and aggregate by account prefix so every total can be re-checked.</p>
+  <div class="meta-row">
+    <span class="code">SS-0011</span>
+    <span class="badge ok">Tested</span>
+    <span class="badge accent">Available</span>
+    <span class="badge stage">Analysis</span>
+    <span>v1.0.0</span><span>&middot;</span>
+    <span>MIT (code) / CC-BY-4.0 (docs)</span>
+  </div>
+  <div class="stack" style="margin-top:14px"><span class="chip" ><img src="../../assets/img/python.svg" alt=""><b>Python</b></span><span class="chip" ><img src="../../assets/img/hermes.png" alt=""><b>Hermes</b></span></div>
+</div></section>
+
+<main class="wrap"><div class="cols">
+  <div>
+    <h2 class="sec">Requirements</h2>
+<p class="note" style="margin-top:-2px">What you must have before running this skill. Everything required appears here — credentials included.</p>
+<div class="reqs">
+<article class="req required">
+  <div class="req-top">
+    <h3>Python 3.10 or newer</h3>
+    <div class="req-badges"><span class="badge accent">Required</span><span class="badge kind">software</span></div>
+  </div>
+  <p><b>What it is:</b> The client runs on Python 3.10+.</p>
+  <p><b>How to get it:</b> Check with python3 --version.</p>
+  
+  <div class="req-links"><a class="btn req-btn primary" href="https://www.python.org/downloads/" target="_blank" rel="noopener">Download Python &nearr;</a></div>
+  <p class="req-note"><b>Careful:</b> No credential: SICONFI is public. Do not send a key to it.</p>
+</article>
+</div>
+
+    <h2 class="sec">Objective</h2>
+    <p>Retrieve fiscal accounts declared by Brazilian states and municipalities in a form whose arithmetic can be audited by a reader.</p>
+
+    <h2 class="sec">Features</h2>
+    <div class="chips"><span class="feat">SICONFI by IBGE code</span><span class="feat">Prefix aggregation</span><span class="feat">No credential needed</span></div>
+
+    <h2 class="sec">How it works</h2>
+    <p class="note">—</p>
+
+    <h2 class="sec">Authors</h2>
+    <table class="authors-t">
+      <thead><tr><th>Name</th><th>Affiliation</th><th>ORCID</th></tr></thead>
+      <tbody><tr><td><b>Leonardo Fernandes Nascimento</b></td><td>LABHDUFBA · UFBA</td><td>—</td></tr><tr><td><b>Eric Brasil</b></td><td>UNILAB</td><td>—</td></tr><tr><td><b>Ricardo Sodré</b></td><td>UFBA</td><td>—</td></tr></tbody>
+    </table>
+    <p class="note">ORCIDs are included only when each author supplies them; none is invented.</p>
+
+    <h2 class="sec">How to cite</h2>
+    <blockquote id="cite-text">NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. Brazilian Fiscal Data (SS-0011), v1.0.0, 2026. LABHDUFBA/UFBA.</blockquote>
+    <button class="btn" data-copy="cite-text" data-label="Copy citation"
+      data-done="Copied" style="margin-top:10px">Copy citation</button>
+    <p class="note">No DOI registered yet. The field stays empty rather than carrying a placeholder.</p>
+
+    
+
+    <h2 class="sec">Validation</h2>
+    <p style="color:var(--muted);max-width:74ch">Structural validation proves conformance to the Agent Skills specification and the completeness of the package. It does not prove that the method is correct. Evidence for this skill's maturity level:
+    brazilian-fiscal-data/tests/RESULTS.md.</p>
+  </div>
+
+  <aside class="side">
+    <div class="panel" style="--stage:#7B52AB;--stage-soft:#F0EAF7;--stage-ink:#4e3374">
+      <h4>Factsheet</h4>
+      <dl class="facts">
+        <dt>Identifier</dt><dd>SS-0011</dd>
+        <dt>Stage</dt><dd style="color:var(--stage-ink);font-weight:600">Analysis</dd>
+        <dt>Version</dt><dd>1.0.0</dd>
+        <dt>Maturity</dt><dd>Tested</dd>
+        <dt>Status</dt><dd>Available</dd>
+        <dt>Licence</dt><dd>MIT (code) / CC-BY-4.0 (docs)</dd>
+        <dt>DOI (version)</dt><dd>—</dd>
+        <dt>DOI (concept)</dt><dd>—</dd>
+        <dt>Discipline</dt><dd>Public finance, Methodology</dd>
+        <dt>Added</dt><dd>2026-11-24</dd>
+      </dl>
+    </div>
+    <div class="panel"><h4>Links</h4>
+      <a class="btn" style="margin:0 8px 8px 0" href="https://github.com/LABHDUFBA/scholarskills">Repository</a><a class="btn" style="margin:0 8px 8px 0" href="https://github.com/LABHDUFBA/scholarskills/tree/main/brazilian-fiscal-data">Path</a></div>
+    <div class="panel"><h4>Stack</h4>
+      <div class="chips"><span class="chip" ><img src="../../assets/img/python.svg" alt=""><b>Python</b></span><span class="chip" ><img src="../../assets/img/hermes.png" alt=""><b>Hermes</b></span></div></div>
+    <div class="panel"><h4>Keywords</h4>
+      <p class="note">SICONFI, finanças públicas, RREO, RGF, orçamento</p></div>
+  </aside>
+</div></main>
+<footer class="site"><div class="wrap">
+  <span><img src="../../assets/img/labhd.webp" alt="" style="width:20px;height:20px;border-radius:50%;vertical-align:-5px;margin-right:7px;background:#0a1f0c">Laboratório de Humanidades Digitais — Universidade Federal da Bahia (LABHDUFBA)</span>
+  <span>Code MIT · Documentation CC BY 4.0 · no tracking, no cookies</span>
+  <span>Icons: Zotero (trademark of the Corporation for Digital Scholarship) and Hermes Agent (Nous Research), used only to indicate integration.</span>
+</div></footer>
+<script src="../../assets/app.js"></script>
+</body></html>
