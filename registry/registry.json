@@ -138,7 +138,8 @@
       ],
       "paths": [
         "publicar-skill"
-      ]
+      ],
+      "doi_record": "https://zenodo.org/records/24505398"
     },
     {
       "id": "SS-0001",
@@ -297,7 +298,8 @@
       ],
       "paths": [
         "revisao-sistematica"
-      ]
+      ],
+      "doi_record": "https://zenodo.org/records/24505402"
     },
     {
       "id": "SS-0002",
@@ -689,12 +691,13 @@
         "path": "Diretório"
       },
       "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/dou-federal-gazette\npip install -r requirements.txt\nexport PORTAL_TRANSPARENCIA_KEY=\"...\"",
-      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. DOU and Federal Covenants for Research Pipelines (SS-0010), v1.0.0, 2026. LABHDUFBA/UFBA. DOI: 10.5281/zenodo.24504882",
+      "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. DOU and Federal Covenants for Research Pipelines (SS-0010), v1.0.0, 2026. LABHDUFBA/UFBA. DOI: 10.5281/zenodo.24507969",
       "objective": "Collect DOU publications and federal covenants through official open-data routes, without circumventing access controls and without confusing silence from the source with absence of publication.",
       "paths": [],
       "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/dou-federal-gazette",
-      "doi_version": "10.5281/zenodo.24504882",
-      "doi_concept": "10.5281/zenodo.24504881"
+      "doi_version": "10.5281/zenodo.24507969",
+      "doi_concept": "10.5281/zenodo.24504881",
+      "doi_record": "https://zenodo.org/records/24507969"
     },
     {
       "id": "SS-0011",
@@ -794,7 +797,8 @@
       "paths": [],
       "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/brazilian-fiscal-data",
       "doi_version": "10.5281/zenodo.24505404",
-      "doi_concept": "10.5281/zenodo.24505403"
+      "doi_concept": "10.5281/zenodo.24505403",
+      "doi_record": "https://zenodo.org/records/24505404"
     },
     {
       "id": "SS-0012",
@@ -911,7 +915,8 @@
         "publicar-skill"
       ],
       "doi_version": "10.5281/zenodo.24505406",
-      "doi_concept": "10.5281/zenodo.24505405"
+      "doi_concept": "10.5281/zenodo.24505405",
+      "doi_record": "https://zenodo.org/records/24505406"
     },
     {
       "id": "SS-0013",
@@ -1028,7 +1033,8 @@
         "publicar-skill"
       ],
       "doi_version": "10.5281/zenodo.24505408",
-      "doi_concept": "10.5281/zenodo.24505407"
+      "doi_concept": "10.5281/zenodo.24505407",
+      "doi_record": "https://zenodo.org/records/24505408"
     }
   ],
   "renumbering_note": "2026-11-24: SS-0001 reassigned to the first substantive skill (Zotero); previous roadmap items shifted to SS-0002..SS-0009.",
@@ -1042,7 +1048,7 @@
     "submission_url": "https://github.com/LABHDUFBA/scholarskills/blob/main/CONTRIBUTING.md",
     "doi_policy": "Um DOI de conceito e um de versão por skill, mais um do catálogo. Cada skill evolui no próprio ciclo: nova versão de uma não altera o DOI das outras.",
     "doi_concept": "10.5281/zenodo.24505393",
-    "doi_version": "10.5281/zenodo.24505394",
+    "doi_version": "10.5281/zenodo.24507970",
     "release": null,
     "tagline_pt": "Metodologias de pesquisa executáveis, que podem ser lidas, testadas e citadas.",
     "description_pt": "Um hub acadêmico de skills para agentes de IA, tratadas como objetos metodológicos: cada uma documentada, versionada, testada e licenciada, e — quando o depósito é autorizado — arquivada com DOI. Nada aqui carrega um identificador que não possui: uma skill sem DOI diz que não tem.",

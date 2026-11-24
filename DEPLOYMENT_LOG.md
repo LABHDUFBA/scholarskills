@@ -580,6 +580,50 @@ point at a file that does not exist: an unknown key is skipped instead of render
 second click restores 12; bar is 54 px tall and 1071/356 px scrollable at 390 px with no page
 overflow; dark mode resolves the bar to `--bg-soft` and the active pill to `--brand-soft`.
 
+---
+
+## Entry 025 — 2026-11-24 — Per-skill DOIs on Zenodo, ORCIDs in the hub
+
+**Architecture.** Six skills and one collection record, each with its own concept and version DOI.
+The repository stays single; the identity does not. Skills carry `isPartOf` → collection, the
+collection carries `hasPart` → six skills.
+
+| Record | Version DOI | Concept DOI |
+|---|---|---|
+| SS-0000 | 10.5281/zenodo.24505398 | 10.5281/zenodo.24505397 |
+| SS-0001 | 10.5281/zenodo.24505402 | 10.5281/zenodo.24505400 |
+| SS-0010 | 10.5281/zenodo.24507969 | 10.5281/zenodo.24504881 |
+| SS-0011 | 10.5281/zenodo.24505404 | 10.5281/zenodo.24505403 |
+| SS-0012 | 10.5281/zenodo.24505406 | 10.5281/zenodo.24505405 |
+| SS-0013 | 10.5281/zenodo.24505408 | 10.5281/zenodo.24505407 |
+| Collection | 10.5281/zenodo.24507970 | 10.5281/zenodo.24505393 |
+
+**Correction to an earlier claim.** I had written that a per-skill DOI requires a repository per
+skill. That is true only of the GitHub integration, which mints one DOI per repository release. The
+REST API has no such limit, and the project never needed to fragment. The lesson is recorded in the
+skill: distinguish the two deposit routes before telling the operator that one thing implies the other.
+
+**ORCIDs, verified at the source, not by name similarity.** `0000-0003-2929-1115` (Nascimento, UFBA
+Professor Adjunto, keywords "digital sociology; CAQDAS"), `0000-0001-5067-8475` (Eric Brasil
+Nepomuceno, UNILAB), `0000-0003-3107-3686` (Ricardo Sodré Andrade — filed under "Ricardo Andrade",
+found through `other-names`; UFBA and Arquivo Nacional). The third one illustrates the rule: a search
+by the name used in the project returns nothing when the record is filed under another surname.
+
+**Two defects found and fixed in the dark theme.** The citation block fell back to `#f8faf9` because
+`--stage-soft` is set on `.skill-head` and not inherited by `<main>`; the icon plates kept a fixed
+`#eef4ef`. Both were visible as white patches on a dark page. A third defect was mine: the dark
+overrides were appended without a selector, so `.badge.kind` turned dark in the light theme. All
+three were caught by enumerating every element whose computed background luminance exceeds 200.
+
+**CSS caching.** The stylesheet had no version in its URL, so a rebuilt file was masked by the
+browser cache — the fix looked broken when it was already correct. The link now carries
+`?v=<sha256[:10]>` of the exact CSS text written in that build.
+
+**A bug worth naming.** `actions/newversion` clears `metadata.version`. The first new version of
+SS-0010 was published with an empty version, forcing a second one; the sequence reads 1.0.0 →
+(empty) → 1.0.2 because `link_collection.py` bumped a string it had already bumped. Cosmetic, but a
+citation that says "v1.0.2" with no 1.0.1 in between needs an explanation, and this is it.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.
