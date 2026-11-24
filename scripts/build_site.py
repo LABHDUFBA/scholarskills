@@ -472,7 +472,8 @@ ol.steps{margin:0 0 12px;padding-left:22px}
 ol.steps li{margin:0 0 8px;line-height:1.55}
 ol.steps li::marker{color:var(--stage-ink,var(--brand-ink));font-weight:700}
 blockquote{margin:0 0 12px;padding:14px 16px;border-left:3px solid var(--stage,var(--brand));
-  background:var(--stage-soft,#f8faf9);border-radius:0 8px 8px 0;font-size:0.875rem;
+  background:color-mix(in srgb, var(--stage-soft, var(--brand-soft)) 65%, var(--bg));
+  border-radius:0 8px 8px 0;font-size:0.875rem;
   line-height:1.55;color:var(--ink)}
 pre{margin:0 0 12px;padding:14px 16px;background:#0f1712;color:#d6e6da;border-radius:8px;
   font-family:var(--mono);font-size:0.7812rem;line-height:1.6;overflow-x:auto}
@@ -529,7 +530,10 @@ html:not([data-theme=light]) .hero{background:linear-gradient(180deg,#0f1a12 0%,
 html:not([data-theme=light]) .hero .eyebrow,html:not([data-theme=light]) .hero h1,html:not([data-theme=light]) .skill-head h1{color:var(--ink)}
 html:not([data-theme=light]) .hero .eyebrow{background:#121a14}
 html:not([data-theme=light]) blockquote{color:#cfe0d4}
-html:not([data-theme=light]) .chip img{background:#eef4ef}
+html:not([data-theme=light]) .chip img{background:rgba(255,255,255,.07)}
+html:not([data-theme=light]) blockquote{background:color-mix(in srgb, var(--stage-soft,#12261a) 14%, var(--bg))}
+html:not([data-theme=light]) .badge.kind,html:not([data-theme=light]) .badge.muted{background:#1a211c;color:var(--muted)}
+html:not([data-theme=light]) .code{background:#1a211c}
 html:not([data-theme=light]) .req-note{color:var(--warn);background:var(--warn-soft)}
 html:not([data-theme=light]) .req-note b{color:#f0d79a}
 html:not([data-theme=light]) pre,html:not([data-theme=light]) .req-ex{background:#0a120d}
@@ -563,7 +567,10 @@ html[data-theme=dark] .hero{background:linear-gradient(180deg,#0f1a12 0%,var(--b
 html[data-theme=dark] .hero .eyebrow,html[data-theme=dark] .hero h1,html[data-theme=dark] .skill-head h1{color:var(--ink)}
 html[data-theme=dark] .hero .eyebrow{background:#121a14}
 html[data-theme=dark] blockquote{color:#cfe0d4}
-html[data-theme=dark] .chip img{background:#eef4ef}
+html[data-theme=dark] .chip img{background:rgba(255,255,255,.07)}
+html[data-theme=dark] blockquote{background:color-mix(in srgb, var(--stage-soft,#12261a) 14%, var(--bg))}
+html[data-theme=dark] .badge.kind,html[data-theme=dark] .badge.muted{background:#1a211c;color:var(--muted)}
+html[data-theme=dark] .code{background:#1a211c}
 html[data-theme=dark] .req-note{color:var(--warn);background:var(--warn-soft)}
 html[data-theme=dark] .req-note b{color:#f0d79a}
 html[data-theme=dark] pre,html[data-theme=dark] .req-ex{background:#0a120d}
@@ -671,6 +678,7 @@ def js() -> str:
 
 
 def html_head(title: str, description: str, rel: str, lang: str) -> str:
+    css_hash = CSS_HASH
     return f"""<!doctype html>
 <html lang="{'pt-BR' if lang == 'pt' else 'en'}">
 <head>
@@ -684,7 +692,7 @@ def html_head(title: str, description: str, rel: str, lang: str) -> str:
 <meta property="og:image" content="https://labhdufba.github.io/scholarskills/assets/img/hermes.png">
 <link rel="preload" href="{rel}assets/fonts/heebo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{rel}assets/fonts/signika.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{rel}assets/style.css">
+<link rel="stylesheet" href="{rel}assets/style.css?v={css_hash}">
 <link rel="icon" href="{rel}assets/img/labhd.png">
 <script>try{{var t=localStorage.getItem('smd-theme');if(t)document.documentElement.setAttribute('data-theme',t);}}catch(e){{}}</script>
 </head>
@@ -900,7 +908,7 @@ def render_index(reg: dict, lang: str) -> str:
 """
     out += render_authors_block(hub, lang, rel)
     out += site_footer(hub, lang)
-    return out.replace("{rel}", rel)
+    return out.replace("{rel}", rel).replace("{css_hash}", CSS_HASH)
 
 
 def render_requirements(s: dict, lang: str) -> str:
@@ -945,6 +953,14 @@ def render_requirements(s: dict, lang: str) -> str:
 </article>""")
     out.append('</div>')
     return "\n".join(out)
+
+
+CSS_HASH = "0"
+
+
+def _css_hash(text: str) -> str:
+    """Cache-busting that cannot go stale: the query is the digest of the very CSS being written."""
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()[:10]
 
 
 ORCID_RE = re.compile(r"^\d{4}-\d{4}-\d{4}-[\dX]{4}$")
@@ -1142,6 +1158,8 @@ def build(out: Path) -> dict:
 
 
 def main(argv=None) -> int:
+    global CSS_HASH
+    CSS_HASH = _css_hash(css())
     ap = argparse.ArgumentParser(description="Build the ScholarSkills hub.")
     ap.add_argument("--out", type=Path, default=ROOT / "site")
     ap.add_argument("--check", action="store_true")
