@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this protocol, please cite it as below."
+title: "Scientific Agent Skill Development and Validation Protocol"
+abstract: >-
+  A protocol that turns a research method into a documented, tested, citable agent skill:
+  scoping the claim, grounding the method, generating the package, writing tests that can fail,
+  recording the environment, auditing ethics and rights, validating structure, and preparing
+  archival deposit without publishing autonomously.
+type: software
+authors:
+  - family-names: "Nascimento"
+    given-names: "Leonardo Fernandes"
+    affiliation: "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+  - family-names: "Brasil"
+    given-names: "Eric"
+    affiliation: "Institute of Humanities and Languages, University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+  - family-names: "Sodré"
+    given-names: "Ricardo"
+    affiliation: "Federal University of Bahia"
+version: 1.0.0
+date-released: "2026-11-24"
+license: MIT
+repository-code: "https://github.com/leofn/scholarskills"
+keywords:
+  - agent skills
+  - research methodology
+  - validation protocol
+  - reproducibility
+  - digital humanities

@@ -1,0 +1,22 @@
+{
+  "title": "descriptive-analysis — reference example skill",
+  "description": "<p>Reference example built with the ScholarSkills protocol: descriptive statistics for numeric CSV columns, with explicit refusal on invalid input.</p>",
+  "upload_type": "software",
+  "license": "mit",
+  "access_right": "open",
+  "version": "0.2.0",
+  "creators": [
+    {
+      "name": "Nascimento, Leonardo Fernandes",
+      "affiliation": "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+    }
+  ],
+  "keywords": [
+    "agent skills",
+    "descriptive statistics",
+    "reference example"
+  ],
+  "language": "eng",
+  "notes": "Reference example for ScholarSkills SS-0000.",
+  "related_identifiers": []
+}

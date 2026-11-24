@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scholarskills.labhd.ufba.br/schema/registry-entry.json",
+  "title": "ScholarSkills registry entry",
+  "type": "object",
+  "required": [
+    "id",
+    "slug",
+    "title",
+    "version",
+    "status",
+    "maturity",
+    "repository",
+    "license",
+    "authors"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^SS-[0-9]{4}$",
+      "description": "Catalog identifier, assigned on acceptance."
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "maxLength": 64,
+      "description": "Must equal the Agent Skills 'name' field and the skill directory name."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "version": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "enum": [
+        "planned",
+        "available",
+        "deprecated"
+      ]
+    },
+    "maturity": {
+      "enum": [
+        "experimental",
+        "tested",
+        "peer-reviewed",
+        "replicated"
+      ]
+    },
+    "repository": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "doi_version": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^10\\.[0-9]{4,9}/[-._;()/:A-Za-z0-9]+$"
+    },
+    "doi_concept": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^10\\.[0-9]{4,9}/[-._;()/:A-Za-z0-9]+$"
+    },
+    "license": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "affiliation": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "orcid": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$"
+          },
+          "github": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "skill_spec_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "compatibility": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Path or URL of the artefact that justifies the maturity level."
+    },
+    "deprecated_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "superseded_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "added": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    }
+  }
+}

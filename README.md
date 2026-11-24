@@ -1,0 +1,56 @@
+# ScholarSkills — Scientific Agent Skills
+
+An academic repository of **executable research methodologies for AI agents**, maintained by the
+[Digital Humanities Laboratory, Federal University of Bahia (LABHDUFBA)](https://labhd.ufba.br).
+
+ScholarSkills treats an agent skill as a **citable methodological object**: documented, versioned,
+tested, licensed and archived with a DOI, in the same way a method section or a piece of research
+software is. The goal is methodological transparency and reproducibility for computational social
+science and the digital humanities — not tool distribution.
+
+## Why
+
+Agent skills circulate widely and are rarely inspectable. A reader cannot tell what a skill
+actually does, which decisions it encodes, where it fails, or how to cite it. ScholarSkills
+addresses that gap by requiring, for every skill: verifiable methodological grounding, executable
+instructions, declared dependencies, tests including failure cases, documented limitations, a
+license, and ethical considerations.
+
+## Repository layout
+
+```
+scholarskills/
+  registry/                              # catalogue: policy, schema, registry.json
+  skill-template/                        # canonical package for a new skill
+  scientific-agent-skill-development/    # SS-0000 — the meta-skill
+```
+
+Each skill lives in its **own repository** so that it can carry its own release, version DOI and
+concept DOI. This repository holds the catalogue, the template and the meta-skill.
+
+## Maturity levels
+
+| Level | Meaning | Evidence required |
+|---|---|---|
+| `experimental` | Works on the author's machine; not independently exercised | Author's report |
+| `tested` | Automated tests exist and pass in a declared environment | CI log or `tests/RESULTS.md` |
+| `peer-reviewed` | Assessed by named reviewers under the editorial policy | Review record |
+| `replicated` | Independently re-executed by a third party with reported results | Replication report |
+
+A level is **never** assigned by aspiration. `peer-reviewed` and `replicated` require documentary
+evidence stored in the skill repository; absence of evidence means the lower level.
+
+## Status
+
+This repository is in **pre-release**. The catalogue (`registry/registry.json`) lists SS-0000 as
+`tested` and SS-0001…SS-0008 as `planned` (no DOI, no deposit, not available).
+
+## Licence
+
+Code: MIT. Documentation: CC BY 4.0. **Pending institutional approval** — see
+`DEPLOYMENT_LOG.md` before reusing.
+
+## Citation
+
+See `CITATION.cff`. No DOI is registered yet; the record is intentionally left without an
+identifier rather than carrying a placeholder.

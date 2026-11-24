@@ -1,0 +1,33 @@
+{
+  "title": "Scientific Agent Skill Development and Validation Protocol (SS-0000)",
+  "description": "<p>A protocol and reference implementation that turn a research method into a documented, tested and citable agent skill. It enforces the Agent Skills specification, requires methodological grounding, positive/negative/edge-case tests, environment recording, ethics and rights review, structural validation, and deposit preparation. It does not validate the scientific claim, and it never publishes or reserves an identifier on its own.</p>",
+  "upload_type": "software",
+  "license": "mit",
+  "access_right": "open",
+  "version": "1.0.0",
+  "creators": [
+    {
+      "name": "Nascimento, Leonardo Fernandes",
+      "affiliation": "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+    },
+    {
+      "name": "Brasil, Eric",
+      "affiliation": "University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+    },
+    {
+      "name": "Sodré, Ricardo",
+      "affiliation": "Federal University of Bahia"
+    }
+  ],
+  "keywords": [
+    "agent skills",
+    "research methodology",
+    "validation",
+    "reproducibility",
+    "digital humanities",
+    "computational social science"
+  ],
+  "language": "eng",
+  "notes": "ScholarSkills SS-0000. Digital Humanities Laboratory, Federal University of Bahia (LABHDUFBA).",
+  "related_identifiers": []
+}

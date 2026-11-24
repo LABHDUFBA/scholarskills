@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this skill, please cite it as below."
+title: "TODO(SS): skill title"
+abstract: >-
+  TODO(SS): what the skill does, which method it implements and what it must not be used for.
+type: software
+authors:
+  - family-names: "TODO(SS)"
+    given-names: "TODO(SS)"
+    affiliation: "TODO(SS)"
+    # orcid: "0000-0000-0000-0000"   # include only if the author provides it
+version: 0.1.0
+date-released: "YYYY-MM-DD"
+license: MIT
+# identifiers:                        # uncomment ONLY after an authorised deposit
+#   - type: doi
+#     value: 10.5281/zenodo.XXXXXXX   # version DOI
+keywords:
+  - agent skills
+  - TODO(SS)

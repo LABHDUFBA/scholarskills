@@ -1,0 +1,21 @@
+{
+  "title": "TODO(SS): skill title",
+  "description": "<p>TODO(SS): what the skill does, the method it implements, and its limitations.</p>",
+  "upload_type": "software",
+  "license": "mit",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "TODO(SS), TODO(SS)",
+      "affiliation": "TODO(SS)"
+    }
+  ],
+  "keywords": [
+    "agent skills",
+    "research methodology",
+    "reproducibility"
+  ],
+  "language": "eng",
+  "notes": "ScholarSkills — Digital Humanities Laboratory, Federal University of Bahia (LABHDUFBA).",
+  "related_identifiers": []
+}

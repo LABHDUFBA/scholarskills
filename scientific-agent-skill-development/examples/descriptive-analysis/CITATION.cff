@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Reference example of the ScholarSkills protocol."
+title: "descriptive-analysis — reference example skill"
+type: software
+authors:
+  - family-names: "Nascimento"
+    given-names: "Leonardo Fernandes"
+    affiliation: "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+version: 0.2.0
+date-released: "2026-11-24"
+license: MIT
