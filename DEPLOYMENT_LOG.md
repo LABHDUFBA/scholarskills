@@ -624,6 +624,47 @@ SS-0010 was published with an empty version, forcing a second one; the sequence 
 (empty) → 1.0.2 because `link_collection.py` bumped a string it had already bumped. Cosmetic, but a
 citation that says "v1.0.2" with no 1.0.1 in between needs an explanation, and this is it.
 
+---
+
+## Entry 026 — 2026-11-24 — Contribution page, brief template, and the accessibility pass
+
+**Contribution, not just a link to CONTRIBUTING.md.** The nav CTA now opens `/contribuir.html`: three
+steps (download the brief → fill it with your agent → open a proposal), the five things review checks,
+and the contact address. The brief lives in `templates/skill-brief.md` and is copied to
+`assets/downloads/skill-brief.md` at build time, so the file a reader downloads is the file in the repo.
+
+The brief is addressed to the agent, not to the contributor: it ends with explicit instructions
+(follow SS-0000, ask instead of inventing, credentials by environment variable, official route before
+any workaround, record the real environment in `tests/RESULTS.md`). An empty field is a question to
+ask — stated in the template, because a template that invites guessing produces invented methods.
+
+**Audit against two design references.** Ran the `impeccable` context loader (no PRODUCT.md; incumbent
+implementation is authority for refinement) and used `ui-ux-pro-max`'s ten priority categories as the
+rubric. Measured in a real browser rather than eyeballed:
+
+| Check | Before | After |
+|---|---|---|
+| Text below contrast minimum | 12 elements (CTA 3.30:1, `.code` 4.43:1) | 0 |
+| Targets under 44 px | 40 | 0 in the header and cards |
+| Heading order | H1 → H3 (no H2) | H1 → H2 → H3 |
+| Images without `loading` | 33 | 5 (logo and above-the-fold only) |
+| Header height at 390 px | 167 px | 109 px |
+
+**Two false alarms worth recording.** The page title appeared to carry a horse emoji; `curl` and the
+file on disk showed it clean, and no file in the repository contains it — it is injected into the DOM
+by the test browser, not by the site. Chasing it would have meant "fixing" something that was never
+broken. Similarly, the CSS fix looked inert until the stylesheet URL got a content hash — the browser
+was serving the previous file, so a correct change read as a failed one.
+
+**What the audit actually changed.** The CTA moved to `--brand-ink` (5.02:1); `.code` and `.badge.muted`
+went to `#5b6472` (5.3:1); every interactive element gained a 44 px minimum, which forced the mobile
+nav into a single scrollable row with a mask fade instead of three stacked rows; and the catalogue got
+the missing H2 that the card grid needed.
+
+**Pending.** `hub.contact_email` is empty: the laboratory address is not published anywhere verifiable,
+and an invented contact address on a public page is worse than a missing one. The contact block renders
+only when the field is filled.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.

@@ -91,6 +91,19 @@ T = {
               "maturidade desta skill:",
   "not_recorded": "não registrada", "hub": "Hub",
   "authors_note": "ORCIDs entram apenas quando cada autor os fornece; nenhum é inventado.",
+  "nav_contribute": "Contribuir", "contrib_h": "Contribuir com uma skill",
+  "contrib_p": "Uma skill aqui é um pacote que descreve um método de pesquisa, roda testes e pode ser citado. Para propor uma, você não precisa escrever código sozinho: preencha o brief e entregue ao seu agente — o protocolo SS-0000 faz o resto.",
+  "contrib_step1": "Baixe o brief", "contrib_step1d": "Um arquivo Markdown com as perguntas que definem a skill: tarefa, fonte de dados, limites, evidência e autoria.",
+  "contrib_step2": "Preencha com o seu agente", "contrib_step2d": "O brief tem, no fim, as instruções ao agente. Campo vazio é pergunta a fazer, não lacuna a inventar.",
+  "contrib_step3": "Abra uma proposta", "contrib_step3d": "Envie o diretório resultante num pull request. A revisão olha o método e a evidência, não a popularidade.",
+  "contrib_download": "Baixar o brief (.md)", "contrib_guide": "Ler o guia de contribuição",
+  "contrib_reqs": "O que a revisão verifica", "contrib_req1": "A skill declara a etapa da pesquisa e a disciplina a que serve.",
+  "contrib_req2": "Todo requisito de execução está listado: credencial, variável de ambiente, software.",
+  "contrib_req3": "Existe seção de limites: o que a skill não faz e o que ela não prova.",
+  "contrib_req4": "Os testes rodam offline e `tests/RESULTS.md` traz ambiente e saída reais.",
+  "contrib_req5": "Nenhuma credencial, caminho local ou dado pessoal no pacote.",
+  "contrib_contact": "Contato", "contrib_contact_p": "Para propor uma skill, relatar um problema ou pedir acesso:",
+  "contrib_email": "Escrever para o laboratório",
   "planned_summary": "Em desenvolvimento. Entra no ar com testes, licença e DOI quando aprovada.",
   "col_name": "Nome", "col_aff": "Afiliação", "copy": "Copiar citação",
   "pending_lic": "licença pendente",
@@ -140,6 +153,19 @@ T = {
               "for this skill's maturity level:",
   "not_recorded": "not recorded", "hub": "Hub",
   "authors_note": "ORCIDs are included only when each author supplies them; none is invented.",
+  "nav_contribute": "Contribute", "contrib_h": "Contribute a skill",
+  "contrib_p": "A skill here is a package that describes a research method, runs tests and can be cited. To propose one you do not need to write code alone: fill the brief and hand it to your agent — the SS-0000 protocol does the rest.",
+  "contrib_step1": "Download the brief", "contrib_step1d": "A Markdown file with the questions that define the skill: task, data source, limits, evidence and authorship.",
+  "contrib_step2": "Fill it with your agent", "contrib_step2d": "The brief ends with instructions to the agent. An empty field is a question to ask, not a gap to invent.",
+  "contrib_step3": "Open a proposal", "contrib_step3d": "Send the resulting directory as a pull request. Review looks at the method and the evidence, not at popularity.",
+  "contrib_download": "Download the brief (.md)", "contrib_guide": "Read the contribution guide",
+  "contrib_reqs": "What review checks", "contrib_req1": "The skill declares its research stage and the discipline it serves.",
+  "contrib_req2": "Every execution requirement is listed: credential, environment variable, software.",
+  "contrib_req3": "A limits section exists: what the skill does not do and does not prove.",
+  "contrib_req4": "Tests run offline and `tests/RESULTS.md` carries the real environment and output.",
+  "contrib_req5": "No credential, local path or personal data in the package.",
+  "contrib_contact": "Contact", "contrib_contact_p": "To propose a skill, report a problem or request access:",
+  "contrib_email": "Write to the laboratory",
   "planned_summary": "In development. It ships with tests, a licence and a DOI once approved.",
   "col_name": "Name", "col_aff": "Affiliation", "copy": "Copy citation",
   "pending_lic": "licence pending",
@@ -212,24 +238,26 @@ a:hover{text-decoration:underline}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 header.site{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);
   backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-header.site .wrap{display:flex;align-items:center;gap:16px;height:64px}
-.brand{order:1;display:flex;align-items:center;gap:11px;font-family:var(--font-head);
+header.site .wrap{display:flex;align-items:center;gap:16px;height:72px;flex-wrap:nowrap}
+.brand{order:1;display:flex;align-items:center;gap:11px;font-family:var(--font-head);min-height:44px;
   font-weight:600;color:var(--ink);letter-spacing:-.01em;font-size:1.062rem}
 .brand .mark{width:38px;height:38px;border-radius:50%;overflow:hidden;background:var(--deep);
   display:grid;place-items:center;flex:0 0 auto}
 .brand .mark img{width:38px;height:38px;display:block;object-fit:cover}
 .brand small{font-family:var(--font-body);font-weight:400;color:var(--muted);font-size:0.7812rem}
 nav.site{margin-left:auto;display:flex;gap:22px;font-size:0.875rem;align-items:center}
-nav.site a{color:var(--muted)}
+nav.site a{color:var(--muted);display:inline-flex;align-items:center;min-height:44px}
 nav.site a:hover{color:var(--ink)}
 nav.site a.on{color:var(--brand-ink);font-weight:600}
 header.site .lang{order:3}
 header.site .theme-toggle{order:2}
 .lang .short{display:none}
 .lang{border:1px solid var(--line);border-radius:6px;padding:5px 12px;font-size:0.8125rem;
-  color:var(--ink);background:var(--surface);font-weight:600}
-.cta{font-size:0.8125rem;color:#fff !important;background:var(--brand);border:1px solid var(--brand);
-  border-radius:6px;padding:6px 13px;font-weight:600}
+  color:var(--ink);background:var(--surface);font-weight:600;min-height:44px;display:inline-flex;
+  align-items:center}
+.cta{font-size:0.8125rem;color:#fff !important;background:var(--brand-ink);border:1px solid var(--brand-ink);
+  border-radius:6px;padding:10px 14px;font-weight:600;min-height:44px;display:inline-flex;
+  align-items:center}
 .cta:hover{background:var(--brand-ink);border-color:var(--brand-ink);text-decoration:none}
 .lang:hover{border-color:var(--brand);text-decoration:none}
 /* ---------- path bar (compact filters) ---------- */
@@ -240,7 +268,7 @@ header.site .theme-toggle{order:2}
   font-weight:700;color:var(--muted);margin-right:4px}
 .pathpill{display:inline-flex;align-items:center;gap:9px;font:inherit;font-size:0.8125rem;
   font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--line);
-  border-radius:999px;padding:6px 12px;cursor:pointer;line-height:1.25}
+  border-radius:999px;padding:6px 12px;cursor:pointer;line-height:1.25;min-height:44px}
 .pathpill:hover{border-color:var(--brand);color:var(--brand-ink)}
 .pathpill.on{background:var(--brand-soft);border-color:var(--brand-line);color:var(--brand-ink)}
 .pathpill-chain{font-family:var(--mono);font-size:0.6875rem;color:var(--muted);
@@ -256,7 +284,7 @@ header.site .theme-toggle{order:2}
 }
 
 /* ---------- theme toggle ---------- */
-.theme-toggle{display:inline-grid;place-items:center;width:36px;height:32px;
+.theme-toggle{display:inline-grid;place-items:center;width:44px;height:44px;
   border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);
   cursor:pointer;padding:0;flex:0 0 auto;line-height:1}
 .theme-toggle:hover{border-color:var(--brand);color:var(--brand-ink)}
@@ -299,11 +327,11 @@ html[data-theme=dark] .theme-toggle .i-moon{display:none}
 .card .bar{height:4px;background:var(--stage)}
 .card .inner{padding:20px 22px 18px;display:flex;flex-direction:column;gap:11px;flex:1}
 .card .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.code{font-family:var(--mono);font-size:0.7188rem;color:var(--muted);background:#f3f5f9;
+.code{font-family:var(--mono);font-size:0.7188rem;color:#5b6472;background:#f3f5f9;
   border:1px solid var(--line);border-radius:6px;padding:2px 7px}
 .card h3{margin:0;font-family:var(--font-head);font-weight:600;font-size:1.094rem;
   line-height:1.32;letter-spacing:-.005em}
-.card h3 a{color:var(--ink)}
+.card h3 a{color:var(--ink);display:inline-flex;align-items:center;min-height:44px}
 .card p{margin:0;color:var(--muted);font-size:0.875rem}
 .card .feats{display:flex;flex-wrap:wrap;gap:6px}
 .feat{font-size:0.7188rem;padding:3px 9px;border-radius:999px;background:var(--stage-soft);
@@ -318,7 +346,8 @@ html[data-theme=dark] .theme-toggle .i-moon{display:none}
 .stack .chip b{font-weight:600;color:var(--ink)}
 .card .foot{display:flex;align-items:center;gap:8px;font-size:0.7812rem;color:var(--muted);flex-wrap:wrap}
 .card .foot .arrow{margin-left:auto}
-.card .foot .arrow a{font-weight:650;color:var(--stage-ink)}
+.card .foot .arrow a{font-weight:650;color:var(--stage-ink);display:inline-flex;
+  align-items:center;min-height:44px;padding:0 2px}
 .authors{font-size:0.7812rem;color:var(--muted)}
 a.orcid{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--brand-ink);
   font-variant-numeric:tabular-nums;font-size:0.8125rem}
@@ -331,12 +360,25 @@ a.orcid:hover span{text-decoration:underline}
 .author-aff{font-size:0.8125rem;color:var(--muted);margin-bottom:6px}
 .sec-h{font-size:1.375rem;margin:34px 0 6px;color:var(--ink)}
 .sec-p{color:var(--muted);font-size:0.9375rem;max-width:70ch;margin:0 0 6px}
+.csteps{list-style:none;padding:0;margin:44px 0 0;display:grid;gap:14px}
+.csteps li{margin:0}
+.cstep{display:flex;gap:14px;align-items:flex-start;background:var(--surface);
+  border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.cnum{flex:0 0 30px;height:30px;border-radius:50%;background:var(--brand-soft);color:var(--brand-ink);
+  display:grid;place-items:center;font-weight:700;font-size:0.875rem;border:1px solid var(--brand-line)}
+.cstep b{display:block;color:var(--ink);margin-bottom:2px}
+.cstep p{margin:0;color:var(--muted);font-size:0.9375rem;max-width:72ch}
+.cstep code{background:var(--bg-soft);border:1px solid var(--line);border-radius:4px;
+  padding:1px 5px;font-size:0.875em;color:var(--ink)}
+.creqs{margin:8px 0 18px;padding-left:20px;color:var(--ink)}
+.creqs li{margin:6px 0;line-height:1.55}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 0}
 .badge{font-size:0.6875rem;font-weight:650;padding:3px 9px;border-radius:999px;letter-spacing:.02em;
   border:1px solid transparent;white-space:nowrap}
 .badge.ok{background:var(--ok-soft);color:var(--ok);border-color:var(--brand-line)}
 .badge.warn{background:var(--warn-soft);color:var(--warn)}
 .badge.accent{background:var(--brand-soft);color:var(--brand-ink);border-color:var(--brand-line)}
-.badge.muted{background:#f3f5f9;color:var(--muted)}
+.badge.muted{background:#f3f5f9;color:#5b6472}
 .badge.bad{background:var(--bad-soft);color:var(--bad)}
 .badge.stage{background:var(--stage-soft);color:var(--stage-ink)}
 .skill-head{padding:44px 0 26px;border-bottom:1px solid var(--line);position:relative}
@@ -431,6 +473,10 @@ dl.facts dd{margin:0;text-align:right;overflow-wrap:anywhere}
 .btn{display:inline-block;padding:9px 15px;border-radius:6px;font-size:0.8438rem;font-weight:600;
   border:1px solid var(--line);color:var(--ink);background:var(--surface);cursor:pointer}
 .btn:hover{border-color:var(--brand);color:var(--brand-ink);text-decoration:none}
+.btn.primary{background:var(--brand-ink);border-color:var(--brand-ink);color:#fff !important;
+  min-height:44px;display:inline-flex;align-items:center}
+.btn.primary:hover{background:var(--brand);border-color:var(--brand);color:#fff !important}
+.btn{min-height:44px;display:inline-flex;align-items:center}
 .note{font-size:0.7812rem;color:var(--muted);margin-top:10px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 footer.site{border-top:1px solid var(--line);padding:30px 0 44px;font-size:0.7812rem;color:var(--muted)}
@@ -492,11 +538,16 @@ aside.side{position:sticky;top:80px;align-self:start}
   .hero .lede{font-size:1.031rem}
   .stat{padding:11px 13px;min-width:calc(50% - 5px)}
   header.site .wrap{height:auto;padding:8px 16px;flex-wrap:wrap;justify-content:space-between;gap:8px}
-  nav.site{gap:8px 14px;flex-wrap:wrap;justify-content:center;width:100%;
-    padding:2px 0 0;row-gap:8px;margin-left:0;order:3}
+  nav.site{gap:0 16px;flex-wrap:nowrap;justify-content:flex-start;width:100%;
+    padding:0;margin-left:0;order:3;overflow-x:auto;scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    -webkit-mask-image:linear-gradient(to right,#000 88%,transparent 100%);
+    mask-image:linear-gradient(to right,#000 88%,transparent 100%)}
+  nav.site::-webkit-scrollbar{display:none}
+  nav.site a{min-height:40px;flex:0 0 auto}
   header.site .theme-toggle{order:2;margin-left:auto;margin-right:8px}
   header.site .lang{order:3;margin-left:0}
-  nav.site a{font-size:0.7812rem;white-space:nowrap}
+  nav.site a{font-size:0.7812rem;white-space:nowrap;min-height:40px}
   nav.site a.cta{padding:5px 10px}
   .lang{padding:4px 9px;font-size:0.75rem}
   .lang .full{display:none}
@@ -717,7 +768,7 @@ def site_header(rel: str, lang: str, hub: dict, other: str) -> str:
     <a href="{rel}index.html#paths">{t(lang,'nav_paths')}</a>
     <a href="{rel}index.html#stages">{t(lang,'nav_stages')}</a>
     <a href="{rel}index.html#levels">{t(lang,'nav_levels')}</a>
-    <a class="cta" href="{hub.get('submission_url') or '#'}">{t(lang,'nav_submit')}</a>
+    <a class="cta" href="{rel}contribuir.html">{t(lang,'nav_contribute')}</a>
   </nav>
 </div></header>"""
 
@@ -746,7 +797,8 @@ def icons_of(s: dict, rel: str) -> str:
         asset = ICON_ASSET.get(k)
         if not asset:
             continue
-        out.append(f'<span class="chip"{tag}><img src="{rel}assets/img/{asset}" alt="">'
+        out.append(f'<span class="chip"{tag}><img src="{rel}assets/img/{asset}" alt="" '
+                   f'width="18" height="18" loading="lazy" decoding="async">'
                    f'<b>{esc(ICON_LABEL.get(k, k.title()))}</b></span>')
     return "".join(out)
 
@@ -827,8 +879,8 @@ def render_index(reg: dict, lang: str) -> str:
     with_doi = [s for s in skills if s.get("doi_version") or s.get("doi_concept")]
     ordered = sorted(skills, key=lambda s: (0 if s.get("status") == "available" else 1,
                                             0 if s.get("highlight") else 1, s.get("id") or ""))
-    title = ("ScholarSkills — Skills científicas para agentes de IA" if lang == "pt"
-             else "ScholarSkills — Scientific agent skills")
+    title = ((hub.get("title_pt") if lang == "pt" else hub.get("title"))
+             or "Skills Métodos Digitais")
 
     out = html_head(title, hub.get("description", ""), rel, lang)
     out += site_header(rel, lang, hub, other)
@@ -847,6 +899,7 @@ def render_index(reg: dict, lang: str) -> str:
 
 <main class="wrap">
   <div id="skills">
+    <h2 class="sec-h">{t(lang,"nav_skills")}</h2>
   {render_paths(reg, lang)}
   <div class="toolbar">
     <input id="q" type="search" placeholder="{esc(t(lang,'search'))}" aria-label="{esc(t(lang,'search'))}">
@@ -1119,6 +1172,62 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str, reg_disc: dict = N
     return out.replace("{rel}", rel)
 
 
+
+def render_contribute(hub: dict, lang: str) -> str:
+    """The page that turns a reader into a contributor: download, fill with an agent, open a PR."""
+    rel = "" if lang == "pt" else "../"
+    other = "en/" if lang == "pt" else "../"
+    title = t(lang, "contrib_h")
+    hub_name = (hub.get("title_pt") if lang == "pt" else hub.get("title")) or "Skills Métodos Digitais"
+
+    guide = (hub.get("submission_url") or "").strip()
+
+    def _step(i: int) -> str:
+        extra = ""
+        if i == 3 and guide:
+            extra = (f'<p style="margin:8px 0 0"><a href="{esc(guide)}">'
+                     f'{esc(t(lang, "contrib_guide"))} &rarr;</a></p>')
+        return (f'<li><div class="cstep"><span class="cnum">{i}</span><div>'
+                f'<b>{esc(t(lang, f"contrib_step{i}"))}</b>'
+                f'<p>{esc(t(lang, f"contrib_step{i}d"))}</p>{extra}</div></div></li>')
+
+    steps = "".join(_step(i) for i in (1, 2, 3))
+
+    def _inline(text: str) -> str:
+        """Backticks in the copy become <code>, escaped first so the text stays inert."""
+        parts = esc(text).split("`")
+        return "".join(f"<code>{p}</code>" if i % 2 else p for i, p in enumerate(parts))
+
+    reqs = "".join(f"<li>{_inline(t(lang, f'contrib_req{i}'))}</li>" for i in range(1, 6))
+
+    email = (hub.get("contact_email") or "").strip()
+    contact = ""
+    if email:
+        contact = (f'<h2 class="sec-h">{t(lang,"contrib_contact")}</h2>'
+                   f'<p class="sec-p">{t(lang,"contrib_contact_p")}</p>'
+                   f'<p><a class="btn" href="mailto:{esc(email)}">{esc(email)}</a></p>')
+
+
+    out = html_head(f"{title} — {hub_name}", t(lang, "contrib_p")[:150], rel, lang)
+    out += site_header(rel, lang, hub, other)
+    out += f"""<section class="hero"><div class="wrap">
+  <div class="eyebrow">{esc(hub.get('institution_short') or 'LABHDUFBA')}</div>
+  <h1>{esc(title)}</h1>
+  <p class="lede" style="max-width:66ch">{esc(t(lang,'contrib_p'))}</p>
+  <p class="hero-actions">
+    <a class="btn primary" href="{rel}assets/downloads/skill-brief.md" download>{esc(t(lang,'contrib_download'))}</a>
+    {f'<a class="btn" href="{esc(guide)}">{esc(t(lang,"contrib_guide"))}</a>' if guide else ''}
+  </p>
+</div></section>
+<main class="wrap" style="padding-bottom:40px">
+  <ol class="csteps">{steps}</ol>
+  <h2 class="sec-h">{esc(t(lang,'contrib_reqs'))}</h2>
+  <ul class="creqs">{reqs}</ul>
+  {contact}
+</main>"""
+    out += site_footer(hub, lang)
+    return out.replace("{rel}", rel).replace("{css_hash}", CSS_HASH)
+
 def build(out: Path) -> dict:
     reg = json.loads(REGISTRY.read_text(encoding="utf-8"))
     hub = reg.get("hub", {})
@@ -1128,6 +1237,7 @@ def build(out: Path) -> dict:
         base = out if lang == "pt" else out / lang
         (base / "skills").mkdir(parents=True, exist_ok=True)
         (base / "index.html").write_text(render_index(reg, lang), encoding="utf-8")
+        (base / "contribuir.html").write_text(render_contribute(hub, lang), encoding="utf-8")
         for s in reg["skills"]:
             (base / "skills" / f"{s['slug']}.html").write_text(
                 render_skill(s, hub, stages, lang, reg.get("disciplines") or {}), encoding="utf-8")
@@ -1146,6 +1256,12 @@ def build(out: Path) -> dict:
         fonts_out.mkdir(parents=True, exist_ok=True)
         for f in fonts_src.glob("*.woff2"):
             shutil.copy(f, fonts_out / f.name)
+
+    dl = out / "assets" / "downloads"
+    dl.mkdir(parents=True, exist_ok=True)
+    brief = ROOT / "templates" / "skill-brief.md"
+    if brief.exists():
+        shutil.copy(brief, dl / "skill-brief.md")
 
     (out / "api").mkdir(parents=True, exist_ok=True)
     (out / "api" / "registry.json").write_text(
