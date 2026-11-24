@@ -1,0 +1,42 @@
+{
+  "title": "Digital Methods Skills — executable research methodologies for AI agents",
+  "description": "<p>A catalogue of executable research methodologies for AI agents, each one a package with a specification, a test suite, a licence and an explicit statement of what it does not do. Every entry declares the research stage it serves, the disciplines it was designed for and the credentials the operator must provide. Validation is structural and is reported as such: passing the suite proves conformance, not scientific correctness.</p><p>Skills included: protocol for developing and validating a skill (SS-0000), Zotero reference management (SS-0001), DOU and federal covenants (SS-0010), Brazilian fiscal data from SICONFI (SS-0011), Hugo site maintenance (SS-0012), Lattes CV editing (SS-0013).</p>",
+  "upload_type": "software",
+  "license": "mit",
+  "access_right": "open",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Nascimento, Leonardo Fernandes",
+      "affiliation": "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+    },
+    {
+      "name": "Brasil, Eric",
+      "affiliation": "University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+    },
+    {
+      "name": "Sodré, Ricardo",
+      "affiliation": "Federal University of Bahia"
+    }
+  ],
+  "keywords": [
+    "agent skills",
+    "research methods",
+    "reproducibility",
+    "open science",
+    "digital humanities",
+    "methodology"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/LABHDUFBA/scholarskills",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://labhdufba.github.io/scholarskills/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    }
+  ]
+}
