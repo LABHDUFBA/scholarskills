@@ -65,7 +65,7 @@
         "Validate structure, then prepare — never perform — the deposit."
       ],
       "install": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/scientific-agent-skill-development\npip install pyyaml",
-      "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Scientific Agent Skill Development and Validation Protocol (ScholarSkills SS-0000, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/scholarskills",
+      "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Scientific Agent Skill Development and Validation Protocol (ScholarSkills SS-0000, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/scholarskills.",
       "links": {
         "repository": "https://github.com/LABHDUFBA/scholarskills",
         "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/scientific-agent-skill-development"
@@ -126,7 +126,7 @@
         "Refuse politely: a 403 is reported as a scope limit, never worked around."
       ],
       "install": "git clone https://github.com/LABHDUFBA/zotero-reference-management.git\ncd zotero-reference-management\npip install -r requirements.txt\nexport ZOTERO_API_KEY=\"...\"\nexport ZOTERO_LIBRARY_ID=\"123456\"",
-      "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Zotero Reference Management (ScholarSkills SS-0001, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/zotero-reference-management",
+      "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Zotero Reference Management (ScholarSkills SS-0001, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/zotero-reference-management.",
       "links": {
         "repository": "https://github.com/LABHDUFBA/scholarskills",
         "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/zotero-reference-management"
@@ -310,7 +310,11 @@
     "description": "An academic hub of agent skills treated as methodological objects: each one documented, versioned, tested and licensed, and — once the deposit is authorised — archived with a DOI. Nothing here carries an identifier it does not have: a skill without a DOI says so.",
     "site_url": "https://labhdufba.github.io/scholarskills/",
     "repo_url": "https://github.com/LABHDUFBA/scholarskills",
-    "submission_url": "https://github.com/LABHDUFBA/scholarskills/blob/main/CONTRIBUTING.md"
+    "submission_url": "https://github.com/LABHDUFBA/scholarskills/blob/main/CONTRIBUTING.md",
+    "doi_policy": "One record per repository release: the Zenodo GitHub integration mints a version DOI per release and a concept DOI for the record. Every available skill cites the concept DOI and points to its own directory; per-skill DOIs would require one repository per skill, which this project does not use.",
+    "doi_concept": null,
+    "doi_version": null,
+    "release": null
   },
   "policy_note": "One repository holds every skill; each skill keeps its own directory, version, CHANGELOG and DOI. A separate repository per skill is not used."
 }

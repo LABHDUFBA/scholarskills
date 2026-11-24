@@ -261,14 +261,78 @@ three are operator decisions, since all three make the content public.
 | Is there an MCP alternative worth building? | A small local MCP wrapping `depositions` (create, upload, metadata, publish) is feasible with the `fastmcp` skill. It would add convenience, not capability: the API already does the work. |
 | GitHub–Zenodo integration | The recommended route for this project: it mints a version DOI per release and a concept DOI for the record, with no file juggling. Requires the repository to be **public** and the integration enabled in Zenodo settings (UI action). |
 
+---
+
+## Entry 013 — 2026-11-24 — Repository public, hub live, single-repository policy
+
+**Status:** done
+
+| Item | Value |
+|---|---|
+| Visibility | **public** (operator authorisation, recorded) |
+| Hub | **https://labhdufba.github.io/scholarskills/** — HTTP 200 verified |
+| Pages | source = GitHub Actions (`build_type: workflow`), HTTPS enforced |
+| Workflows | `validate` ✓ and `hub` ✓ on the same commit |
+
+**Policy change (operator decision):** the project uses **one repository for all skills**. The
+standalone repository `LABHDUFBA/zotero-reference-management` was therefore folded into
+`zotero-reference-management/` in this repository — content verified present on the remote
+(`SKILL.md` 4 925 bytes, test file 7 212 bytes) **before** the standalone repository was archived
+(archived, not deleted: reversible, and the history is preserved).
+
+**Consequence for DOIs, stated explicitly:** the Zenodo GitHub integration mints **one DOI per
+release of the repository**, not one per skill. With a single repository, every available skill cites
+the same concept DOI and points to its own directory. Per-skill DOIs would require one repository per
+skill, which the operator has ruled out. This is recorded in `registry.json` under `hub.doi_policy`
+and is a deliberate trade-off, not an oversight.
+
+**New script:** `scripts/set_doi.py` registers or clears a DOI idempotently, validates the format
+before writing, requires the concept DOI whenever a version DOI is given, and regenerates the hub.
+Tested: `--clear` and an invalid identifier (refused with the expected message).
+
+---
+
+## Entry 014 — 2026-11-24 — Release v1.0.0 published; DOI pending an operator toggle
+
+**Status:** partially blocked
+
+| Item | Value |
+|---|---|
+| Release | https://github.com/LABHDUFBA/scholarskills/releases/tag/v1.0.0 |
+| Published | 2026-11-24T08:56:35Z, not a draft |
+| DOI | **none** |
+
+**Evidence that the integration is not active for this repository:**
+
+1. `gh api repos/LABHDUFBA/scholarskills/hooks` returns **no webhook**. The Zenodo GitHub integration
+   installs a webhook on the repository when its switch is enabled; the absence of the hook means the
+   release never reached Zenodo.
+2. The Zenodo API is **unreachable from this host**: `https://zenodo.org/api/records` returns
+   HTTP 403 with an HTML block page, for both plain and browser-like user agents. Earlier in the
+   session the sandbox endpoint answered 200, so the block is recent or path-specific.
+3. No `ZENODO_TOKEN` / `ZENODO_SANDBOX_TOKEN` exists in this environment, so a direct API deposit is
+   not possible either.
+
+**Action required (operator, in the browser — not automatable):**
+
+1. Open https://zenodo.org/account/settings/github/ and enable the switch for
+   **`LABHDUFBA/scholarskills`**. The repository became public only today, which is why it was
+   probably absent from the list when the integration was connected.
+2. Publish a **new release** (e.g. `v1.0.1`); Zenodo only acts on releases published *after* the
+   switch is on. The v1.0.0 release will not be retroactively archived.
+3. Send back the two identifiers Zenodo shows: the **concept DOI** and the **version DOI**. Register
+   them with `python3 scripts/set_doi.py --concept ... --version ... --release v1.0.1`;
+
+Do not paste a token in the chat: the integration makes one unnecessary.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.
 2. Operator confirms Ricardo Sodré's GitHub account, then invitation is sent.
 3. Operator authorises making the repository public, and decides the long-term home
    (`LABHDUFBA/scholarskills` vs. a `ScholarSkills` organisation vs. `LABHDUFBA`).
-4. Operator decides the hub hosting route (public repo + Pages, public site-only repo, or external host).
-5. Deposit route chosen: GitHub–Zenodo integration **or** manual/API (not both).
+4. ~~Operator decides the hub hosting route~~ — public repository, Pages via Actions, site live.
+5. ~~Deposit route chosen~~ — GitHub–Zenodo integration. Pending: enable the repository switch, then a new release.
 5. Sandbox deposit executed with a sandbox token; DOI never presented as scientific.
 6. Production release authorised; version DOI and concept DOI recorded separately in
    `registry/registry.json`.
