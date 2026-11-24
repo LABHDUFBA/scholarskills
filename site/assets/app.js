@@ -1,4 +1,29 @@
 // Progressive enhancement: without JS every card is visible and every link works.
+
+(function(){
+  var root=document.documentElement, KEY='smd-theme', btn=document.getElementById('theme-toggle');
+  function current(){
+    var set=root.getAttribute('data-theme');
+    if(set) return set;
+    return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+  }
+  function paint(){
+    var t=current();
+    if(btn){
+      btn.setAttribute('aria-pressed', t==='dark'?'true':'false');
+      btn.title = t==='dark' ? 'Mudar para tema claro' : 'Mudar para tema escuro';
+    }
+  }
+  if(btn){
+    btn.addEventListener('click',function(){
+      var next = current()==='dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try{ localStorage.setItem(KEY, next); }catch(e){}
+      paint();
+    });
+  }
+  paint();
+})();
 (function(){
   var q=document.getElementById('q'), st=document.getElementById('f-status'),
       mt=document.getElementById('f-maturity'), sg=document.getElementById('f-stage'),

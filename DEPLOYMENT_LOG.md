@@ -513,6 +513,44 @@ returns 7 of 10 for "Sociologia" and 10 when cleared, grid 2×2 at 1400 px and 1
 on row 1, menu on row 2), 118 px below 360 px where the menu wraps instead of overflowing — nothing is
 clipped at any width.
 
+---
+
+## Entry 023 — 2026-11-24 — Manual light/dark toggle and a larger type scale
+
+**Type scale.** Every `font-size` in the stylesheet was converted from px to rem (64 declarations) and
+the root was raised from 16 px to **18 px** (`html{font-size:112.5%}`), the body shorthand from
+`16px/1.62` to `1rem/1.65`, and the two `clamp()` headings from px to rem. Scaling the root keeps the
+whole system proportional: one number changes, nothing is nudged by hand. Measured after:
+root 18 px, body 18 px, card paragraph 15.75 px.
+
+**Theme toggle.** Until now dark mode was only `@media (prefers-color-scheme: dark)`, which a visitor
+cannot override. The block is now generated twice from one source — once under the media query with
+`html:not([data-theme=light])`, once as `html[data-theme=dark]` — so the system preference remains the
+default and a click overrides it. The choice persists in `localStorage` (`smd-theme`) and an inline
+script in `<head>` applies it before first paint, so there is no white flash on a dark page.
+
+Button lives in the header: 36×32 px, sun/moon swapped by CSS, `aria-pressed` maintained by JS, title
+changes between "Mudar para tema claro" and "Mudar para tema escuro". Positioned outside `<nav>`, next
+to the language switch.
+
+**Dark-mode defects found and fixed along the way** (the media-query block had never been exercised
+with the new components):
+
+| Element | Symptom | Fix |
+|---|---|---|
+| Path chips, feature tags, `code.env` | inherited the light `--stage-soft`, white blocks on black | `color-mix()` of the stage colour with the surface, 16 % |
+| `.stack .chip` | hardcoded `#f7f8fb` background, unreadable | uses `var(--bg-soft)`, with a dark override |
+| Skill hero gradient | `--stage-soft` at 100 % produced a pale band on a dark page | `color-mix(... 18%, var(--bg))` |
+| Stage badge | ink too close to the background | 22 % stage on surface, ink lifted 55 % toward white |
+| "planejada" tag | dark on dark | explicit `#1f2822` / `#c9d3cc` |
+| Requirements warning | amber surface kept its light values | `var(--warn-soft)` / `var(--warn)` |
+
+Verified in the browser in both themes on the index and on a skill page: body background flips
+`#fff ↔ #0b0f0c`, text `#111827 ↔ #e9efe9`, chips resolve to `color(srgb …)` values from `color-mix`,
+and `scrollWidth == innerWidth` at 1400 and 390 px. Header on mobile is 128 px at 390 px (logo, theme
+and EN on row one; menu on row two; Submeter centred on row three) — taller than the 89 px of the
+previous entry, which is the cost of the larger base type.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.
