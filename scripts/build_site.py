@@ -411,8 +411,7 @@ a.mail svg{flex:0 0 auto}
 .req{background:var(--surface);border:1px solid var(--line);border-radius:10px;
   padding:15px 16px;border-left:3px solid var(--line)}
 .req.required{border-left-color:var(--stage,var(--brand))}
-.req-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
-  margin-bottom:8px}
+.req-top{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:9px}
 .req h3{font-size:0.9375rem;font-weight:600;margin:0;line-height:1.3}
 .req-badges{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
 .badge.kind{background:#f3f4f6;color:#54606d;border-color:var(--line);text-transform:none;
@@ -485,7 +484,7 @@ dl.facts{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 14px;font-
 dl.facts dt{color:var(--muted)}
 dl.facts dt{color:var(--muted)}
 dl.facts dd{margin:0;text-align:left;overflow-wrap:anywhere;line-height:1.45}
-dl.facts dd .doi{font-size:0.8125rem}
+dl.facts dd .doi{font-size:0.8125rem;display:inline-flex;align-items:center;min-height:24px}
 .btn{display:inline-block;padding:9px 15px;border-radius:6px;font-size:0.8438rem;font-weight:600;
   border:1px solid var(--line);color:var(--ink);background:var(--surface);cursor:pointer}
 .btn:hover{border-color:var(--brand);color:var(--brand-ink);text-decoration:none}
@@ -556,17 +555,33 @@ aside.side{position:sticky;top:80px;align-self:start}
   .hero .lede{font-size:1.031rem}
   .stat{padding:11px 13px;min-width:calc(50% - 5px)}
   header.site .wrap{height:auto;padding:8px 16px;flex-wrap:wrap;justify-content:space-between;gap:8px}
-  nav.site{gap:0 16px;flex-wrap:nowrap;justify-content:flex-start;width:100%;
-    padding:0;margin-left:0;order:3;overflow-x:auto;scrollbar-width:none;
+  nav.site{gap:0 12px;flex-wrap:nowrap;justify-content:flex-start;width:100%;
+    padding:0;overflow-x:auto;scrollbar-width:none;
     -webkit-overflow-scrolling:touch;
     -webkit-mask-image:linear-gradient(to right,#000 88%,transparent 100%);
     mask-image:linear-gradient(to right,#000 88%,transparent 100%)}
   nav.site::-webkit-scrollbar{display:none}
   nav.site a{min-height:40px;flex:0 0 auto}
-  header.site .theme-toggle{order:2;margin-left:auto;margin-right:8px}
-  header.site .lang{order:3;margin-left:0}
-  nav.site a{font-size:0.7812rem;white-space:nowrap;min-height:40px}
+  /* Order is declared here with the same specificity as the desktop rule, otherwise
+     `header.site nav.site` wins and the menu lands on its own row between the controls. */
+  header.site .brand{order:0}
+  header.site .theme-toggle{order:1;margin-left:auto;margin-right:8px}
+  header.site .lang{order:2;margin-left:0}
+  header.site nav.site{order:3;margin-left:0;width:100%}
+  nav.site a{font-size:0.75rem;white-space:nowrap;min-height:40px}
   nav.site a.cta{padding:5px 10px}
+}
+@media(max-width:380px){
+  nav.site{gap:0 8px}
+  nav.site a{font-size:0.7188rem}
+  nav.site a.cta{padding:4px 7px}
+}
+@media(max-width:340px){
+  /* At 320 px no spacing trick fits six items honestly: wrap to a second line instead of
+     hiding the last one behind a scroll the reader has no reason to suspect. */
+  nav.site{flex-wrap:wrap;overflow-x:visible;gap:0 10px;justify-content:center;
+    -webkit-mask-image:none;mask-image:none}
+  nav.site a{font-size:0.7188rem}
   .lang{padding:4px 9px;font-size:0.75rem}
   .lang .full{display:none}
   .lang .short{display:inline}
@@ -803,7 +818,25 @@ def html_head(title: str, description: str, rel: str, lang: str) -> str:
 <body>"""
 
 
-def site_header(rel: str, lang: str, hub: dict, other: str) -> str:
+def site_header(rel: str, lang: str, hub: dict, other: str, active: str = "home") -> str:
+    """`active` marks the current section: the menu is one markup for every page, and the
+    highlight has to follow the page rather than assume everything is the home."""
+
+    def item(key: str, href: str, label: str, cls: str = "") -> str:
+        classes = [c for c in (cls, "on" if key == active else "") if c]
+        attrs = (' class="' + " ".join(classes) + '"') if classes else ""
+        cur = ' aria-current="page"' if key == active else ""
+        return f'<a{attrs} href="{href}"{cur}>{label}</a>'
+
+    nav_html = "\n    ".join([
+        item("home", f"{rel}index.html", t(lang, "nav_home")),
+        item("skills", f"{rel}index.html#skills", t(lang, "nav_skills")),
+        item("paths", f"{rel}index.html#paths", t(lang, "nav_paths")),
+        item("stages", f"{rel}index.html#stages", t(lang, "nav_stages")),
+        item("levels", f"{rel}index.html#levels", t(lang, "nav_levels")),
+        item("contribute", f"{rel}contribuir.html", t(lang, "nav_contribute"), "cta"),
+    ])
+
     return f"""<header class="site"><div class="wrap">
   <a class="brand" href="{hub.get('institution_url','https://labhdufba.github.io/')}">
     <span class="mark"><img src="{rel}assets/img/labhd.webp" alt="LABHDUFBA"></span></a>
@@ -816,12 +849,7 @@ def site_header(rel: str, lang: str, hub: dict, other: str) -> str:
   </button>
     <a class="lang" href="{other}index.html" hreflang="{'en' if lang == 'pt' else 'pt-BR'}"><span class="full">{t(lang,'switch')}</span><span class="short">{'EN' if lang == 'pt' else 'PT'}</span></a>
   <nav class="site">
-    <a class="on" href="{rel}index.html">{t(lang,'nav_home')}</a>
-    <a href="{rel}index.html#skills">{t(lang,'nav_skills')}</a>
-    <a href="{rel}index.html#paths">{t(lang,'nav_paths')}</a>
-    <a href="{rel}index.html#stages">{t(lang,'nav_stages')}</a>
-    <a href="{rel}index.html#levels">{t(lang,'nav_levels')}</a>
-    <a class="cta" href="{rel}contribuir.html">{t(lang,'nav_contribute')}</a>
+    {nav_html}
   </nav>
 </div></header>"""
 
@@ -936,7 +964,7 @@ def render_index(reg: dict, lang: str) -> str:
              or "Skills Métodos Digitais")
 
     out = html_head(title, hub.get("description", ""), rel, lang)
-    out += site_header(rel, lang, hub, other)
+    out += site_header(rel, lang, hub, other, active="home")
     out += f"""<section class="hero"><div class="wrap">
   <div class="eyebrow">{esc(hub.get('institution_short') or hub.get('institution',''))}</div>
   <h1>{esc(hub.get('title_pt') if (lang=='pt' and hub.get('title_pt')) else hub.get('title','ScholarSkills'))}</h1>
@@ -1119,7 +1147,7 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str, reg_disc: dict = N
     reg_disc = reg_disc or {}
     reqs_html = render_requirements(s, lang)
     out = html_head(f"{title} — ScholarSkills", sub or "", rel, lang)
-    out += site_header(rel, lang, hub, other)
+    out += site_header(rel, lang, hub, other, active="skills")
 
     authors = s.get("authors") or []
     rows = "".join(
@@ -1271,7 +1299,7 @@ def render_contribute(hub: dict, lang: str) -> str:
 
 
     out = html_head(f"{title} — {hub_name}", t(lang, "contrib_p")[:150], rel, lang)
-    out += site_header(rel, lang, hub, other)
+    out += site_header(rel, lang, hub, other, active="contribute")
     out += f"""<section class="hero"><div class="wrap">
   <div class="eyebrow">{esc(hub.get('institution_short') or 'LABHDUFBA')}</div>
   <h1>{esc(title)}</h1>

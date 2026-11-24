@@ -717,6 +717,40 @@ next audit does not chase it.
 "Skills", and requirement cards place their chips slightly differently from one another. Both are
 design choices, not defects, and neither was decided unilaterally here.
 
+---
+
+## Entry 028 — 2026-11-24 — Consistency pass: active menu item, requirement cards, mobile header
+
+Two inconsistencies the audit had flagged but left to a decision. Both were fixed here.
+
+**1. The active menu item followed the page, not the assumption that every page is the home.**
+`site_header` carried `class="on"` hard-coded on "Início", so a skill page highlighted the wrong
+section. It now takes an `active` argument (`home` / `skills` / `contribute`), set per page, and marks
+the item with `class="on"` plus `aria-current="page"` — the latter being what a screen reader actually
+announces. Verified by reading the rendered anchor on all fourteen pages, in both languages.
+
+**2. Requirement cards placed their badges differently depending on the title length.**
+`.req-top` used `justify-content:space-between` on a wrapping row: a short title put the badges on the
+right edge, a long title dropped them to a second line, so two cards side by side disagreed about
+where the badges live. The row is now a column — title, then badges, always left-aligned, always 28 px
+apart. Measured on both cards of SS-0010.
+
+**Two regressions found while doing it, both mine.**
+
+- Reordering the header for desktop (`brand → nav → controls`) changed the flex `order` in the base
+  selector, and the mobile rule could no longer win: it used `nav.site` against the new
+  `header.site nav.site`, so the menu landed on its own row *between* the controls and the header grew
+  from 109 to 161 px. Fixed by declaring the mobile order with matching specificity.
+- Squeezing the six menu items into one line at 390 px exposed that the primary action ("Contribuir")
+  was being clipped at the right edge. The project rule is explicit — *quebrar é honesto, cortar é
+  defeito* — so the menu was tightened (gap 12 → 8 px, font 0.75 → 0.7188 rem) down to 360 px, and at
+  320 px it wraps to two lines instead of scrolling. Measured at 1440/390/375/360/320 px: the CTA is
+  inside the viewport at every width and page overflow is zero.
+
+**Verification.** Contrast and touch targets on 14 pages × 2 themes: **0 / 0**, and all fourteen report
+"Skills" as the active item. Build `--check` clean; `node --check` clean; validator PASS on six skills;
+CSS braces balanced 317/317 with no `%SEL%` left; deposit suite OK.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.
