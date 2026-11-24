@@ -131,6 +131,10 @@
           "note_pt": null,
           "note_en": null
         }
+      ],
+      "disciplines": [
+        "methodology",
+        "digital-humanities"
       ]
     },
     {
@@ -282,6 +286,11 @@
           "note_en": "Not a credential; it determines which endpoint the client queries.",
           "example": "export ZOTERO_LIBRARY_TYPE=\"user\"   # ou \"group\""
         }
+      ],
+      "disciplines": [
+        "methodology",
+        "digital-humanities",
+        "sociology"
       ]
     },
     {
@@ -310,7 +319,12 @@
         "hermes"
       ],
       "features": [],
-      "features_en": []
+      "features_en": [],
+      "disciplines": [
+        "methodology",
+        "public-health",
+        "education"
+      ]
     },
     {
       "id": "SS-0003",
@@ -338,7 +352,11 @@
         "python"
       ],
       "features": [],
-      "features_en": []
+      "features_en": [],
+      "disciplines": [
+        "digital-humanities",
+        "methodology"
+      ]
     },
     {
       "id": "SS-0004",
@@ -365,7 +383,11 @@
         "hermes"
       ],
       "features": [],
-      "features_en": []
+      "features_en": [],
+      "disciplines": [
+        "sociology",
+        "methodology"
+      ]
     },
     {
       "id": "SS-0005",
@@ -393,7 +415,11 @@
         "python"
       ],
       "features": [],
-      "features_en": []
+      "features_en": [],
+      "disciplines": [
+        "digital-humanities",
+        "sociology"
+      ]
     },
     {
       "id": "SS-0006",
@@ -421,7 +447,11 @@
         "python"
       ],
       "features": [],
-      "features_en": []
+      "features_en": [],
+      "disciplines": [
+        "sociology",
+        "education"
+      ]
     },
     {
       "id": "SS-0007",
@@ -448,7 +478,11 @@
         "python"
       ],
       "features": [],
-      "features_en": []
+      "features_en": [],
+      "disciplines": [
+        "sociology",
+        "digital-humanities"
+      ]
     },
     {
       "id": "SS-0008",
@@ -475,7 +509,11 @@
         "hermes"
       ],
       "features": [],
-      "features_en": []
+      "features_en": [],
+      "disciplines": [
+        "digital-humanities",
+        "sociology"
+      ]
     },
     {
       "id": "SS-0009",
@@ -503,12 +541,17 @@
         "zotero"
       ],
       "features": [],
-      "features_en": []
+      "features_en": [],
+      "disciplines": [
+        "digital-humanities",
+        "sociology",
+        "public-health"
+      ]
     }
   ],
   "renumbering_note": "2026-11-24: SS-0001 reassigned to the first substantive skill (Zotero); previous roadmap items shifted to SS-0002..SS-0009.",
   "hub": {
-    "title": "ScholarSkills — Scientific Agent Skills",
+    "title": "Skills Métodos Digitais — Research Skills for AI Agents",
     "tagline": "Executable research methodologies that can be read, tested and cited.",
     "institution": "Laboratório de Humanidades Digitais — Universidade Federal da Bahia (LABHDUFBA)",
     "description": "An academic hub of agent skills treated as methodological objects: each one documented, versioned, tested and licensed, and — once the deposit is authorised — archived with a DOI. Nothing here carries an identifier it does not have: a skill without a DOI says so.",
@@ -521,7 +564,7 @@
     "release": null,
     "tagline_pt": "Metodologias de pesquisa executáveis, que podem ser lidas, testadas e citadas.",
     "description_pt": "Um hub acadêmico de skills para agentes de IA, tratadas como objetos metodológicos: cada uma documentada, versionada, testada e licenciada, e — quando o depósito é autorizado — arquivada com DOI. Nada aqui carrega um identificador que não possui: uma skill sem DOI diz que não tem.",
-    "title_pt": "ScholarSkills — Skills científicas para agentes de IA",
+    "title_pt": "Skills Métodos Digitais — metodologias de pesquisa executáveis",
     "institution_url": "https://labhdufba.github.io/",
     "institution_en": "Digital Humanities Laboratory — Federal University of Bahia (LABHDUFBA)",
     "colors": {
@@ -539,7 +582,10 @@
         "Heebo"
       ]
     },
-    "institution_short": "LABHDUFBA · UFBA"
+    "institution_short": "LABHDUFBA · UFBA",
+    "short_name": "Skills Métodos Digitais",
+    "short_name_en": "Digital Methods Skills",
+    "brand_note": "Nome de exibição: 'Skills Métodos Digitais', do LABHDUFBA. O identificador técnico do repositório e o prefixo de ID (SS-NNNN) permanecem 'scholarskills'/'SS' para não quebrar URLs, DOIs e citações já emitidos."
   },
   "policy_note": "One repository holds every skill; each skill keeps its own directory, version, CHANGELOG and DOI. A separate repository per skill is not used.",
   "stages": {
@@ -591,5 +637,96 @@
       "color": "#B03030",
       "soft": "#F8E9E9"
     }
-  }
+  },
+  "disciplines": {
+    "sociology": {
+      "pt": "Sociologia",
+      "en": "Sociology",
+      "color": "#5B4B8A",
+      "soft": "#EFECF6"
+    },
+    "digital-humanities": {
+      "pt": "Humanidades digitais",
+      "en": "Digital humanities",
+      "color": "#0E7490",
+      "soft": "#E4F2F6"
+    },
+    "public-health": {
+      "pt": "Saúde coletiva",
+      "en": "Public health",
+      "color": "#B03030",
+      "soft": "#F8E9E9"
+    },
+    "education": {
+      "pt": "Educação",
+      "en": "Education",
+      "color": "#8C6D00",
+      "soft": "#F7F0DC"
+    },
+    "public-finance": {
+      "pt": "Finanças públicas",
+      "en": "Public finance",
+      "color": "#3F6212",
+      "soft": "#EDF3E3"
+    },
+    "methodology": {
+      "pt": "Metodologia",
+      "en": "Methodology",
+      "color": "#374151",
+      "soft": "#EEF0F3"
+    }
+  },
+  "collections": [
+    {
+      "slug": "revisao-sistematica",
+      "pt": "Revisão sistemática de ponta a ponta",
+      "en": "End-to-end systematic review",
+      "desc_pt": "Da chave de API à síntese: gerenciar referências, conduzir a triagem e explorar o corpus resultante.",
+      "desc_en": "From API key to synthesis: manage references, run the screening and explore the resulting corpus.",
+      "skills": [
+        "SS-0001",
+        "SS-0002",
+        "SS-0003"
+      ],
+      "stage": "review"
+    },
+    {
+      "slug": "corpus-ao-argumento",
+      "pt": "Do corpus ao argumento",
+      "en": "From corpus to argument",
+      "desc_pt": "Coletar, codificar e analisar material empírico sem perder o rastro entre dado e interpretação.",
+      "desc_en": "Collect, code and analyse empirical material without losing the trace between data and interpretation.",
+      "skills": [
+        "SS-0003",
+        "SS-0006",
+        "SS-0005"
+      ],
+      "stage": "analysis"
+    },
+    {
+      "slug": "dados-digitais",
+      "pt": "Pesquisa com dados digitais",
+      "en": "Research with digital data",
+      "desc_pt": "Observar plataformas, mapear redes e verificar circulação — tratando dados digitais como construção sociotécnica.",
+      "desc_en": "Observe platforms, map networks and verify circulation — treating digital data as a sociotechnical construct.",
+      "skills": [
+        "SS-0008",
+        "SS-0007",
+        "SS-0009"
+      ],
+      "stage": "collection"
+    },
+    {
+      "slug": "publicar-skill",
+      "pt": "Publicar e sustentar uma skill",
+      "en": "Publish and sustain a skill",
+      "desc_pt": "Transformar um método próprio em artefato documentado, testado, licenciado e citável com DOI.",
+      "desc_en": "Turn your own method into a documented, tested, licensed artefact that can be cited with a DOI.",
+      "skills": [
+        "SS-0000",
+        "SS-0001"
+      ],
+      "stage": "writing"
+    }
+  ]
 }

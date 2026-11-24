@@ -1,4 +1,4 @@
-# ScholarSkills — Scientific Agent Skills
+# Skills Métodos Digitais (ScholarSkills) — Scientific Agent Skills
 
 An academic repository of **executable research methodologies for AI agents**, maintained by the
 [Digital Humanities Laboratory, Federal University of Bahia (LABHDUFBA)](https://labhd.ufba.br).

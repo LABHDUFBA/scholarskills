@@ -487,6 +487,32 @@ and `itemType=-attachment` were confirmed against the official Web API v3 docume
 measures **3.30:1** — below AA. Solid buttons now use `#15803d` (**5.02:1**), keeping `#16a34a` for
 surfaces and non-text accents.
 
+---
+
+## Entry 022 — 2026-11-24 — "Skills Métodos Digitais", research paths and discipline filter
+
+**Benchmark studied:** `scholarskill.com` (opened in a real browser, not from description). It is an
+**aggregator**: ~26 k indexed skills whose cards link straight to third-party GitHub repositories.
+Measured on its HTML: DOI 0, licence 0, version 0, citation 0, peer-reviewed 0. Quality signal there is
+GitHub stars; verification is delegated to the reader ("verify source, freshness and install links").
+
+**Decision:** adopt its *usability* patterns, keep our *epistemic* model. Nothing about DOI, maturity
+evidence or licensing changes.
+
+| Item | Change |
+|---|---|
+| Display name | **Skills Métodos Digitais** (PT) / Digital Methods Skills (EN), always with LABHDUFBA. Resolves the near-collision with `scholarskill.com` (singular, .com, Chinese-first). |
+| Technical identity | Unchanged on purpose: repository `labhdufba/scholarskills`, skill prefix `SS-`, GitHub Pages URL. Changing them would break URLs, the release and any citation already pointing here. |
+| Research paths | New `collections[]` in the registry: four work sequences (systematic review, corpus→argument, digital data, publish-a-skill). Each card shows **numbered steps** with the skill id, name and a "planejada" tag when the artefact does not exist yet. |
+| Disciplines | New `disciplines{}` map (sociology, digital humanities, public health, education, public finance, methodology) with a filter in the toolbar and the value shown in each skill's factsheet. |
+| Layout | Paths sit between the hero and the catalogue, mirroring the "popular paths" entry point; a legend of disciplines closes the section and sets the filter on click. |
+
+**Verified in the browser:** 4 path cards, 3 numbered steps each, 8 "planejada" tags, discipline filter
+returns 7 of 10 for "Sociologia" and 10 when cleared, grid 2×2 at 1400 px and 1 column at 390 px,
+`scrollWidth == innerWidth` at 1400 / 390 / 360 / 320 px. Header on mobile: 89 px at 390 px (logo + EN
+on row 1, menu on row 2), 118 px below 360 px where the menu wraps instead of overflowing — nothing is
+clipped at any width.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.

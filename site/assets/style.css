@@ -36,7 +36,7 @@ a:hover{text-decoration:underline}
 header.site{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);
   backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 header.site .wrap{display:flex;align-items:center;gap:16px;height:64px}
-.brand{display:flex;align-items:center;gap:11px;font-family:var(--font-head);
+.brand{order:1;display:flex;align-items:center;gap:11px;font-family:var(--font-head);
   font-weight:600;color:var(--ink);letter-spacing:-.01em;font-size:17px}
 .brand .mark{width:38px;height:38px;border-radius:50%;overflow:hidden;background:var(--deep);
   display:grid;place-items:center;flex:0 0 auto}
@@ -46,6 +46,7 @@ nav.site{margin-left:auto;display:flex;gap:22px;font-size:14px;align-items:cente
 nav.site a{color:var(--muted)}
 nav.site a:hover{color:var(--ink)}
 nav.site a.on{color:var(--brand-ink);font-weight:600}
+header.site .lang{order:3}
 .lang .short{display:none}
 .lang{border:1px solid var(--line);border-radius:6px;padding:5px 12px;font-size:13px;
   color:var(--ink);background:var(--surface);font-weight:600}
@@ -153,6 +154,34 @@ code.env{font-family:var(--mono);font-size:11.5px;background:var(--stage-soft,#f
   border-left:3px solid #d9a441;padding:9px 12px;margin-top:10px}
 .req-note b{color:#8a5b00}
 
+
+/* ---------- research paths ---------- */
+.paths{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr));
+  gap:16px;margin:16px 0 0}
+.path{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px;border-top:3px solid var(--stage,var(--brand));min-width:0;
+  display:flex;flex-direction:column;gap:10px}
+.path h3{font-size:16.5px;font-weight:600;line-height:1.32;color:var(--ink)}
+.path p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5;
+  min-height:3em}
+.path-chain{display:flex;flex-direction:column;gap:6px;margin-top:2px;position:relative}
+.path-skill{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--ink);
+  padding:7px 10px;border-radius:7px;background:var(--stage-soft,#f7f8f7);
+  border:1px solid rgba(0,0,0,.04);line-height:1.35}
+.path-skill:hover{text-decoration:none;border-color:var(--stage);color:var(--stage-ink)}
+.path-skill .ps-step{flex:0 0 auto;width:18px;height:18px;border-radius:50%;
+  background:var(--stage,var(--brand));color:#fff;font-size:10.5px;font-weight:700;
+  display:grid;place-items:center;align-self:center}
+.path-skill .ps-id{font-family:var(--mono);font-size:10.5px;color:var(--stage-ink);
+  font-weight:600;flex:0 0 auto;opacity:.85}
+.path-skill .ps-name{min-width:0}
+.path-skill.plan{opacity:.72}
+.ps-plan{flex:0 0 auto;margin-left:auto;font-size:9.5px;text-transform:uppercase;
+  letter-spacing:.05em;font-weight:700;color:#4b5563;background:rgba(0,0,0,.06);
+  padding:2px 6px;border-radius:4px}
+.path-foot{font-size:11.5px;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.05em;font-weight:600;margin-top:auto}
+
 @media(max-width:900px){.cols{grid-template-columns:1fr;gap:28px}}
 h2.sec{font-size:12.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);
   margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
@@ -237,15 +266,15 @@ aside.side{position:sticky;top:80px;align-self:start}
   .hero .lede{font-size:16.5px}
   .stat{padding:11px 13px;min-width:calc(50% - 5px)}
   header.site .wrap{height:auto;padding:8px 16px;flex-wrap:wrap;justify-content:space-between;gap:8px}
-  nav.site{gap:12px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
-    width:100%;padding-bottom:2px;scrollbar-width:none}
-  nav.site::-webkit-scrollbar{display:none}
+  nav.site{gap:8px 14px;flex-wrap:wrap;justify-content:center;width:100%;
+    padding:2px 0 0;row-gap:8px;margin-left:0;order:3}
+  header.site .lang{order:2;margin-left:auto}
   nav.site a{font-size:12.5px;white-space:nowrap}
   nav.site a.cta{padding:5px 10px}
   .lang{padding:4px 9px;font-size:12px}
   .lang .full{display:none}
   .lang .short{display:inline}
-  nav.site{padding-right:2px}
+
 }
 @media(max-width:560px){
   .wrap{padding:0 16px}

@@ -48,7 +48,13 @@ T = {
   "req_required": "Obrigatório", "req_optional": "Opcional", "req_env": "Variável de ambiente",
   "req_what": "O que é", "req_how": "Como obter", "req_note": "Cuidado",
   "req_secret": "credencial", "req_software": "software", "req_id": "identificador", "req_choice": "configuração",
-  "req_none": "Nenhum requisito além do próprio pacote.", "how": "Como funciona", "authors_h": "Autores", "cite": "Como citar",
+  "req_none": "Nenhum requisito além do próprio pacote.",
+  "nav_paths": "Trilhas", "all_disc": "Todas as disciplinas",
+  "paths_h": "Trilhas de pesquisa",
+  "paths_p": "Sequências de trabalho que combinam skills na ordem em que a pesquisa acontece — em vez de uma peça isolada, o caminho inteiro.",
+  "path_skills": "skills", "path_open": "Ver a trilha",
+  "disc_h": "Disciplinas", "disc_p": "O mesmo método serve a campos diferentes. Filtre para ver o que já foi pensado para o seu.",
+  "disc": "Disciplina", "path": "Trilha", "planned_word": "planejada", "how": "Como funciona", "authors_h": "Autores", "cite": "Como citar",
   "copied": "Copiado", "install": "Instalação", "validation": "Validação",
   "factsheet": "Ficha", "links": "Links", "keywords": "Palavras-chave",
   "features": "Recursos", "stack": "Stack", "stage": "Etapa",
@@ -91,7 +97,13 @@ T = {
   "req_required": "Required", "req_optional": "Optional", "req_env": "Environment variable",
   "req_what": "What it is", "req_how": "How to get it", "req_note": "Careful",
   "req_secret": "credential", "req_software": "software", "req_id": "identifier", "req_choice": "setting",
-  "req_none": "No requirement beyond the package itself.", "how": "How it works", "authors_h": "Authors", "cite": "How to cite",
+  "req_none": "No requirement beyond the package itself.",
+  "nav_paths": "Paths", "all_disc": "All disciplines",
+  "paths_h": "Research paths",
+  "paths_p": "Work sequences that chain skills in the order research actually happens — not an isolated piece, the whole path.",
+  "path_skills": "skills", "path_open": "Open the path",
+  "disc_h": "Disciplines", "disc_p": "The same method serves different fields. Filter to see what was already designed for yours.",
+  "disc": "Discipline", "path": "Path", "planned_word": "planned", "how": "How it works", "authors_h": "Authors", "cite": "How to cite",
   "copied": "Copied", "install": "Installation", "validation": "Validation",
   "factsheet": "Factsheet", "links": "Links", "keywords": "Keywords",
   "features": "Features", "stack": "Stack", "stage": "Stage",
@@ -190,7 +202,7 @@ a:hover{text-decoration:underline}
 header.site{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);
   backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 header.site .wrap{display:flex;align-items:center;gap:16px;height:64px}
-.brand{display:flex;align-items:center;gap:11px;font-family:var(--font-head);
+.brand{order:1;display:flex;align-items:center;gap:11px;font-family:var(--font-head);
   font-weight:600;color:var(--ink);letter-spacing:-.01em;font-size:17px}
 .brand .mark{width:38px;height:38px;border-radius:50%;overflow:hidden;background:var(--deep);
   display:grid;place-items:center;flex:0 0 auto}
@@ -200,6 +212,7 @@ nav.site{margin-left:auto;display:flex;gap:22px;font-size:14px;align-items:cente
 nav.site a{color:var(--muted)}
 nav.site a:hover{color:var(--ink)}
 nav.site a.on{color:var(--brand-ink);font-weight:600}
+header.site .lang{order:3}
 .lang .short{display:none}
 .lang{border:1px solid var(--line);border-radius:6px;padding:5px 12px;font-size:13px;
   color:var(--ink);background:var(--surface);font-weight:600}
@@ -307,6 +320,34 @@ code.env{font-family:var(--mono);font-size:11.5px;background:var(--stage-soft,#f
   border-left:3px solid #d9a441;padding:9px 12px;margin-top:10px}
 .req-note b{color:#8a5b00}
 
+
+/* ---------- research paths ---------- */
+.paths{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr));
+  gap:16px;margin:16px 0 0}
+.path{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px;border-top:3px solid var(--stage,var(--brand));min-width:0;
+  display:flex;flex-direction:column;gap:10px}
+.path h3{font-size:16.5px;font-weight:600;line-height:1.32;color:var(--ink)}
+.path p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5;
+  min-height:3em}
+.path-chain{display:flex;flex-direction:column;gap:6px;margin-top:2px;position:relative}
+.path-skill{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--ink);
+  padding:7px 10px;border-radius:7px;background:var(--stage-soft,#f7f8f7);
+  border:1px solid rgba(0,0,0,.04);line-height:1.35}
+.path-skill:hover{text-decoration:none;border-color:var(--stage);color:var(--stage-ink)}
+.path-skill .ps-step{flex:0 0 auto;width:18px;height:18px;border-radius:50%;
+  background:var(--stage,var(--brand));color:#fff;font-size:10.5px;font-weight:700;
+  display:grid;place-items:center;align-self:center}
+.path-skill .ps-id{font-family:var(--mono);font-size:10.5px;color:var(--stage-ink);
+  font-weight:600;flex:0 0 auto;opacity:.85}
+.path-skill .ps-name{min-width:0}
+.path-skill.plan{opacity:.72}
+.ps-plan{flex:0 0 auto;margin-left:auto;font-size:9.5px;text-transform:uppercase;
+  letter-spacing:.05em;font-weight:700;color:#4b5563;background:rgba(0,0,0,.06);
+  padding:2px 6px;border-radius:4px}
+.path-foot{font-size:11.5px;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.05em;font-weight:600;margin-top:auto}
+
 @media(max-width:900px){.cols{grid-template-columns:1fr;gap:28px}}
 h2.sec{font-size:12.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);
   margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
@@ -391,15 +432,15 @@ aside.side{position:sticky;top:80px;align-self:start}
   .hero .lede{font-size:16.5px}
   .stat{padding:11px 13px;min-width:calc(50% - 5px)}
   header.site .wrap{height:auto;padding:8px 16px;flex-wrap:wrap;justify-content:space-between;gap:8px}
-  nav.site{gap:12px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
-    width:100%;padding-bottom:2px;scrollbar-width:none}
-  nav.site::-webkit-scrollbar{display:none}
+  nav.site{gap:8px 14px;flex-wrap:wrap;justify-content:center;width:100%;
+    padding:2px 0 0;row-gap:8px;margin-left:0;order:3}
+  header.site .lang{order:2;margin-left:auto}
   nav.site a{font-size:12.5px;white-space:nowrap}
   nav.site a.cta{padding:5px 10px}
   .lang{padding:4px 9px;font-size:12px}
   .lang .full{display:none}
   .lang .short{display:inline}
-  nav.site{padding-right:2px}
+
 }
 @media(max-width:560px){
   .wrap{padding:0 16px}
@@ -436,24 +477,32 @@ def js() -> str:
 (function(){
   var q=document.getElementById('q'), st=document.getElementById('f-status'),
       mt=document.getElementById('f-maturity'), sg=document.getElementById('f-stage'),
+      dc=document.getElementById('f-disc'),
       cards=[].slice.call(document.querySelectorAll('[data-skill]')),
       count=document.getElementById('count'), empty=document.getElementById('empty');
   if(!cards.length) return;
   function apply(){
     var term=(q&&q.value||'').toLowerCase().trim(),
-        s=st&&st.value||'', m=mt&&mt.value||'', g=sg&&sg.value||'', shown=0;
+        s=st&&st.value||'', m=mt&&mt.value||'', g=sg&&sg.value||'',
+        d=dc&&dc.value||'', shown=0;
     cards.forEach(function(c){
       var hay=c.dataset.search||'';
       var show=(!term||hay.indexOf(term)>-1)&&(!s||c.dataset.status===s)
-        &&(!m||c.dataset.maturity===m)&&(!g||c.dataset.stage===g);
+        &&(!m||c.dataset.maturity===m)&&(!g||c.dataset.stage===g)
+        &&(!d||(' '+(c.dataset.disc||'')+' ').indexOf(' '+d+' ')>-1);
       c.style.display=show?'':'none';
       if(show) shown++;
     });
     if(count) count.textContent=shown;
     if(empty) empty.hidden=shown!==0;
   }
-  [q,st,mt,sg].forEach(function(el){ if(el) el.addEventListener('input',apply); });
-  [st,mt,sg].forEach(function(el){ if(el) el.addEventListener('change',apply); });
+  [q,st,mt,sg,dc].forEach(function(el){ if(el) el.addEventListener('input',apply); });
+  [st,mt,sg,dc].forEach(function(el){ if(el) el.addEventListener('change',apply); });
+  [].slice.call(document.querySelectorAll('[data-disc-jump]')).forEach(function(a){
+    a.addEventListener('click',function(){
+      if(dc){ dc.value=a.dataset.discJump; apply(); }
+    });
+  });
   apply();
   [].slice.call(document.querySelectorAll('[data-copy]')).forEach(function(btn){
     btn.addEventListener('click',function(){
@@ -494,13 +543,14 @@ def site_header(rel: str, lang: str, hub: dict, other: str) -> str:
     return f"""<header class="site"><div class="wrap">
   <a class="brand" href="{hub.get('institution_url','https://labhdufba.github.io/')}">
     <span class="mark"><img src="{rel}assets/img/labhd.webp" alt="LABHDUFBA"></span></a>
+    <a class="lang" href="{other}index.html" hreflang="{'en' if lang == 'pt' else 'pt-BR'}"><span class="full">{t(lang,'switch')}</span><span class="short">{'EN' if lang == 'pt' else 'PT'}</span></a>
   <nav class="site">
     <a class="on" href="{rel}index.html">{t(lang,'nav_home')}</a>
     <a href="{rel}index.html#skills">{t(lang,'nav_skills')}</a>
+    <a href="{rel}index.html#paths">{t(lang,'nav_paths')}</a>
     <a href="{rel}index.html#stages">{t(lang,'nav_stages')}</a>
     <a href="{rel}index.html#levels">{t(lang,'nav_levels')}</a>
     <a class="cta" href="{hub.get('submission_url') or '#'}">{t(lang,'nav_submit')}</a>
-    <a class="lang" href="{other}index.html" hreflang="{'en' if lang == 'pt' else 'pt-BR'}"><span class="full">{t(lang,'switch')}</span><span class="short">{'EN' if lang == 'pt' else 'PT'}</span></a>
   </nav>
 </div></header>"""
 
@@ -552,6 +602,7 @@ def card(s: dict, lang: str, stages: dict, rel: str) -> str:
                                     names, " ".join(feats)])).lower()
     return f"""<article class="card" data-skill data-status="{esc(s.get('status'))}"
   data-maturity="{esc(s.get('maturity') or '')}" data-stage="{esc(s.get('stage') or '')}"
+  data-disc="{esc(' '.join(s.get('disciplines') or []))}"
   data-search="{esc(search)}" {stage_style(stage)}>
   <div class="bar"></div>
   <div class="inner">
@@ -571,6 +622,62 @@ def card(s: dict, lang: str, stages: dict, rel: str) -> str:
     </div>
   </div>
 </article>"""
+
+
+def render_paths(reg: dict, lang: str) -> str:
+    cols = reg.get("collections") or []
+    discs = reg.get("disciplines") or {}
+    skills = {s["id"]: s for s in reg["skills"]}
+    stages = reg.get("stages", {})
+    if not cols:
+        return ""
+    parts = ['<section id="paths">']
+    parts.append('<h2 class="sec">' + t(lang, "paths_h") + "</h2>")
+    parts.append('<p style="max-width:74ch;color:var(--muted);margin:0">'
+                 + t(lang, "paths_p") + "</p>")
+    parts.append('<div class="paths">')
+    for c in cols:
+        stage = stages.get(c.get("stage") or "") or {}
+        color = stage.get("color", "#16a34a")
+        soft = stage.get("soft", "#f0fdf4")
+        ink = INK.get(color, "#15803d")
+        chips = []
+        for n, sid in enumerate(c.get("skills") or [], 1):
+            s = skills.get(sid)
+            if not s:
+                continue
+            href = "skills/" + esc(s.get("slug")) + ".html"
+            plan = ' plan' if s.get("status") == "planned" else ''
+            mark = ('<span class="ps-plan">' + t(lang, "planned_word") + "</span>"
+                    if s.get("status") == "planned" else "")
+            chips.append('<a class="path-skill' + plan + '" href="' + href + '">'
+                         '<span class="ps-step">' + str(n) + "</span>"
+                         '<span class="ps-id">' + esc(sid) + "</span>"
+                         '<span class="ps-name">'
+                         + esc(s.get("title_pt") if (lang == "pt" and s.get("title_pt")) else s.get("title"))
+                         + "</span>" + mark + "</a>")
+        name = c.get("pt") if lang == "pt" else c.get("en")
+        desc = c.get("desc_pt") if lang == "pt" else c.get("desc_en")
+        parts.append('<article class="path" style="--stage:' + color + ";--stage-soft:"
+                     + soft + ";--stage-ink:" + ink + '">')
+        parts.append("<h3>" + esc(name) + "</h3>")
+        parts.append("<p>" + esc(desc) + "</p>")
+        parts.append('<div class="path-chain">' + "".join(chips) + "</div>")
+        parts.append('<div class="path-foot">' + str(len(chips)) + " "
+                     + t(lang, "path_skills") + "</div>")
+        parts.append("</article>")
+    parts.append("</div>")
+
+    parts.append('<h2 class="sec" style="margin-top:36px">' + t(lang, "disc_h") + "</h2>")
+    parts.append('<p style="max-width:74ch;color:var(--muted);margin:0 0 14px">'
+                 + t(lang, "disc_p") + "</p>")
+    parts.append('<div class="stage-legend">')
+    for k, d in discs.items():
+        parts.append('<a href="#skills" data-disc-jump="' + esc(k) + '">'
+                     '<span class="dot" style="--c:' + d["color"] + '"></span>'
+                     + esc(d[lang]) + "</a>")
+    parts.append("</div></section>")
+    return "\n".join(parts)
 
 
 def render_index(reg: dict, lang: str) -> str:
@@ -602,7 +709,10 @@ def render_index(reg: dict, lang: str) -> str:
   </div>
 </div></section>
 
-<main class="wrap" id="skills">
+<main class="wrap">
+  {render_paths(reg, lang)}
+
+  <div id="skills" style="padding-top:6px"></div>
   <div class="toolbar">
     <input id="q" type="search" placeholder="{esc(t(lang,'search'))}" aria-label="{esc(t(lang,'search'))}">
     <select id="f-stage" aria-label="{esc(t(lang,'all_stages'))}">
@@ -613,6 +723,10 @@ def render_index(reg: dict, lang: str) -> str:
       <option value="">{t(lang,'all_status')}</option>
       <option value="available">{(STATUS if lang=='pt' else STATUS_EN)['available'][0]}</option>
       <option value="planned">{(STATUS if lang=='pt' else STATUS_EN)['planned'][0]}</option>
+    </select>
+    <select id="f-disc" aria-label="{esc(t(lang,'all_disc'))}">
+      <option value="">{t(lang,'all_disc')}</option>
+      {''.join(f'<option value="{esc(k)}">{esc(v[lang])}</option>' for k, v in (reg.get("disciplines") or {}).items())}
     </select>
     <select id="f-maturity" aria-label="{esc(t(lang,'all_maturity'))}">
       <option value="">{t(lang,'all_maturity')}</option>
@@ -705,13 +819,14 @@ def render_requirements(s: dict, lang: str) -> str:
     return "\n".join(out)
 
 
-def render_skill(s: dict, hub: dict, stages: dict, lang: str) -> str:
+def render_skill(s: dict, hub: dict, stages: dict, lang: str, reg_disc: dict = None) -> str:
     rel = "../" if lang == "pt" else "../../"  # pages live in <base>/skills/
     other = "../../en/" if lang == "pt" else "../../"
     stage = stages.get(s.get("stage") or "")
     name = (stage or {}).get(lang) or "—"
     title = s.get("title_pt") if (lang == "pt" and s.get("title_pt")) else s.get("title")
     sub = s.get("summary_pt") if (lang == "pt" and s.get("summary_pt")) else s.get("summary")
+    reg_disc = reg_disc or {}
     reqs_html = render_requirements(s, lang)
     out = html_head(f"{title} — ScholarSkills", sub or "", rel, lang)
     out += site_header(rel, lang, hub, other)
@@ -803,6 +918,7 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str) -> str:
         <dt>{t(lang,'licence')}</dt><dd>{esc(s.get('license') or '—')}</dd>
         <dt>{t(lang,'doi_version')}</dt><dd>{esc(doi or '—')}</dd>
         <dt>{t(lang,'doi_concept')}</dt><dd>{esc(s.get('doi_concept') or '—')}</dd>
+        <dt>{t(lang,'disc')}</dt><dd>{esc(', '.join((reg_disc.get(k) or {}).get(lang, k) for k in (s.get('disciplines') or [])) or '—')}</dd>
         <dt>{t(lang,'added')}</dt><dd>{esc(s.get('added') or '—')}</dd>
       </dl>
     </div>
@@ -830,7 +946,7 @@ def build(out: Path) -> dict:
         (base / "index.html").write_text(render_index(reg, lang), encoding="utf-8")
         for s in reg["skills"]:
             (base / "skills" / f"{s['slug']}.html").write_text(
-                render_skill(s, hub, stages, lang), encoding="utf-8")
+                render_skill(s, hub, stages, lang, reg.get("disciplines") or {}), encoding="utf-8")
 
     (out / "assets").mkdir(parents=True, exist_ok=True)
     (out / "assets" / "style.css").write_text(css(), encoding="utf-8")
