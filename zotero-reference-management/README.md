@@ -1,6 +1,6 @@
 # Zotero Reference Management
 
-**ScholarSkills SS-0001** · version 1.0.0 · maturity `tested` · MIT (code) / CC BY 4.0 (documentation)
+**ScholarSkills SS-0001** · version 1.0.0 · maturity `tested` · MIT (original code and documentation)
 
 ## Objetivo / Objective
 

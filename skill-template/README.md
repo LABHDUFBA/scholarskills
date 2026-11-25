@@ -3,7 +3,7 @@
 <!-- Replace every `TODO(SS)` marker. A package that still contains one is not reviewable. -->
 
 **ScholarSkills identifier:** SS-XXXX (requested) · **Version:** 0.1.0 ·
-**Maturity:** experimental · **Licence:** MIT (code) / CC BY 4.0 (documentation)
+**Maturity:** experimental · **Licence:** MIT (original code and documentation)
 
 ## What it does
 

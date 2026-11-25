@@ -20,7 +20,7 @@
       "repository": "https://github.com/LABHDUFBA/scholarskills",
       "doi_version": "10.5281/zenodo.24505398",
       "doi_concept": "10.5281/zenodo.24505397",
-      "license": "MIT (code) / CC-BY-4.0 (docs)",
+      "license": "MIT",
       "authors": [
         {
           "name": "Leonardo Fernandes Nascimento",
@@ -152,7 +152,7 @@
       "repository": "https://github.com/LABHDUFBA/scholarskills",
       "doi_version": "10.5281/zenodo.24505402",
       "doi_concept": "10.5281/zenodo.24505400",
-      "license": "MIT (code) / CC-BY-4.0 (docs)",
+      "license": "MIT",
       "authors": [
         {
           "name": "Leonardo Fernandes Nascimento",
@@ -623,7 +623,7 @@
       ],
       "maturity": "tested",
       "version": "1.0.0",
-      "license": "MIT (code) / CC-BY-4.0 (docs)",
+      "license": "MIT",
       "authors": [
         {
           "name": "Leonardo Fernandes Nascimento",
@@ -742,7 +742,7 @@
       ],
       "maturity": "tested",
       "version": "1.0.0",
-      "license": "MIT (code) / CC-BY-4.0 (docs)",
+      "license": "MIT",
       "authors": [
         {
           "name": "Leonardo Fernandes Nascimento",
@@ -843,7 +843,7 @@
       ],
       "maturity": "tested",
       "version": "1.0.0",
-      "license": "MIT (code) / CC-BY-4.0 (docs)",
+      "license": "MIT",
       "authors": [
         {
           "name": "Leonardo Fernandes Nascimento",
@@ -960,7 +960,7 @@
       ],
       "maturity": "tested",
       "version": "1.0.0",
-      "license": "MIT (code) / CC-BY-4.0 (docs)",
+      "license": "MIT",
       "authors": [
         {
           "name": "Leonardo Fernandes Nascimento",
