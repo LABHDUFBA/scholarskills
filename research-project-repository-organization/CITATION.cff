@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this skill, please cite it as below."
+title: "Research Repository Setup"
+abstract: >-
+  This experimental skill applies reproducible research-computing guidance to repository setup and review. It helps document project scope, structure, provenance, and data-handling decisions without prescribing one universal directory tree. It does not determine scientific validity, legal permissions, or institutional compliance.
+type: software
+authors:
+  - family-names: "Brasil"
+    given-names: "Eric"
+    affiliation: "Institute of Humanities and Languages, University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+    orcid: "https://orcid.org/0000-0001-5067-8475"
+version: 0.1.0
+license: MIT
+# identifiers: add DOI only after an authorised deposit
+keywords:
+  - agent skills
+  - research project management
+  - reproducibility
+  - data provenance
