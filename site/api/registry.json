@@ -6,7 +6,7 @@
   "supplementary_language": "pt-BR",
   "schema": "metadata-schema.json",
   "schema_version": "1.0.0",
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "doi_concept": null,
   "skills": [
     {
@@ -1035,6 +1035,106 @@
       "doi_version": "10.5281/zenodo.24505408",
       "doi_concept": "10.5281/zenodo.24505407",
       "doi_record": "https://zenodo.org/records/24505408"
+    },
+    {
+      "id": "SS-0014",
+      "slug": "research-project-repository-organization",
+      "stage": "foundation",
+      "status": "available",
+      "title": "Research Repository Setup",
+      "title_pt": "Configuração de repositórios de pesquisa",
+      "summary": "Plan or review a research repository by checking project scope, materials, provenance, data-handling boundaries, and version-control state without imposing a universal directory structure.",
+      "summary_pt": "Planejar ou revisar um repositório de pesquisa examinando escopo, materiais, proveniência, limites de tratamento de dados e estado do controle de versão, sem impor uma estrutura universal.",
+      "objective": "Help researchers and agents establish or review a project-specific repository, with documentation and provenance that make work navigable and traceable while keeping sensitive material and irreversible actions under human control.",
+      "objective_pt": "Ajudar pesquisadores e agentes a criar ou revisar um repositório ajustado ao projeto, com documentação e proveniência que tornem o trabalho navegável e rastreável, mantendo materiais sensíveis e ações irreversíveis sob controle humano.",
+      "how_it_works": [
+        "Inspect the brief, existing files, Git state, branch, remotes, and source-of-truth documents before editing.",
+        "Define the project boundary, objective, outputs, non-goals, collaborators, constraints, and completion criteria.",
+        "Classify sensitive, restricted, third-party, generated, and bulky materials before moving or staging anything.",
+        "Choose a project-specific structure and create only the documentation the work needs.",
+        "Record provenance, units, snapshots, filters, transformations, and environment for data-dependent outputs.",
+        "Check the final diff and tests; never migrate, commit, push, or publish without explicit authorization."
+      ],
+      "how_it_works_pt": [
+        "Inspecionar o brief, arquivos existentes, estado do Git, branch, remotes e documentos de referência antes de editar.",
+        "Definir limite do projeto, objetivo, produtos, não-objetivos, equipe, restrições e critérios de conclusão.",
+        "Classificar materiais sensíveis, restritos, de terceiros, gerados ou volumosos antes de mover ou preparar qualquer arquivo.",
+        "Escolher uma estrutura específica para o projeto e criar apenas a documentação necessária.",
+        "Registrar proveniência, unidades, snapshots, filtros, transformações e ambiente para produtos dependentes de dados.",
+        "Conferir diff e testes; nunca migrar, commitar, enviar ou publicar sem autorização explícita."
+      ],
+      "evidence": "research-project-repository-organization/tests/RESULTS.md",
+      "evidence_pt": "research-project-repository-organization/tests/RESULTS.md — 6 testes automatizados aprovados; validador estrutural sem avisos.",
+      "features": [
+        "Estrutura adaptada ao projeto",
+        "Proveniência documentada",
+        "Esqueleto não destrutivo"
+      ],
+      "features_en": [
+        "Project-specific structure",
+        "Provenance and source inventory",
+        "Non-destructive scaffold"
+      ],
+      "keywords": [
+        "research repository",
+        "project organization",
+        "provenance",
+        "reproducibility"
+      ],
+      "integrations": [
+        "python",
+        "git"
+      ],
+      "maturity": "tested",
+      "version": "0.1.0",
+      "license": "MIT",
+      "authors": [
+        {
+          "name": "Eric Brasil",
+          "affiliation": "UNILAB",
+          "orcid": "0000-0001-5067-8475"
+        }
+      ],
+      "disciplines": [
+        "methodology"
+      ],
+      "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/research-project-repository-organization",
+      "highlight": false,
+      "added": "2026-11-25",
+      "compatibility": "Python 3.10+ for the optional scaffold script; Git is needed only to inspect version-controlled projects. No network access.",
+      "requirements": [
+        {
+          "name": "Python 3.10 ou superior",
+          "name_en": "Python 3.10 or newer",
+          "required": false,
+          "type": "software",
+          "what_pt": "Executa o script opcional que cria uma estrutura inicial de documentação.",
+          "what_en": "Runs the optional script that creates a starter documentation scaffold.",
+          "how_pt": "Verifique com python3 --version. O teste local foi executado em Python 3.14.9; a CI verifica Python 3.10 e 3.12.",
+          "how_en": "Check with python3 --version. Local tests ran on Python 3.14.9; CI checks Python 3.10 and 3.12.",
+          "url": "https://www.python.org/downloads/",
+          "url_label": "Baixar Python",
+          "url_label_en": "Download Python",
+          "note_pt": "O procedimento pode ser seguido sem o script. O script não inicializa Git nem move dados.",
+          "note_en": "The procedure can be followed without the script. The script does not initialize Git or move data.",
+          "example": "python3 --version"
+        }
+      ],
+      "links": {
+        "repository": "https://github.com/LABHDUFBA/scholarskills",
+        "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/research-project-repository-organization"
+      },
+      "links_pt": {
+        "repository": "Repositório",
+        "path": "Diretório"
+      },
+      "install": "python3 scripts/scaffold_project.py <project-directory> --title \"Project title\"",
+      "install_pt": "python3 scripts/scaffold_project.py <diretorio-do-projeto> --title \"Título do projeto\"",
+      "cite": "BRASIL, Eric. Research Repository Setup (ScholarSkills SS-0014), version 0.1.0 [Software]. 2026.",
+      "paths": [],
+      "doi_version": null,
+      "doi_concept": null,
+      "doi_record": null
     }
   ],
   "renumbering_note": "2026-11-24: SS-0001 reassigned to the first substantive skill (Zotero); previous roadmap items shifted to SS-0002..SS-0009.",
