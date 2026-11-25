@@ -1,7 +1,7 @@
 # SS-0000 — Scientific Agent Skill Development and Validation Protocol
 
 **ScholarSkills identifier:** SS-0000 · **Version:** 1.0.0 · **Maturity:** `tested`
-· **Licence:** MIT (code) / CC BY 4.0 (documentation)
+· **Licence:** MIT (original code and documentation)
 
 A meta-skill. It takes a research method and produces a skill package that can be reviewed, tested,
 cited and archived — or it refuses, and says why.

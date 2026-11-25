@@ -1,6 +1,6 @@
 # DOU e Convênios Federais (pt-BR)
 
-**Skills Métodos Digitais SS-0010** · versão 1.0.0 · maturidade `tested` · MIT (código) / CC BY 4.0 (documentação)
+**Skills Métodos Digitais SS-0010** · versão 1.0.0 · maturidade `tested` · MIT (código e documentação originais)
 
 ## Objetivo
 

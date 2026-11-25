@@ -1,6 +1,6 @@
 # Hugo Site Maintenance
 
-**Digital Methods Skills SS-0012** · version 1.0.0 · maturity `tested` · MIT (code) / CC BY 4.0 (docs)
+**Digital Methods Skills SS-0012** · version 1.0.0 · maturity `tested` · MIT (original code and documentation)
 
 ## Objective
 

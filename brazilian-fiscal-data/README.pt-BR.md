@@ -1,6 +1,6 @@
 # Dados Fiscais Públicos Brasileiros (pt-BR)
 
-**Skills Métodos Digitais SS-0011** · versão 1.0.0 · maturidade `tested` · MIT (código) / CC BY 4.0 (documentação)
+**Skills Métodos Digitais SS-0011** · versão 1.0.0 · maturidade `tested` · MIT (código e documentação originais)
 
 ## Objetivo
 

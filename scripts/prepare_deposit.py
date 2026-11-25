@@ -122,8 +122,8 @@ Generated {when} from `{commit}`. **Nothing has been published.**
 
 - [ ] **Title** — `{title}`
 - [ ] **Author order** — the manifest lists Nascimento, Brasil, Sodré. Confirm the order.
-- [ ] **Licence** — proposed `MIT` for code. Documentation is CC BY 4.0; Zenodo records one licence
-      per deposit, so the description must state the split.
+- [ ] **Licence** — confirm MIT for original code and associated documentation; review rights
+      to third-party assets separately before the deposit.
 - [ ] **DOI policy** — one DOI per repository release, not per skill. Confirm that a new release
       should mint a new version DOI.
 - [ ] **Community** — a Zenodo community can only be created in the web interface; decide whether
