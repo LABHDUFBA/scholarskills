@@ -1,9 +1,8 @@
-# Métodos Digitais — skills de pesquisa para agentes de IA
+# ScholarSkills — skills científicas para agentes de IA
 
-Identificador técnico do repositório: `scholarskills` (prefixo de ID `SS-`). O nome de exibição
-mudou; o identificador não, para não quebrar URLs, DOIs e citações já emitidos.
+Nome de exibição: **ScholarSkills**, iniciativa **Métodos Digitais** do LABHDUFBA. Identificador técnico do repositório: `scholarskills` (prefixo de ID `SS-`). O identificador não muda, para não quebrar URLs, DOIs e citações já emitidos.
 
-Métodos Digitais is a public catalogue of agent skills for research, maintained by the [Digital Humanities Laboratory at the Federal University of Bahia (LABHDUFBA)](https://labhd.ufba.br). Each available skill has its own directory, documentation, tests, version and citation metadata. The project aims to make research procedures inspectable and reproducible; an agent's output does not replace a researcher's judgment.
+ScholarSkills is a public catalogue of agent skills for research, maintained by the [Digital Humanities Laboratory at the Federal University of Bahia (LABHDUFBA)](https://labhd.ufba.br). Each available skill has its own directory, documentation, tests, version and citation metadata. The project aims to make research procedures inspectable and reproducible; an agent's output does not replace a researcher's judgment.
 
 **Explore the catalogue:** https://labhdufba.github.io/scholarskills/ · **Machine-readable registry:** [`registry/registry.json`](registry/registry.json) · **How to contribute:** [`CONTRIBUTING.md`](CONTRIBUTING.md)
 

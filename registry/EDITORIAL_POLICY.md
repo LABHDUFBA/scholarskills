@@ -33,6 +33,11 @@ A skill is accepted for review only if the package contains all of the following
 **Never** label a skill `peer-reviewed` or `replicated` without the corresponding record present in
 the repository. Reviewing the *code* is not the same as validating the *scientific claim*.
 
+The portal additionally reports six independent evidence dimensions (structural conformance,
+functional tests, methodological assessment, peer review, independent re-execution, scientific
+replication). They are descriptive, not a ladder: recording one does not grant another. The maturity
+levels above remain the policy until the maintainers formally revise this document.
+
 ## 3. Review criteria
 
 Reviewers assess five dimensions and record a verdict per dimension:
