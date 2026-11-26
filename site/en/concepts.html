@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Models, agents, skills and tools</title>
+<meta name="description" content="Definitions of LLM, agent, skill and tool, what a scientific skill is in ScholarSkills, and the use-cycle diagram.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://labhdufba.github.io/scholarskills/en/concepts.html">
+<link rel="alternate" hreflang="pt-BR" href="https://labhdufba.github.io/scholarskills/conceitos.html">
+<link rel="alternate" hreflang="en" href="https://labhdufba.github.io/scholarskills/en/concepts.html">
+<link rel="alternate" hreflang="x-default" href="https://labhdufba.github.io/scholarskills/conceitos.html">
+<meta property="og:site_name" content="ScholarSkills">
+<meta property="og:title" content="Models, agents, skills and tools">
+<meta property="og:description" content="Definitions of LLM, agent, skill and tool, what a scientific skill is in ScholarSkills, and the use-cycle diagram.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://labhdufba.github.io/scholarskills/en/concepts.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:image" content="https://labhdufba.github.io/scholarskills/assets/img/labhd.png">
+<meta name="twitter:card" content="summary">
+<link rel="preload" href="../assets/fonts/heebo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/signika.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/style.css?v=0e92320d18">
+<link rel="icon" href="../assets/img/labhd.png">
+<script>try{var t=localStorage.getItem('smd-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Models, agents, skills and tools","description":"Definitions of LLM, agent, skill and tool, what a scientific skill is in ScholarSkills, and the use-cycle diagram.","url":"https://labhdufba.github.io/scholarskills/en/concepts.html","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"ScholarSkills","url":"https://labhdufba.github.io/scholarskills/"}}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<p id="copy-status" class="sr-only" role="status" aria-live="polite"></p><header class="site"><div class="wrap">
+  <a class="brand" href="../en/index.html">
+    <span class="mark"><img src="../assets/img/labhd.webp" alt="LABHDUFBA"></span>
+    <span class="brand-name">ScholarSkills<small>LABHDUFBA · UFBA</small></span></a>
+  <button class="theme-toggle" id="theme-toggle" type="button"
+    aria-label="Alternar tema claro e escuro" title="Tema claro / escuro">
+    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+  <a class="lang" href="../conceitos.html" hreflang="pt-BR"
+     aria-label="Switch to Portuguese"><span class="full">Português</span><span class="short">PT</span></a>
+  <nav class="site" aria-label="Main navigation">
+    <a href="../en/index.html">Home</a>
+    <a href="../en/index.html#skills">Catalogue</a>
+    <a href="../en/using.html">Using</a>
+    <a href="../en/index.html#paths">Paths</a>
+    <a href="../en/evidence.html">Evidence</a>
+    <a class="cta" href="../en/contribuir.html">Contribute</a>
+  </nav>
+</div></header><main id="main" class="wrap page">
+  <header class="page-head">
+    <h1>Models, agents, skills and tools</h1>
+    <p class="lede">The minimum vocabulary for reading the catalogue without confusing prompt, plugin, method and tool.</p>
+  </header>
+
+<p class="lede-p">The use of artificial intelligence in scientific research is not limited to interacting with language models through prompts. Agentic systems combine models, coordination mechanisms, procedural resources and computational tools. Understanding these components helps explain how research procedures can be documented and mobilised by AI agents under human supervision.</p>
+
+<div class="prose">
+<h3>Large language models (LLMs): interpretation and generation</h3>
+<p>Large language models are AI models trained to process and generate language. Some add multimodal capabilities and can also work with images, audio and other data types. In agentic systems, these models can interpret instructions, propose actions and select operations according to the resources the system makes available. Examples: the GPT, Claude, Qwen and Llama families.</p>
+
+<h3>AI agents: task coordination</h3>
+<p>An agent is a system that uses one or more AI models to pursue goals through steps of decision and action. Depending on its architecture, it can keep state, retrieve information, call tools, evaluate results and request human intervention. Examples of agent environments: Hermes Agent and Claude Code. Autonomy is not the same as reliability.</p>
+
+<h3>Skills: reusable procedural knowledge</h3>
+<p>A skill is a package of instructions and resources that guides an agent through a bounded task. It may combine procedures, decision criteria, references, scripts, examples and tests. Unlike a one-off instruction, it can be organised, versioned, distributed and reused across tasks and compatible environments. Prompts may be part of a skill; plugins may provide resources a skill uses. The categories are not mutually exclusive.</p>
+
+<h3>Tools: execution resources</h3>
+<p>Tools are interfaces or resources that let the agent perform specific operations, such as running Python code, querying an API, retrieving Zotero references or searching Elasticsearch. The tool exposes an operation; the skill can guide its selection, use and verification criteria.</p>
+</div>
+
+<p class="callout"><b>Teaching summary:</b> the model interprets and generates, the agent coordinates, the skill guides and the tool executes operations. This is a simplification: the functions can overlap depending on the architecture.</p>
+
+<figure class="diagram-figure">
+<svg class="dg dg-wide" viewBox="0 0 940 470" role="img" aria-labelledby="dg-title dg-desc">
+  <title id="dg-title">How an agent mobilises a skill</title>
+  <desc id="dg-desc">Cycle diagram: the researcher frames the problem and supervises; the agent loads the skill, consults the LLM, operates tools and produces results; the researcher interprets, validates or stops.</desc>
+  <defs>
+    <marker id="dg-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="dg-head"/>
+    </marker>
+  </defs>
+  <g class="dg-line">
+    <path d="M245 95 H282 V165 H320" marker-end="url(#dg-arrow)"/>
+    <path d="M245 315 H292 V205 H320" marker-end="url(#dg-arrow)"/>
+    <path d="M560 160 H600 V90 H640" marker-end="url(#dg-arrow)"/>
+    <path d="M640 120 H615 V225 H560" marker-end="url(#dg-arrow)"/>
+    <path d="M560 245 H600 V320 H640" marker-end="url(#dg-arrow)"/>
+    <path d="M640 350 H615 V255 H560" marker-end="url(#dg-arrow)"/>
+    <path d="M440 265 V335" marker-end="url(#dg-arrow)"/>
+    <path d="M320 420 H30 V95 H40" marker-end="url(#dg-arrow)"/>
+  </g>
+  <g class="dg-box"><rect x="40" y="40" width="205" height="110" rx="12"/>
+    <text x="142" y="82" text-anchor="middle" class="dg-h">Pesquisador</text>
+    <text x="142" y="105" text-anchor="middle" class="dg-t">problema, decisão</text>
+    <text x="142" y="124" text-anchor="middle" class="dg-t">e supervisão humana</text></g>
+  <g class="dg-box dg-agent"><rect x="320" y="130" width="240" height="135" rx="12"/>
+    <text x="440" y="170" text-anchor="middle" class="dg-h">Agente</text>
+    <text x="440" y="194" text-anchor="middle" class="dg-t">interpreta, decide,</text>
+    <text x="440" y="213" text-anchor="middle" class="dg-t">age e verifica</text>
+    <text x="440" y="240" text-anchor="middle" class="dg-t dg-small">ciclo com parada possível</text></g>
+  <g class="dg-box"><rect x="640" y="40" width="220" height="110" rx="12"/>
+    <text x="750" y="82" text-anchor="middle" class="dg-h">LLM</text>
+    <text x="750" y="105" text-anchor="middle" class="dg-t">interpretação e geração</text>
+    <text x="750" y="124" text-anchor="middle" class="dg-t">de linguagem</text></g>
+  <g class="dg-box dg-skill"><rect x="40" y="285" width="205" height="110" rx="12"/>
+    <text x="142" y="327" text-anchor="middle" class="dg-h">Skill</text>
+    <text x="142" y="350" text-anchor="middle" class="dg-t">procedimento, critérios,</text>
+    <text x="142" y="369" text-anchor="middle" class="dg-t">testes e limites</text></g>
+  <g class="dg-box"><rect x="640" y="285" width="220" height="110" rx="12"/>
+    <text x="750" y="327" text-anchor="middle" class="dg-h">Ferramentas</text>
+    <text x="750" y="350" text-anchor="middle" class="dg-t">API, código, banco,</text>
+    <text x="750" y="369" text-anchor="middle" class="dg-t">navegador</text></g>
+  <g class="dg-box"><rect x="320" y="335" width="240" height="95" rx="12"/>
+    <text x="440" y="372" text-anchor="middle" class="dg-h">Resultados e registros</text>
+    <text x="440" y="396" text-anchor="middle" class="dg-t">saídas, evidências, proveniência</text></g>
+  <g class="dg-label">
+    <text x="250" y="88">problem, instruction, supervision</text>
+    <text x="596" y="80">query</text>
+    <text x="596" y="242">interpretation</text>
+    <text x="250" y="305">guides</text>
+    <text x="596" y="310">operates</text>
+    <text x="596" y="368">returns</text>
+    <text x="450" y="305">produces</text>
+    <text x="22" y="300" class="dg-small" transform="rotate(-90 22 300)">human review and possible stop</text>
+  </g>
+</svg>
+<svg class="dg dg-tall" viewBox="0 0 400 700" role="img" aria-labelledby="dg-title-m dg-desc-m">
+  <title id="dg-title-m">How an agent mobilises a skill</title>
+  <desc id="dg-desc-m">Cycle diagram: the researcher frames the problem and supervises; the agent loads the skill, consults the LLM, operates tools and produces results; the researcher interprets, validates or stops.</desc>
+  <defs>
+    <marker id="dg-arrow-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="dg-head"/>
+    </marker>
+  </defs>
+  <g class="dg-line">
+    <path d="M200 100 V140" marker-end="url(#dg-arrow-m)"/>
+    <path d="M120 280 V230" marker-end="url(#dg-arrow-m)"/>
+    <path d="M280 230 V280" marker-start="url(#dg-arrow-m)" marker-end="url(#dg-arrow-m)"/>
+    <path d="M200 230 V420" marker-end="url(#dg-arrow-m)"/>
+    <path d="M200 505 V560" marker-end="url(#dg-arrow-m)"/>
+    <path d="M65 600 H10 V60 H65" marker-end="url(#dg-arrow-m)"/>
+  </g>
+  <g class="dg-box"><rect x="65" y="20" width="270" height="80" rx="12"/>
+    <text x="200" y="52" text-anchor="middle" class="dg-h">Pesquisador</text>
+    <text x="200" y="76" text-anchor="middle" class="dg-t">problema, decisão e supervisão</text></g>
+  <g class="dg-box dg-agent"><rect x="65" y="140" width="270" height="90" rx="12"/>
+    <text x="200" y="172" text-anchor="middle" class="dg-h">Agente</text>
+    <text x="200" y="196" text-anchor="middle" class="dg-t">interpreta, decide, age, verifica</text>
+    <text x="200" y="216" text-anchor="middle" class="dg-t dg-small">ciclo com parada possível</text></g>
+  <g class="dg-box dg-skill"><rect x="30" y="280" width="140" height="95" rx="12"/>
+    <text x="100" y="312" text-anchor="middle" class="dg-h">Skill</text>
+    <text x="100" y="335" text-anchor="middle" class="dg-t">procedimento,</text>
+    <text x="100" y="354" text-anchor="middle" class="dg-t">critérios, limites</text></g>
+  <g class="dg-box"><rect x="230" y="280" width="140" height="95" rx="12"/>
+    <text x="300" y="312" text-anchor="middle" class="dg-h">LLM</text>
+    <text x="300" y="335" text-anchor="middle" class="dg-t">interpretação</text>
+    <text x="300" y="354" text-anchor="middle" class="dg-t">e geração</text></g>
+  <g class="dg-box"><rect x="65" y="420" width="270" height="85" rx="12"/>
+    <text x="200" y="452" text-anchor="middle" class="dg-h">Ferramentas</text>
+    <text x="200" y="476" text-anchor="middle" class="dg-t">API, código, banco, navegador</text></g>
+  <g class="dg-box"><rect x="65" y="560" width="270" height="85" rx="12"/>
+    <text x="200" y="592" text-anchor="middle" class="dg-h">Resultados e registros</text>
+    <text x="200" y="616" text-anchor="middle" class="dg-t">saídas, evidências, proveniência</text></g>
+  <g class="dg-label">
+    <text x="208" y="125">problem, instruction, supervision</text>
+    <text x="128" y="258">guides</text>
+    <text x="288" y="258">query and response</text>
+    <text x="208" y="408">operates</text>
+    <text x="208" y="540">produces</text>
+    <text x="14" y="350" class="dg-small" transform="rotate(-90 14 350)">human review and possible stop</text>
+  </g>
+</svg>
+<figcaption>The researcher frames the problem, supervises and can stop the cycle. The agent loads the skill, consults the model and operates tools; the skill does not call the tool on its own. Results and records return to the researcher for interpretation and validation.</figcaption>
+</figure>
+
+<h2 class="sec-h">What is a scientific skill in ScholarSkills?</h2>
+<div class="prose">
+<p>In ScholarSkills, a scientific skill is a documented package that operationalises methodological procedures or research-support activities. The project's editorial proposal adds requirements of grounding, transparency, assessment, authorship and explicit limits to the technical Agent Skills format.</p>
+<p>A skill should state, as its purpose requires: objective and conditions of use; inputs and outputs; requirements and permissions; procedure and stop criteria; verifiable references; tests and evidence; methodological, ethical and legal limits; version, licence, authorship and citation when available.</p>
+<p class="callout">Operationalising a procedure does not guarantee scientific validity, nor does it automatically turn results into reliable evidence. Responsibility for research design, interpretation and assessment remains human.</p>
+</div>
+
+<h2 class="sec-h">A concrete example: Zotero (SS-0001)</h2>
+<div class="example-box">
+<p>A researcher asks for an export of the references in a collection. The agent interprets the request with an LLM, consults skill <a href="../en/skills/zotero-reference-management.html">SS-0001</a> for the procedure and access conditions, uses the Zotero API with adequate permissions and returns the records for checking. The quality of the references and their fit to the research remain subject to human assessment.</p>
+<p class="note"><b>Illustrative example.</b> It is not a report of a test run in this revision.</p>
+</div>
+
+<h2 class="sec-h">Normative and terminological basis</h2>
+<div class="prose">
+<p>The open <a href="https://agentskills.io/specification" rel="noopener">Agent Skills specification</a> defines the minimum technical format: a <code>SKILL.md</code> file with YAML frontmatter containing <code>name</code> and <code>description</code>, plus optional resources. ScholarSkills adds its own editorial and scientific requirements, described in the <a href="https://github.com/LABHDUFBA/scholarskills/blob/main/registry/EDITORIAL_POLICY.md">editorial policy</a>.</p>
+<p>README, DOI, tests, peer review and <code>CITATION.cff</code> are not universal requirements of the specification: they are this project's choices for making provenance and assessment explicit.</p>
+</div>
+<p class="page-back"><a href="../en/index.html#skills">Browse the catalogue</a></p>
+
+</main>
+<footer class="site"><div class="wrap">
+  <span><img src="../assets/img/labhd.webp" alt="" style="width:20px;height:20px;border-radius:50%;vertical-align:-5px;margin-right:7px;background:#0a1f0c">Laboratório de Humanidades Digitais — Universidade Federal da Bahia (LABHDUFBA)</span>
+  <nav class="footer-nav" aria-label="About"><a href="../en/about.html">About</a> · <a href="https://github.com/LABHDUFBA/scholarskills" rel="noopener">GitHub</a> · <a href="../api/registry.json">JSON catalogue</a> · <a href="https://github.com/LABHDUFBA/scholarskills/blob/main/registry/EDITORIAL_POLICY.md">Editorial policy</a> · <a href="https://github.com/LABHDUFBA/scholarskills/blob/main/LICENSE">Licence</a></nav>
+  <span>Original code and documentation: MIT · no tracking, no cookies</span>
+  <span>Icons: Zotero (trademark of the Corporation for Digital Scholarship) and Hermes Agent (Nous Research), used only to indicate integration.</span>
+</div></footer>
+<script src="../assets/app.js?v=0e92320d18"></script>
+</body></html>

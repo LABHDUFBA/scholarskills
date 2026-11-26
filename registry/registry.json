@@ -6,7 +6,7 @@
   "supplementary_language": "pt-BR",
   "schema": "metadata-schema.json",
   "schema_version": "1.0.0",
-  "updated": "2026-11-25",
+  "updated": "2026-11-26",
   "doi_concept": null,
   "skills": [
     {
@@ -64,7 +64,7 @@
         "Audit ethics and rights: personal data, consent, copyright, dual use, attribution.",
         "Validate structure, then prepare — never perform — the deposit."
       ],
-      "install": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/scientific-agent-skill-development\npip install pyyaml",
+      "install": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/scientific-agent-skill-development\npython3 -m pip install pyyaml",
       "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Scientific Agent Skill Development and Validation Protocol (ScholarSkills SS-0000, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/scholarskills. DOI: 10.5281/zenodo.24505398",
       "links": {
         "repository": "https://github.com/LABHDUFBA/scholarskills",
@@ -139,7 +139,43 @@
       "paths": [
         "publicar-skill"
       ],
-      "doi_record": "https://zenodo.org/records/24505398"
+      "doi_record": "https://zenodo.org/records/24505398",
+      "type": "meta",
+      "limits_pt": "Uma validação aprovada não valida o método: prova estrutura, não verdade. Revisão por pares e replicação são processos sociais com registro próprio. O checklist ético é um piso e não substitui comitê de ética quando exigido. Esquemas de metadados envelhecem; o script registra a versão da especificação usada.",
+      "limits": "A passing validation does not validate the method: it proves structure, not truth. Peer review and replication are social processes with their own record. The ethics checklist is a floor, not a substitute for an ethics committee. Metadata schemas age; the script records the specification version it used.",
+      "evidence_dimensions": {
+        "structural": {
+          "status": "recorded",
+          "note_pt": "validate_skill.py: PASS, 0 avisos; execução local de 2026-11-26.",
+          "note": "validate_skill.py: PASS, 0 avisos; local run on 2026-11-26."
+        },
+        "functional": {
+          "status": "recorded",
+          "note_pt": "21 testes do protocolo e 8 do exemplo, ambiente registrado em 2026-11-24.",
+          "note": "21 protocol tests and 8 example tests, environment recorded on 2026-11-24."
+        },
+        "methodological": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "peer_review": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "reexecution": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "replication": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        }
+      },
+      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/scientific-agent-skill-development\npython3 -m pip install pyyaml"
     },
     {
       "id": "SS-0001",
@@ -194,7 +230,7 @@
         "Write with POST of a JSON array, and only when the key's scope allows it.",
         "Refuse politely: a 403 is reported as a scope limit, never worked around."
       ],
-      "install": "git clone https://github.com/LABHDUFBA/zotero-reference-management.git\ncd zotero-reference-management\npip install -r requirements.txt\nexport ZOTERO_API_KEY=\"...\"\nexport ZOTERO_LIBRARY_ID=\"123456\"",
+      "install": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/zotero-reference-management\npython3 -m pip install -r requirements.txt\nexport ZOTERO_API_KEY=\"...\"\nexport ZOTERO_LIBRARY_ID=\"123456\"\nexport ZOTERO_LIBRARY_TYPE=\"user\"",
       "cite": "Nascimento, L. F.; Brasil, E.; Sodré, R. (2026). Zotero Reference Management (ScholarSkills SS-0001, version 1.0.0) [Software]. Digital Humanities Laboratory, Federal University of Bahia. https://github.com/LABHDUFBA/zotero-reference-management. DOI: 10.5281/zenodo.24505402",
       "links": {
         "repository": "https://github.com/LABHDUFBA/scholarskills",
@@ -229,7 +265,7 @@
         "Recusar com clareza: um 403 é reportado como limite de escopo, jamais contornado."
       ],
       "evidence_pt": "zotero-reference-management/tests/RESULTS.md — 20 testes automatizados, todos verdes, sem acesso à rede.",
-      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/zotero-reference-management\npip install -r requirements.txt\nexport ZOTERO_API_KEY=\"...\"\nexport ZOTERO_LIBRARY_ID=\"123456\"",
+      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/zotero-reference-management\npython3 -m pip install -r requirements.txt\nexport ZOTERO_API_KEY=\"...\"\nexport ZOTERO_LIBRARY_ID=\"123456\"\nexport ZOTERO_LIBRARY_TYPE=\"user\"",
       "links_pt": {
         "repository": "Repositório",
         "path": "Diretório"
@@ -299,7 +335,42 @@
       "paths": [
         "revisao-sistematica"
       ],
-      "doi_record": "https://zenodo.org/records/24505402"
+      "doi_record": "https://zenodo.org/records/24505402",
+      "type": "infrastructure",
+      "limits_pt": "A API entrega metadados, não PDFs que não estejam sincronizados no Zotero Storage. A exportação BibTeX pelo endpoint de itens ignora paginação. Filtros de tag aceitam uma tag por requisição. Escrita em biblioteca de grupo depende do escopo da chave e não pode ser ampliada pelo cliente.",
+      "limits": "The API serves metadata, not PDFs that are not synchronised in Zotero Storage. BibTeX export on the items endpoint ignores pagination. Tag filters take one tag per request. Write access to a group library depends on the key's scope and cannot be widened from the client.",
+      "evidence_dimensions": {
+        "structural": {
+          "status": "recorded",
+          "note_pt": "validate_skill.py: PASS, 0 avisos; execução local de 2026-11-26.",
+          "note": "validate_skill.py: PASS, 0 avisos; local run on 2026-11-26."
+        },
+        "functional": {
+          "status": "recorded",
+          "note_pt": "20 testes automatizados, camada HTTP simulada, ambiente registrado em 2026-11-24.",
+          "note": "20 automated tests, mocked HTTP layer, environment recorded on 2026-11-24."
+        },
+        "methodological": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "peer_review": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "reexecution": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "replication": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        }
+      }
     },
     {
       "id": "SS-0002",
@@ -335,7 +406,8 @@
       ],
       "paths": [
         "revisao-sistematica"
-      ]
+      ],
+      "type": "methodological"
     },
     {
       "id": "SS-0003",
@@ -371,7 +443,8 @@
       "paths": [
         "revisao-sistematica",
         "corpus-ao-argumento"
-      ]
+      ],
+      "type": "methodological"
     },
     {
       "id": "SS-0004",
@@ -403,7 +476,8 @@
         "sociology",
         "methodology"
       ],
-      "paths": []
+      "paths": [],
+      "type": "methodological"
     },
     {
       "id": "SS-0005",
@@ -438,7 +512,8 @@
       ],
       "paths": [
         "corpus-ao-argumento"
-      ]
+      ],
+      "type": "methodological"
     },
     {
       "id": "SS-0006",
@@ -473,7 +548,8 @@
       ],
       "paths": [
         "corpus-ao-argumento"
-      ]
+      ],
+      "type": "methodological"
     },
     {
       "id": "SS-0007",
@@ -507,7 +583,8 @@
       ],
       "paths": [
         "dados-digitais"
-      ]
+      ],
+      "type": "methodological"
     },
     {
       "id": "SS-0008",
@@ -541,7 +618,8 @@
       ],
       "paths": [
         "dados-digitais"
-      ]
+      ],
+      "type": "methodological"
     },
     {
       "id": "SS-0009",
@@ -577,7 +655,8 @@
       ],
       "paths": [
         "dados-digitais"
-      ]
+      ],
+      "type": "methodological"
     },
     {
       "id": "SS-0010",
@@ -690,14 +769,50 @@
         "repository": "Repositório",
         "path": "Diretório"
       },
-      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/dou-federal-gazette\npip install -r requirements.txt\nexport PORTAL_TRANSPARENCIA_KEY=\"...\"",
+      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/dou-federal-gazette\npython3 -m pip install -r requirements.txt\nexport PORTAL_TRANSPARENCIA_KEY=\"...\"",
       "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. DOU and Federal Covenants for Research Pipelines (SS-0010), v1.0.0, 2026. LABHDUFBA/UFBA. DOI: 10.5281/zenodo.24507969",
       "objective": "Collect DOU publications and federal covenants through official open-data routes, without circumventing access controls and without confusing silence from the source with absence of publication.",
       "paths": [],
       "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/dou-federal-gazette",
       "doi_version": "10.5281/zenodo.24507969",
       "doi_concept": "10.5281/zenodo.24504881",
-      "doi_record": "https://zenodo.org/records/24507969"
+      "doi_record": "https://zenodo.org/records/24507969",
+      "type": "infrastructure",
+      "limits_pt": "O DOU é publicado sob a Lei de Acesso à Informação e seu decreto; o cliente não contorna bloqueios, não troca identidades e não usa proxies de terceiros. Atos que nomeiam pessoas são públicos, mas montar uma base de pessoas é tratamento de dados pessoais sob a LGPD. O limite é uma requisição por segundo e 40 páginas por execução. O registro prova o que a rota devolveu no dia da consulta; para efeito legal prevalece a cópia certificada do DOU.",
+      "limits": "The gazette is published under the access-to-information law and its decree; the client does not circumvent blocks, rotate identities or use third-party proxies. Acts naming individuals are public, but building a database of people is personal-data processing under the LGPD. The limit is one request per second and 40 pages per run. The record proves what the route returned on the day; for legal effect the certified copy prevails.",
+      "evidence_dimensions": {
+        "structural": {
+          "status": "recorded",
+          "note_pt": "validate_skill.py: PASS, 3 aviso(s); execução local de 2026-11-26.",
+          "note": "validate_skill.py: PASS, 3 warning(s); local run on 2026-11-26."
+        },
+        "functional": {
+          "status": "recorded",
+          "note_pt": "20 testes com fixtures gravadas e HTTP simulado, ambiente registrado em 2026-11-24.",
+          "note": "20 tests with recorded fixtures and a stub HTTP layer, environment recorded on 2026-11-24."
+        },
+        "methodological": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "peer_review": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "reexecution": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "replication": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        }
+      },
+      "install": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/dou-federal-gazette\npython3 -m pip install -r requirements.txt\nexport PORTAL_TRANSPARENCIA_KEY=\"...\""
     },
     {
       "id": "SS-0011",
@@ -791,14 +906,50 @@
         "repository": "Repositório",
         "path": "Diretório"
       },
-      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/brazilian-fiscal-data\npip install -r requirements.txt",
+      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/brazilian-fiscal-data\npython3 -m pip install -r requirements.txt",
       "cite": "NASCIMENTO, Leonardo Fernandes; BRASIL, Eric; SODRÉ, Ricardo. Brazilian Fiscal Data (SS-0011), v1.0.0, 2026. LABHDUFBA/UFBA. DOI: 10.5281/zenodo.24505404",
       "objective": "Retrieve fiscal accounts declared by Brazilian states and municipalities in a form whose arithmetic can be audited by a reader.",
       "paths": [],
       "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/brazilian-fiscal-data",
       "doi_version": "10.5281/zenodo.24505404",
       "doi_concept": "10.5281/zenodo.24505403",
-      "doi_record": "https://zenodo.org/records/24505404"
+      "doi_record": "https://zenodo.org/records/24505404",
+      "type": "infrastructure",
+      "limits_pt": "O SICONFI é público por desenho e não exige credencial. Os números são os declarados pelo ente: auditá-los é outra operação, e um total declarado não é um pagamento. Comparar entes sem ajustar por população, base de receita e qualidade do reporte produz um ranking, não uma análise. A cobertura varia por exercício e por ente; lacunas devem ser reportadas.",
+      "limits": "SICONFI is public by design and needs no credential. The figures are those declared by the entity: auditing them is a different operation, and a declared total is not a payment. Comparing entities without adjusting for population, revenue base and reporting quality produces a league table, not an analysis. Coverage varies by year and entity; gaps must be reported.",
+      "evidence_dimensions": {
+        "structural": {
+          "status": "recorded",
+          "note_pt": "validate_skill.py: PASS, 3 aviso(s); execução local de 2026-11-26.",
+          "note": "validate_skill.py: PASS, 3 warning(s); local run on 2026-11-26."
+        },
+        "functional": {
+          "status": "recorded",
+          "note_pt": "21 testes com payloads gravados e HTTP simulado, ambiente registrado em 2026-11-24.",
+          "note": "21 tests with recorded payloads and a stub HTTP layer, environment recorded on 2026-11-24."
+        },
+        "methodological": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "peer_review": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "reexecution": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "replication": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        }
+      },
+      "install": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/brazilian-fiscal-data\npython3 -m pip install -r requirements.txt"
     },
     {
       "id": "SS-0012",
@@ -916,7 +1067,43 @@
       ],
       "doi_version": "10.5281/zenodo.24505406",
       "doi_concept": "10.5281/zenodo.24505405",
-      "doi_record": "https://zenodo.org/records/24505406"
+      "doi_record": "https://zenodo.org/records/24505406",
+      "type": "infrastructure",
+      "limits_pt": "O pacote não carrega credencial; o deploy usa o token do próprio repositório em Actions. A auditoria é estrutural, não editorial: não decide se uma frase é verdadeira. Um build verde não garante um site correto; uma página pode compilar e apontar para um 404.",
+      "limits": "The package carries no credential; deployment uses the repository's own token in Actions. The audit is structural, not editorial: it cannot decide whether a sentence is true. A green build does not guarantee a correct site; a page can build and still link to a 404.",
+      "evidence_dimensions": {
+        "structural": {
+          "status": "recorded",
+          "note_pt": "validate_skill.py: PASS, 3 aviso(s); execução local de 2026-11-26.",
+          "note": "validate_skill.py: PASS, 3 warning(s); local run on 2026-11-26."
+        },
+        "functional": {
+          "status": "recorded",
+          "note_pt": "19 testes, site temporário em tmpdir, ambiente registrado em 2026-11-24.",
+          "note": "19 tests, temporary site in a tmpdir, environment recorded on 2026-11-24."
+        },
+        "methodological": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "peer_review": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "reexecution": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "replication": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        }
+      },
+      "install": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/hugo-site-maintenance\npython3 scripts/hugo_audit.py content --public"
     },
     {
       "id": "SS-0013",
@@ -1034,7 +1221,43 @@
       ],
       "doi_version": "10.5281/zenodo.24505408",
       "doi_concept": "10.5281/zenodo.24505407",
-      "doi_record": "https://zenodo.org/records/24505408"
+      "doi_record": "https://zenodo.org/records/24505408",
+      "type": "infrastructure",
+      "limits_pt": "A skill opera apenas o currículo do próprio titular, sem scraping de currículos de terceiros e sem submissão automática. Campo sem fonte primária fica vazio. O currículo é público e pessoal ao mesmo tempo: publique apenas o que o titular aprovou. O verificador confere estrutura e consistência, não a verdade do registro.",
+      "limits": "The skill operates only the holder's own CV, with no scraping of third-party CVs and no automated submission. A field without a primary source stays empty. The CV is public and personal at once: publish only what the holder approved. The checker verifies structure and consistency, not the truth of the record.",
+      "evidence_dimensions": {
+        "structural": {
+          "status": "recorded",
+          "note_pt": "validate_skill.py: PASS, 3 aviso(s); execução local de 2026-11-26.",
+          "note": "validate_skill.py: PASS, 3 warning(s); local run on 2026-11-26."
+        },
+        "functional": {
+          "status": "recorded",
+          "note_pt": "33 testes, sem rede, ambiente registrado em 2026-11-24.",
+          "note": "33 tests, no network, environment recorded on 2026-11-24."
+        },
+        "methodological": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "peer_review": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "reexecution": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "replication": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        }
+      },
+      "install": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/lattes-cv-editing\npython3 -c \"from lattes_item import Item, validate; print(validate(Item('evento', {'titulo':'X','ano':'2026'})))\""
     },
     {
       "id": "SS-0014",
@@ -1128,21 +1351,56 @@
         "repository": "Repositório",
         "path": "Diretório"
       },
-      "install": "python3 scripts/scaffold_project.py <project-directory> --title \"Project title\"",
-      "install_pt": "python3 scripts/scaffold_project.py <diretorio-do-projeto> --title \"Título do projeto\"",
+      "install": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/research-project-repository-organization\npython3 scripts/scaffold_project.py <project-directory> --title \"Project title\"",
+      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/research-project-repository-organization\npython3 scripts/scaffold_project.py <diretorio-do-projeto> --title \"Título do projeto\"",
       "cite": "BRASIL, Eric. Research Repository Setup (ScholarSkills SS-0014), version 0.1.0 [Software]. 2026.",
       "paths": [],
       "doi_version": null,
       "doi_concept": null,
-      "doi_record": null
+      "doi_record": null,
+      "type": "infrastructure",
+      "limits_pt": "Não existe árvore de repositório universalmente correta: a estrutura deve responder ao método, aos materiais, às pessoas, à governança e aos produtos do projeto. Documentação e versionamento melhoram a rastreabilidade, mas não estabelecem validade científica, reprodutibilidade, conformidade legal ou armazenamento seguro. O script cria apenas uma estrutura inicial em branco e não infere desenho de pesquisa, política institucional ou direitos.",
+      "limits": "There is no universally correct repository tree: the structure must answer to the project's methods, materials, people, governance and outputs. Documentation and version control improve traceability but do not establish scientific validity, reproducibility, legal compliance or secure storage. The script creates a blank starter layout only and cannot infer a research design, institutional policy or rights.",
+      "evidence_dimensions": {
+        "structural": {
+          "status": "recorded",
+          "note_pt": "validate_skill.py: PASS, 0 avisos; execução local de 2026-11-26.",
+          "note": "validate_skill.py: PASS, 0 avisos; local run on 2026-11-26."
+        },
+        "functional": {
+          "status": "recorded",
+          "note_pt": "6 testes, ambiente registrado em 2026-11-25.",
+          "note": "6 tests, environment recorded on 2026-11-25."
+        },
+        "methodological": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "peer_review": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "reexecution": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        },
+        "replication": {
+          "status": "not_recorded",
+          "note_pt": "Não registrada.",
+          "note": "Not recorded."
+        }
+      }
     }
   ],
   "renumbering_note": "2026-11-24: SS-0001 reassigned to the first substantive skill (Zotero); previous roadmap items shifted to SS-0002..SS-0009.",
   "hub": {
-    "title": "Métodos Digitais — research skills for AI agents",
-    "tagline": "Executable research methodologies that can be read, tested and cited.",
+    "title": "ScholarSkills — scientific skills for AI agents",
+    "tagline": "Scientific skills for artificial intelligence agents",
     "institution": "Laboratório de Humanidades Digitais — Universidade Federal da Bahia (LABHDUFBA)",
-    "description": "An academic hub of agent skills treated as methodological objects: each one documented, versioned, tested and licensed, and — once the deposit is authorised — archived with a DOI. Nothing here carries an identifier it does not have: a skill without a DOI says so.",
+    "description": "An open academic repository of research protocols, procedures and resources organised for use by AI agents. Published packages state their requirements, procedure, evidence, limits, authorship and conditions of reuse.",
     "site_url": "https://labhdufba.github.io/scholarskills/",
     "repo_url": "https://github.com/LABHDUFBA/scholarskills",
     "submission_url": "https://github.com/LABHDUFBA/scholarskills/blob/main/CONTRIBUTING.md",
@@ -1150,9 +1408,9 @@
     "doi_concept": "10.5281/zenodo.24505393",
     "doi_version": "10.5281/zenodo.24507970",
     "release": null,
-    "tagline_pt": "Metodologias de pesquisa executáveis, que podem ser lidas, testadas e citadas.",
-    "description_pt": "Um hub acadêmico de skills para agentes de IA, tratadas como objetos metodológicos: cada uma documentada, versionada, testada e licenciada, e — quando o depósito é autorizado — arquivada com DOI. Nada aqui carrega um identificador que não possui: uma skill sem DOI diz que não tem.",
-    "title_pt": "Métodos Digitais — skills de pesquisa para agentes de IA",
+    "tagline_pt": "Skills científicas para agentes de inteligência artificial",
+    "description_pt": "Repositório acadêmico aberto de protocolos, procedimentos e recursos de pesquisa organizados para uso por agentes de IA. Os pacotes publicados explicitam seus requisitos, procedimentos, evidências, limites, autoria e condições de reutilização.",
+    "title_pt": "ScholarSkills — skills científicas para agentes de IA",
     "institution_url": "https://labhdufba.github.io/",
     "institution_en": "Digital Humanities Laboratory — Federal University of Bahia (LABHDUFBA)",
     "colors": {
@@ -1171,9 +1429,9 @@
       ]
     },
     "institution_short": "LABHDUFBA · UFBA",
-    "short_name": "Métodos Digitais",
-    "short_name_en": "Métodos Digitais",
-    "brand_note": "Nome de exibição: 'Métodos Digitais' (pt-BR), do LABHDUFBA. O identificador técnico — repositório 'scholarskills', prefixo SS-NNNN, URL atual do Pages — não muda: é o que já foi citado, indexado e depositado. O nome 'ScholarSkills' permanece nas citações das seis skills já publicadas e nos metadados dos seus depósitos (ex.: 'A ScholarSkills package (SS-0010)'), porque é o que os registros carregam; a próxima versão de cada skill pode atualizar o texto. Não 'corrigir' essa divergência sem decisão explícita.",
+    "short_name": "ScholarSkills",
+    "short_name_en": "ScholarSkills",
+    "brand_note": "Nome de exibição: 'ScholarSkills'. 'Métodos Digitais' permanece como nome da iniciativa do LABHDUFBA. O identificador técnico — repositório 'scholarskills', prefixo SS-NNNN, URL do Pages — não muda: é o que já foi citado, indexado e depositado. Citações e metadados de versões arquivadas que dizem 'Métodos Digitais' ou 'A ScholarSkills package' não são reescritos retroativamente.",
     "authors": [
       {
         "name": "Leonardo Fernandes Nascimento",
@@ -1197,7 +1455,8 @@
         "orcid": "0000-0003-3107-3686"
       }
     ],
-    "contact_email": "labhdufba@gmail.com"
+    "contact_email": "labhdufba@gmail.com",
+    "initiative": "Métodos Digitais"
   },
   "policy_note": "One repository holds every skill; each skill keeps its own directory, version, CHANGELOG and DOI. A separate repository per skill is not used.",
   "stages": {
@@ -1340,6 +1599,71 @@
         "SS-0012"
       ],
       "stage": "writing"
+    }
+  ],
+  "taxonomy": {
+    "methodological": {
+      "pt": "Metodológica",
+      "en": "Methodological",
+      "desc_pt": "Operacionaliza um procedimento de pesquisa: coleta, triagem, codificação, análise ou síntese.",
+      "desc_en": "Operationalises a research procedure: collection, screening, coding, analysis or synthesis."
+    },
+    "infrastructure": {
+      "pt": "Infraestrutura e gestão da pesquisa",
+      "en": "Research infrastructure and management",
+      "desc_pt": "Sustenta a execução ou a organização do trabalho: acesso a dados, repositórios, sites, currículos e ambiente.",
+      "desc_en": "Sustains execution or research management: data access, repositories, sites, CVs and environment."
+    },
+    "meta": {
+      "pt": "Meta-skill",
+      "en": "Meta-skill",
+      "desc_pt": "Desenvolve, valida ou documenta outras skills.",
+      "desc_en": "Develops, validates or documents other skills."
+    }
+  },
+  "taxonomy_note": "Classificação editorial preliminar, derivada do escopo declarado em cada pacote. Pode ser revista pelos autores e mantenedores; uma skill pode ter classificação secundária quando o escopo atravessa mais de um tipo.",
+  "evidence_dimensions": [
+    {
+      "key": "structural",
+      "pt": "Conformidade estrutural",
+      "en": "Structural conformance",
+      "req_pt": "Validador aplicado, versão da especificação e resultado registrados.",
+      "req_en": "Validator applied, specification version and result recorded."
+    },
+    {
+      "key": "functional",
+      "pt": "Testes funcionais",
+      "en": "Functional tests",
+      "req_pt": "Casos positivos, negativos e de borda; ambiente, resultado e data registrados.",
+      "req_en": "Positive, negative and edge cases; environment, result and date recorded."
+    },
+    {
+      "key": "methodological",
+      "pt": "Avaliação metodológica",
+      "en": "Methodological assessment",
+      "req_pt": "Protocolo, comparação de referência, métricas adequadas e limitações.",
+      "req_en": "Protocol, benchmark, adequate metrics and limitations."
+    },
+    {
+      "key": "peer_review",
+      "pt": "Revisão por pares",
+      "en": "Peer review",
+      "req_pt": "Política editorial, pareceres autorizados, versão e decisão.",
+      "req_en": "Editorial policy, authorised reports, version and decision."
+    },
+    {
+      "key": "reexecution",
+      "pt": "Reexecução independente",
+      "en": "Independent re-execution",
+      "req_pt": "Executor não autor, ambiente, versão, resultados e divergências.",
+      "req_en": "Non-author executor, environment, version, results and divergences."
+    },
+    {
+      "key": "replication",
+      "pt": "Replicação científica",
+      "en": "Scientific replication",
+      "req_pt": "Quando aplicável, avaliação em novos dados ou novo estudo, segundo protocolo definido.",
+      "req_en": "Where applicable, assessment on new data or a new study under a defined protocol."
     }
   ]
 }

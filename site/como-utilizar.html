@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Como utilizar uma skill</title>
+<meta name="description" content="Guia para obter, instalar, ativar, verificar e citar uma skill científica em agentes compatíveis com Agent Skills.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://labhdufba.github.io/scholarskills/como-utilizar.html">
+<link rel="alternate" hreflang="pt-BR" href="https://labhdufba.github.io/scholarskills/como-utilizar.html">
+<link rel="alternate" hreflang="en" href="https://labhdufba.github.io/scholarskills/en/using.html">
+<link rel="alternate" hreflang="x-default" href="https://labhdufba.github.io/scholarskills/como-utilizar.html">
+<meta property="og:site_name" content="ScholarSkills">
+<meta property="og:title" content="Como utilizar uma skill">
+<meta property="og:description" content="Guia para obter, instalar, ativar, verificar e citar uma skill científica em agentes compatíveis com Agent Skills.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://labhdufba.github.io/scholarskills/como-utilizar.html">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://labhdufba.github.io/scholarskills/assets/img/labhd.png">
+<meta name="twitter:card" content="summary">
+<link rel="preload" href="assets/fonts/heebo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/signika.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css?v=0e92320d18">
+<link rel="icon" href="assets/img/labhd.png">
+<script>try{var t=localStorage.getItem('smd-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Como utilizar uma skill","description":"Guia para obter, instalar, ativar, verificar e citar uma skill científica em agentes compatíveis com Agent Skills.","url":"https://labhdufba.github.io/scholarskills/como-utilizar.html","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"ScholarSkills","url":"https://labhdufba.github.io/scholarskills/"}}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Pular para o conteúdo</a>
+<p id="copy-status" class="sr-only" role="status" aria-live="polite"></p><header class="site"><div class="wrap">
+  <a class="brand" href="index.html">
+    <span class="mark"><img src="assets/img/labhd.webp" alt="LABHDUFBA"></span>
+    <span class="brand-name">ScholarSkills<small>LABHDUFBA · UFBA</small></span></a>
+  <button class="theme-toggle" id="theme-toggle" type="button"
+    aria-label="Alternar tema claro e escuro" title="Tema claro / escuro">
+    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+  <a class="lang" href="en/using.html" hreflang="en"
+     aria-label="Mudar para inglês"><span class="full">English</span><span class="short">EN</span></a>
+  <nav class="site" aria-label="Navegação principal">
+    <a href="index.html">Início</a>
+    <a href="index.html#skills">Catálogo</a>
+    <a class="on" href="como-utilizar.html" aria-current="page">Como usar</a>
+    <a href="index.html#paths">Trilhas</a>
+    <a href="evidencias.html">Evidências</a>
+    <a class="cta" href="contribuir.html">Contribuir</a>
+  </nav>
+</div></header><main id="main" class="wrap page">
+  <header class="page-head">
+    <h1>Como utilizar uma skill</h1>
+    <p class="lede">Do clone à verificação de que o agente reconheceu a skill, sem confundir instalação com ativação.</p>
+  </header>
+
+<h2 class="sec-h">Antes de começar</h2>
+<div class="prose">
+<p>Uma skill não é um programa que se instala e roda sozinho. Ela é um conjunto de instruções e, às vezes, de scripts que um agente lê para conduzir uma tarefa. Instalar uma skill significa colocá-la onde o agente procura por skills; usá-la significa pedir ao agente que a consulte e conferir o que ele fez.</p>
+<p>Você precisa de três coisas: <b>Python 3.10 ou superior</b> para os pacotes que trazem scripts, <b>Git</b> para obter o repositório e um <b>agente compatível com Agent Skills</b>. Algumas skills pedem rede ou credenciais próprias; a página de cada pacote lista o que é obrigatório e o que é condicional.</p>
+</div>
+
+<h2 class="sec-h">1. Escolha o ambiente</h2>
+<div class="prose">
+<p><b>Hermes Agent.</b> Skills ficam em <code>$HERMES_HOME/skills/</code>, por padrão <code>~/.hermes/skills/</code>. Depois de copiar um pacote, comece uma sessão nova e confira com <code>hermes skills list</code>; dentro da sessão, <code>/skills</code> lista e <code>/skill &lt;nome&gt;</code> carrega uma skill.</p>
+<p><b>Claude Code.</b> Skills pessoais ficam em <code>~/.claude/skills/&lt;nome&gt;/SKILL.md</code> e valem em todos os projetos; skills de projeto ficam em <code>.claude/skills/</code> na raiz do repositório. O nome do diretório se torna o comando <code>/nome</code>.</p>
+<p><b>Outro ambiente compatível.</b> Siga a <a href="https://agentskills.io/specification" rel="noopener">especificação Agent Skills</a> do próprio ambiente. Não presuma que o caminho de um agente vale para outro.</p>
+</div>
+
+<h2 class="sec-h">2. Obtenha o pacote</h2>
+<div class="prose"><p>O repositório reúne todas as skills. Para uma skill isolada, copie apenas o diretório dela.</p></div>
+<pre><code>git clone https://github.com/LABHDUFBA/scholarskills.git
+cd scholarskills</code></pre>
+
+<h2 class="sec-h">3. Ative a skill no agente</h2>
+<div class="prose"><p><b>Hermes Agent:</b></p></div>
+<pre><code>mkdir -p ~/.hermes/skills
+cp -R zotero-reference-management ~/.hermes/skills/</code></pre>
+<div class="prose"><p><b>Claude Code (pessoal):</b></p></div>
+<pre><code>mkdir -p ~/.claude/skills
+cp -R zotero-reference-management ~/.claude/skills/</code></pre>
+
+<h2 class="sec-h">4. Verifique se a skill foi reconhecida</h2>
+<div class="prose">
+<p>Copiar arquivos não prova ativação. No Hermes, <code>hermes skills list</code> deve mostrar o nome da skill; em uma sessão nova, peça: <i>“Liste as skills disponíveis e diga quando você usaria a skill zotero-reference-management.”</i> No Claude Code, o nome do diretório aparece como <code>/zotero-reference-management</code>.</p>
+<p>Se a skill não aparecer, confira três coisas: o arquivo <code>SKILL.md</code> está na raiz do diretório copiado; o frontmatter tem <code>name</code> e <code>description</code> válidos; a sessão foi iniciada depois da cópia.</p>
+</div>
+
+<h2 class="sec-h">5. Configure requisitos com cuidado</h2>
+<div class="prose">
+<p>Leia a seção <b>Requisitos</b> da skill. Separe o que é obrigatório do que é condicional, e não instale dependências globais: use um ambiente virtual.</p>
+</div>
+<pre><code>cd zotero-reference-management
+python3 -m venv .venv
+. .venv/bin/activate
+python3 -m pip install -r requirements.txt</code></pre>
+<div class="prose">
+<p>Credenciais vão em variáveis de ambiente ou em um arquivo <code>.env</code> que nunca é versionado. Não cole chaves em prompts, exemplos, capturas de tela ou arquivos do repositório. Conceda à chave o menor escopo que resolve a tarefa.</p>
+</div>
+
+<h2 class="sec-h">6. Execute um exemplo seguro</h2>
+<div class="prose">
+<p>Comece pelo exemplo que o pacote documenta, de preferência um que rode com dados sintéticos ou fixtures e sem rede. Peça ao agente que mostre o comando antes de executar e que registre a saída. Operações de escrita em serviços reais exigem confirmação explícita.</p>
+</div>
+
+<h2 class="sec-h">7. Leia a evidência antes de confiar</h2>
+<div class="prose">
+<p>Testes verdes provam que o código faz o que o teste descreve, não que o método é adequado à sua pesquisa. A página <a href="evidencias.html">Evidências e maturidade</a> explica as dimensões e mostra o que cada pacote registra. O <code>tests/RESULTS.md</code> do pacote traz ambiente, comando e resultado.</p>
+</div>
+
+<h2 class="sec-h">8. Cite a versão que usou</h2>
+<div class="prose">
+<p>Quando existe DOI de versão, cite esse DOI para a execução específica e explique o DOI de conceito como o registro que reúne as versões. A ficha de cada skill traz a citação pronta e os dois identificadores, quando existem.</p>
+</div>
+
+<h2 class="sec-h">O que esta revisão testou</h2>
+<div class="prose">
+<p>Esta revisão verificou o build estático, os links internos e a validação estrutural dos pacotes. Não testou a ativação em Hermes Agent ou Claude Code, chamadas reais às APIs externas, todos os sistemas operacionais nem a adequação científica de cada método. O relatório da revisão registra o que passou, o que falhou e o que não foi executado.</p>
+</div>
+<p class="page-back"><a href="index.html#skills">Ver as skills disponíveis</a></p>
+
+</main>
+<footer class="site"><div class="wrap">
+  <span><img src="assets/img/labhd.webp" alt="" style="width:20px;height:20px;border-radius:50%;vertical-align:-5px;margin-right:7px;background:#0a1f0c">Laboratório de Humanidades Digitais — Universidade Federal da Bahia (LABHDUFBA)</span>
+  <nav class="footer-nav" aria-label="Sobre"><a href="sobre.html">Sobre</a> · <a href="https://github.com/LABHDUFBA/scholarskills" rel="noopener">GitHub</a> · <a href="api/registry.json">Catálogo JSON</a> · <a href="https://github.com/LABHDUFBA/scholarskills/blob/main/registry/EDITORIAL_POLICY.md">Política editorial</a> · <a href="https://github.com/LABHDUFBA/scholarskills/blob/main/LICENSE">Licença</a></nav>
+  <span>Código e documentação originais: MIT · sem rastreamento, sem cookies</span>
+  <span>Ícones: Zotero (marca da Corporation for Digital Scholarship) e Hermes Agent (Nous Research), usados apenas para indicar integração.</span>
+</div></footer>
+<script src="assets/app.js?v=0e92320d18"></script>
+</body></html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://labhdufba.github.io/scholarskills/sitemap.xml
