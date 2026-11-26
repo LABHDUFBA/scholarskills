@@ -89,6 +89,13 @@ jobs:
         working-directory: research-project-repository-organization
         run: python -m unittest discover -s tests -v
 
+      - name: Validate SS-0015 (SIGAA Academic Operations)
+        run: python scientific-agent-skill-development/scripts/validate_skill.py sigaa-academic-operations
+
+      - name: SS-0015 test suite (offline)
+        working-directory: sigaa-academic-operations
+        run: python -m unittest discover -s tests -v
+
       - name: Deposit client test suite (offline, stubbed HTTP)
         run: python -m unittest tests.test_deposit_skills -v
 

@@ -1,0 +1,9 @@
+{
+  "operation": "update_topic",
+  "target": "HIST-0001 / T01 / 2027.1",
+  "institution": "Example University",
+  "term": "2027.1",
+  "content": "The assignment is available in the portal.",
+  "approval": false,
+  "notify_email": false
+}

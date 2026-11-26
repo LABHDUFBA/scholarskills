@@ -1393,6 +1393,128 @@
           "note": "Not recorded."
         }
       }
+    },
+    {
+      "id": "SS-0015",
+      "slug": "sigaa-academic-operations",
+      "stage": "foundation",
+      "status": "available",
+      "title": "SIGAA Academic Operations",
+      "title_pt": "Operações acadêmicas no SIGAA",
+      "summary": "Prepare and safely execute teaching and research operations in SIGAA-like academic portals with explicit approval gates, side-effect disclosure and post-action verification.",
+      "summary_pt": "Preparar e executar com segurança operações de ensino e pesquisa em portais acadêmicos da família SIGAA, com aprovação explícita, divulgação de efeitos colaterais e verificação posterior.",
+      "objective": "Structure human-in-the-loop work in stateful academic portals: identify the target, validate inputs, prepare a reversible draft, obtain approval before persistence, and read back the result.",
+      "objective_pt": "Estruturar o trabalho human-in-the-loop em portais acadêmicos com estado: identificar o alvo, validar entradas, preparar rascunho reversível, obter aprovação antes da persistência e reler o resultado.",
+      "how_it_works": [
+        "Identify institution, profile, module, term and target record.",
+        "Discover the current interface by semantic labels instead of permanent selectors.",
+        "Validate fields, dates, files, call requirements and side effects.",
+        "Prepare the operation without saving, publishing, approving or submitting.",
+        "Show the target and diff; require explicit human approval.",
+        "Persist once, read back the target and report the observed result."
+      ],
+      "how_it_works_pt": [
+        "Identificar instituição, perfil, módulo, período e registro-alvo.",
+        "Descobrir a interface atual por rótulos semânticos, não por seletores permanentes.",
+        "Validar campos, datas, arquivos, exigências do edital e efeitos colaterais.",
+        "Preparar a operação sem salvar, publicar, homologar ou submeter.",
+        "Mostrar alvo e diff; exigir aprovação humana explícita.",
+        "Persistir uma vez, reler o alvo e relatar o resultado observado."
+      ],
+      "evidence": "sigaa-academic-operations/tests/RESULTS.md",
+      "evidence_pt": "sigaa-academic-operations/tests/RESULTS.md — testes offline do protocolo; nenhuma conta institucional acessada pela suíte.",
+      "features": [
+        "Human approval gate",
+        "Side-effect disclosure",
+        "Post-action read-back"
+      ],
+      "features_en": [
+        "Human approval gate",
+        "Side-effect disclosure",
+        "Post-action read-back"
+      ],
+      "keywords": [
+        "SIGAA",
+        "academic portal",
+        "teaching operations",
+        "research administration",
+        "PIBIC",
+        "PIBITI"
+      ],
+      "integrations": [
+        "python",
+        "browser"
+      ],
+      "maturity": "tested",
+      "version": "0.1.0",
+      "license": "MIT",
+      "authors": [
+        {
+          "name": "Eric Brasil",
+          "affiliation": "UNILAB",
+          "orcid": "0000-0001-5067-8475"
+        },
+        {
+          "name": "Leonardo Fernandes Nascimento",
+          "affiliation": "LABHDUFBA · UFBA",
+          "orcid": "0000-0003-2929-1115"
+        }
+      ],
+      "disciplines": [
+        "education",
+        "methodology",
+        "digital-humanities"
+      ],
+      "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/sigaa-academic-operations",
+      "highlight": false,
+      "added": "2026-11-26",
+      "compatibility": "Python 3.10+ for offline checks; a browser session and the account holder's own institutional authentication for live operations. No credentials are stored.",
+      "requirements": [
+        {
+          "name": "Python 3.10 ou superior",
+          "name_en": "Python 3.10 or newer",
+          "required": false,
+          "type": "software",
+          "what_pt": "Executa o verificador offline do protocolo.",
+          "what_en": "Runs the offline protocol checker.",
+          "how_pt": "Verifique com python3 --version.",
+          "how_en": "Check with python3 --version.",
+          "url": "https://www.python.org/downloads/",
+          "url_label": "Baixar Python",
+          "url_label_en": "Download Python",
+          "note_pt": "A operação no portal exige autenticação separada do titular.",
+          "note_en": "Live portal operation requires separate account-holder authentication."
+        },
+        {
+          "name": "Acesso ao próprio perfil institucional",
+          "name_en": "Access to the account holder's own institutional profile",
+          "required": true,
+          "type": "choice",
+          "what_pt": "O portal exige o perfil institucional autorizado para a operação.",
+          "what_en": "The portal requires an institutional profile authorized for the operation.",
+          "how_pt": "Autentique-se no portal com um gerenciador de credenciais; a skill não recebe nem armazena a senha.",
+          "how_en": "Authenticate in the portal with a credential manager; the skill never receives or stores the password.",
+          "url": null,
+          "url_label": null,
+          "url_label_en": null,
+          "note_pt": "Autorização para navegar não equivale a autorização para publicar, homologar ou submeter.",
+          "note_en": "Permission to navigate is not permission to publish, approve or submit."
+        }
+      ],
+      "links": {
+        "repository": "https://github.com/LABHDUFBA/scholarskills/tree/main/sigaa-academic-operations",
+        "path": "https://github.com/LABHDUFBA/scholarskills/tree/main/sigaa-academic-operations"
+      },
+      "links_pt": {
+        "repository": "Repositório",
+        "path": "Diretório"
+      },
+      "install_pt": "git clone https://github.com/LABHDUFBA/scholarskills.git\ncd scholarskills/sigaa-academic-operations\npython3 -m unittest discover -s tests -v",
+      "cite": "BRASIL, Eric; NASCIMENTO, Leonardo Fernandes. SIGAA Academic Operations (SS-0015), v0.1.0, 2026. LABHDUFBA/UNILAB.",
+      "paths": [],
+      "doi_version": null,
+      "doi_concept": null,
+      "doi_record": null
     }
   ],
   "renumbering_note": "2026-11-24: SS-0001 reassigned to the first substantive skill (Zotero); previous roadmap items shifted to SS-0002..SS-0009.",

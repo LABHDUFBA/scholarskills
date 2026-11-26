@@ -1,0 +1,29 @@
+{
+  "title": "SIGAA Academic Operations",
+  "description": "<p>A ScholarSkills package (SS-0015) for preparing and safely executing teaching and research operations in SIGAA-like academic portals, with explicit approval gates, side-effect disclosure and post-action verification.</p>",
+  "upload_type": "software",
+  "license": "mit",
+  "access_right": "open",
+  "version": "0.1.0",
+  "creators": [
+    {
+      "name": "Brasil, Eric",
+      "affiliation": "University of International Integration of Afro-Brazilian Lusophony (UNILAB)"
+    },
+    {
+      "name": "Nascimento, Leonardo Fernandes",
+      "affiliation": "Digital Humanities Laboratory (LABHDUFBA), Federal University of Bahia"
+    }
+  ],
+  "keywords": [
+    "SIGAA",
+    "academic portal",
+    "teaching",
+    "research administration",
+    "PIBIC",
+    "PIBITI",
+    "agent skills"
+  ],
+  "language": "eng",
+  "notes": "Digital Methods Skills SS-0015. Digital Humanities Laboratory, Federal University of Bahia, and UNILAB."
+}
