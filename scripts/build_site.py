@@ -107,6 +107,32 @@ T = {
   "planned_summary": "Em desenvolvimento. Entra no ar com testes, licença e DOI quando aprovada.",
   "col_name": "Nome", "col_aff": "Afiliação", "copy": "Copiar citação",
   "copy_email": "Copiar endereço", "copy_fail": "Selecione e copie",
+  "conc_h": "Antes do catálogo: modelo, agente, skill e ferramenta",
+  "conc_lede": "São quatro coisas diferentes, e a diferença é o que dá sentido ao que está publicado aqui. Quem vem das humanidades lê “skill” como habilidade; quem vem da computação lê como prompt ou plugin. Nenhuma das duas leituras descreve um pacote deste catálogo.",
+  "conc_m": "Modelo", "conc_m_tag": "capacidade",
+  "conc_m_d": "O motor de linguagem: recebe texto e devolve texto. Sozinho, não guarda o trabalho, não consulta documento nem executa ação.",
+  "conc_a": "Agente", "conc_a_tag": "ciclo",
+  "conc_a_d": "Sistema que usa o modelo para perseguir um objetivo: interpreta a instrução, decide o próximo passo, chama ferramentas, lê o resultado e verifica se a tarefa foi cumprida. O modelo produz respostas; o agente organiza um ciclo de percepção, decisão, ação e verificação.",
+  "conc_s": "Skill", "conc_s_tag": "método",
+  "conc_s_d": "Pacote reutilizável e versionado de conhecimento e procedimento que ensina um agente a executar uma tarefa delimitada — instruções, critérios de decisão, referências, scripts, testes e limites. Não age sozinha. Não é prompt (uma frase) nem plugin (código instalável): é método escrito para ser seguido.",
+  "conc_t": "Ferramenta", "conc_t_tag": "meio",
+  "conc_t_d": "O recurso pelo qual a ação é efetivamente realizada: uma API, um programa, um navegador, uma base de dados. A ferramenta torna a ação possível; a skill estabelece quando, como e sob quais limites utilizá-la.",
+  "sci_h": "O que é uma skill científica",
+  "sci_p": "Aqui, uma skill científica é um método de pesquisa tornado operacional, inspecionável e auditável. Cada pacote explicita — e o nome da seção correspondente aparece entre parênteses:",
+  "sci_1": "o problema que resolve e quando o agente deve usá-la (<i>When to use</i>);",
+  "sci_2": "os requisitos e os limites de execução (<i>Requirements</i>, <i>Tools and dependencies</i>);",
+  "sci_3": "a sequência de procedimentos e os critérios de parada (<i>Procedure</i>, <i>Stop criteria</i>);",
+  "sci_4": "as fontes e referências que a fundamentam (<i>References</i>);",
+  "sci_5": "os testes e a evidência de funcionamento, com ambiente registrado (<i>Validation</i>, <code>tests/RESULTS.md</code>);",
+  "sci_6": "os limites epistemológicos — o que ela não faz e não prova — e, quando o dado envolve pessoas, os cuidados éticos e legais (<i>Limits</i>);",
+  "sci_7": "versão, licença, autoria e forma de citação (ficha da skill, <code>CITATION.cff</code>).",
+  "sci_note": "Isso não torna o método automático, nem os resultados verdadeiros por definição: a skill organiza a execução e deixa as escolhas examináveis; a interpretação e a validação seguem humanas.",
+  "flow_1": "O pesquisador formula o problema",
+  "flow_2": "O agente mobiliza a skill",
+  "flow_3": "A skill orienta o uso das ferramentas",
+  "flow_4": "Resultados e evidências são produzidos",
+  "flow_5": "O pesquisador interpreta e valida",
+  "conc_quote": "Skills não substituem métodos científicos: tornam partes desses métodos executáveis, verificáveis e reutilizáveis por agentes de IA.",
   "pending_lic": "licença pendente",
  },
  "en": {
@@ -170,6 +196,32 @@ T = {
   "planned_summary": "In development. It ships with tests, a licence and a DOI once approved.",
   "col_name": "Name", "col_aff": "Affiliation", "copy": "Copy citation",
   "copy_email": "Copy address", "copy_fail": "Select and copy",
+  "conc_h": "Before the catalogue: model, agent, skill and tool",
+  "conc_lede": "Four different things, and the difference is what gives meaning to what is published here. Readers from the humanities hear “skill” as an ability; readers from computing hear prompt or plugin. Neither reading describes a package in this catalogue.",
+  "conc_m": "Model", "conc_m_tag": "capacity",
+  "conc_m_d": "The language engine: it takes text in and gives text out. On its own it keeps no record of the work, opens no document and performs no action.",
+  "conc_a": "Agent", "conc_a_tag": "cycle",
+  "conc_a_d": "A system that uses the model to pursue a goal: it reads the instruction, decides the next step, calls tools, reads the result and checks whether the task was completed. The model produces answers; the agent runs a cycle of perception, decision, action and verification.",
+  "conc_s": "Skill", "conc_s_tag": "method",
+  "conc_s_d": "A reusable, versioned package of knowledge and procedure that teaches an agent to carry out a bounded task — instructions, decision criteria, references, scripts, tests and limits. It does not act on its own. It is neither a prompt (one sentence) nor a plugin (installable code): it is a method written to be followed.",
+  "conc_t": "Tool", "conc_t_tag": "means",
+  "conc_t_d": "The resource through which the action is actually carried out: an API, a program, a browser, a database. The tool makes the action possible; the skill sets when, how and within which limits to use it.",
+  "sci_h": "What a scientific skill is here",
+  "sci_p": "A scientific skill is a research method made operational, inspectable and auditable. Each package states — the matching section name appears in brackets:",
+  "sci_1": "the problem it solves and when the agent should use it (<i>When to use</i>);",
+  "sci_2": "the requirements and execution limits (<i>Requirements</i>, <i>Tools and dependencies</i>);",
+  "sci_3": "the procedure and its stop criteria (<i>Procedure</i>, <i>Stop criteria</i>);",
+  "sci_4": "the sources and references behind it (<i>References</i>);",
+  "sci_5": "the tests and the evidence that it works, with the environment recorded (<i>Validation</i>, <code>tests/RESULTS.md</code>);",
+  "sci_6": "its epistemological limits — what it does not do and does not prove — and, where data involve people, the ethical and legal safeguards (<i>Limits</i>);",
+  "sci_7": "version, licence, authorship and how to cite (skill factsheet, <code>CITATION.cff</code>).",
+  "sci_note": "This does not make the method automatic, nor its results true by definition: the skill organises execution and leaves its choices examinable; interpretation and validation remain human.",
+  "flow_1": "The researcher frames the problem",
+  "flow_2": "The agent loads the skill",
+  "flow_3": "The skill governs how tools are used",
+  "flow_4": "Results and evidence are produced",
+  "flow_5": "The researcher interprets and validates",
+  "conc_quote": "Skills do not replace scientific methods: they make parts of those methods executable, verifiable and reusable by AI agents.",
   "pending_lic": "licence pending",
  },
 }
@@ -603,6 +655,53 @@ aside.side{position:sticky;top:80px;align-self:start}
   table.authors-t th,table.authors-t td{padding:8px 6px}
 }
 
+/* ---------- conceitos: modelo, agente, skill, ferramenta ---------- */
+.concepts{padding-top:46px;padding-bottom:10px}
+.conc-lede{max-width:78ch;color:var(--muted);font-size:0.9688rem;margin:6px 0 20px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}
+.ccard{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:16px 18px;display:flex;flex-direction:column;gap:7px;min-width:0}
+.ccard h3{margin:0;font-family:var(--font-head);font-weight:600;font-size:1.0625rem;
+  color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ccard .what{font-size:0.6562rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--brand-ink);background:var(--brand-soft);border:1px solid var(--brand-line);
+  border-radius:999px;padding:2px 8px;white-space:nowrap}
+.ccard p{margin:0;font-size:0.875rem;line-height:1.55;color:var(--muted)}
+.sci{margin:26px 0 0;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;
+  padding:20px 22px}
+.sci h3{margin:0 0 6px;font-family:var(--font-head);font-weight:600;font-size:1.125rem;color:var(--ink)}
+.sci p{margin:0;color:var(--muted);font-size:0.9375rem;line-height:1.55;max-width:82ch}
+.slist{list-style:none;padding:0;margin:14px 0 0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:8px 26px}
+.slist li{position:relative;padding-left:20px;font-size:0.875rem;line-height:1.5;color:var(--ink);
+  overflow-wrap:anywhere}
+.slist li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;
+  border-radius:2px;background:var(--brand)}
+.slist code{font-family:var(--mono);font-size:0.7812rem;background:var(--surface);
+  border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+.sci .note{margin:14px 0 0;font-size:0.8438rem;color:var(--muted);max-width:none;
+  border-top:1px dashed var(--line);padding-top:12px}
+.flow{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px;grid-template-columns:1fr}
+.flow li{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:10px 12px;font-size:0.8125rem;line-height:1.4;color:var(--ink);min-width:0}
+.flow .n{display:block;font-size:0.6562rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--brand-ink);margin-bottom:2px}
+@media(min-width:900px){
+  .flow{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .flow li{padding-right:20px}
+  .flow li:not(:last-child)::after{content:"→";position:absolute;right:-9px;top:50%;
+    transform:translateY(-50%);color:var(--muted);font-size:0.8125rem;line-height:1}
+}
+@media(max-width:899px){
+  .flow li:not(:last-child)::after{content:"↓";position:absolute;left:50%;bottom:-11px;
+    transform:translateX(-50%);color:var(--muted);font-size:0.8125rem;line-height:1;
+    background:var(--bg);padding:0 3px}
+}
+.conc-quote{margin:20px 0 34px;padding:14px 18px;background:var(--brand-soft);
+  border-left:4px solid var(--brand);border-radius:0 10px 10px 0;color:var(--ink);
+  font-size:0.9688rem;line-height:1.5;font-weight:550}
+@media(max-width:640px){.concepts{padding-top:34px;padding-bottom:6px}.sci{padding:16px 16px}}
+
 /* tema escuro: padrão do sistema, sobreponível pelo botão de tema */
 @media(prefers-color-scheme:dark){
 html:not([data-theme=light]){--bg:#0b0f0c;--bg-soft:#0e1310;--surface:#141a15;--ink:#e9efe9;--muted:#9aa79c;
@@ -951,6 +1050,40 @@ def render_paths(reg: dict, lang: str) -> str:
     return "\n".join(parts)
 
 
+def render_concepts(hub: dict, lang: str) -> str:
+    """The four words the catalogue assumes, stated before the grid.
+
+    A visitor from the humanities reads "skill" as an ability; a visitor from computing reads it as
+    a prompt or a plugin. Neither is what a package here is, and no card explains that. Every
+    definition is a sentence the reader can check against the packages themselves.
+
+    The `sci_*` values carry inline markup (<i>, <code>) on purpose — they map each claim to the real
+    section name inside the package — so they are inserted raw while prose stays escaped.
+    """
+    cards = [("conc_m", "conc_m_tag", "conc_m_d"), ("conc_a", "conc_a_tag", "conc_a_d"),
+             ("conc_s", "conc_s_tag", "conc_s_d"), ("conc_t", "conc_t_tag", "conc_t_d")]
+    out = ['<section class="concepts wrap" id="conceitos">',
+           f'<h2 class="sec-h" style="margin-top:0">{esc(t(lang, "conc_h"))}</h2>',
+           f'<p class="conc-lede">{esc(t(lang, "conc_lede"))}</p>',
+           '<div class="cgrid">']
+    for term, tag, body in cards:
+        out.append(f'<article class="ccard"><h3>{esc(t(lang, term))}'
+                   f'<span class="what">{esc(t(lang, tag))}</span></h3>'
+                   f'<p>{esc(t(lang, body))}</p></article>')
+    out.append('</div>')
+    out.append(f'<div class="sci"><h3>{esc(t(lang, "sci_h"))}</h3>'
+               f'<p>{esc(t(lang, "sci_p"))}</p><ul class="slist">')
+    out += [f'<li>{t(lang, "sci_" + str(i))}</li>' for i in range(1, 8)]
+    out.append(f'</ul><p class="note">{esc(t(lang, "sci_note"))}</p></div>')
+    out.append('<ol class="flow">')
+    out += [f'<li><span class="n">{i:02d}</span>{esc(t(lang, "flow_" + str(i)))}</li>'
+            for i in range(1, 6)]
+    out.append('</ol>')
+    out.append(f'<p class="conc-quote">{esc(t(lang, "conc_quote"))}</p>')
+    out.append('</section>')
+    return "\n".join(out)
+
+
 def render_index(reg: dict, lang: str) -> str:
     hub = reg.get("hub", {})
     stages = reg.get("stages", {})
@@ -979,7 +1112,9 @@ def render_index(reg: dict, lang: str) -> str:
     <div class="stat"><b>3</b><span>{t(lang,'authors')}</span></div>
   </div>
 </div></section>
-
+"""
+    out += render_concepts(hub, lang)
+    out += f"""
 <main class="wrap">
   <div id="skills">
     <h2 class="sec-h">{t(lang,"nav_skills")}</h2>

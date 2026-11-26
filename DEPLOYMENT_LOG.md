@@ -759,6 +759,53 @@ honestly instead of squeezing. Final measurement at 430/390/375/360/320 px: the 
 inside the viewport at every width, page overflow is zero, and the header is 109 px in one line or
 149 px in two.
 
+---
+
+## Entry 029 — 2026-11-25 — Conceptual section before the catalogue
+
+**Status:** done locally; not pushed (publication needs the operator's go-ahead).
+
+**Problem.** The page opened with "skills", "AI agents" and "executable methodologies" and assumed the
+visitor already knew what those words mean. A reader from the humanities hears *skill* as an ability; a
+reader from computing hears a prompt or a plugin. Neither reading describes a package in this
+catalogue, and nothing on the page said so.
+
+**What was added.** `render_concepts()` in `scripts/build_site.py`, rendered by `render_index()` between
+the hero and the grid (anchor `#conceitos`), with 30 i18n keys in `pt` and `en`. Four cards
+(model / agent / skill / tool), a block defining *scientific skill* with seven items, a five-step flow,
+and the closing sentence: skills do not replace scientific methods, they make parts of those methods
+executable, verifiable and reusable.
+
+**The seven items name the real section of the package** — *When to use*, *Requirements*, *Tools and
+dependencies*, *Procedure*, *Stop criteria*, *References*, *Validation*, `tests/RESULTS.md`, *Limits*,
+`CITATION.cff` — so the claim can be checked against the artefact instead of being taken on trust. The
+ethics item is worded conditionally ("where data involve people") because three of the six available
+skills do not mention ethics or LGPD at all; promising "ethical care in every skill" would have been
+false. If the promise should be unconditional, the section has to enter `skill-template/SKILL.md` and
+the existing packages — that is a separate decision.
+
+**Two defects found and fixed while verifying, both invisible in the source:**
+
+- `content:"\2192"` inside an ordinary Python string is an **octal escape**: the CSS was published with
+  the control character `U+0011` followed by `92`, and the flow arrows rendered as tofu plus "92" in
+  every browser. Fixed by emitting the literal characters. Lesson: in a Python heredoc or triple-quoted
+  CSS template, a backslash before digits is octal, not a CSS escape.
+- `.concepts{padding:46px 0 10px}` is the **shorthand** and, on the same element as `.wrap`, silently
+  removed the 24 px lateral padding: at 390 px the text touched both edges. Replaced by
+  `padding-top`/`padding-bottom`, leaving the `.wrap` inset intact.
+
+**Verification.** Built both trees (49 files, 14 skills); `--check` clean. Browser at 1440/780/390:
+four cards, seven items, five steps, `#conceitos` present, `scrollWidth == innerWidth` at every width;
+the flow is five columns at ≥900 px with "→" connectors and one column with "↓" below that. Contrast
+measured in both themes — card text 4.83:1 light / 7.05:1 dark, badge 4.79 / 11.35, quote 16.95 / 13.65,
+step number 5.02 / 12.59 — all text above AA. Toggled dark mode by button (not only by system
+preference) and re-measured.
+
+**Not done, pending a decision.** The section was not added to the nav (a seventh item would press the
+390 px menu that entry 028 just fixed); the display name in the copy is the registry's, while page
+`<title>` still appends "— ScholarSkills"; and `Skill` cards do not yet say which maturity level the
+reader can expect.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.

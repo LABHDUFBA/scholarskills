@@ -399,6 +399,53 @@ aside.side{position:sticky;top:80px;align-self:start}
   table.authors-t th,table.authors-t td{padding:8px 6px}
 }
 
+/* ---------- conceitos: modelo, agente, skill, ferramenta ---------- */
+.concepts{padding-top:46px;padding-bottom:10px}
+.conc-lede{max-width:78ch;color:var(--muted);font-size:0.9688rem;margin:6px 0 20px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}
+.ccard{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:16px 18px;display:flex;flex-direction:column;gap:7px;min-width:0}
+.ccard h3{margin:0;font-family:var(--font-head);font-weight:600;font-size:1.0625rem;
+  color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ccard .what{font-size:0.6562rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--brand-ink);background:var(--brand-soft);border:1px solid var(--brand-line);
+  border-radius:999px;padding:2px 8px;white-space:nowrap}
+.ccard p{margin:0;font-size:0.875rem;line-height:1.55;color:var(--muted)}
+.sci{margin:26px 0 0;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;
+  padding:20px 22px}
+.sci h3{margin:0 0 6px;font-family:var(--font-head);font-weight:600;font-size:1.125rem;color:var(--ink)}
+.sci p{margin:0;color:var(--muted);font-size:0.9375rem;line-height:1.55;max-width:82ch}
+.slist{list-style:none;padding:0;margin:14px 0 0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:8px 26px}
+.slist li{position:relative;padding-left:20px;font-size:0.875rem;line-height:1.5;color:var(--ink);
+  overflow-wrap:anywhere}
+.slist li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;
+  border-radius:2px;background:var(--brand)}
+.slist code{font-family:var(--mono);font-size:0.7812rem;background:var(--surface);
+  border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+.sci .note{margin:14px 0 0;font-size:0.8438rem;color:var(--muted);max-width:none;
+  border-top:1px dashed var(--line);padding-top:12px}
+.flow{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px;grid-template-columns:1fr}
+.flow li{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:10px 12px;font-size:0.8125rem;line-height:1.4;color:var(--ink);min-width:0}
+.flow .n{display:block;font-size:0.6562rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--brand-ink);margin-bottom:2px}
+@media(min-width:900px){
+  .flow{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .flow li{padding-right:20px}
+  .flow li:not(:last-child)::after{content:"→";position:absolute;right:-9px;top:50%;
+    transform:translateY(-50%);color:var(--muted);font-size:0.8125rem;line-height:1}
+}
+@media(max-width:899px){
+  .flow li:not(:last-child)::after{content:"↓";position:absolute;left:50%;bottom:-11px;
+    transform:translateX(-50%);color:var(--muted);font-size:0.8125rem;line-height:1;
+    background:var(--bg);padding:0 3px}
+}
+.conc-quote{margin:20px 0 34px;padding:14px 18px;background:var(--brand-soft);
+  border-left:4px solid var(--brand);border-radius:0 10px 10px 0;color:var(--ink);
+  font-size:0.9688rem;line-height:1.5;font-weight:550}
+@media(max-width:640px){.concepts{padding-top:34px;padding-bottom:6px}.sci{padding:16px 16px}}
+
 /* tema escuro: padrão do sistema, sobreponível pelo botão de tema */
 @media(prefers-color-scheme:dark){
 html:not([data-theme=light]){--bg:#0b0f0c;--bg-soft:#0e1310;--surface:#141a15;--ink:#e9efe9;--muted:#9aa79c;

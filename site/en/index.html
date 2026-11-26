@@ -11,7 +11,7 @@
 <meta property="og:image" content="https://labhdufba.github.io/scholarskills/assets/img/hermes.png">
 <link rel="preload" href="../assets/fonts/heebo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/signika.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/style.css?v=5b0f1686fe">
+<link rel="stylesheet" href="../assets/style.css?v=1bccb036fd">
 <link rel="icon" href="../assets/img/labhd.png">
 <script>try{var t=localStorage.getItem('smd-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
@@ -46,7 +46,33 @@
     <div class="stat"><b>3</b><span>authors</span></div>
   </div>
 </div></section>
-
+<section class="concepts wrap" id="conceitos">
+<h2 class="sec-h" style="margin-top:0">Before the catalogue: model, agent, skill and tool</h2>
+<p class="conc-lede">Four different things, and the difference is what gives meaning to what is published here. Readers from the humanities hear “skill” as an ability; readers from computing hear prompt or plugin. Neither reading describes a package in this catalogue.</p>
+<div class="cgrid">
+<article class="ccard"><h3>Model<span class="what">capacity</span></h3><p>The language engine: it takes text in and gives text out. On its own it keeps no record of the work, opens no document and performs no action.</p></article>
+<article class="ccard"><h3>Agent<span class="what">cycle</span></h3><p>A system that uses the model to pursue a goal: it reads the instruction, decides the next step, calls tools, reads the result and checks whether the task was completed. The model produces answers; the agent runs a cycle of perception, decision, action and verification.</p></article>
+<article class="ccard"><h3>Skill<span class="what">method</span></h3><p>A reusable, versioned package of knowledge and procedure that teaches an agent to carry out a bounded task — instructions, decision criteria, references, scripts, tests and limits. It does not act on its own. It is neither a prompt (one sentence) nor a plugin (installable code): it is a method written to be followed.</p></article>
+<article class="ccard"><h3>Tool<span class="what">means</span></h3><p>The resource through which the action is actually carried out: an API, a program, a browser, a database. The tool makes the action possible; the skill sets when, how and within which limits to use it.</p></article>
+</div>
+<div class="sci"><h3>What a scientific skill is here</h3><p>A scientific skill is a research method made operational, inspectable and auditable. Each package states — the matching section name appears in brackets:</p><ul class="slist">
+<li>the problem it solves and when the agent should use it (<i>When to use</i>);</li>
+<li>the requirements and execution limits (<i>Requirements</i>, <i>Tools and dependencies</i>);</li>
+<li>the procedure and its stop criteria (<i>Procedure</i>, <i>Stop criteria</i>);</li>
+<li>the sources and references behind it (<i>References</i>);</li>
+<li>the tests and the evidence that it works, with the environment recorded (<i>Validation</i>, <code>tests/RESULTS.md</code>);</li>
+<li>its epistemological limits — what it does not do and does not prove — and, where data involve people, the ethical and legal safeguards (<i>Limits</i>);</li>
+<li>version, licence, authorship and how to cite (skill factsheet, <code>CITATION.cff</code>).</li>
+</ul><p class="note">This does not make the method automatic, nor its results true by definition: the skill organises execution and leaves its choices examinable; interpretation and validation remain human.</p></div>
+<ol class="flow">
+<li><span class="n">01</span>The researcher frames the problem</li>
+<li><span class="n">02</span>The agent loads the skill</li>
+<li><span class="n">03</span>The skill governs how tools are used</li>
+<li><span class="n">04</span>Results and evidence are produced</li>
+<li><span class="n">05</span>The researcher interprets and validates</li>
+</ol>
+<p class="conc-quote">Skills do not replace scientific methods: they make parts of those methods executable, verifiable and reusable by AI agents.</p>
+</section>
 <main class="wrap">
   <div id="skills">
     <h2 class="sec-h">Skills</h2>
@@ -440,5 +466,5 @@
   <span>Code MIT · Documentation CC BY 4.0 · no tracking, no cookies</span>
   <span>Icons: Zotero (trademark of the Corporation for Digital Scholarship) and Hermes Agent (Nous Research), used only to indicate integration.</span>
 </div></footer>
-<script src="../assets/app.js?v=5b0f1686fe"></script>
+<script src="../assets/app.js?v=1bccb036fd"></script>
 </body></html>
