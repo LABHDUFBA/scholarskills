@@ -1,18 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://scholarskills.labhd.ufba.br/schema/registry-entry.json",
+  "$id": "https://labhdufba.github.io/scholarskills/schema/registry-entry.json",
   "title": "ScholarSkills registry entry",
   "type": "object",
   "required": [
     "id",
     "slug",
     "title",
-    "version",
     "status",
-    "maturity",
-    "repository",
-    "license",
-    "authors"
+    "stage",
+    "type"
   ],
   "additionalProperties": false,
   "properties": {
@@ -24,14 +21,25 @@
     "slug": {
       "type": "string",
       "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
-      "maxLength": 64,
-      "description": "Must equal the Agent Skills 'name' field and the skill directory name."
+      "maxLength": 64
     },
     "title": {
       "type": "string",
       "minLength": 1
     },
+    "title_pt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "summary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "summary_pt": {
       "type": [
         "string",
         "null"
@@ -51,12 +59,25 @@
         "deprecated"
       ]
     },
+    "type": {
+      "enum": [
+        "methodological",
+        "infrastructure",
+        "meta"
+      ],
+      "description": "Editorial type; preliminary until confirmed by authors."
+    },
     "maturity": {
+      "type": [
+        "string",
+        "null"
+      ],
       "enum": [
         "experimental",
         "tested",
         "peer-reviewed",
-        "replicated"
+        "replicated",
+        null
       ]
     },
     "repository": {
@@ -79,6 +100,13 @@
         "null"
       ],
       "pattern": "^10\\.[0-9]{4,9}/[-._;()/:A-Za-z0-9]+$"
+    },
+    "doi_record": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
     },
     "license": {
       "type": [
@@ -142,8 +170,199 @@
       "type": [
         "string",
         "null"
-      ],
-      "description": "Path or URL of the artefact that justifies the maturity level."
+      ]
+    },
+    "evidence_pt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence_dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "structural": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "enum": [
+                "recorded",
+                "not_recorded",
+                "not_applicable"
+              ]
+            },
+            "note": {
+              "type": "string"
+            },
+            "note_pt": {
+              "type": "string"
+            },
+            "ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "functional": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "enum": [
+                "recorded",
+                "not_recorded",
+                "not_applicable"
+              ]
+            },
+            "note": {
+              "type": "string"
+            },
+            "note_pt": {
+              "type": "string"
+            },
+            "ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "methodological": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "enum": [
+                "recorded",
+                "not_recorded",
+                "not_applicable"
+              ]
+            },
+            "note": {
+              "type": "string"
+            },
+            "note_pt": {
+              "type": "string"
+            },
+            "ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "peer_review": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "enum": [
+                "recorded",
+                "not_recorded",
+                "not_applicable"
+              ]
+            },
+            "note": {
+              "type": "string"
+            },
+            "note_pt": {
+              "type": "string"
+            },
+            "ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "reexecution": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "enum": [
+                "recorded",
+                "not_recorded",
+                "not_applicable"
+              ]
+            },
+            "note": {
+              "type": "string"
+            },
+            "note_pt": {
+              "type": "string"
+            },
+            "ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "replication": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "enum": [
+                "recorded",
+                "not_recorded",
+                "not_applicable"
+              ]
+            },
+            "note": {
+              "type": "string"
+            },
+            "note_pt": {
+              "type": "string"
+            },
+            "ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "limits": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "limits_pt": {
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "deprecated_reason": {
       "type": [
@@ -168,8 +387,13 @@
       "type": [
         "string",
         "null"
-      ],
-      "description": "What the skill is for, in one paragraph (hub display)."
+      ]
+    },
+    "objective_pt": {
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "how_it_works": {
       "type": [
@@ -178,22 +402,34 @@
       ],
       "items": {
         "type": "string"
-      },
-      "description": "Ordered steps shown on the hub page."
+      }
+    },
+    "how_it_works_pt": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
     },
     "install": {
       "type": [
         "string",
         "null"
-      ],
-      "description": "Installation commands, verbatim."
+      ]
+    },
+    "install_pt": {
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "cite": {
       "type": [
         "string",
         "null"
-      ],
-      "description": "Human-readable citation text until a DOI exists."
+      ]
     },
     "links": {
       "type": [
@@ -203,15 +439,85 @@
       "additionalProperties": {
         "type": "string",
         "pattern": "^https?://\\S+$"
-      },
-      "description": "Named links: repository, zenodo, doi, docs. Values are URLs, not labels."
+      }
+    },
+    "links_pt": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
     },
     "highlight": {
       "type": [
         "boolean",
         "null"
-      ],
-      "description": "Show first in the hub grid."
+      ]
+    },
+    "stage": {
+      "type": "string"
+    },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "features_en": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "disciplines": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "available"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "version",
+          "maturity",
+          "license",
+          "repository",
+          "authors"
+        ]
+      }
+    }
+  ]
 }
