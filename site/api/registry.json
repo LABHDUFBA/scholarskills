@@ -1399,6 +1399,7 @@
       "slug": "sigaa-academic-operations",
       "stage": "foundation",
       "status": "available",
+      "type": "methodological",
       "title": "SIGAA Academic Operations",
       "title_pt": "Operações acadêmicas no SIGAA",
       "summary": "Prepare and safely execute teaching and research operations in SIGAA-like academic portals with explicit approval gates, side-effect disclosure and post-action verification.",
@@ -1469,6 +1470,8 @@
       "highlight": false,
       "added": "2026-11-26",
       "compatibility": "Python 3.10+ for offline checks; a browser session and the account holder's own institutional authentication for live operations. No credentials are stored.",
+      "limits": "Live evidence covers the UNILAB installation only; formal PIBIC/PIBITI submission, file upload, and live grade or attendance mutation were not tested.",
+      "limits_pt": "As evidências ao vivo cobrem apenas a instalação da UNILAB; não foram testados submissão formal PIBIC/PIBITI, upload de arquivos nem alteração ao vivo de notas ou frequência.",
       "requirements": [
         {
           "name": "Python 3.10 ou superior",
