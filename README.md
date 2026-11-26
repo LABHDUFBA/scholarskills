@@ -16,6 +16,7 @@ The registry is the source of truth for identifiers, status, maturity and DOI. T
 | SS-0011 | Brazilian Fiscal Data (SICONFI) | [`brazilian-fiscal-data/`](brazilian-fiscal-data/) | tested |
 | SS-0012 | Hugo Site Maintenance | [`hugo-site-maintenance/`](hugo-site-maintenance/) | tested |
 | SS-0013 | Lattes CV Editing | [`lattes-cv-editing/`](lattes-cv-editing/) | tested |
+| SS-0014 | Research Repository Setup | [`research-project-repository-organization/`](research-project-repository-organization/) | tested |
 
 SS-0002 through SS-0009 are **planned** entries, not downloadable or validated packages. Read their proposed scope in the [registry](registry/registry.json). Do not cite a planned entry as an implemented method.
 
@@ -23,7 +24,7 @@ SS-0002 through SS-0009 are **planned** entries, not downloadable or validated p
 
 A package's `SKILL.md` states when to use it, what it needs, how it works and when to stop. Its `README.md` explains installation and use; `tests/` and `tests/RESULTS.md` record evidence for the claimed maturity level. Packages also carry citation metadata, a changelog and a licence file. Depending on the method, they may contain runnable scripts, examples, methodological references and benchmarks.
 
-ScholarSkills keeps these packages in **one Git repository**, rather than requiring a repository per skill. Each available skill has its own archival record and version DOI; the collection has a separate record. The distinction between concept DOI and version DOI is documented in [`registry/README.md`](registry/README.md). The archived version may differ from the latest `main` branch; cite the version used.
+ScholarSkills keeps these packages in **one Git repository**, rather than requiring a repository per skill. Available skills may receive their own archival record and version DOI; the collection has a separate record. The distinction between concept DOI and version DOI is documented in [`registry/README.md`](registry/README.md). An archived version may differ from the latest `main` branch; cite the version used when one exists.
 
 ## Try a package or validate a contribution
 
@@ -43,7 +44,7 @@ To validate another package, pass its directory to `validate_skill.py` and run i
 
 - [`registry/`](registry/) — catalogue, metadata schema and [editorial policy](registry/EDITORIAL_POLICY.md).
 - [`skill-template/`](skill-template/) — starting point for a new package; its placeholders are intentional and it is not an available skill.
-- The six package directories listed above — available skills and their local evidence.
+- The seven package directories listed above — available skills and their local evidence.
 - [`scripts/`](scripts/) — site generation and deposit tooling. Deposit and publication require operator authorization.
 - [`site/`](site/) — generated bilingual hub, published through [GitHub Pages](https://labhdufba.github.io/scholarskills/). The registry drives the skill pages.
 - [`tests/`](tests/) — tests for repository-level tooling.
@@ -61,4 +62,4 @@ The root [`LICENSE`](LICENSE) and the available packages' `LICENSE` files use MI
 
 ## Citation
 
-Use [`CITATION.cff`](CITATION.cff) for the catalogue. For a specific skill, cite its package's `CITATION.cff` and the **version DOI** listed in [`registry/registry.json`](registry/registry.json), rather than citing the catalogue as a substitute. Zenodo records identify archived versions; `main` may contain later changes.
+Use [`CITATION.cff`](CITATION.cff) for the catalogue. For a specific skill, cite its package's `CITATION.cff` and the **version DOI** listed in [`registry/registry.json`](registry/registry.json) when one exists, rather than citing the catalogue as a substitute. Zenodo records identify archived versions; `main` may contain later changes.
