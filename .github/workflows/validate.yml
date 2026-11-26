@@ -25,7 +25,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: python -m pip install --upgrade pip pyyaml requests
+        run: python -m pip install --upgrade pip pyyaml requests jsonschema
+
+      - name: Validate the catalogue and the generated hub
+        run: python -m unittest tests.test_site -v
 
       - name: Validate the meta-skill package
         run: python scientific-agent-skill-development/scripts/validate_skill.py scientific-agent-skill-development
