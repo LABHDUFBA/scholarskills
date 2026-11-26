@@ -19,6 +19,7 @@ The registry is the source of truth for identifiers, status, maturity and DOI. T
 | SS-0012 | Hugo Site Maintenance | [`hugo-site-maintenance/`](hugo-site-maintenance/) | tested |
 | SS-0013 | Lattes CV Editing | [`lattes-cv-editing/`](lattes-cv-editing/) | tested |
 | SS-0014 | Research Repository Setup | [`research-project-repository-organization/`](research-project-repository-organization/) | tested |
+| SS-0015 | SIGAA Academic Operations | [`sigaa-academic-operations/`](sigaa-academic-operations/) | tested |
 
 SS-0002 through SS-0009 are **planned** entries, not downloadable or validated packages. Read their proposed scope in the [registry](registry/registry.json). Do not cite a planned entry as an implemented method.
 
