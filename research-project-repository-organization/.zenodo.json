@@ -1,0 +1,22 @@
+{
+  "title": "Research Repository Setup",
+  "description": "<p>Experimental workflow for planning or reviewing a research repository, documenting project scope and provenance, and identifying data-handling decisions. It does not prescribe a universal directory tree or determine scientific validity, legal permissions, or institutional compliance.</p>",
+  "upload_type": "software",
+  "license": "mit",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "Brasil, Eric",
+      "affiliation": "Institute of Humanities and Languages, University of International Integration of Afro-Brazilian Lusophony (UNILAB)",
+      "orcid": "0000-0001-5067-8475"
+    }
+  ],
+  "keywords": [
+    "agent skills",
+    "research methodology",
+    "reproducibility"
+  ],
+  "language": "eng",
+  "notes": "ScholarSkills — Digital Humanities Laboratory, Federal University of Bahia (LABHDUFBA).",
+  "related_identifiers": []
+}

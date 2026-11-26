@@ -94,7 +94,7 @@ Only a human operator can close these items. Nothing below has been done automat
 - [ ] Affiliation is stated as the institution itself requires (LABHDUFBA / UFBA wording checked).
 - [ ] Intellectual property: the institution has been consulted if the material was produced under
       contract, grant or employment that assigns rights.
-- [ ] Licence chosen and approved (code: MIT or Apache-2.0; documentation: CC BY 4.0).
+- [ ] Licence chosen and approved for the package's original code and documentation (MIT for ScholarSkills); third-party assets have their own rights review.
 
 ## 2. Content
 - [ ] No personal data, no third-party private content, no credential in the package.

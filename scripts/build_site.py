@@ -83,7 +83,7 @@ T = {
   "lvl_repl": "Reexecutada por não-autor com relatório publicado.",
   "stages_h": "Etapas da pesquisa",
   "stages_p": "Cada skill declara a etapa metodológica que atende. A cor do card identifica a etapa.",
-  "foot_note": "Código MIT · Documentação CC BY 4.0 · sem rastreamento, sem cookies",
+  "foot_note": "Código e documentação originais: MIT · sem rastreamento, sem cookies",
   "attrib": "Ícones: Zotero (marca da Corporation for Digital Scholarship) e Hermes Agent "
             "(Nous Research), usados apenas para indicar integração.",
   "val_note": "A validação estrutural prova conformidade com a especificação Agent Skills e a "
@@ -172,7 +172,7 @@ T = {
   "lvl_repl": "Re-executed by a non-author with a published report.",
   "stages_h": "Research stages",
   "stages_p": "Each skill declares the methodological stage it serves. Card colour identifies it.",
-  "foot_note": "Code MIT · Documentation CC BY 4.0 · no tracking, no cookies",
+  "foot_note": "Original code and documentation: MIT · no tracking, no cookies",
   "attrib": "Icons: Zotero (trademark of the Corporation for Digital Scholarship) and Hermes "
             "Agent (Nous Research), used only to indicate integration.",
   "val_note": "Structural validation proves conformance to the Agent Skills specification and the "
