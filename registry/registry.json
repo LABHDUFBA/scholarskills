@@ -1039,7 +1039,7 @@
   ],
   "renumbering_note": "2026-11-24: SS-0001 reassigned to the first substantive skill (Zotero); previous roadmap items shifted to SS-0002..SS-0009.",
   "hub": {
-    "title": "Skills Métodos Digitais — Research Skills for AI Agents",
+    "title": "Métodos Digitais — research skills for AI agents",
     "tagline": "Executable research methodologies that can be read, tested and cited.",
     "institution": "Laboratório de Humanidades Digitais — Universidade Federal da Bahia (LABHDUFBA)",
     "description": "An academic hub of agent skills treated as methodological objects: each one documented, versioned, tested and licensed, and — once the deposit is authorised — archived with a DOI. Nothing here carries an identifier it does not have: a skill without a DOI says so.",
@@ -1052,7 +1052,7 @@
     "release": null,
     "tagline_pt": "Metodologias de pesquisa executáveis, que podem ser lidas, testadas e citadas.",
     "description_pt": "Um hub acadêmico de skills para agentes de IA, tratadas como objetos metodológicos: cada uma documentada, versionada, testada e licenciada, e — quando o depósito é autorizado — arquivada com DOI. Nada aqui carrega um identificador que não possui: uma skill sem DOI diz que não tem.",
-    "title_pt": "Skills Métodos Digitais — metodologias de pesquisa executáveis",
+    "title_pt": "Métodos Digitais — skills de pesquisa para agentes de IA",
     "institution_url": "https://labhdufba.github.io/",
     "institution_en": "Digital Humanities Laboratory — Federal University of Bahia (LABHDUFBA)",
     "colors": {
@@ -1071,9 +1071,9 @@
       ]
     },
     "institution_short": "LABHDUFBA · UFBA",
-    "short_name": "Skills Métodos Digitais",
-    "short_name_en": "Digital Methods Skills",
-    "brand_note": "Nome de exibição: 'Skills Métodos Digitais', do LABHDUFBA. O identificador técnico do repositório e o prefixo de ID (SS-NNNN) permanecem 'scholarskills'/'SS' para não quebrar URLs, DOIs e citações já emitidos.",
+    "short_name": "Métodos Digitais",
+    "short_name_en": "Métodos Digitais",
+    "brand_note": "Nome de exibição: 'Métodos Digitais' (pt-BR), do LABHDUFBA. O identificador técnico — repositório 'scholarskills', prefixo SS-NNNN, URL atual do Pages — não muda: é o que já foi citado, indexado e depositado. O nome 'ScholarSkills' permanece nas citações das seis skills já publicadas e nos metadados dos seus depósitos (ex.: 'A ScholarSkills package (SS-0010)'), porque é o que os registros carregam; a próxima versão de cada skill pode atualizar o texto. Não 'corrigir' essa divergência sem decisão explícita.",
     "authors": [
       {
         "name": "Leonardo Fernandes Nascimento",

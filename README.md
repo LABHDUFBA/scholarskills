@@ -1,9 +1,12 @@
-# Skills Métodos Digitais (ScholarSkills) — Scientific Agent Skills
+# Métodos Digitais — skills de pesquisa para agentes de IA
+
+Identificador técnico do repositório: `scholarskills` (prefixo de ID `SS-`). O nome mudou; o
+identificador não, para não quebrar URLs, DOIs e citações já emitidos.
 
 An academic repository of **executable research methodologies for AI agents**, maintained by the
 [Digital Humanities Laboratory, Federal University of Bahia (LABHDUFBA)](https://labhd.ufba.br).
 
-ScholarSkills treats an agent skill as a **citable methodological object**: documented, versioned,
+Métodos Digitais treats an agent skill as a **citable methodological object**: documented, versioned,
 tested, licensed and archived with a DOI, in the same way a method section or a piece of research
 software is. The goal is methodological transparency and reproducibility for computational social
 science and the digital humanities — not tool distribution.
@@ -27,7 +30,7 @@ The catalogue is `registry/registry.json`; it is the single source of truth for 
 ## Why
 
 Agent skills circulate widely and are rarely inspectable. A reader cannot tell what a skill
-actually does, which decisions it encodes, where it fails, or how to cite it. ScholarSkills
+actually does, which decisions it encodes, where it fails, or how to cite it. Métodos Digitais
 addresses that gap by requiring, for every skill: verifiable methodological grounding, executable
 instructions, declared dependencies, tests including failure cases, documented limitations, a
 license, and ethical considerations.

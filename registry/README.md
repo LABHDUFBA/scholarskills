@@ -1,4 +1,4 @@
-# ScholarSkills Registry
+# Métodos Digitais Registry
 
 The registry is the **catalogue** of the project. It does not host skill code: each skill lives in
 its own repository, with its own releases and DOIs. The registry records what exists, at which

@@ -5,7 +5,7 @@
   font-display:swap;src:url('fonts/signika.woff2') format('woff2');
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
-/* ScholarSkills hub - no framework, no tracking, no build step.
+/* Métodos Digitais hub - no framework, no tracking, no build step.
    Colours: categorical palette (Okabe-Ito, colour-vision safe). Every stage ink was darkened
    until it reaches >=4.5:1 contrast on its own soft background (WCAG AA for body text). */
 :root{
@@ -102,8 +102,10 @@ html[data-theme=dark] .theme-toggle .i-moon{display:none}
   background:#fff;border:1px solid var(--brand-line);border-radius:999px;
   padding:5px 12px;margin-bottom:16px}
 .hero h1{margin:0 0 12px;font-family:var(--font-head);font-weight:700;
-  font-size:clamp(30px,4vw,44px);line-height:1.12;letter-spacing:-.015em;color:#040404}
-.hero .lede{margin:0;max-width:60ch;color:var(--muted);font-size:1.125rem;line-height:1.55}
+  font-size:clamp(30px,4vw,44px);line-height:1.12;letter-spacing:-.015em;color:#040404;
+  text-wrap:balance}
+.hero .lede{margin:0;max-width:60ch;color:var(--muted);font-size:1.125rem;line-height:1.55;
+  text-wrap:pretty}
 .hero .desc{margin:16px 0 0;max-width:74ch;color:var(--muted);font-size:0.9062rem}
 .stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;

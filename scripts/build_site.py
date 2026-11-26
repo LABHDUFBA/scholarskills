@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the ScholarSkills hub from registry/registry.json.
+"""Generate the Métodos Digitais hub (repository: scholarskills) from registry/registry.json.
 
 Two languages, one source of truth. Portuguese is the primary language (site root); English is
 generated under /en/. Both trees are static HTML: no runtime translation, stable URLs, works
@@ -261,7 +261,7 @@ def css() -> str:
   font-display:swap;src:url('fonts/signika.woff2') format('woff2');
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
-/* ScholarSkills hub - no framework, no tracking, no build step.
+/* Métodos Digitais hub - no framework, no tracking, no build step.
    Colours: categorical palette (Okabe-Ito, colour-vision safe). Every stage ink was darkened
    until it reaches >=4.5:1 contrast on its own soft background (WCAG AA for body text). */
 :root{
@@ -358,8 +358,10 @@ html[data-theme=dark] .theme-toggle .i-moon{display:none}
   background:#fff;border:1px solid var(--brand-line);border-radius:999px;
   padding:5px 12px;margin-bottom:16px}
 .hero h1{margin:0 0 12px;font-family:var(--font-head);font-weight:700;
-  font-size:clamp(30px,4vw,44px);line-height:1.12;letter-spacing:-.015em;color:#040404}
-.hero .lede{margin:0;max-width:60ch;color:var(--muted);font-size:1.125rem;line-height:1.55}
+  font-size:clamp(30px,4vw,44px);line-height:1.12;letter-spacing:-.015em;color:#040404;
+  text-wrap:balance}
+.hero .lede{margin:0;max-width:60ch;color:var(--muted);font-size:1.125rem;line-height:1.55;
+  text-wrap:pretty}
 .hero .desc{margin:16px 0 0;max-width:74ch;color:var(--muted);font-size:0.9062rem}
 .stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;
@@ -1050,6 +1052,16 @@ def render_paths(reg: dict, lang: str) -> str:
     return "\n".join(parts)
 
 
+def site_name(hub: dict, lang: str) -> str:
+    """Display name, read from the registry so copy and <title> cannot diverge again.
+
+    The technical identifier (repository `scholarskills`, `SS-` prefix, Pages URL) is deliberately not
+    derived from this: it is what has already been cited and deposited.
+    """
+    key = "short_name" if lang == "pt" else "short_name_en"
+    return hub.get(key) or hub.get("short_name") or ("Métodos Digitais" if lang == "pt" else "Digital Methods")
+
+
 def render_concepts(hub: dict, lang: str) -> str:
     """The four words the catalogue assumes, stated before the grid.
 
@@ -1102,7 +1114,7 @@ def render_index(reg: dict, lang: str) -> str:
     out += site_header(rel, lang, hub, other, active="home")
     out += f"""<section class="hero"><div class="wrap">
   <div class="eyebrow">{esc(hub.get('institution_short') or hub.get('institution',''))}</div>
-  <h1>{esc(hub.get('title_pt') if (lang=='pt' and hub.get('title_pt')) else hub.get('title','ScholarSkills'))}</h1>
+  <h1>{esc(hub.get('title_pt') if (lang=='pt' and hub.get('title_pt')) else hub.get('title','Métodos Digitais'))}</h1>
   <p class="lede">{esc(hub.get('tagline_pt' if lang=='pt' else 'tagline',''))}</p>
   <p class="desc">{esc(hub.get('description_pt' if lang=='pt' else 'description',''))}</p>
   <div class="stats">
@@ -1283,7 +1295,7 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str, reg_disc: dict = N
     sub = s.get("summary_pt") if (lang == "pt" and s.get("summary_pt")) else s.get("summary")
     reg_disc = reg_disc or {}
     reqs_html = render_requirements(s, lang)
-    out = html_head(f"{title} — ScholarSkills", sub or "", rel, lang)
+    out = html_head(f"{title} — {site_name(hub, lang)}", sub or "", rel, lang)
     out += site_header(rel, lang, hub, other, active="skills")
 
     authors = s.get("authors") or []
@@ -1310,7 +1322,7 @@ def render_skill(s: dict, hub: dict, stages: dict, lang: str, reg_disc: dict = N
         f'{esc(labels.get(n) or n.title())}</a>'
         for n, u in links.items())
     doi = s.get("doi_version")
-    cite = s.get("cite") or f"{s.get('title')} (2026). ScholarSkills {s.get('id')}."
+    cite = s.get("cite") or f"{s.get('title')} (2026). {site_name(hub, lang)} {s.get('id')}."
 
     out += f"""<section class="skill-head" {stage_style(stage)}><div class="wrap">
   <div class="crumbs"><a href="{rel}index.html">{t(lang,'hub')}</a> /
@@ -1515,7 +1527,7 @@ def build(out: Path) -> dict:
 def main(argv=None) -> int:
     global CSS_HASH
     CSS_HASH = _css_hash(css())
-    ap = argparse.ArgumentParser(description="Build the ScholarSkills hub.")
+    ap = argparse.ArgumentParser(description="Build the Métodos Digitais hub.")
     ap.add_argument("--out", type=Path, default=ROOT / "site")
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args(argv)

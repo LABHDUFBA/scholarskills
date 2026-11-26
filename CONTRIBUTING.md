@@ -1,4 +1,4 @@
-# Contributing to ScholarSkills
+# Contributing to Métodos Digitais
 
 ## Before you open a pull request
 

@@ -1,4 +1,4 @@
-# Editorial Policy — ScholarSkills
+# Editorial Policy — Métodos Digitais
 
 ## 1. What a submission must contain
 
@@ -52,5 +52,5 @@ the reason and the superseding identifier; its DOI remains resolvable.
 ## 5. What the registry does not do
 
 The Zenodo community aggregates records; it does not itself mint DOIs. Inclusion in the community
-does not imply review by Zenodo. ScholarSkills review is internal to this project and must not be
+does not imply review by Zenodo. Métodos Digitais review is internal to this project and must not be
 presented as evaluation by any external body.

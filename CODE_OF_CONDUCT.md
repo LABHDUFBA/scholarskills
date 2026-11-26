@@ -1,6 +1,6 @@
 # Code of Conduct
 
-ScholarSkills is an academic collaboration across institutions and career stages. The standard is
+Métodos Digitais is an academic collaboration across institutions and career stages. The standard is
 the one expected in a well-run seminar: argue about the work, not about the person.
 
 ## Expected

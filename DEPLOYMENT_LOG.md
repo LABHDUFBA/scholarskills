@@ -806,6 +806,46 @@ preference) and re-measured.
 `<title>` still appends "— ScholarSkills"; and `Skill` cards do not yet say which maturity level the
 reader can expect.
 
+---
+
+## Entry 030 — 2026-11-25 — Display name in Portuguese; URL unchanged
+
+**Status:** done locally; not pushed.
+
+**Decision (operator).** The project speaks Portuguese; the display name is now
+**"Métodos Digitais — skills de pesquisa para agentes de IA"** (*short:* "Métodos Digitais"). The site
+stays at `https://labhdufba.github.io/scholarskills/`; the operator will move the domain himself.
+
+**What changed**
+
+| Where | Change |
+|---|---|
+| `registry/registry.json` → `hub` | `title`, `title_pt`, `short_name`, `short_name_en` renamed; `brand_note` rewritten |
+| `build_site.py` | new `site_name(hub, lang)`; the `<title>` suffix and the citation fallback now read the registry instead of the hardcoded string |
+| `README.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `registry/README.md`, `registry/EDITORIAL_POLICY.md` | display name updated |
+| CSS | `text-wrap:balance` on the hero `h1`, `text-wrap:pretty` on the lede |
+
+**What deliberately did not change**
+
+- The six published `cite` strings still read "(ScholarSkills SS-00NN, version X)": they describe
+  records that already exist on Zenodo. The generated site keeps exactly **9** occurrences of
+  "ScholarSkills", all inside citation fields (verified by `grep -ro`).
+- `.zenodo.json` descriptions ("A ScholarSkills package (SS-00NN)") and the root `CITATION.cff` title
+  stay as deposited. Updating either is a **new version** of the deposit, not an edit.
+- `VALIDATION_REPORT.md` and this log keep the old name: they are dated records, not living pages.
+
+**Domain reconnaissance (for whoever registers it).** `metodosdigitais.org` is registered and serves an
+active "Lançamento em breve" page; `scholarskills.org` resolves with no content and `scholarskills.com`
+sits behind Cloudflare — both taken. Free at Registro.br on 2026-11-25: `metododigitais.com.br`,
+`metodosdigitais.com.br`, `skillsmetodosdigitais.com.br`, `scholarskills.com.br` (RDAP answered 404 to
+each). Subdomain hosting would need a CNAME to the Pages host; the build's relative links already
+survive that move.
+
+**Verification.** `--check` clean after rebuild. Titles: PT index "Métodos Digitais — skills de pesquisa
+para agentes de IA"; EN index "Métodos Digitais — research skills for AI agents" (the name is not
+translated, the tagline is); skill pages end with "— Métodos Digitais" in both trees. H1 wraps in
+1 line at 1440 px, 2 at 1024/768/390 and 3 at 360/320, with `scrollWidth == innerWidth` at every width.
+
 ## Next steps (ordered)
 
 1. ~~Operator authorises repository creation (private first)~~ — done, private repository exists.
